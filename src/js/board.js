@@ -6,7 +6,8 @@ let allTasks = [{
     'title': 'Website redesign',
     'text': 'Modify the contents of the main website',
     'progress': '',
-    'user': ['SM', 'MV', 'EF'],
+    'users': ['Simon Müller', 'Michael Veit', 'Elisa Fischer'],
+    'initials': ['SM', 'MV', 'EF'],
     'priority': 'low',
     'category': 'toDo'
 }, {
@@ -15,7 +16,8 @@ let allTasks = [{
     'title': 'Call potencial clients',
     'text': 'Make the product presen-tation to prospective buyers',
     'progress': '',
-    'user': ['AS', 'DE', '+2'],
+    'users': ['Astrid Schmidt', 'Dennis Esser', 'Elisa Fischer', 'Simon Müller'],
+    'initials': ['AS', 'DE', '+2'],
     'priority': 'high',
     'category': 'inProgress'
 
@@ -25,7 +27,8 @@ let allTasks = [{
     'title': 'Accounting invoices',
     'text': 'Write open invoices for customer',
     'progress': '',
-    'user': ['MB', 'AM', '+3'],
+    'users': ['Michael Ballack', 'Anna Maier', 'Elisa Fischer', 'Simon Müller', 'Lukas Podolski'],
+    'initials': ['MB', 'AM', '+3'],
     'priority': 'middle',
     'category': 'awaitingFeedback'
 
@@ -35,7 +38,8 @@ let allTasks = [{
     'title': 'Video cut',
     'text': 'Develop an ad campaign for brand positioning',
     'progress': '',
-    'user': ['HK'],
+    'users': ['Hans Kiesel'],
+    'initials': ['HK'],
     'priority': 'middle',
     'category': 'awaitingFeedback'
 
@@ -45,7 +49,8 @@ let allTasks = [{
     'title': 'Social media strategy',
     'text': 'Edit the new company video',
     'progress': '',
-    'user': ['BZ', 'RS'],
+    'users': ['Birte Zeisel', 'Richard Siegel'],
+    'initials': ['BZ', 'RS'],
     'priority': 'low',
     'category': 'done'
 
@@ -114,21 +119,22 @@ function showDetailWindow(id, ) {
 
     document.getElementById('DetailContainer').classList.remove('d-none');
 
-    let detailTodo = allTasks[id];
-    let chip = detailTodo['chip'];
-    let title = detailTodo['title'];
-    let text = detailTodo['text'];
+    let detailTask = allTasks[id];
+    let chip = detailTask['chip'];
+    let title = detailTask['title'];
+    let text = detailTask['text'];
+    let users = detailTask['users']
 
     let toDo = allTasks.filter(t => t['category'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
 
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
-        document.getElementById('Detail').innerHTML += generateDetailTodoHTML(element,chip, title, text)
+        document.getElementById('Detail').innerHTML += generateDetailTodoHTML(element,chip, title, text, users)
     }
 }
 
-function generateDetailTodoHTML(element, chip, title, text) {
+function generateDetailTodoHTML(element, chip, title, text, users) {
     
     return `
     <div class="${chip}">${chip}</div>
@@ -136,9 +142,11 @@ function generateDetailTodoHTML(element, chip, title, text) {
     <div class="text">${text}</div>
     <div class="dueDate">Due date:</div>
     <div class="Priority">Priority:</div>
-    <div class="assignedTo">Assigned To:</div>
+    <div class="assignedTo">Assigned To: ${users}</div>
     `;
 }
+
+
 
 
 function generateTodoHTML(element) {
@@ -154,7 +162,7 @@ function generateTodoHTML(element) {
       </div>
 
       <div class=UserAndPriority>
-        <div class="user">${element['user']}</div>
+        <div class="user">${element['initials']}</div>
         <div>${element['priority']}</div>
       </div>
 

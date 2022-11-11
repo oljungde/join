@@ -15,3 +15,83 @@ body {
     border-radius: 10px;
     color: white;
 }
+
+
+
+
+
+/* Style for the Header   */
+
+.Mainheader {
+    height: 100px;
+    background-color: #4589ff;;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 5px 4px 0px lightgrey;
+    padding-left: 39px;
+    padding-right: 39px;
+}
+
+.rightContainer{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: white;
+}
+
+.rightContainer h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 120%;
+}
+
+.Main-Container{
+    display: flex;
+}
+
+
+/* Style for the SideBar  */
+
+.sideBar {
+    background-color: white
+    height: 100vh;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sideNav{
+    padding-top: 66px;
+}
+
+
+.Bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    color: black;
+}
+
+.Bar img {
+    width: 22px;
+    height: 22px;
+    padding-left: 20px;
+}
+
+.Bar p {
+    padding-right: 20px;
+}
+
+.legalNotice {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    color: black;
+    padding-bottom: 112px;
+}
