@@ -1,4 +1,6 @@
-let todos = [{
+
+
+let allTasks = [{
     'id': 0,
     'chip': 'Design',
     'title': 'Website redesign',
@@ -53,87 +55,88 @@ let currentDraggedElement;
 
 function updateHTML() {
 
+updateTodoCategory();
+updateInprogressCategory();
+updateAwaitingFeedbackCategory();
+updateDoneCategory();
+}
 
+function updateTodoCategory(){
 
-    let toDo = todos.filter(t => t['category'] == 'toDo');
+    let toDo = allTasks.filter(t => t['category'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
 
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
         document.getElementById('toDo').innerHTML += generateTodoHTML(element);
     }
+}
 
 
-
-
-    let inProgress = todos.filter(p => p['category'] == 'inProgress');
+function updateInprogressCategory(){
+    
+    let inProgress = allTasks.filter(p => p['category'] == 'inProgress');
     document.getElementById('inProgress').innerHTML = '';
 
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
     }
+}
 
 
-
-
-    let awaitingFeedback = todos.filter(a => a['category'] == 'awaitingFeedback');
+function updateAwaitingFeedbackCategory(){
+    
+    let awaitingFeedback = allTasks.filter(a => a['category'] == 'awaitingFeedback');
     document.getElementById('awaitingFeedback').innerHTML = '';
 
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
         document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);
     }
+}
 
 
+function updateDoneCategory(){
 
-
-    let done = todos.filter(d => d['category'] == 'done');
+    let done = allTasks.filter(d => d['category'] == 'done');
     document.getElementById('done').innerHTML = '';
 
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
         document.getElementById('done').innerHTML += generateTodoHTML(element);
     }
-
-
-
 }
+
+
 
 function showDetailWindow(id, ) {
 
     document.getElementById('DetailContainer').classList.remove('d-none');
 
-    let detailTodo = todos[id];
+    let detailTodo = allTasks[id];
     let chip = detailTodo['chip'];
     let title = detailTodo['title'];
     let text = detailTodo['text'];
 
-
-
-    let toDo = todos.filter(t => t['category'] == 'toDo');
+    let toDo = allTasks.filter(t => t['category'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
 
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
         document.getElementById('Detail').innerHTML += generateDetailTodoHTML(element,chip, title, text)
     }
-
-
 }
 
 function generateDetailTodoHTML(element, chip, title, text) {
+    
     return `
-
     <div class="${chip}">${chip}</div>
     <h2 class="DetailTitle">${title}</h2>
     <div class="text">${text}</div>
     <div class="dueDate">Due date:</div>
     <div class="Priority">Priority:</div>
     <div class="assignedTo">Assigned To:</div>
-    
-
-      
     `;
 }
 
@@ -155,8 +158,6 @@ function generateTodoHTML(element) {
         <div>${element['priority']}</div>
       </div>
 
-
-
     </div>`
 }
 
@@ -169,6 +170,6 @@ function allowDrop(ev) {
 }
 
 function moveTo(category) {
-    todos[currentDraggedElement]['category'] = category;
+    allTasks[currentDraggedElement]['category'] = category;
     updateHTML();
 }
