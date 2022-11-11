@@ -21,107 +21,93 @@
         <div id="Detail" class="Detail"></div>
     </div>
 
-    <div class="sideBar">
 
-        <img class="joinLogo" src="img/Capa 2.png" alt="">
-        <div class="SideNav">
-
-
-            <div class="Bar">
-                <img src="img/summaryPic.png" alt="">
-                <p>Summary</p>
-            </div>
-            <div class="Bar">
-                <img src="img/BoardPic.png" alt="">
-                <p>Board</p>
-            </div>
-            <div class="Bar">
-                <img src="img/AddTaskPic.png" alt="">
-                <p>Add Task</p>
-            </div>
-            <div class="Bar">
-                <img src="img/ContactsPic.png" alt="">
-                <p>Contacts</p>
-            </div>
-
-
-
-
+    <header class="Mainheader">
+        <img src="assets/img/Capa 1.png" alt="">
+        <div class="rightContainer">
+            <h2>Kanban Project Management Tool</h2>
+            <img src="assets/img/Vector (2).png" alt="">
+            <img src="assets/img/Ellipse 3.png" alt="">
         </div>
 
+    </header>
 
-        <div class="legalNotice">
-            <img src="img/Group 4.png" alt="">
-            <p>Legal notice</p>
+    <div class="Main-Container">
 
+        <div class="sideBar">
+            <div class="SideNav">
+
+
+                <div class="Bar">
+                    <img src="assets/img/Vector (3).png" alt="">
+                    <p>Summary</p>
+                </div>
+                <div class="Bar">
+                    <img src="assets/img/Vector (4).png" alt="">
+                    <p>Board</p>
+                </div>
+                <div class="Bar">
+                    <img src="assets/img/Group 1.png" alt="">
+                    <p>Add Task</p>
+                </div>
+                <div class="Bar">
+                    <img src="assets/img/Vector (5).png" alt="">
+                    <p>Contacts</p>
+                </div>
+
+
+            </div>
+
+            <div class="legalNotice">
+                <img src="assets/img/Group 4 .png" alt="">
+                <p>Legal notice</p>
+            </div>
         </div>
 
+        <div class="MainBoard">
+
+            <div class="topBar">
+                <div class="InputAndButton">
+                    <input class="findTaskInput" type="text" placeholder="Find Task">
+                    <Button class="addTaskButton">Add Task +</Button>
+                </div>
+            </div>
+
+            <div class="kanbanBoard">
+
+                <div class="drag-area-Container" id="toDo-Container">
+                    <div class="drag-area-top-Section">
+                        <h3>To do</h3> <img class="plusButton" src="assets/img/plus button v1.png" alt="">
+                    </div>
+                    <div class="drag-area" id="toDo" ondrop="moveTo('toDo')" ondragover="allowDrop(event)"></div>
+                </div>
+                <div class="drag-area-Container" id="inProgress-Container">
+                    <div class="drag-area-top-Section">
+                        <h3>In progress</h3><img class="plusButton" src="assets/img/plus button v1.png" alt="">
+                    </div>
+                    <div class="drag-area" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+                    </div>
+                </div>
+                <div class="drag-area-Container" id="awaitingFeedback-Container">
+                    <div class="drag-area-top-Section">
+                        <h3>Awaiting Feedback</h3><img class="plusButton" src="assets/img/plus button v1.png" alt="">
+                    </div>
+                    <div class="drag-area" id="awaitingFeedback" ondrop="moveTo('awaitingFeedback')"
+                        ondragover="allowDrop(event)"></div>
+                </div>
+                <div class="drag-area-Container" id="done-Container">
+                    <div class="drag-area-top-Section">
+                        <h3>Done</h3><img class="plusButton" src="assets/img/plus button v1.png" alt="">
+                    </div>
+                    <div class="drag-area" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
+                </div>
+
+
+            </div>
+
+        </div>
 
     </div>
-
-
-
-
-
-    <div class="MainBoard">
-
-        <header class="Mainheader">
-            <img src="assets/img/Capa 1.png" alt="">
-            <div class="rightContainer">
-                <h2>Kanban Project Management Tool</h2>
-                <img src="assets/img/Vector (2).png" alt="">
-            </div>
-
-        </header>
-
-
-
-        <div class="topBar">
-            <h1>Board</h1>
-            <div class="InputAndButton">
-                <input class="findTaskInput" type="text" placeholder="Find Task">
-                <Button class="addTaskButton">Add Task +</Button>
-            </div>
-        </div>
-
-        <div class="kanbanBoard">
-
-            <div class="drag-area-Container" id="toDo-Container">
-                <div class="drag-area-top-Section">
-                    <h3>To do</h3> <img class="plusButton" src="img/plus button v1.png" alt="">
-                </div>
-                <div class="drag-area" id="toDo" ondrop="moveTo('toDo')" ondragover="allowDrop(event)"></div>
-            </div>
-            <div class="drag-area-Container" id="inProgress-Container">
-                <div class="drag-area-top-Section">
-                    <h3>In progress</h3><img class="plusButton" src="img/plus button v1.png" alt="">
-                </div>
-                <div class="drag-area" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
-                </div>
-            </div>
-            <div class="drag-area-Container" id="awaitingFeedback-Container">
-                <div class="drag-area-top-Section">
-                    <h3>Awaiting Feedback</h3><img class="plusButton" src="img/plus button v1.png" alt="">
-                </div>
-                <div class="drag-area" id="awaitingFeedback" ondrop="moveTo('awaitingFeedback')"
-                    ondragover="allowDrop(event)"></div>
-            </div>
-            <div class="drag-area-Container" id="done-Container">
-                <div class="drag-area-top-Section">
-                    <h3>Done</h3><img class="plusButton" src="img/plus button v1.png" alt="">
-                </div>
-                <div class="drag-area" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
-            </div>
-
-
-        </div>
-
-
-
-
-    </div>
-
-
 
 
 </body>

@@ -1,8 +1,41 @@
 body {
     margin: 0;
-    display: flex;
     font-family: "PT Sans"
 }
+
+/* Style for the Header   */
+
+.Mainheader {
+    height: 100px;
+    background-color: #4589ff;;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 5px 4px 0px lightgrey;
+    padding-left: 39px;
+    padding-right: 39px;
+}
+
+.rightContainer{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: white;
+}
+
+.rightContainer h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 120%;
+}
+
+.Main-Container{
+    display: flex;
+}
+
+
+/* Style for the SideBar  */
 
 .sideBar {
     background-color: white
@@ -14,26 +47,19 @@ body {
     justify-content: space-between;
 }
 
-.SideNav {}
-
-.joinLogo {
-    padding-top: 66px;
-}
 
 .Bar {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 20px;
-    color: white;
-
+    color: black;
 }
 
 .Bar img {
     width: 22px;
     height: 22px;
     padding-left: 20px;
-
 }
 
 .Bar p {
@@ -45,10 +71,12 @@ body {
     align-items: center;
     justify-content: flex-start;
     gap: 20px;
-    color: white;
+    color: black;
     padding-bottom: 112px;
-
 }
+
+
+/* Style for the Mainboard  */
 
 .MainBoard {
     height: 100vh;
@@ -56,24 +84,6 @@ body {
     background-color: rgb(246, 247, 248);
 }
 
-.Mainheader {
-    height: 100px;
-    background-color: #4589ff;;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    box-shadow: 0px 5px 4px 0px lightgrey;
-
-}
-
-.header h2 {
-    padding-left: 100px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 21px;
-    line-height: 120%;
-}
 
 h1 {
     font-weight: 700;
@@ -84,14 +94,13 @@ h1 {
     display: flex;
     align-items: center;
     gap: 35px;
-
 }
 
 .addTaskButton {
     width: 137px;
     height: 51px;
-    background: #2A3647;
-    border: 1px solid #2A3647;
+    background: #4589ff;;
+    border: 1px solid #4589ff;;
     border-radius: 10px;
     color: white;
     font-style: normal;
@@ -106,7 +115,6 @@ h1 {
     background: #FFFFFF;
     border: 1px solid #A8A8A8;
     border-radius: 10px;
-
 }
 
 .topBar {
@@ -119,7 +127,6 @@ h1 {
 .kanbanBoard {
     display: flex;
     justify-content: space-evenly;
-
 }
 
 .drag-area {
@@ -140,18 +147,14 @@ h1 {
     align-items: center;
     padding: 0px;
     gap: 35px;
-
-
 }
 
 .plusButton {
     width: 30px;
     height: 30px;
-
 }
 
 .todo {
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -182,7 +185,6 @@ h1 {
     padding: 3px;
     width: 55px;
     color: white;
-
 }
 
 .Sales {
@@ -195,6 +197,7 @@ h1 {
     width: 55px;
     color: white;
 }
+
 
 .Backoffice {
     background-color: rgb(31, 215, 193);
@@ -248,7 +251,6 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .Detail {
@@ -260,8 +262,6 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 20px;
-
-
 }
 
 .DetailTitle {
@@ -269,7 +269,6 @@ h1 {
     font-weight: 700;
     font-size: 61px;
     line-height: 120%;
-
 }
 
 .d-none {
