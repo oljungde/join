@@ -47,6 +47,10 @@ body {
     justify-content: space-between;
 }
 
+.sideNav{
+    padding-top: 66px;
+}
+
 
 .Bar {
     display: flex;
