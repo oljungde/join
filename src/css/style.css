@@ -5,6 +5,10 @@ body {
     box-sizing: border-box;
 }
 
+body {
+    font: var(--font-size-regular) 'PT Sans', sans-serif;
+}
+
 .btn {
     background-color: var(--color-blue-main);
     padding: 16px 8px;

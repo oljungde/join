@@ -1,4 +1,10 @@
 :root {
+    --font-size-xsmall: 12px;
+    --font-size-small: 14px;
+    --font-size-regular: 16px;
+    --font-size-large: 18px;
+    --font-size-xlarge: 20px;
+
     --color-blue-main: #4589ff;
     --color-blue-light: #d2e3ff;
 }
