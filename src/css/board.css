@@ -1,11 +1,11 @@
 body {
     margin: 0;
     display: flex;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: "PT Sans"
 }
 
 .sideBar {
-    background-color: rgb(42, 54, 71);
+    background-color: white
     height: 100vh;
     width: 15%;
     display: flex;
@@ -58,7 +58,7 @@ body {
 
 .Mainheader {
     height: 100px;
-    background-color: white;
+    background-color: #4589ff;;
     width: 100%;
     display: flex;
     align-items: center;
