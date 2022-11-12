@@ -1,1 +1,1 @@
-setURL('http://developerakademie.com/smallest_backend_ever');
+setURL('https://gruppe-377.developerakademie.net/smallest_backend_ever');

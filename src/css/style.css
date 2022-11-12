@@ -24,7 +24,8 @@ body {
 
 .Mainheader {
     height: 100px;
-    background-color: #4589ff;;
+    background-color: #4589ff;
+    ;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,7 +34,7 @@ body {
     padding-right: 39px;
 }
 
-.rightContainer{
+.rightContainer {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -47,7 +48,7 @@ body {
     line-height: 120%;
 }
 
-.Main-Container{
+.Main-Container {
     display: flex;
 }
 
@@ -55,7 +56,7 @@ body {
 /* Style for the SideBar  */
 
 .sideBar {
-    background-color: white
+    background-color: white;
     height: 100vh;
     width: 15%;
     display: flex;
@@ -64,7 +65,7 @@ body {
     justify-content: space-between;
 }
 
-.sideNav{
+.sideNav {
     padding-top: 66px;
 }
 
