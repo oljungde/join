@@ -10,14 +10,10 @@
     <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/board.css">
+    <script src="./smallest_backend_ever/mini_backend.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/board.js"></script>
-    <script src="./mini_backend.js"></script>
 </head>
-<script>
-    setURL('http://developerakademie.com/smallest_backend_ever');
-</script>
-
 
 <body onload="updateHTML()">
 
@@ -95,8 +91,7 @@
                     <div class="drag-area-top-Section">
                         <h3>Awaiting Feedback</h3><img class="plusButton" src="assets/img/plus button v1.png" alt="">
                     </div>
-                    <div class="drag-area" id="awaitingFeedback" ondrop="moveTo('awaitingFeedback')"
-                        ondragover="allowDrop(event)"></div>
+                    <div class="drag-area" id="awaitingFeedback" ondrop="moveTo('awaitingFeedback')" ondragover="allowDrop(event)"></div>
                 </div>
                 <div class="drag-area-Container" id="done-Container">
                     <div class="drag-area-top-Section">
