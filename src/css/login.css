@@ -3,3 +3,12 @@
     top: 80px;
     left: 80px;
 }
+
+.login-header {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    column-gap: 32px;
+    margin: 64px 80px;
+    font-size: var(--font-size-xxlarge);
+}
