@@ -27,6 +27,8 @@
 }
 
 .login-content {
+    background-color: white;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,9 +38,15 @@
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.15);
 }
 
+.headline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .login-headline-border {
     background-color: var(--color-blue-main);
-    width: 143px;
+    width: 150px;
     height: 3px;
     border-radius: 10px;
 }
@@ -102,4 +110,14 @@ input[type="checkbox"]:checked:before {
     justify-content: center;
     gap: 32px;
     margin-top: 32px;
+}
+
+.body-signup {
+    background-color: var(--color-blue-main);
+}
+
+.signup-back {
+    position: absolute;
+    top: 40px;
+    left: 40px;
 }

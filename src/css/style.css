@@ -33,6 +33,10 @@ a:hover {
     cursor: pointer;
 }
 
+.btn a {
+    color: white;
+}
+
 .btn:hover {
     background-color: var(--color-blue-main-hover);
 }
@@ -51,6 +55,20 @@ a:hover {
     background-color: var(--color-blue-main-hover);
     color: white;
     border-color: transparent;
+}
+
+::-webkit-input-placeholder {
+    /* Edge */
+    color: #d1d1d1;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #d1d1d1;
+}
+
+::placeholder {
+    color: #d1d1d1;
 }
 
 .border-bottom {
