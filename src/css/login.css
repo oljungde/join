@@ -123,7 +123,8 @@ input[type="checkbox"]:checked:before {
     left: 40px;
 }
 
-.forgot-password-text {
+.forgot-password-text,
+.signup-complete-text {
     margin-top: 32px;
     font-size: var(--font-size-xxlarge);
     text-align: center;

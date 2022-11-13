@@ -15,18 +15,18 @@
     <script src="./js/sign-up.js"></script>
 </head>
 
-<body class="body-signup">
+<body onload="init()" class="body-signup">
     <img src="./assets/img/logo-light.png" alt="Join Logo" class="logo-login">
 
     <section class="login-site">
-        <div class="login-content">
+        <div id="sign_up" class="login-content">
             <a href="./index.html"><img src="./assets/img/arrow-back.png" alt="back to login" class="signup-back"></a>
             <div class="headline-container">
                 <h1 class="headline">Sign up</h1>
                 <div class="login-headline-border"></div>
             </div>
 
-            <form onsubmit="addUser(); return false">
+            <form onsubmit="addUser(); return false;">
                 <div class="input border-bottom">
                     <input id="user_name" type="text" placeholder="Name" autocomplete="off" required>
                     <img src="./assets//img/signup-user.png" alt="user symbol">
