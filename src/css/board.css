@@ -39,7 +39,12 @@ body {
 /* Style for the SideBar  */
 
 .sideBar {
+<<<<<<< HEAD
     background-color: white height: 100vh;
+=======
+    background-color: white;
+    height: 100vh;
+>>>>>>> 2aba1b7c1e8990f5d0f2ef10425721897ce9c22f
     width: 15%;
     display: flex;
     flex-direction: column;

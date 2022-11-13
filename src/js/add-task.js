@@ -1,11 +1,7 @@
-setURL('https://gruppe-377.developerakademie.net/smallest_backend_ever');
+
 
 let AllTasks = [];
 
-async function init() {
-    await downloadFromServer();
-    AllTasks = await backend.getItem('tasks') || [];
-}
 
 
 function openAddTaskMask() {
