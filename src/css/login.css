@@ -30,14 +30,14 @@
     flex-direction: column;
     align-items: center;
     padding: 32px 120px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: var(--border);
     border-radius: 40px;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.15);
 }
 
 .login-headline-border {
     background-color: var(--color-blue-main);
-    width: 63px;
+    width: 143px;
     height: 3px;
     border-radius: 10px;
 }
@@ -47,18 +47,18 @@
     gap: 8px;
     margin-top: 32px;
     padding: 16px 24px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .input input {
     border: none;
+    font-size: var(--font-size-regular);
 }
 
 .input input:focus {
     outline: none;
 }
 
-/* .input img {
+.input img {
     width: 100%;
     height: 100%;
-} */
+}

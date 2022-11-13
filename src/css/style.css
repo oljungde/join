@@ -6,7 +6,11 @@ body {
 }
 
 body {
-    font: var(--font-size-regular) 'PT Sans', sans-serif;
+    font: var(--font-size-regular) 'Open Sans', sans-serif;
+}
+
+.headline {
+    font-size: var(--font-size-h1);
 }
 
 .btn {
@@ -18,7 +22,9 @@ body {
     color: white;
 }
 
-
+.border-bottom {
+    border-bottom: var(--border);
+}
 
 
 

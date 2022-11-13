@@ -17,26 +17,31 @@
 <body>
     <img src="./assets/img/logo-dark.png" alt="Join Logo" class="logo-login">
     <header class="login-header">
-        Not a Join user?
+        <span>Not a Join user?</span>
         <button class="btn">Sign up</button>
     </header>
 
     <section class="login-site">
         <div class="login-content">
             <div>
-                <h1>Log in</h1>
+                <h1 class="headline">Log in</h1>
                 <div class="login-headline-border"></div>
             </div>
 
             <form onsubmit="login(); return false">
-                <div class="input">
+                <div class="input border-bottom">
                     <input type="email" required>
                     <img src="./assets//img/login-email.png" alt="e-mail symbol">
                 </div>
 
-                <div class="input">
+                <div class="input border-bottom">
                     <input type="password" required>
                     <img src="./assets//img/login-password.png" alt="password symbol">
+                </div>
+
+                <div class="input">
+                    <input type="checkbox" name="remember me">
+                    <label for="remember me">Remember me</label>
                 </div>
             </form>
         </div>
