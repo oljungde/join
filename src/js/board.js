@@ -130,13 +130,14 @@ function showDetailWindow(id, ) {
 
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
-        document.getElementById('Detail').innerHTML += generateDetailTodoHTML(element,chip, title, text, users)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element,chip, title, text, users)
     }
 }
 
 function generateDetailTodoHTML(element, chip, title, text, users) {
     
     return `
+    <img class="CloseCrossDetailContainer" onclick="closeDetailTodoHTML()" src="assets/img/group 11.png" alt="">
     <div class="${chip}">${chip}</div>
     <h2 class="DetailTitle">${title}</h2>
     <div class="text">${text}</div>
@@ -180,4 +181,8 @@ function allowDrop(ev) {
 function moveTo(category) {
     allTasks[currentDraggedElement]['category'] = category;
     updateHTML();
+}
+
+function closeDetailTodoHTML(){
+    document.getElementById('DetailContainer').classList.add('d-none');
 }

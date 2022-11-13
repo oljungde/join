@@ -7,7 +7,8 @@ body {
 
 .Mainheader {
     height: 100px;
-    background-color: #4589ff;;
+    background-color: #4589ff;
+    ;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,7 +17,7 @@ body {
     padding-right: 39px;
 }
 
-.rightContainer{
+.rightContainer {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -30,7 +31,7 @@ body {
     line-height: 120%;
 }
 
-.Main-Container{
+.Main-Container {
     display: flex;
 }
 
@@ -38,8 +39,7 @@ body {
 /* Style for the SideBar  */
 
 .sideBar {
-    background-color: white
-    height: 100vh;
+    background-color: white height: 100vh;
     width: 15%;
     display: flex;
     flex-direction: column;
@@ -47,7 +47,7 @@ body {
     justify-content: space-between;
 }
 
-.sideNav{
+.sideNav {
     padding-top: 66px;
 }
 
@@ -103,14 +103,20 @@ h1 {
 .addTaskButton {
     width: 137px;
     height: 51px;
-    background: #4589ff;;
-    border: 1px solid #4589ff;;
+    background: #4589ff;
+    ;
+    border: 1px solid #4589ff;
+    ;
     border-radius: 10px;
     color: white;
     font-style: normal;
     font-weight: 700;
     font-size: 21px;
     line-height: 120%;
+}
+
+.addTaskButton:hover{
+    cursor: pointer;
 }
 
 .findTaskInput {
@@ -268,6 +274,27 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: absolute;
+    right: 0;
+}
+
+.addTaskForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.CloseCross {
+    width: 21.65px;
+    height: 21.65px;
+    position: absolute;
+    left: 481.31px;
+    top: 16px;
+}
+
+.CloseCross:hover{
+    cursor: pointer;
 }
 
 
@@ -296,6 +323,18 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.CloseCrossDetailContainer{
+
+width: 21.65px;
+height: 21.65px;
+
+
+}
+
+.CloseCrossDetailContainer:hover{
+    cursor: pointer;
 }
 
 .DetailTitle {
