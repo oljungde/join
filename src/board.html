@@ -13,6 +13,8 @@
     <script src="./smallest_backend_ever/mini_backend.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/board.js"></script>
+    <script src="./js/add-task.js"></script>
+
 </head>
 
 <body onload="updateHTML(); init();">
@@ -21,23 +23,22 @@
         <div id="Detail" class="Detail"></div>
     </div>
 
+    <div id="AddTaskMaskBg" class="AddTaskMaskBg d-none">
+        <div id="AddTaskMaskContainer" class="AddTaskMaskContainer"></div>
+    </div>
+
     <div class="Mainheader" w3-include-html="./assets/templates/header.html"></div>
-
-
-
-
 
     <div class="Main-Container">
 
         <div class="sideBar" w3-include-html="./assets/templates/navigation.html"></div>
-
 
         <div class="MainBoard">
 
             <div class="topBar">
                 <div class="InputAndButton">
                     <input class="findTaskInput" type="text" placeholder="Find Task">
-                    <Button class="addTaskButton">Add Task +</Button>
+                    <Button onclick="openAddTaskMask()" class="addTaskButton">Add Task +</Button>
                 </div>
             </div>
 
@@ -71,11 +72,8 @@
 
 
             </div>
-
         </div>
-
     </div>
-
 
 </body>
 
