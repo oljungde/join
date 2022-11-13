@@ -27,6 +27,7 @@
 }
 
 .login-content {
+    max-width: 540px;
     background-color: white;
     position: relative;
     display: flex;
@@ -120,4 +121,14 @@ input[type="checkbox"]:checked:before {
     position: absolute;
     top: 40px;
     left: 40px;
+}
+
+.forgot-password-text {
+    margin-top: 32px;
+    font-size: var(--font-size-xxlarge);
+    text-align: center;
+}
+
+.input-forgot-password {
+    width: 430px !important;
 }
