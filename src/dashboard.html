@@ -16,7 +16,75 @@
 </head>
 
 <body>
+    <div class="headline" w3-include-html="./assets/templates/header.html"></div>
+    <div class="displayflex">
+        <div class="navigation" w3-include-html="./assets/templates/navigation.html"></div>
+        <div class="mainside">
+            <!-- good morning/ name -->
+            <div class="flexmid mainmorning">
+                <div class="morning">Good morning,</div>
+                <div class="name">Sofia Müller</div>
+            </div>
+            <!-- Task Urgent / Tasks to-do -->
+            <div class="displayflex">
+                <div class="tasksurgent flexmid ">
+                    <div class="flexcolumn ">
+                        <div class="displayflex">
+                            <div><img class="imgurgent" src="./assets/img/Urgent.png" alt=""></div>
+                            <div class="urgentnumber">1</div>
+                        </div>
+                        <div class="urgenttext">Tasks Urgent</div>
+                    </div>
+                    <div class="bordermid"></div>
+                    <div>
+                        <div class="deadlinetime">October 16, 2022</div>
+                        <div class="deadlinetext">Upcoming Deadline</div>
+                    </div>
+                </div>
 
+                <div class="todo">
+                    <div class="flexaround">
+                        <div><img class="" src="./assets/img/Board.png" alt=""></div>
+                        <div class="todonumber">1</div>
+                    </div>
+                    <div class="todotext">Task To-do</div>
+                </div>
+            </div>
+
+            <!-- Task Border - Task Done -->
+            <div class="displayflex">
+                <div class="taskbot">
+                    <div class="flexaround">
+                        <div><img class="taskimg" src="./assets/img/Board.png" alt=""></div>
+                        <div class="tasknumber">5</div>
+                    </div>
+                    <div class="taskettext">Task in<br>Board</div>
+                </div>
+                <div class="taskbot">
+                    <div class="flexaround">
+                        <div><img class="taskimg" src="./assets/img/In Progress.png" alt=""></div>
+                        <div class="tasknumber">2</div>
+                    </div>
+                    <div class="taskettext">Task in<br>Progress</div>
+                </div>
+                <div class="taskbot">
+                    <div class="flexaround">
+                        <div><img class="taskimg" src="./assets/img/Awaiting feedback.png" alt=""></div>
+                        <div class="tasknumber">2</div>
+                    </div>
+                    <div class="taskettext">Awaiting<br>Feedback</div>
+                </div>
+                <div class="taskbot">
+                    <div class="flexaround">
+                        <div><img class="taskimg" src="./assets/img/Done.png" alt=""></div>
+                        <div class="tasknumber">1</div>
+                    </div>
+                    <div class="taskettext">Task<br>Done</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
 
 </html>

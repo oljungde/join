@@ -1,0 +1,251 @@
+.headline{
+    height: 100px;
+    background-color: #4589ff;  
+}
+
+.navigation{
+    height: 89.5vh;
+    width: 232px;
+    border-right: solid grey;
+}
+
+.displayflex{
+    display: flex;
+}
+
+.flexcolumn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flexmid{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+
+.flexaround{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MainCSS */
+.mainside{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+/* top */
+
+.mainmorning{
+    margin-bottom: 40px;
+}
+
+.morning{
+    font-weight: 400;
+    font-size: 48px;
+    margin: 15px;
+}
+
+.name{
+    font-size: 64px;
+    font-weight: 700;
+    color: #4589FF;
+    margin: 15px;
+}
+/* middle */
+.tasksurgent{
+    width: 682px;
+    height: 191px;
+    background-color: #4589ff ;
+    border-radius: 30px;
+    margin: 15px;
+}
+
+.bordermid{
+    height: 145px;
+    width: 3px;
+    background-color: #FFFFFF;
+    
+}
+
+.imgurgent{
+    width: 65px;
+    height: 66px;
+    border-radius: 100%;
+    border: 3px solid #FFFFFF;
+}
+
+.urgentnumber{
+    font-size: 48px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-left: 20px;
+}
+
+.urgenttext{
+    font-size: 23px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.deadlinetime{
+    font-size: 33px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.deadlinetext{
+    font-size: 23px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+/* todo */
+
+.todo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 208px;
+    height: 191px;
+    border-radius: 30px;
+    background-color: #D2E3FF;
+    margin: 15px;
+}
+
+.todonumber{
+    font-size: 48px;
+    font-weight: 700;
+    color: #000000;
+    margin-left: 20px;
+}
+
+.todotext{
+    font-weight: 400;
+    font-size: 23px;
+    color: #4589FF;
+    line-height: 120%;
+}
+
+.taskbot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 208px;
+    height: 191px;
+    border-radius: 30px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    margin: 15px;
+}
+
+.tasknumber{
+    font-size: 48px;
+    font-weight: 700;
+    color: #000000;
+    margin-left: 20px;
+}
+
+.taskettext{
+    font-weight: 400;
+    font-size: 23px;
+    color: #4589FF;
+}
+
+/* hover Urgent */
+
+.tasksurgent:hover  {
+    cursor: pointer;
+    width: 716px;
+    height: 207px;
+    border-radius: 0px 30px 30px 30px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    color: #4589FF;
+    transition: 0.4s;
+    
+}
+
+.tasksurgent:hover .imgurgent{
+    width: 75px;
+    height: 76px;
+    border-radius: 100%;
+    border: 3px solid #FFFFFF;
+}
+
+.tasksurgent:hover .urgenttext{
+    font-size: 28px;
+    font-weight: 400;
+    color: #4589FF;
+}
+
+.tasksurgent:hover .deadlinetime{
+    font-size: 43px;
+    color: #4589FF;
+}
+
+.tasksurgent:hover .deadlinetext{
+    font-size: 28px;
+    color: #4589FF;
+}
+
+.tasksurgent:hover .bordermid{
+    background-color: #4589FF;
+}
+
+.tasksurgent:hover .urgentnumber{
+    font-size: 58px;
+    color: #4589FF;
+}
+/* ------------ */
+/* Hover To-Do */
+.todo:hover{
+    width: 242px;
+    height: 207px;
+    border-radius: 0px 30px 30px 30px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    transition: 0.4s;
+}
+
+.todo:hover .todonumber{
+    font-size: 58px;
+    color: #005DFF;
+}
+
+.todo:hover .todotext{
+    font-size: 28px;
+    color: #005DFF;
+}
+
+.taskbot:hover{
+    width: 242px;
+    height: 207px;
+    border-radius: 0px 30px 30px 30px;
+    background-color: #005DFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    transition: 0.4s;
+}
+
+.taskbot:hover .taskettext{
+    font-size: 28px;
+    color: #FFFFFF;
+}
+
+.taskbot:hover .tasknumber{
+    font-size: 58px;
+    color: #FFFFFF;
+}
+
+.taskbot:hover  .taskimg{
+    border-radius: 100%;
+    border: 3px solid  #FFFFFF;
+}
