@@ -1,7 +1,5 @@
 
 
-let AllTasks = [];
-
 
 
 function openAddTaskMask() {
@@ -18,7 +16,7 @@ function openAddTaskMask() {
     
     <input placeholder ="Enter a title" type="text" name="" id="AddTitle">
     
-    <select value="">
+    <select id="user" value="">
         <option name="" id="">Martin Schmidt</option>
         <option name="" id="">Ulf Kirsten</option>
     </select>
@@ -42,9 +40,6 @@ function openAddTaskMask() {
 
 }
 
-function closeAddTaskMask(){
-    document.getElementById('AddTaskMaskBg').classList.add('d-none');
-}
 
 async function addToTask(){
     let title = document.getElementById('AddTitle');
@@ -56,16 +51,15 @@ async function addToTask(){
     };
 
     AllTasks.push(currentTask);
-    let AllTasksAsString = JSON.stringify(AllTasks);
-   
-    await backend.setItem('AllTasks', AllTasksAsString)
- 
+    
+    await backend.setItem("Alltasks", JSON.stringify(AllTasks));
 
+   
 }
 
-function loadAllTasks(AllTasks) {
-    let AllTasksAsString = backend.getItem('AllTasks');
-    AllTasks = JSON.parse(AllTasksAsString);
 
-    console.log('Loaded all tasks', AllTasks);
+
+
+function closeAddTaskMask(){
+    document.getElementById('AddTaskMaskBg').classList.add('d-none');
 }
