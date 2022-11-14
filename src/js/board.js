@@ -15,10 +15,39 @@ let AllTasks = [{
     'progress': '',
     'user': ['AS', 'DE', '+2'],
     'priority': 'high',
-    'category': 'toDo'
+    'category': 'inProgress'
+
+}, {
+    'id': 2,
+    'chip': 'Backoffice',
+    'title': 'Accounting invoices',
+    'text': 'Write open invoices for customer',
+    'progress': '',
+    'user': ['MB', 'AM', '+3'],
+    'priority': 'middle',
+    'category': 'awaitingFeedback'
+
+}, {
+    'id': 3,
+    'chip': 'Media',
+    'title': 'Video cut',
+    'text': 'Develop an ad campaign for brand positioning',
+    'progress': '',
+    'user': ['HK'],
+    'priority': 'middle',
+    'category': 'awaitingFeedback'
+
+}, {
+    'id': 4,
+    'chip': 'Marketing',
+    'title': 'Social media strategy',
+    'text': 'Edit the new company video',
+    'progress': '',
+    'user': ['BZ', 'RS'],
+    'priority': 'low',
+    'category': 'done'
 
 }];
-
 
 let currentDraggedElement;
 
@@ -26,12 +55,12 @@ function updateHTML() {
 
 
 
-    let tasks = AllTasks.filter(t => t['category'] == 'toDo');
+    let toDo = AllTasks.filter(t => t['category'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
 
-    for (let index = 0; index < tasks.length; index++) {
-        const task = tasks[index];
-        document.getElementById('toDo').innerHTML += generateTodoHTML(task);
+    for (let index = 0; index < toDo.length; index++) {
+        const element = toDo[index];
+        document.getElementById('toDo').innerHTML += generateTodoHTML(element);
     }
 
 
@@ -41,8 +70,8 @@ function updateHTML() {
     document.getElementById('inProgress').innerHTML = '';
 
     for (let index = 0; index < inProgress.length; index++) {
-        const task = inProgress[index];
-        document.getElementById('inProgress').innerHTML += generateTodoHTML(task);
+        const element = inProgress[index];
+        document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
     }
 
 
@@ -52,8 +81,8 @@ function updateHTML() {
     document.getElementById('awaitingFeedback').innerHTML = '';
 
     for (let index = 0; index < awaitingFeedback.length; index++) {
-        const task = awaitingFeedback[index];
-        document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(task);
+        const element = awaitingFeedback[index];
+        document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);
     }
 
 
@@ -63,8 +92,8 @@ function updateHTML() {
     document.getElementById('done').innerHTML = '';
 
     for (let index = 0; index < done.length; index++) {
-        const task = done[index];
-        document.getElementById('done').innerHTML += generateTodoHTML(task);
+        const element = done[index];
+        document.getElementById('done').innerHTML += generateTodoHTML(element);
     }
 
 
@@ -82,18 +111,18 @@ function showDetailWindow(id, ) {
 
 
 
-    let tasks = AllTasks.filter(t => t['category'] == 'toDo');
+    let toDo = AllTasks.filter(t => t['category'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
 
-    for (let index = 0; index < tasks.length; index++) {
-        const task = tasks[index];
-        document.getElementById('Detail').innerHTML += generateDetailTodoHTML(task,chip, title, text)
+    for (let index = 0; index < toDo.length; index++) {
+        const element = toDo[index];
+        document.getElementById('Detail').innerHTML += generateDetailTodoHTML(element,chip, title, text)
     }
 
 
 }
 
-function generateDetailTodoHTML(task, chip, title, text) {
+function generateDetailTodoHTML(element, chip, title, text) {
     return `
 
     <div class="${chip}">${chip}</div>
@@ -109,21 +138,21 @@ function generateDetailTodoHTML(task, chip, title, text) {
 }
 
 
-function generateTodoHTML(task) {
-    return `<div onclick="showDetailWindow(${task['id']})" draggable="true" ondragstart="startDragging(${task['id']})" class="todo">   
+function generateTodoHTML(element) {
+    return `<div onclick="showDetailWindow(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">   
 
-      <div class="${task['chip']}">${task['chip']}</div>
+      <div class="${element['chip']}">${element['chip']}</div>
       
       <div class=titleAndText>
         
-        <h4 class="title">${task['title']}</h4>
-        <div class="text">${task['text']}</div>
+        <h4 class="title">${element['title']}</h4>
+        <div class="text">${element['text']}</div>
       
       </div>
 
       <div class=UserAndPriority>
-        <div class="user">${task['user']}</div>
-        <div>${task['priority']}</div>
+        <div class="user">${element['user']}</div>
+        <div>${element['priority']}</div>
       </div>
 
 
