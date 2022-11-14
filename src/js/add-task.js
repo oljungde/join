@@ -7,7 +7,7 @@ function openAddTaskMask() {
 
     document.getElementById('AddTaskMaskContainer').innerHTML = /*html*/`
 
-<form class="addTaskForm" onsubmit="addToTask() ">
+<form class="addTaskForm" onsubmit="addToTask(); return false; ">
         <img class="CloseCross" onclick="closeAddTaskMask()" src="assets/img/group 11.png" alt="">
      <div>
         <h2>Add Task</h2>
@@ -56,6 +56,8 @@ async function addToTask(){
 
    
 }
+
+
 
 
 
