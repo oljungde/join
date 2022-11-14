@@ -59,7 +59,7 @@ async function addToTask(){
     let AllTasksAsString = JSON.stringify(AllTasks);
    
     await backend.setItem('AllTasks', AllTasksAsString)
-    console.log(AllTasks)
+ 
 
 }
 
