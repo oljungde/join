@@ -100,7 +100,7 @@ function updateHTML() {
 
 }
 
-function showDetailWindow(id, ) {
+function showDetailWindow(id,) {
 
     document.getElementById('DetailContainer').classList.remove('d-none');
 
@@ -116,7 +116,7 @@ function showDetailWindow(id, ) {
 
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
-        document.getElementById('Detail').innerHTML += generateDetailTodoHTML(element,chip, title, text)
+        document.getElementById('Detail').innerHTML += generateDetailTodoHTML(element, chip, title, text)
     }
 
 
