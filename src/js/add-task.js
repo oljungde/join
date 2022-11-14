@@ -46,7 +46,7 @@ function closeAddTaskMask(){
     document.getElementById('AddTaskMaskBg').classList.add('d-none');
 }
 
-function addToTask(){
+async function addToTask(){
     let title = document.getElementById('AddTitle');
     let description = document.getElementById('AddDescription');
 
@@ -56,8 +56,16 @@ function addToTask(){
     };
 
     AllTasks.push(currentTask);
-    backend.setItem('tasks', AllTasks)
+    let AllTasksAsString = JSON.stringify(AllTasks);
+   
+    await backend.setItem('AllTasks', AllTasksAsString)
+    console.log(AllTasks)
 
-    
+}
 
+function loadAllTasks(AllTasks) {
+    let AllTasksAsString = backend.getItem('AllTasks');
+    AllTasks = JSON.parse(AllTasksAsString);
+
+    console.log('Loaded all tasks', AllTasks);
 }
