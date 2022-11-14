@@ -39,12 +39,8 @@ body {
 /* Style for the SideBar  */
 
 .sideBar {
-<<<<<<< HEAD
-    background-color: white height: 100vh;
-=======
     background-color: white;
     height: 100vh;
->>>>>>> 2aba1b7c1e8990f5d0f2ef10425721897ce9c22f
     width: 15%;
     display: flex;
     flex-direction: column;
@@ -120,7 +116,7 @@ h1 {
     line-height: 120%;
 }
 
-.addTaskButton:hover{
+.addTaskButton:hover {
     cursor: pointer;
 }
 
@@ -283,7 +279,7 @@ h1 {
     right: 0;
 }
 
-.addTaskForm{
+.addTaskForm {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -298,7 +294,7 @@ h1 {
     top: 16px;
 }
 
-.CloseCross:hover{
+.CloseCross:hover {
     cursor: pointer;
 }
 
@@ -330,15 +326,15 @@ h1 {
     gap: 20px;
 }
 
-.CloseCrossDetailContainer{
+.CloseCrossDetailContainer {
 
-width: 21.65px;
-height: 21.65px;
+    width: 21.65px;
+    height: 21.65px;
 
 
 }
 
-.CloseCrossDetailContainer:hover{
+.CloseCrossDetailContainer:hover {
     cursor: pointer;
 }
 
