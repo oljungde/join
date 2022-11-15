@@ -1,5 +1,4 @@
 let j = 0;
-let AllTasks = [];
 
 
 
@@ -88,17 +87,17 @@ async function addToTask() {
         'status': 'toDo'
     };
 
-    AllTasks.push(currentTask);
+    allTasks.push(currentTask);
 
-    await backend.setItem("AllTasks", JSON.stringify(AllTasks));
+    await backend.setItem("allTasks", JSON.stringify(allTasks));
     updateHTML()
     setIdOneHigher()
 
 
 }
 
-function setIdOneHigher(){
-    if (j>=0) {
+function setIdOneHigher() {
+    if (j >= 0) {
         j++;
     }
 }

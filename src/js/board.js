@@ -7,7 +7,6 @@ let currentDraggedElement;
 async function init() {
     await includeHTML();
     await downloadFromServer();
-    AllTasks = JSON.parse(backend.getItem('Alltasks'));
 }
 
 //Update the board
@@ -33,7 +32,7 @@ function identifyId() {
 
 
 function updateToDoStatus() {
-    let toDo = AllTasks.filter(t => t['status'] == 'toDo');
+    let toDo = allTasks.filter(t => t['status'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
 
     for (let index = 0; index < toDo.length; index++) {
@@ -45,7 +44,7 @@ function updateToDoStatus() {
 }
 
 function updateInProgressStatus() {
-    let inProgress = AllTasks.filter(p => p['status'] == 'inProgress');
+    let inProgress = allTasks.filter(p => p['status'] == 'inProgress');
     document.getElementById('inProgress').innerHTML = '';
 
     for (let index = 0; index < inProgress.length; index++) {
@@ -58,7 +57,7 @@ function updateInProgressStatus() {
 
 function updateAwaitingFeedbackStatus() {
 
-    let awaitingFeedback = AllTasks.filter(a => a['status'] == 'awaitingFeedback');
+    let awaitingFeedback = allTasks.filter(a => a['status'] == 'awaitingFeedback');
     document.getElementById('awaitingFeedback').innerHTML = '';
 
     for (let index = 0; index < awaitingFeedback.length; index++) {
@@ -71,7 +70,7 @@ function updateAwaitingFeedbackStatus() {
 }
 
 function updateDoneStatus() {
-    let done = AllTasks.filter(d => d['status'] == 'done');
+    let done = allTasks.filter(d => d['status'] == 'done');
     document.getElementById('done').innerHTML = '';
 
     for (let index = 0; index < done.length; index++) {
