@@ -23,13 +23,13 @@
     </header>
 
     <section class="login-site">
-        <div class="login-content">
+        <div is="login_content" class="login-content">
             <div>
                 <h1 class="headline">Log in</h1>
                 <div class="login-headline-border"></div>
             </div>
 
-            <form onsubmit="login(); return false">
+            <form onsubmit="userLogin(); return false">
                 <div class="input border-bottom">
                     <input id="user_email" type="email" placeholder="Email" autocomplete="off" required>
                     <img src="./assets//img/login-email.png" alt="e-mail symbol">
@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="login-btns-container">
-                    <button class="btn">Log in</button>
+                    <button type="submit" class="btn">Log in</button>
                     <button class="btn-light">Guest log in</button>
                 </div>
             </form>

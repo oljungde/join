@@ -124,7 +124,8 @@ input[type="checkbox"]:checked:before {
 }
 
 .forgot-password-text,
-.signup-complete-text {
+.signup-complete-text,
+.access-denied-text {
     margin-top: 32px;
     font-size: var(--font-size-xxlarge);
     text-align: center;
