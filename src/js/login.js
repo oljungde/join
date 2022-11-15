@@ -12,10 +12,11 @@ function checkUserData(userEmail, userPassword) {
     console.log(indexOfPassword);
     if (indexOfEmail == -1 || indexOfPassword == -1) {
         console.log('Einloggen nicht möglich!');
-        // let loginContent = document.getElementById('login_content');
-        // loginContent.innerHTML = accessDeniedTemplate();
+        let loginContent = document.getElementById('login_content');
+        loginContent.innerHTML = accessDeniedTemplate();
     } else {
         console.log('GLÜCKWUNSCH! Einloggen möglich');
+        window.location.href = "./dashboard.html";
     }
 }
 

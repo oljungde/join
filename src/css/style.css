@@ -75,6 +75,10 @@ a:hover {
     border-bottom: var(--border);
 }
 
+.display-none {
+    display: none;
+}
+
 
 
 /* Style for the Header   */
