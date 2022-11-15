@@ -104,6 +104,45 @@ function updateDoneCategory() {
 
 }
 
+<<<<<<< HEAD
+=======
+function showDetailWindow(id,) {
+
+    document.getElementById('DetailContainer').classList.remove('d-none');
+
+    let detailTodo = AllTasks[id];
+    let chip = detailTodo['chip'];
+    let title = detailTodo['title'];
+    let text = detailTodo['text'];
+
+
+
+    let toDo = AllTasks.filter(t => t['category'] == 'toDo');
+    document.getElementById('toDo').innerHTML = '';
+
+    for (let index = 0; index < toDo.length; index++) {
+        const element = toDo[index];
+        document.getElementById('Detail').innerHTML += generateDetailTodoHTML(element, chip, title, text)
+    }
+
+
+}
+
+function generateDetailTodoHTML(element, chip, title, text) {
+    return `
+
+    <div class="${chip}">${chip}</div>
+    <h2 class="DetailTitle">${title}</h2>
+    <div class="text">${text}</div>
+    <div class="dueDate">Due date:</div>
+    <div class="Priority">Priority:</div>
+    <div class="assignedTo">Assigned To:</div>
+    
+
+      
+    `;
+}
+>>>>>>> 7ea1068b37cd95f2017376b9e5e564a7350f610d
 
 
 function generateTodoHTML(element) {
