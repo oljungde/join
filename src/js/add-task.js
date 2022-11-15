@@ -1,4 +1,5 @@
 let j = 0;
+let AllTasks = [];
 
 
 
@@ -72,7 +73,11 @@ async function addToTask() {
 
 }
 
-
+function setIdOneHigher(){
+    if (j>=0) {
+        j++;
+    }
+}
 
 
 
