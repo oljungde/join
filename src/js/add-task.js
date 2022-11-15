@@ -15,7 +15,7 @@ function openAddTaskMask() {
     </div>
     
     <div class="input border-bottom">
-                    <input type="text" placeholder="Ener a title" autocomplete="off" required>
+                    <input id="AddTitle" type="text" placeholder="Ener a title" autocomplete="off" required>
                 </div>
 
                 <div class="input border-bottom">
@@ -27,7 +27,7 @@ function openAddTaskMask() {
 
 
     <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
-        <p>Category</p>
+        <p>Due Date</p>
         <input type="date">
                 </div>
 
