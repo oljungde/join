@@ -1,11 +1,4 @@
-
-
 let currentDraggedElement;
-
-async function init() {
-    await includeHTML();
-    await downloadFromServer();
-}
 
 function updateHTML() {
     updateToDoStatus()
@@ -93,7 +86,7 @@ function allowDrop(ev) {
 }
 
 function moveTo(status) {
-    AllTasks[currentDraggedElement]['status'] = status;
+    allTasks[currentDraggedElement]['status'] = status;
     updateHTML();
 }
 
