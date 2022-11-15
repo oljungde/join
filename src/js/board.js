@@ -1,13 +1,5 @@
-
-
 let currentDraggedElement;
 
-//load task from Backend
-
-async function init() {
-    await includeHTML();
-    await downloadFromServer();
-}
 
 //Update the board
 
@@ -40,7 +32,7 @@ function updateToDoStatus() {
         document.getElementById('toDo').innerHTML += generateTodoHTML(element);
         init();
     }
-   
+
 }
 
 function updateInProgressStatus() {
@@ -52,7 +44,7 @@ function updateInProgressStatus() {
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
         init();
     }
-    
+
 }
 
 function updateAwaitingFeedbackStatus() {
@@ -65,7 +57,7 @@ function updateAwaitingFeedbackStatus() {
         document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);
         init();
     }
-   
+
 
 }
 
@@ -78,7 +70,7 @@ function updateDoneStatus() {
         document.getElementById('done').innerHTML += generateTodoHTML(element);
         init();
     }
-    
+
 
 }
 
