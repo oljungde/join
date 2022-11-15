@@ -52,9 +52,16 @@ let AllTasks = [{
 let currentDraggedElement;
 
 function updateHTML() {
+    updateToDoCategory()
+    updateInProgressCategory()
+    updateAwaitingFeedbackCategory()
+    updateDoneCategory()
+}
+
+// Drag and Drop Bereiche werden definiert und Tasks gerendert
 
 
-
+function updateToDoCategory() {
     let toDo = AllTasks.filter(t => t['category'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
 
@@ -62,10 +69,9 @@ function updateHTML() {
         const element = toDo[index];
         document.getElementById('toDo').innerHTML += generateTodoHTML(element);
     }
+}
 
-
-
-
+function updateInProgressCategory() {
     let inProgress = AllTasks.filter(p => p['category'] == 'inProgress');
     document.getElementById('inProgress').innerHTML = '';
 
@@ -73,9 +79,9 @@ function updateHTML() {
         const element = inProgress[index];
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
     }
+}
 
-
-
+function updateAwaitingFeedbackCategory() {
 
     let awaitingFeedback = AllTasks.filter(a => a['category'] == 'awaitingFeedback');
     document.getElementById('awaitingFeedback').innerHTML = '';
@@ -85,9 +91,9 @@ function updateHTML() {
         document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);
     }
 
+}
 
-
-
+function updateDoneCategory() {
     let done = AllTasks.filter(d => d['category'] == 'done');
     document.getElementById('done').innerHTML = '';
 
@@ -96,46 +102,8 @@ function updateHTML() {
         document.getElementById('done').innerHTML += generateTodoHTML(element);
     }
 
-
-
 }
 
-function showDetailWindow(id, ) {
-
-    document.getElementById('DetailContainer').classList.remove('d-none');
-
-    let detailTodo = AllTasks[id];
-    let chip = detailTodo['chip'];
-    let title = detailTodo['title'];
-    let text = detailTodo['text'];
-
-
-
-    let toDo = AllTasks.filter(t => t['category'] == 'toDo');
-    document.getElementById('toDo').innerHTML = '';
-
-    for (let index = 0; index < toDo.length; index++) {
-        const element = toDo[index];
-        document.getElementById('Detail').innerHTML += generateDetailTodoHTML(element,chip, title, text)
-    }
-
-
-}
-
-function generateDetailTodoHTML(element, chip, title, text) {
-    return `
-
-    <div class="${chip}">${chip}</div>
-    <h2 class="DetailTitle">${title}</h2>
-    <div class="text">${text}</div>
-    <div class="dueDate">Due date:</div>
-    <div class="Priority">Priority:</div>
-    <div class="assignedTo">Assigned To:</div>
-    
-
-      
-    `;
-}
 
 
 function generateTodoHTML(element) {
@@ -154,11 +122,11 @@ function generateTodoHTML(element) {
         <div class="user">${element['user']}</div>
         <div>${element['priority']}</div>
       </div>
-
-
-
     </div>`
 }
+
+
+// Drag and Drop
 
 function startDragging(id) {
     currentDraggedElement = id;
@@ -171,4 +139,43 @@ function allowDrop(ev) {
 function moveTo(category) {
     AllTasks[currentDraggedElement]['category'] = category;
     updateHTML();
+}
+
+
+
+
+
+
+// Generate the Detail Window
+
+
+function showDetailWindow(id) {
+
+    document.getElementById('DetailContainer').classList.remove('d-none');
+
+    let detailTodo = AllTasks[id];
+    let chip = detailTodo['chip'];
+    let title = detailTodo['title'];
+    let text = detailTodo['text'];
+
+    let toDo = AllTasks.filter(t => t['category'] == 'toDo');
+    document.getElementById('toDo').innerHTML = '';
+
+    for (let index = 0; index < toDo.length; index++) {
+        const element = toDo[index];
+        document.getElementById('Detail').innerHTML += generateDetailTodoHTML(element, chip, title, text)
+    }
+
+
+}
+
+function generateDetailTodoHTML(element, chip, title, text) {
+    return `
+    <div class="${chip}">${chip}</div>
+    <h2 class="DetailTitle">${title}</h2>
+    <div class="text">${text}</div>
+    <div class="dueDate">Due date:</div>
+    <div class="Priority">Priority:</div>
+    <div class="assignedTo">Assigned To:</div>
+    `;
 }

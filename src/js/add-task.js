@@ -41,20 +41,20 @@ function openAddTaskMask() {
 }
 
 
-async function addToTask(){
+async function addToTask() {
     let title = document.getElementById('AddTitle');
     let description = document.getElementById('AddDescription');
 
     let currentTask = {
-        "title" : title.value,
-        "description" : description.value
+        "title": title.value,
+        "description": description.value
     };
 
     AllTasks.push(currentTask);
-    
+
     await backend.setItem("Alltasks", JSON.stringify(AllTasks));
 
-   
+
 }
 
 
@@ -62,6 +62,6 @@ async function addToTask(){
 
 
 
-function closeAddTaskMask(){
+function closeAddTaskMask() {
     document.getElementById('AddTaskMaskBg').classList.add('d-none');
 }
