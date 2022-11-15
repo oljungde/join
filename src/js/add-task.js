@@ -1,4 +1,4 @@
-
+let j = 0;
 
 
 
@@ -15,11 +15,21 @@ function openAddTaskMask() {
     </div>
     
     <input placeholder ="Enter a title" type="text" name="" id="AddTitle">
+
+
+    <select id="AddCategory" value="">
+        <option name="" id="">Sales</option>
+        <option name="" id="">Design</option>
+        <option name="" id="">Backoffice</option>
+        <option name="" id="">Media</option>
+    </select>
     
     <select id="user" value="">
         <option name="" id="">Martin Schmidt</option>
         <option name="" id="">Ulf Kirsten</option>
     </select>
+
+
     
     <input type="date">
     
@@ -44,15 +54,20 @@ function openAddTaskMask() {
 async function addToTask() {
     let title = document.getElementById('AddTitle');
     let description = document.getElementById('AddDescription');
+    let category = document.getElementById('AddCategory')
 
     let currentTask = {
+        "id": j,
         "title": title.value,
-        "description": description.value
+        "description": description.value,
+        "category": category.value,
+        'status': 'toDo'
     };
 
     AllTasks.push(currentTask);
 
-    await backend.setItem("Alltasks", JSON.stringify(AllTasks));
+    await backend.setItem("AllTasks", JSON.stringify(AllTasks));
+    updateHTML()
 
 
 }

@@ -5,7 +5,6 @@ async function init() {
     await includeHTML();
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
-    AllTasks = JSON.parse(backend.getItem('Alltasks')) || [];
 }
 
 async function includeHTML() {
