@@ -77,8 +77,9 @@ function openAddTaskMask() {
 async function addToTask() {
     let title = document.getElementById('AddTitle');
     let description = document.getElementById('AddDescription');
-    let category = document.getElementById('AddCategory')
-    let user = document.getElementById('AddUser')
+    let category = document.getElementById('AddCategory');
+    let user = document.getElementById('AddUser');
+    
 
 
     let currentTask = {
@@ -87,7 +88,7 @@ async function addToTask() {
         "description": description.value,
         "category": category.value,
         "user": user.value,
-        "priority":  selectedPriority(),
+        "priority": prioritySelect,
         'status': 'toDo'
     };
 
@@ -113,7 +114,7 @@ function closeAddTaskMask() {
 
 function selectedPriority(i) {
     if (i == 1) {
-      prioritySelect = "Urgent";
+      prioritySelect = "urgent";
       document.getElementById("priorityUrgent").classList.add('prio-urgent-selected');
       document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
       document.getElementById("priorityLow").classList.remove('prio-low-selected');
@@ -125,7 +126,7 @@ function selectedPriority(i) {
 
     }
     if (i == 2) {
-      prioritySelect = "Mid";
+      prioritySelect = "medium";
       document.getElementById("priorityMedium").classList.add('prio-medium-selected');
       document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
       document.getElementById("priorityLow").classList.remove('prio-low-selected');
@@ -137,7 +138,7 @@ function selectedPriority(i) {
 
     }
     if (i == 3) {
-      prioritySelect = "Low";
+      prioritySelect = "low";
       document.getElementById("priorityLow").classList.add('prio-low-selected');
       document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
       document.getElementById("priorityMedium").classList.remove('prio-medium-selected');

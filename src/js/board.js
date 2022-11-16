@@ -92,7 +92,7 @@ function generateTodoHTML(element) {
 
       <div class=UserAndPriority>
         <div class="user">${element['user']}</div>
-        <div>${element['priority']}</div>
+        <div class="priority">Prio: <img src="assets/img/prio-${element['priority']}.png" alt=""></div>
       </div>
     </div>`
 }
@@ -130,27 +130,34 @@ function showDetailWindow(id) {
     let category = detailTodo['category'];
     let title = detailTodo['title'];
     let description = detailTodo['description'];
+    let priority = detailTodo['priority']
+    let user = detailTodo['user']
 
     let toDo = allTasks.filter(t => t['status'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
 
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, user, priority)
     }
 
 
 }
 
-function generateDetailTodoHTML(element, category, title, description) {
+function generateDetailTodoHTML(element, category, title, description, user, priority) {
     return `
+    
     <img class="CloseCross-DetailTask" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
-    <div class="${category}">${category}</div>
-    <h2 class="DetailTitle">${title}</h2>
-    <div class="text">${description}</div>
-    <div class="dueDate">Due date:</div>
-    <div class="Priority">Priority:</div>
-    <div class="assignedTo">Assigned To:</div>
+    <div class="detail-category ${category}">${category}</div>
+    <h2 class="detail-title">${title}</h2>
+    <div class="detail-text">${description}</div>
+    <div class="detail-dueDate">Due date:</div>
+    
+    <div class="detail-priority">
+    Prio <img src="assets/img/detail-prio-${priority}.png" alt="">
+    </div>
+    <div class="detail-assignedTo">Assigned To:${user}</div>
+    
     `;
 }
 

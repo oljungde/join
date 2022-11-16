@@ -12,7 +12,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0px 5px 4px 0px lightgrey;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     padding-left: 39px;
     padding-right: 39px;
 }
@@ -88,7 +88,6 @@ body {
 .MainBoard {
     height: 100vh;
     width: 85%;
-    background-color: white
 }
 
 
@@ -317,7 +316,7 @@ h1 {
     cursor: pointer
 }
 
-.prio-urgent-selected{
+.prio-urgent-selected {
     background-color: #FF3D00;
     color: white;
 }
@@ -341,7 +340,7 @@ h1 {
 
 }
 
-.prio-medium-selected{
+.prio-medium-selected {
     background-color: #FFA800;
     color: white;
 }
@@ -365,7 +364,7 @@ h1 {
 
 }
 
-.prio-low-selected{
+.prio-low-selected {
     background-color: #7AE229;
     color: white;
 }
@@ -435,21 +434,66 @@ h1 {
     background-color: white;
     box-shadow: 0px 0px 4px rgb(0 0 0 / 10%);
     border-radius: 30px;
-    padding: 30px;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    position: relative;
+}
+
+.detail-title {
+    margin: 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 120%;
+}
+
+.detail-text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 120%;
+    color: black;
+}
+
+.detail-dueDate {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+}
+
+.detail-priority {
+    display: flex;
+    align-items: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+
+}
+
+.detail-assignedTo {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+
 }
 
 .CloseCross-DetailTask {
 
     width: 21.65px;
     height: 21.65px;
-
-
+    position: absolute;
+    right: 42px;
+    top: 42px;
 }
 
-.CloseCrossDetailContainer:hover {
+
+
+.CloseCrossDetailTask:hover {
     cursor: pointer;
 }
 
