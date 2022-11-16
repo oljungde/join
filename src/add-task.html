@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/board.css">
+    <link rel="stylesheet" href="./css/add-task.css">
+
     <script src="./smallest_backend_ever/mini_backend.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/board.js"></script>
@@ -29,12 +31,9 @@
         <div class="MainBoard">
 
 
-            <form class="addTaskForm" onsubmit="addToTask(); return false; ">
-                <img class="CloseCross" onclick="closeAddTaskMask()" src="assets/img/group 11.png" alt="">
-                <div class="addTask-top">
-                    <h2>Add Task</h2>
-                    <button class="btn">Create Task</button>
-                </div>
+            <form class="addTaskFormHTML" onsubmit="addToTask(); return false; ">
+                
+          
 
                 <div class="input border-bottom">
                     <input id="AddTitle" type="text" placeholder="Ener a title" autocomplete="off" required>
@@ -89,6 +88,17 @@
                 </div>
 
                 <input type="text" placeholder="Add a new subtask">
+
+                <div class="addTask-bottom">
+                    <button class="btn" style="display:flex; align-items:center; gap: 10px;">
+                        <p>Create Task</p>
+                        <img src="assets/img/white-check.png" alt="">
+                        </button>
+                        <button class="btn" style="display:flex; align-items:center; gap: 10px;">
+                            <p>Clear</p>
+                            <img src="assets/img/grey-cross.png" alt="">
+                            </button>
+                </div>
 
             </form>
 

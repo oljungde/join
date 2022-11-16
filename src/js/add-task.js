@@ -48,15 +48,15 @@ function openAddTaskMask() {
     
     <div class="priorityContainer">
         <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
-        <p>Urgent</p> <img src="assets/img/prio-urgent.png" alt="">
+        <p>Urgent</p> <img id="priorityUrgentImg" src="assets/img/prio-urgent.png" alt="">
         </div>
 
-        <div class="priority-medium" id="priorityLow" onclick="selectedPriority(2)">
-        <p>Medium</p> <img src="assets/img/prio-medium.png" alt="">
+        <div class="priority-medium" id="priorityMedium" onclick="selectedPriority(2)">
+        <p>Medium</p> <img id="priorityMediumImg" src="assets/img/prio-medium.png" alt="">
         </div>
 
         <div class="priority-low" id="priorityLow" onclick="selectedPriority(3)">
-        <p>Low</p> <img src="assets/img/prio-low.png" alt="">
+        <p>Low</p> <img id="priorityLowImg" src="assets/img/prio-low.png" alt="">
         </div>
     
     </div>
@@ -114,18 +114,37 @@ function closeAddTaskMask() {
 function selectedPriority(i) {
     if (i == 1) {
       prioritySelect = "Urgent";
-      document.getElementById("priorityUrgent").src ="./assets/img/Prio-urgent-selected.png";
+      document.getElementById("priorityUrgent").classList.add('prio-urgent-selected');
+      document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
+      document.getElementById("priorityLow").classList.remove('prio-low-selected');
+
+      document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent-white.png';
+      document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
+      document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
+
 
     }
     if (i == 2) {
       prioritySelect = "Mid";
-      document.getElementById("priorityMedium").src ="./assets/img/Prio-medium-selected.png";
+      document.getElementById("priorityMedium").classList.add('prio-medium-selected');
+      document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
+      document.getElementById("priorityLow").classList.remove('prio-low-selected');
+
+      document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
+      document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium-white.png';
+      document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
 
 
     }
     if (i == 3) {
       prioritySelect = "Low";
-      document.getElementById("priorityLow").src ="./assets/img/Prio-low-selected.png";
+      document.getElementById("priorityLow").classList.add('prio-low-selected');
+      document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
+      document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
+
+      document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
+      document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
+      document.getElementById('priorityLowImg').src = 'assets/img/prio-low-white.png';
 
     }
   }

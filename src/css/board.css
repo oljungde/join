@@ -46,6 +46,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+
 }
 
 .sideNav {
@@ -86,7 +88,7 @@ body {
 .MainBoard {
     height: 100vh;
     width: 85%;
-    background-color: rgb(246, 247, 248);
+    background-color: white
 }
 
 
@@ -303,17 +305,21 @@ h1 {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 18px, 10px, 18px, 10px;
     border-radius: 10px;
     box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
     width: 136px;
     height: 51px;
+    margin-top: 20px;
 }
 
 .priority-urgent:hover {
     border-bottom: 2px solid #FF3D00;
-    cursor: pointer;
+    cursor: pointer
+}
 
+.prio-urgent-selected{
+    background-color: #FF3D00;
+    color: white;
 }
 
 .priority-medium {
@@ -326,12 +332,18 @@ h1 {
     box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
     width: 136px;
     height: 51px;
+    margin-top: 20px;
 }
 
 .priority-medium:hover {
     border-bottom: 2px solid #FFA800;
     cursor: pointer;
 
+}
+
+.prio-medium-selected{
+    background-color: #FFA800;
+    color: white;
 }
 
 .priority-low {
@@ -344,12 +356,18 @@ h1 {
     box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
     width: 136px;
     height: 51px;
+    margin-top: 20px;
 }
 
 .priority-low:hover {
     border-bottom: 2px solid #7AE229;
     cursor: pointer;
 
+}
+
+.prio-low-selected{
+    background-color: #7AE229;
+    color: white;
 }
 
 .input {
