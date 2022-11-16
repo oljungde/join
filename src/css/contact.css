@@ -1,0 +1,88 @@
+.headline{
+    height: 100px;
+    background-color: #4589ff;  
+}
+
+.navigation{
+    height: 89.5vh;
+    width: 232px;
+    border-right: solid grey;
+}
+
+.relative{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.display{
+    display: flex;
+}
+/* mainside */
+.contact-main{
+    height:89vh;
+    min-width: 453px;
+    box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+    overflow-y: scroll;
+}
+
+.new-contact-button{
+    background-color: #4589ff;
+    width: 197px;
+    height: 53px;
+    border-radius: 10px;
+    border: 1px solid #4589ff;
+}
+
+.contact-right-side{
+    width: 70vw;
+}
+
+.show-contact{
+    
+    height: 75vh;
+    background-color: aqua;
+}
+
+.show-button{
+    height: 14vh;
+    display: flex;
+    align-items:center;
+    justify-content:flex-end;
+    margin-right: 50px;
+}
+
+/* add contact */
+
+.add-contact{
+    width: 500px;
+    height: 100vh;
+    border-radius: 0px 30px 30px 0px;
+}
+
+.add-contact-head{
+    background-color: #4589ff;
+    width: 500px;
+    height:33vh;
+    border-radius: 0px 30px 0px 0px;
+}
+
+.add-contact-main{
+    height: 67vh;
+    width: 500px;
+    background-color: #ffffff;
+    border-radius: 0px 0px 30px 0px;
+}
+
+.contact-member{
+    width: 120px;
+    height: 120px;
+    background-color: #D1D1D1;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
