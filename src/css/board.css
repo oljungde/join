@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: "PT Sans"
+    font-style: normal;
 }
 
 /* Style for the Header   */
@@ -184,7 +184,6 @@ h1 {
     margin-top: 20px;
 }
 
-.CloseCross-Task {}
 
 .todo:hover {
     cursor: grab;
@@ -279,6 +278,7 @@ h1 {
     gap: 10px;
     position: absolute;
     right: 0;
+    margin-top: 60px;
 }
 
 .addTaskForm {
