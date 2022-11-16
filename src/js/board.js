@@ -124,7 +124,7 @@ function moveTo(status) {
 
 function showDetailWindow(id) {
 
-    document.getElementById('DetailContainer').classList.remove('d-none');
+    document.getElementById('detail-container').classList.remove('d-none');
 
     let detailTodo = allTasks[id];
     let category = detailTodo['category'];
@@ -162,7 +162,7 @@ function generateDetailTodoHTML(element, category, title, description, user, pri
 }
 
 function closeDetailTask(){
-    document.getElementById('DetailContainer').classList.add('d-none');
+    document.getElementById('detail-container').classList.add('d-none');
     updateHTML()
 
 }
