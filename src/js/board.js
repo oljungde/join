@@ -79,6 +79,8 @@ function updateDoneStatus() {
 function generateTodoHTML(element) {
     return `<div onclick="showDetailWindow(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">   
 
+    
+
       <div class="${element['category']}">${element['category']}</div>
       
       <div class=titleAndText>
@@ -94,6 +96,7 @@ function generateTodoHTML(element) {
       </div>
     </div>`
 }
+
 
 
 // Drag and Drop
@@ -123,29 +126,36 @@ function showDetailWindow(id) {
 
     document.getElementById('DetailContainer').classList.remove('d-none');
 
-    let detailTodo = AllTasks[id];
-    let chip = detailTodo['chip'];
+    let detailTodo = allTasks[id];
+    let category = detailTodo['category'];
     let title = detailTodo['title'];
-    let text = detailTodo['text'];
+    let description = detailTodo['description'];
 
-    let toDo = AllTasks.filter(t => t['status'] == 'toDo');
+    let toDo = allTasks.filter(t => t['status'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
 
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
-        document.getElementById('Detail').innerHTML += generateDetailTodoHTML(element, chip, title, text)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description)
     }
 
 
 }
 
-function generateDetailTodoHTML(element, chip, title, text) {
+function generateDetailTodoHTML(element, category, title, description) {
     return `
-    <div class="${chip}">${chip}</div>
+    <img class="CloseCross-DetailTask" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
+    <div class="${category}">${category}</div>
     <h2 class="DetailTitle">${title}</h2>
-    <div class="text">${text}</div>
+    <div class="text">${description}</div>
     <div class="dueDate">Due date:</div>
     <div class="Priority">Priority:</div>
     <div class="assignedTo">Assigned To:</div>
     `;
+}
+
+function closeDetailTask(){
+    document.getElementById('DetailContainer').classList.add('d-none');
+    updateHTML()
+
 }

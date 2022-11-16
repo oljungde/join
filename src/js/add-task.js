@@ -45,27 +45,30 @@ function openAddTaskMask() {
                 </div>
 
 
-  
+    
+    <div class="priorityContainer">
+        <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
+        <p>Urgent</p> <img src="assets/img/prio-urgent.png" alt="">
+        </div>
 
-    
-   
-    
-    <div>
-        <img src="assets/img/Prio_urgent.png" alt="">
-        <img src="assets/img/Prio_medium.png" alt="">
-        <img src="assets/img/Prio_low.png" alt="">
+        <div class="priority-medium" id="priorityLow" onclick="selectedPriority(2)">
+        <p>Medium</p> <img src="assets/img/prio-medium.png" alt="">
+        </div>
+
+        <div class="priority-low" id="priorityLow" onclick="selectedPriority(3)">
+        <p>Low</p> <img src="assets/img/prio-low.png" alt="">
+        </div>
     
     </div>
 
     <div>
     <p>Description</p>
-    <input id="AddDescription" type="text" placeholder="Enter a Description">
+    <input class="add-description" id="AddDescription" type="text" placeholder="Enter a Description">
     </div>
     
     <input type="text" placeholder="Add a new subtask">
     
 </form>
-
     `;
 
 }
@@ -84,6 +87,7 @@ async function addToTask() {
         "description": description.value,
         "category": category.value,
         "user": user.value,
+        "priority":  selectedPriority(),
         'status': 'toDo'
     };
 
@@ -92,7 +96,7 @@ async function addToTask() {
     await backend.setItem("allTasks", JSON.stringify(allTasks));
     updateHTML()
     setIdOneHigher()
-
+    
 
 }
 
@@ -103,8 +107,25 @@ function setIdOneHigher() {
 }
 
 
-
-
 function closeAddTaskMask() {
     document.getElementById('AddTaskMaskBg').classList.add('d-none');
 }
+
+function selectedPriority(i) {
+    if (i == 1) {
+      prioritySelect = "Urgent";
+      document.getElementById("priorityUrgent").src ="./assets/img/Prio-urgent-selected.png";
+
+    }
+    if (i == 2) {
+      prioritySelect = "Mid";
+      document.getElementById("priorityMedium").src ="./assets/img/Prio-medium-selected.png";
+
+
+    }
+    if (i == 3) {
+      prioritySelect = "Low";
+      document.getElementById("priorityLow").src ="./assets/img/Prio-low-selected.png";
+
+    }
+  }
