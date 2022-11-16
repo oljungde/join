@@ -92,7 +92,7 @@ function generateTodoHTML(element) {
 
       <div class=UserAndPriority>
         <div class="user">${element['user']}</div>
-        <div class="priority">Prio: <img src="assets/img/prio-${element['priority']}.png" alt=""></div>
+        <div class="priority"><img src="assets/img/prio-${element['priority']}.png" alt=""></div>
       </div>
     </div>`
 }
@@ -124,7 +124,7 @@ function moveTo(status) {
 
 function showDetailWindow(id) {
 
-    document.getElementById('DetailContainer').classList.remove('d-none');
+    document.getElementById('detail-container').classList.remove('d-none');
 
     let detailTodo = allTasks[id];
     let category = detailTodo['category'];

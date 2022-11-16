@@ -189,6 +189,20 @@ h1 {
     cursor: grab;
 }
 
+.title{
+font-weight: 700;
+font-size: 16px;
+line-height: 120%;
+color: #4589ff;
+}
+
+.UserAndPriority{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
 .Design {
     background-color: rgb(255, 122, 0);
     display: flex;
