@@ -3,6 +3,12 @@ let currentDraggedElement;
 
 //Update the board
 
+// window.load = setTimeout(() => {
+//     updateHTML();
+// }, 250);
+
+
+
 function updateHTML() {
     updateToDoStatus()
     updateInProgressStatus()
