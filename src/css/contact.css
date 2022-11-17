@@ -3,6 +3,10 @@
     background-color: #4589ff;  
 }
 
+.d-none{
+    display: none;
+}
+
 .navigation{
     height: 89.5vh;
     width: 232px;
@@ -65,16 +69,21 @@
 
 .add-contact-head{
     background-color: #4589ff;
-    width: 500px;
+    width: 580px;
     height:33vh;
     border-radius: 0px 30px 0px 0px;
+    
 }
 
 .add-contact-main{
     height: 67vh;
-    width: 500px;
+    width: 580px;
     background-color: #ffffff;
     border-radius: 0px 0px 30px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .contact-member{
@@ -85,4 +94,95 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
 }
+
+.button-container{
+    display: flex;
+}
+
+.button-cancel{
+    width: 136px;
+    height: 61px;
+    background-color: #ffffff;
+    border: 1px solid #647188;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 23px;
+    margin-right: 16px;
+}
+
+.button-create{
+    width: 210px;
+    height: 61px;
+    background-color: #4589ff;
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 16px;
+}
+
+.img-cross{
+    margin: 20px;
+}
+
+.add-contact-header-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-contact-cross{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-contact-h{
+    font-weight: 700;
+    font-size: 48px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.add-contact-text{
+    font-weight: 400;
+    font-size: 27px;
+    color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+.animationFadeIn {
+    animation: fadeIn 1s ease 0s 1 normal forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  
+    0% {
+      transform: translateX(-100%);
+    }
+  
+    100% {
+      transform: translateX(0);
+    }
+  }
