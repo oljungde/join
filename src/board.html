@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="./css/board.css">
     <script src="./smallest_backend_ever/mini_backend.js"></script>
     <script src="./js/script.js"></script>
-    <script src="./js/board.js"></script>
+    <script src="./js/board.js" defer></script>
     <script src="./js/add-task.js"></script>
 
 
 </head>
 
-<body onload="updateHTML(); init();">
+<body onload="initBoard();">
 
     <div id="detail-container" class="DetailContainer d-none">
         <div id="Detail" class="Detail"></div>
@@ -70,9 +70,6 @@
                     </div>
                     <div class="drag-area" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)"></div>
                 </div>
-
-                
-
 
             </div>
         </div>

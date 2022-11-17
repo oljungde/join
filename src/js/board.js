@@ -3,9 +3,14 @@ let currentDraggedElement;
 
 //Update the board
 
-async function updateHTML() {
+async function initBoard() {
+    await init();
+    updateHTML();
+}
 
-    await init()
+
+
+function updateHTML() {
     updateToDoStatus()
     updateInProgressStatus()
     updateAwaitingFeedbackStatus()
@@ -163,8 +168,8 @@ function generateDetailTodoHTML(element, category, title, description, user, pri
     `;
 }
 
-function closeDetailTask(){
-    document.getElementById('detail-container').classList.add('d-none');
+function closeDetailTask() {
+    document.getElementById('DetailContainer').classList.add('d-none');
     updateHTML()
 
 }
