@@ -169,7 +169,7 @@ function generateDetailTodoHTML(element, category, title, description, user, pri
 }
 
 function closeDetailTask() {
-    document.getElementById('DetailContainer').classList.add('d-none');
+    document.getElementById('detail-container').classList.add('d-none');
     updateHTML()
 
 }
