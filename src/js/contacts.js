@@ -6,7 +6,7 @@
  * opens a window to add contacts
  * 
  */
-function openAddContact(){
+function openAddContact() {
     let addcontact = document.getElementById('opencontact');
     addcontact.classList.remove('d-none');
     addcontact.innerHTML = '';
@@ -17,15 +17,15 @@ function openAddContact(){
  * close a window to add contacts
  * 
  */
-function closeAddContact(){
+function closeAddContact() {
     let addcontact = document.getElementById('opencontact');
     addcontact.classList.add('d-none');
     addcontact.innerHTML = '';
-    
+
 }
 
-function addNewContactHtml(){
-    return`
+function addNewContactHtml() {
+    return `
     <div class="add-contact animationFadeIn">
     <div class="add-contact-head">
         <div class="add-contact-cross">
