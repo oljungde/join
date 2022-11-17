@@ -3,7 +3,9 @@ let currentDraggedElement;
 
 //Update the board
 
-function updateHTML() {
+async function updateHTML() {
+
+    await init()
     updateToDoStatus()
     updateInProgressStatus()
     updateAwaitingFeedbackStatus()
