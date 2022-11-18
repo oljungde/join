@@ -101,14 +101,14 @@ function showTaskCategories() {
 
   document.getElementById('selector_Category_Dropdown').innerHTML = ``;
   document.getElementById('selector_Category_Dropdown').innerHTML += /*html*/`  
-  <div onclick="selectedCategory('${staticCategorys[0].taskCategory}','${staticCategorys[0].taskColor}')" class="selectorCell">
+  <div onclick="selectedCategory('${staticCategorys[0].taskCategory}','${staticCategorys[0].taskColor}')" class="selectorCell pointer">
   <div>${staticCategorys[0]['taskCategory']}</div>
     </div>
   `;
 
   for (let y = 1; y < staticCategorys.length; y++) {
     document.getElementById('selector_Category_Dropdown').innerHTML += `
-    <div onclick="selectedCategory('${staticCategorys[y].taskCategory}','${staticCategorys[y].taskColor}')" class="selectorCell">
+    <div onclick="selectedCategory('${staticCategorys[y].taskCategory}','${staticCategorys[y].taskColor}')" class="selectorCell pointer">
             <div>${staticCategorys[y].taskCategory}</div>
             <div><img src="./assets/img/${staticCategorys[y].taskColor}.png"</div>
           </div>

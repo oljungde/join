@@ -23,8 +23,8 @@ async function includeHTML() {
     }
 }
 
-// defining which link was clicked and giving the function BgSelectedNav the matching id
 
+// defining which link was clicked and giving the function BgSelectedNav the matching id
 function changeNavbarBgColor(bar) {
 
     if (bar == 1) {
@@ -44,8 +44,8 @@ function changeNavbarBgColor(bar) {
     }
 }
 
-// adding class bg-blue to the selected link
 
+// adding class bg-blue to the selected link
 function BgSelectedNav(element) {
     document.getElementById(`${element}`).classList.add('bg-blue');
 }
