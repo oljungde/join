@@ -126,14 +126,21 @@ a:hover {
     justify-content: space-between;
 }
 
-.sideBar a{
-    color: ;
+.sideBar a {
+    text-decoration: none;
+    color: #42526e;
 }
 
 
 
 .sideNav {
     padding-top: 66px;
+    padding-left: 23px;
+    padding-right: 23px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
 }
 
 
@@ -164,9 +171,9 @@ a:hover {
     padding-bottom: 112px;
 }
 
-.bg-blue{
-background-color:#D2E3FF ;
-padding: 8px 30px;
-border-radius: 8px;
+.bg-blue {
+    background-color: #D2E3FF;
+    padding: 8px 30px;
+    border-radius: 8px;
 
 }
