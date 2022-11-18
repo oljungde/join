@@ -402,12 +402,13 @@ h1 {
 .input {
     display: flex;
     align-items: center;
+    width: 422px;
+    border: none;
 
     padding: 16px 24px;
 }
 
 .input input {
-    width: 320px;
     border: none;
     font-size: var(--font-size-regular);
 }
@@ -442,6 +443,31 @@ h1 {
     cursor: pointer;
 }
 
+
+.selector-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 422px;
+    border-bottom: 1px solid #D1D1D1;
+    padding: 18px 21px;
+    gap: 10px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 120%;
+}
+
+.selector-header:hover {
+    cursor: pointer;
+}
+
+.selectorCell{
+    display: flex;
+    gap: 10px;
+    padding: 18px 21px;
+
+}
 
 
 

@@ -1,13 +1,14 @@
-.addTaskFormHTML{
+.addTaskFormHTML {
     width: 422px;
     padding-left: 88px;
 
 }
 
 
-.addTask-bottom{
+.addTask-bottom {
     display: flex;
     gap: 20px;
     justify-content: flex-end;
 
 }
+
