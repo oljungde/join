@@ -16,13 +16,13 @@ async function addToTask() {
   };
 
   allTasks.push(currentTask);
-
   await backend.setItem("allTasks", JSON.stringify(allTasks));
   updateHTML()
   setIdOneHigher()
 }
 
-// adds 1 to the id
+
+// adds 1 to the id for adding tasks
 function setIdOneHigher() {
   if (j >= 0) {
     j++;
@@ -35,8 +35,7 @@ function openAddTaskMask() {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
 
   document.getElementById('AddTaskMaskContainer').innerHTML = /*html*/`
-
-<form class="addTaskForm" onsubmit="addToTask(); return false; ">
+  <form class="addTaskForm" onsubmit="addToTask(); return false; ">
         <img class="CloseCross" onclick="closeAddTaskMask()" src="assets/img/group 11.png" alt="">
         <div class="addTask-top">
            <h2>Add Task</h2>
@@ -87,15 +86,13 @@ function openAddTaskMask() {
        </div>
     
        <input type="text" placeholder="Add a new subtask">
-</form>
+  </form>
     `;
 }
 
 
-
 // renders the Drop Down Menu for the categories
 function showTaskCategories() {
-
   let staticCategorys = [
     { taskCategory: 'New category', taskColor: 'grayCategory', cagtegoryID: 0 },
     { taskCategory: 'Sales', taskColor: 'purpleCategory', cagtegoryID: 1 },
@@ -118,6 +115,7 @@ function showTaskCategories() {
     `;
   }
 };
+
 
 // getting selected Category
 function selectedCategory(category, color) {
@@ -174,8 +172,6 @@ function selectedPriority(i) {
     document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent-white.png';
     document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
     document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
-
-
   }
   if (i == 2) {
     prioritySelect = "medium";
@@ -186,8 +182,6 @@ function selectedPriority(i) {
     document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
     document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium-white.png';
     document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
-
-
   }
   if (i == 3) {
     prioritySelect = "low";
@@ -198,9 +192,9 @@ function selectedPriority(i) {
     document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
     document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
     document.getElementById('priorityLowImg').src = 'assets/img/prio-low-white.png';
-
   }
 }
+
 
 //closes the AddTaskMask
 function closeAddTaskMask() {

@@ -8,7 +8,7 @@ async function initBoard() {
     updateHTML();
 }
 
-
+// Updates the individual Areas of the board
 function updateHTML() {
     updateToDoStatus()
     updateInProgressStatus()
@@ -74,7 +74,7 @@ function updateDoneStatus() {
 }
 
 
-
+// renders the Task-Card on the Board
 function generateTodoHTML(element) {
     return /*html*/`
     <div onclick="showDetailWindow(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">   
@@ -109,10 +109,6 @@ function moveTo(status) {
     allTasks[currentDraggedElement]['status'] = status;
     updateHTML();
 }
-
-
-
-
 
 
 // Generates the Detail Window
