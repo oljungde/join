@@ -79,6 +79,10 @@ a:hover {
     display: none;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 
 
 /* Style for the Header   */

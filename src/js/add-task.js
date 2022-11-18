@@ -1,6 +1,35 @@
 let j = 0;
 
 
+//defines the current task and pushes it to the Array alltasks and saves it in the backend 
+async function addToTask() {
+  let title = document.getElementById('AddTitle');
+  let description = document.getElementById('AddDescription');
+  let user = document.getElementById('AddUser');
+
+  let currentTask = {
+    "id": j,
+    "title": title.value,
+    "description": description.value,
+    "priority": prioritySelect,
+    'status': 'toDo'
+  };
+
+  allTasks.push(currentTask);
+
+  await backend.setItem("allTasks", JSON.stringify(allTasks));
+  updateHTML()
+  setIdOneHigher()
+}
+
+// adds 1 to the id
+function setIdOneHigher() {
+  if (j >= 0) {
+    j++;
+  }
+}
+
+
 //renders the AddTask Mask
 function openAddTaskMask() {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
@@ -25,48 +54,39 @@ function openAddTaskMask() {
               </div>
         </div>
 
-
         <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
            <p>Due Date</p>
            <input type="date">
         </div>
 
-<h3>Category</h3>        
-
-  <div id="category_selector">
-     <div class="selector-header" onclick="showTaskCategories()">
-        Select task category
-        <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
-     </div>
-  </div>
-  <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">  </div>
-
-
-
-       <div class="priorityContainer">
-          <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
-              <p>Urgent</p> 
-              <img id="priorityUrgentImg" src="assets/img/prio-urgent.png" alt="">
-          </div>
-
+        <h3>Category</h3>        
+        <div id="category_selector">
+           <div class="selector-header" onclick="showTaskCategories()">
+              Select task category
+              <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
+           </div>
+        </div>
+        <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">  </div>
+         <div class="priorityContainer">
+            <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
+                <p>Urgent</p> 
+                <img id="priorityUrgentImg" src="assets/img/prio-urgent.png" alt="">
+            </div>
           <div class="priority-medium" id="priorityMedium" onclick="selectedPriority(2)">
               <p>Medium</p> 
               <img id="priorityMediumImg" src="assets/img/prio-medium.png" alt="">
           </div>
-
           <div class="priority-low" id="priorityLow" onclick="selectedPriority(3)">
               <p>Low</p> 
               <img id="priorityLowImg" src="assets/img/prio-low.png" alt="">
           </div>
        </div>
-
        <div>
          <h3>Description</h3>
          <input class="add-description" id="AddDescription" type="text" placeholder="Enter a Description">
        </div>
     
        <input type="text" placeholder="Add a new subtask">
-    
 </form>
     `;
 }
@@ -104,8 +124,8 @@ function selectedCategory(category, color) {
   if (category == "New category") {
     changeInputCategory();
   } else {
-    taskCategoryFinaly = category;
-    taskCategoryColorFinaly = color;
+    CategoryForTask = category;
+    CategoryColorForTask = color;
     document.getElementById("selectorCategory").innerHTML = /*html*/`
     <div class="selectorHeader pointer" onclick="renderingTaskCategorySelector()">
        <div class="selected">
@@ -114,13 +134,9 @@ function selectedCategory(category, color) {
        </div>
        <img class="selectorArrow" src="./assets/img/selectorArrow.png">
       </div>
-      <div id="selectorCategoryRender">
-      <!-- Rendering selector content here -->
-    </div>`;
+      `;
   }
 }
-
-
 
 
 // renders the Input field for New tasks
@@ -144,50 +160,6 @@ function changeInputCategory() {
   </div>
   <div id="mistakeReportCategory"></div>
   </div>`;
-}
-
-
-
-
-
-
-
-
-//defines the current task and pushes it to the Array alltasks and saves it in the backend 
-async function addToTask() {
-  let title = document.getElementById('AddTitle');
-  let description = document.getElementById('AddDescription');
-  let category = document.getElementById('AddCategory');
-  let user = document.getElementById('AddUser');
-
-  let currentTask = {
-    "id": j,
-    "title": title.value,
-    "description": description.value,
-    "category": category.value,
-    "user": user.value,
-    "priority": prioritySelect,
-    'status': 'toDo'
-  };
-
-  allTasks.push(currentTask);
-
-  await backend.setItem("allTasks", JSON.stringify(allTasks));
-  updateHTML()
-  setIdOneHigher()
-
-}
-
-// adds 1 to the id
-function setIdOneHigher() {
-  if (j >= 0) {
-    j++;
-  }
-}
-
-//closes the AddTaskMask
-function closeAddTaskMask() {
-  document.getElementById('AddTaskMaskBg').classList.add('d-none');
 }
 
 
@@ -229,3 +201,9 @@ function selectedPriority(i) {
 
   }
 }
+
+//closes the AddTaskMask
+function closeAddTaskMask() {
+  document.getElementById('AddTaskMaskBg').classList.add('d-none');
+}
+
