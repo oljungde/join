@@ -1,5 +1,10 @@
 let j = 0;
 
+async function initAddTask() {
+  await checkUserIsLoggedIn();
+  await init();
+}
+
 
 //defines the current task and pushes it to the Array alltasks and saves it in the backend 
 async function addToTask() {

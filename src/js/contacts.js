@@ -1,4 +1,7 @@
-
+async function initContacts() {
+    checkUserIsLoggedIn();
+    await init();
+}
 
 
 

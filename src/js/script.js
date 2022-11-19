@@ -9,6 +9,15 @@ async function init() {
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
 }
 
+
+function checkUserIsLoggedIn() {
+    let loginStatus = localStorage.getItem('loggedIn');
+    if (loginStatus != 'true') {
+        window.location.href = "./index.html";
+    }
+}
+
+
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -28,16 +37,16 @@ async function includeHTML() {
 function changeNavbarBgColor(bar) {
 
     if (bar == 1) {
-        BgSelectedNav('navigation_summary');  
+        BgSelectedNav('navigation_summary');
     }
     if (bar == 2) {
         BgSelectedNav('navigation_board');
     }
     if (bar == 3) {
-        BgSelectedNav('navigation_addTask');  
+        BgSelectedNav('navigation_addTask');
     }
     if (bar == 4) {
-        BgSelectedNav('navigation_contacts');   
+        BgSelectedNav('navigation_contacts');
     }
     if (bar == 5) {
         BgSelectedNav('navigation_legal');

@@ -3,6 +3,7 @@ let currentDraggedElement;
 
 //Update the board
 async function initBoard() {
+    checkUserIsLoggedIn();
     await init();
     identifyId()
     updateHTML();
@@ -34,7 +35,7 @@ function updateToDoStatus() {
 
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
-        document.getElementById('toDo').innerHTML += generateTodoHTML(element); 
+        document.getElementById('toDo').innerHTML += generateTodoHTML(element);
     }
 }
 
@@ -45,7 +46,7 @@ function updateInProgressStatus() {
 
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
-        document.getElementById('inProgress').innerHTML += generateTodoHTML(element); 
+        document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
     }
 }
 
@@ -57,7 +58,7 @@ function updateAwaitingFeedbackStatus() {
 
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
-        document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);  
+        document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);
     }
 }
 
@@ -69,7 +70,7 @@ function updateDoneStatus() {
 
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
-        document.getElementById('done').innerHTML += generateTodoHTML(element);  
+        document.getElementById('done').innerHTML += generateTodoHTML(element);
     }
 }
 
