@@ -1,8 +1,12 @@
+/**
+ * init function will execute wenn page contacts.html is loading
+ * checks if user is logged in 
+ * execute "global" init function from script.js
+ */
 async function initContacts() {
     checkUserIsLoggedIn();
     await init();
 }
-
 
 
 /**

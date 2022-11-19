@@ -1,7 +1,13 @@
 let j = 0;
 
+
+/**
+ * init function will execute wenn page add-task.html is loading
+ * checks if user is logged in 
+ * execute "global" init function from script.js
+ */
 async function initAddTask() {
-  await checkUserIsLoggedIn();
+  checkUserIsLoggedIn();
   await init();
 }
 

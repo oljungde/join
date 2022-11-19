@@ -16,12 +16,12 @@ function checkUserData(userEmail, userPassword) {
         loginContent.innerHTML = accessDeniedTemplate();
     } else {
         console.log('GLÜCKWUNSCH! Einloggen möglich');
-        let rememberMee = document.getElementById('remember_me');
-        if (rememberMee.checked) {
+        let rememberMe = document.getElementById('remember_me');
+        if (rememberMe.checked) {
             localStorage.setItem('rememberMe', 'true');
         }
         localStorage.setItem('loggedIn', 'true');
-        // window.location.href = "./dashboard.html";
+        window.location.href = "./dashboard.html";
     }
 }
 

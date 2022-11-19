@@ -2,6 +2,10 @@ setURL('https://gruppe-377.developerakademie.net/smallest_backend_ever');
 let users = [];
 let allTasks = []
 
+
+/**
+ * init function will be executed when loading the page, includes heder an sidebar navigation, and get several arrays from the backend
+ */
 async function init() {
     await includeHTML();
     await downloadFromServer();
@@ -10,6 +14,9 @@ async function init() {
 }
 
 
+/**
+ * checks if the user is logged in
+ */
 function checkUserIsLoggedIn() {
     let loginStatus = localStorage.getItem('loggedIn');
     if (loginStatus != 'true') {
@@ -18,6 +25,20 @@ function checkUserIsLoggedIn() {
 }
 
 
+/**
+ * log out the user if the value remember me is not set to true
+ */
+window.onbeforeunload = function () {
+    let remeberMeStatus = localStorage.getItem('rememberMe');
+    if (remeberMeStatus != 'true') {
+        localStorage.setItem('loggedIn', 'false');
+    }
+}
+
+
+/**
+ * function to include html files e.g. header.html and sidebar-navigation.html
+ */
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
