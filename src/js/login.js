@@ -35,3 +35,10 @@ function checkUserData(userEmail, userPassword) {
     }
 
 }
+
+
+function guestLogin() {
+    let loginForm = document.getElementById('login_form')
+    loginForm.setAttribute('novalidate', 'true');
+    checkUserData('noreply@nix.de', 'guest')
+}
