@@ -65,7 +65,7 @@ function userRegister(userName, userEmail, userPassword) {
         'image': null
     });
     backend.setItem('users', JSON.stringify(users));
-    localStorage.setItem('loggedIn', 'false');
+    sessionStorage.setItem('loggedIn', 'false');
     localStorage.setItem('rememberMe', 'false');
     registrationComplete();
 }

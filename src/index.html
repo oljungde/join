@@ -32,10 +32,13 @@
                 <div class="login-headline-border"></div>
             </div>
 
-            <form onsubmit="userLogin(); return false">
+            <form id="login_form" onsubmit="userLogin(); return false">
                 <div class="input border-bottom">
                     <input id="user_email" type="email" placeholder="Email" autocomplete="off" required>
                     <img src="./assets//img/login-email.png" alt="e-mail symbol">
+                </div>
+                <div class="check-user-data">
+                    <span id="data_check" class="user-data-assign display-none">The email address or password is not correct.</span>
                 </div>
 
                 <div class="input border-bottom">
@@ -53,7 +56,7 @@
 
                 <div class="login-btns-container">
                     <button type="submit" class="btn">Log in</button>
-                    <button class="btn-light">Guest log in</button>
+                    <button onclick="checkUserData('noreply@nix.de', 'guest')" class="btn-light">Guest log in</button>
                 </div>
             </form>
         </div>

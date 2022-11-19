@@ -18,7 +18,8 @@ async function init() {
  * checks if the user is logged in
  */
 function checkUserIsLoggedIn() {
-    let loginStatus = localStorage.getItem('loggedIn');
+    checkRememberMeStatus();
+    let loginStatus = sessionStorage.getItem('loggedIn');
     if (loginStatus != 'true') {
         window.location.href = "./index.html";
     }
@@ -26,12 +27,12 @@ function checkUserIsLoggedIn() {
 
 
 /**
- * log out the user if the value remember me is not set to true
+ * checks the remember me status of the user and log the in if the remember me status true
  */
-window.onbeforeunload = function () {
-    let remeberMeStatus = localStorage.getItem('rememberMe');
-    if (remeberMeStatus != 'true') {
-        localStorage.setItem('loggedIn', 'false');
+function checkRememberMeStatus() {
+    let rememberMeStatus = localStorage.getItem('rememberMe');
+    if (rememberMeStatus == 'true') {
+        sessionStorage.setItem('loggedIn', 'true')
     }
 }
 

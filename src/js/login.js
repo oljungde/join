@@ -1,3 +1,6 @@
+/**
+ * get data from login form an execute the function to check it
+ */
 function userLogin() {
     let userEmail = document.getElementById('user_email').value;
     let userPassword = document.getElementById('user_password').value;
@@ -5,6 +8,11 @@ function userLogin() {
 }
 
 
+/**
+ * checks user data and log the in or gives the user feedback that login is nor possible
+ * @param {string} userEmail pecified e-mail address of the user from the login form
+ * @param {string} userPassword pecified password of the user from the login form
+ */
 function checkUserData(userEmail, userPassword) {
     let indexOfEmail = users.findIndex(user => user.email == userEmail);
     let indexOfPassword = users.findIndex(user => user.password == userPassword);
@@ -12,30 +20,18 @@ function checkUserData(userEmail, userPassword) {
     console.log(indexOfPassword);
     if (indexOfEmail == -1 || indexOfPassword == -1) {
         console.log('Einloggen nicht möglich!');
-        let loginContent = document.getElementById('login_content');
-        loginContent.innerHTML = accessDeniedTemplate();
+        let dataCheck = document.getElementById('data_check');
+        dataCheck.classList.remove('display-none');
     } else {
         console.log('GLÜCKWUNSCH! Einloggen möglich');
         let rememberMe = document.getElementById('remember_me');
         if (rememberMe.checked) {
             localStorage.setItem('rememberMe', 'true');
         }
-        localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('userLoggedInName', users[indexOfEmail].name);
+        localStorage.setItem('userLoggedInEmail', users[indexOfEmail].email);
+        sessionStorage.setItem('loggedIn', 'true');
         window.location.href = "./dashboard.html";
     }
-}
 
-
-function accessDeniedTemplate() {
-    return /*html*/ `
-        <a href="./index.html"><img src="./assets/img/arrow-back.png" alt="back to login" class="signup-back"></a>
-        <div class="headline-container">
-            <h1 class="headline">Access Denied</h1>
-            <div class="login-headline-border"></div>
-        </div>
-
-        <div class="access-denied-text">
-            Sorry, either you entered a wrong email address or password.<br> You can try again <a href="./index.html">here</a>.
-        </div>
-    `;
 }
