@@ -3,7 +3,7 @@
 ########### CONFIG ###############
 
 $recipient = $_POST['email'];
-$link = "https://gruppe-377.developerakademie.net/reset-password.html";
+$link = "https://gruppe-377.developerakademie.net/reset-password.html?email=" . $recipient;
 $message = "Hello, \r\n
 you can reset your password by clicking on the link below: \r\n
 $link \r\n

@@ -37,10 +37,31 @@ function checkUserData(userEmail, userPassword) {
 
 
 /**
- * logs a guest user in
+ * guest user login
  */
 function guestLogin() {
     let loginForm = document.getElementById('login_form')
     loginForm.setAttribute('novalidate', 'true');
     checkUserData('noreply@nix.de', 'guest')
+}
+
+
+async function resetPassword() {
+    let resetUrl = new URL(window.location.href);
+    let resetEmail = resetUrl.searchParams.get('email');
+    console.log(resetEmail);
+    let checkMail = users.find(user => user.email == resetEmail);
+    console.log(checkMail);
+    if (checkMail) {
+        let newPassword = document.getElementById('new_password').value;
+        let newPasswordConfirm = document.getElementById('new_password_confirm').value;
+        if (newPassword === newPasswordConfirm) {
+            checkMail.password = newPasswordConfirm;
+            console.log(checkMail.password);
+        }
+        await backend.setItem('users', JSON.stringify(users));
+    } else {
+        let emailCheck = document.getElementById('email_check');
+        emailCheck.classList.remove('display-none');
+    }
 }
