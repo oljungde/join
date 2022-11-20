@@ -31,12 +31,14 @@ function checkUserData(userEmail, userPassword) {
         localStorage.setItem('userLoggedInName', users[indexOfEmail].name);
         localStorage.setItem('userLoggedInEmail', users[indexOfEmail].email);
         sessionStorage.setItem('loggedIn', 'true');
-        window.location.href = "./dashboard.html";
+        window.location.href = './dashboard.html';
     }
-
 }
 
 
+/**
+ * logs a guest user in
+ */
 function guestLogin() {
     let loginForm = document.getElementById('login_form')
     loginForm.setAttribute('novalidate', 'true');

@@ -27,6 +27,17 @@ function checkUserIsLoggedIn() {
 
 
 /**
+ * logs the out, deletes the session storage key loggedIn and the local storage key remeberMe
+ * user will redirect to log in page index.html
+ */
+function logout() {
+    sessionStorage.removeItem('loggedIn');
+    localStorage.removeItem('rememberMe');
+    window.location.href = './index.html';
+}
+
+
+/**
  * checks the remember me status of the user and log the in if the remember me status true
  */
 function checkRememberMeStatus() {
