@@ -59,9 +59,27 @@ async function resetPassword() {
             checkMail.password = newPasswordConfirm;
             console.log(checkMail.password);
         }
+        let resetPasswordContainer = document.getElementById('reset_password_container');
+        resetPasswordContainer.innerHTML = passwordResetedTemplate();
         await backend.setItem('users', JSON.stringify(users));
     } else {
         let emailCheck = document.getElementById('email_check');
         emailCheck.classList.remove('display-none');
     }
+}
+
+
+
+function passwordResetedTemplate() {
+    return /*html*/ `
+        <a href="./index.html"><img src="./assets/img/arrow-back.png" alt="back to login" class="signup-back"></a>
+        <div class="headline-container">
+            <h1 class="headline">Password reseted</h1>
+            <div class="login-headline-border"></div>
+        </div>
+
+        <div class="signup-complete-text">
+            Your password has been successfully changed.<br> You can log in <a href="./index.html">here</a>.
+        </div>
+    `;
 }
