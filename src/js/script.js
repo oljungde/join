@@ -11,8 +11,8 @@ async function init() {
     await downloadFromServer();
     users = await JSON.parse(backend.getItem('users')) || [];
     allTasks = await JSON.parse(backend.getItem('allTasks')) || [];
-    passwordInputFocus();
-    passwordInputUnfocus();
+    passwordInputIconChange();
+    passwordConfirmIconChange();
 }
 
 
@@ -29,26 +29,88 @@ function checkUserIsLoggedIn() {
 
 
 /**
- * check if the input field with the id user_password on index.html ist focused to change the icon on end of input
+ * check if the input field length with the id user_password on index.html is longer as 0 letters and change the icon on end of input
  */
-function passwordInputFocus() {
-    document.getElementById('user_password').addEventListener('focus', function () {
-        console.log('focus');
-        let passwordIcon = document.getElementById('user_password_icon');
-        passwordIcon.src = './assets//img/password-hidden.png'
+function passwordInputIconChange() {
+    let userPasswordInput = document.getElementById('user_password');
+    let passwordIcon = document.getElementById('user_password_icon');
+    let passwordIconHidden = document.getElementById('user_password_hidden');
+    userPasswordInput.addEventListener('input', function () {
+        console.log('geändert');
+        if (userPasswordInput.value.length > 0) {
+            passwordIcon.classList.add('display-none');
+            passwordIconHidden.classList.remove('display-none');
+        } else {
+            passwordIcon.classList.remove('display-none');
+            passwordIconHidden.classList.add('display-none');
+        }
+    })
+}
+
+
+function passwordConfirmIconChange() {
+    let userPasswordConfirmInput = document.getElementById('new_password_confirm');
+    let passwordConfirmIcon = document.getElementById('user_password_confirm_icon');
+    let passwordConfirmIconHidden = document.getElementById('user_password_confirm_hidden');
+    userPasswordConfirmInput.addEventListener('input', function () {
+        console.log('geändert');
+        if (userPasswordConfirmInput.value.length > 0) {
+            passwordConfirmIcon.classList.add('display-none');
+            passwordConfirmIconHidden.classList.remove('display-none');
+        } else {
+            passwordConfirmIcon.classList.remove('display-none');
+            passwordConfirmIconHidden.classList.add('display-none');
+        }
     })
 }
 
 
 /**
- * check if the input field with the id user_password on index.html ist unfocused to change the icon on end of input
+ * makes the password input readable
  */
-function passwordInputUnfocus() {
-    document.getElementById('user_password').addEventListener('focusout', function () {
-        console.log('unfocus');
-        let passwordIcon = document.getElementById('user_password_icon');
-        passwordIcon.src = './assets//img/login-password.png'
-    })
+function makePasswordVisible() {
+    let passwordIconHidden = document.getElementById('user_password_hidden');
+    let passwordIconVisible = document.getElementById('user_password_visible');
+    let userPasswordInput = document.getElementById('user_password');
+    passwordIconHidden.classList.add('display-none');
+    passwordIconVisible.classList.remove('display-none');
+    userPasswordInput.type = 'text';
+}
+
+
+/**
+ * makes the password input unreadable
+ */
+function makePasswordUnvisible() {
+    let passwordIconHidden = document.getElementById('user_password_hidden');
+    let passwordIconVisible = document.getElementById('user_password_visible');
+    let userPasswordInput = document.getElementById('user_password');
+    passwordIconHidden.classList.remove('display-none');
+    passwordIconVisible.classList.add('display-none');
+    userPasswordInput.type = 'password';
+}
+
+
+function makePasswordConfirmVisible() {
+    let passwordConfirmIconHidden = document.getElementById('user_password_confirm_hidden');
+    let passwordConfirmIconVisible = document.getElementById('user_password_confirm_visible');
+    let userPasswordConfirmInput = document.getElementById('new_password_confirm');
+    passwordConfirmIconHidden.classList.add('display-none');
+    passwordConfirmIconVisible.classList.remove('display-none');
+    userPasswordConfirmInput.type = 'text';
+}
+
+
+/**
+ * makes the password input unreadable
+ */
+function makePasswordConfirmUnvisible() {
+    let passwordConfirmIconHidden = document.getElementById('user_password_confirm_hidden');
+    let passwordConfirmIconVisible = document.getElementById('user_password_confirm_visible');
+    let userPasswordConfirmInput = document.getElementById('new_password_confirm');
+    passwordConfirmIconHidden.classList.remove('display-none');
+    passwordConfirmIconVisible.classList.add('display-none');
+    userPasswordConfirmInput.type = 'password';
 }
 
 
