@@ -125,7 +125,8 @@ input[type="checkbox"]:checked:before {
 
 .forgot-password-text,
 .signup-complete-text,
-.access-denied-text {
+.access-denied-text,
+.reset-password-text {
     margin-top: 32px;
     font-size: var(--font-size-xxlarge);
     text-align: center;
@@ -136,7 +137,7 @@ input[type="checkbox"]:checked:before {
 }
 
 .check-user-data {
-    width: 350px;
+    width: 390px;
     height: 22px;
 }
 

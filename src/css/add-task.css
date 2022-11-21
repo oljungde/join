@@ -1,13 +1,41 @@
-.addTaskFormHTML{
+.addTaskFormHTML {
     width: 422px;
     padding-left: 88px;
+    display: flex;
 
 }
 
 
-.addTask-bottom{
+.addTask-bottom {
     display: flex;
     gap: 20px;
     justify-content: flex-end;
+
+}
+
+.clear-button {
+    width: 136px;
+    height: 61px;
+    background: #FFFFFF;
+    border: 1px solid #647188;
+    border-radius: 10px;
+    color: #647188;
+}
+
+.addTask-button {
+    width: 180px;
+    height: 61px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 120%;
+
+}
+
+.right-container {
+    width: 422px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 
 }

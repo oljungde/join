@@ -34,6 +34,9 @@ function checkIsUserRegistered(userName, userEmail, userPassword) {
 function checkRegistrationData(indexOfName, indexOfEmail) {
     let nameAssign = document.getElementById('name_assign');
     let emailAssign = document.getElementById('email_assign');
+    let userName = document.getElementById('user_name').value;
+    let userEmail = document.getElementById('user_email').value;
+    let userPassword = document.getElementById('user_password').value;
     if (indexOfName == -1 && indexOfEmail == -1) {
         userRegister(userName, userEmail, userPassword);
     }
@@ -62,6 +65,8 @@ function userRegister(userName, userEmail, userPassword) {
         'image': null
     });
     backend.setItem('users', JSON.stringify(users));
+    sessionStorage.setItem('loggedIn', 'false');
+    localStorage.setItem('rememberMe', 'false');
     registrationComplete();
 }
 
