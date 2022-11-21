@@ -9,8 +9,10 @@ let allTasks = []
 async function init() {
     await includeHTML();
     await downloadFromServer();
-    users = JSON.parse(backend.getItem('users')) || [];
-    allTasks = JSON.parse(backend.getItem('allTasks')) || [];
+    users = await JSON.parse(backend.getItem('users')) || [];
+    allTasks = await JSON.parse(backend.getItem('allTasks')) || [];
+    passwordInputFocus();
+    passwordInputUnfocus();
 }
 
 
@@ -23,6 +25,30 @@ function checkUserIsLoggedIn() {
     if (loginStatus != 'true') {
         window.location.href = "./index.html";
     }
+}
+
+
+/**
+ * check if the input field with the id user_password on index.html ist focused to change the icon on end of input
+ */
+function passwordInputFocus() {
+    document.getElementById('user_password').addEventListener('focus', function () {
+        console.log('focus');
+        let passwordIcon = document.getElementById('user_password_icon');
+        passwordIcon.src = './assets//img/password-hidden.png'
+    })
+}
+
+
+/**
+ * check if the input field with the id user_password on index.html ist unfocused to change the icon on end of input
+ */
+function passwordInputUnfocus() {
+    document.getElementById('user_password').addEventListener('focusout', function () {
+        console.log('unfocus');
+        let passwordIcon = document.getElementById('user_password_icon');
+        passwordIcon.src = './assets//img/login-password.png'
+    })
 }
 
 

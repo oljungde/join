@@ -3,14 +3,15 @@
 ########### CONFIG ###############
 
 $recipient = $_POST['email'];
-$link = "https://gruppe-377.developerakademie.net/reset-password.html?email=" . $recipient;
+$timestamp = time();
+$link = "https://gruppe-377.developerakademie.net/reset-password.html?email=" . $recipient . "&timestamp=" . $timestamp;
 $message = "Hello, \r\n
 you can reset your password by clicking on the link below: \r\n
 $link \r\n
 Best greetings 
 Customer Service
 Join Kanban Board";
-# $redirect = 'success.html';
+$redirect = 'request-sended.html';
 
 ########### CONFIG END ###########
 
@@ -50,7 +51,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $headers = "From:  noreply@developerakademie.com";
 
         mail($recipient, $subject, $message, $headers);
-        # header("Location: " . $redirect); 
+        header("Location: " . $redirect); 
 
         break;
     default: //Reject any non POST or OPTIONS requests.
