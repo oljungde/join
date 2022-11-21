@@ -11,8 +11,8 @@ async function init() {
     await downloadFromServer();
     users = await JSON.parse(backend.getItem('users')) || [];
     allTasks = await JSON.parse(backend.getItem('allTasks')) || [];
-    passwordInputIconChange();
-    passwordConfirmIconChange();
+    // passwordInputIconChange();
+    // passwordConfirmIconChange();
 }
 
 
@@ -91,6 +91,10 @@ function makePasswordUnvisible() {
 }
 
 
+/**
+ * makes the password confirm
+  input readable
+ */
 function makePasswordConfirmVisible() {
     let passwordConfirmIconHidden = document.getElementById('user_password_confirm_hidden');
     let passwordConfirmIconVisible = document.getElementById('user_password_confirm_visible');
@@ -102,7 +106,7 @@ function makePasswordConfirmVisible() {
 
 
 /**
- * makes the password input unreadable
+ * makes the password confirm input unreadable
  */
 function makePasswordConfirmUnvisible() {
     let passwordConfirmIconHidden = document.getElementById('user_password_confirm_hidden');

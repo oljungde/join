@@ -1,10 +1,12 @@
 let addTasks = [];
 let lettertask = [];
 
-// async function initContacts() {
-//     checkUserIsLoggedIn();
-//     await init();
-// }
+async function initContacts() {
+    checkUserIsLoggedIn();
+    await init();
+}
+
+
 /**
  * opens a window to add contacts
  * 
@@ -31,8 +33,8 @@ function closeAddContact() {
  * pulls them out of the input and puts them in a json
  * 
  */
-function createContact(){
-    
+function createContact() {
+
     let contactName = document.getElementById('contactName').value;
     let contactEmail = document.getElementById('contactEmail').value;
     let contactNumber = document.getElementById('contactNumber').value;
@@ -51,15 +53,15 @@ function createContact(){
  * 
  * @param {*} contactTask 
  */
-function fillAllTasks(contactTask, contactName,){
+function fillAllTasks(contactTask, contactName,) {
     addTasks.push(contactTask);
     addTasks.sort((a, b) => a.contactName.localeCompare(b.contactName));
-    let letter = contactName.charAt(0); 
-    
-    if (lettertask.includes(letter)){
+    let letter = contactName.charAt(0);
+
+    if (lettertask.includes(letter)) {
         contactChild();
     }
-    else{
+    else {
         lettertask.push(letter);
         lettertask.sort();
         for (let i = 0; i < addTasks.length; i++) {
@@ -67,36 +69,36 @@ function fillAllTasks(contactTask, contactName,){
             createContactBar(l);
             contactChild();
         }
-        
+
     }
-    
+
 }
 
-function contactChild(){
+function contactChild() {
     for (let index = 0; index < addTasks.length; index++) {
         let l = addTasks[index]['contactletter'];
-        let n = addTasks[index]['contactName']; 
-        let e = addTasks[index]['contactEmail']; 
+        let n = addTasks[index]['contactName'];
+        let e = addTasks[index]['contactEmail'];
         let contactchilds = document.getElementById(l);
-     contactchilds.innerHTML += contactChildHtml(n, e);       
+        contactchilds.innerHTML += contactChildHtml(n, e);
     }
-    
-    
-    
 
-    
+
+
+
+
 }
 
-function  createContactBar(l){
+function createContactBar(l) {
     let contactBar = document.getElementById('contactbar');
-    
-        contactBar.innerHTML += contactBarHtml(l);
-    
-    
+
+    contactBar.innerHTML += contactBarHtml(l);
+
+
 }
 
-function contactChildHtml(contactname, contactemail){
-    return`
+function contactChildHtml(contactname, contactemail) {
+    return `
     <div class="contact-child-div">
         <div class="contact-child">
             <p></p>
@@ -109,7 +111,7 @@ function contactChildHtml(contactname, contactemail){
     `
 }
 
-function contactBarHtml(letter){
+function contactBarHtml(letter) {
     return `
     <div class="contact-letter-main" >
         <h4  class="contact-letter">${letter}</h4>
@@ -118,8 +120,8 @@ function contactBarHtml(letter){
     `
 }
 
-function addNewContactHtml(){
-    return`
+function addNewContactHtml() {
+    return `
     <div class="add-contact animationFadeIn">
     <div class="add-contact-head">
         <div class="add-contact-cross">
