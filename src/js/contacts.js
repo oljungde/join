@@ -1,7 +1,10 @@
 let addTasks = [];
 let lettertask = [];
 
-
+// async function initContacts() {
+//     checkUserIsLoggedIn();
+//     await init();
+// }
 /**
  * opens a window to add contacts
  * 
