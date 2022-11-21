@@ -1,5 +1,5 @@
-
-
+let addTasks = [];
+let lettertask = [];
 
 
 /**
@@ -24,6 +24,97 @@ function closeAddContact(){
     
 }
 
+/**
+ * pulls them out of the input and puts them in a json
+ * 
+ */
+function createContact(){
+    
+    let contactName = document.getElementById('contactName').value;
+    let contactEmail = document.getElementById('contactEmail').value;
+    let contactNumber = document.getElementById('contactNumber').value;
+    let firstName = contactName.charAt(0);
+    let contactTask = {
+        'contactName': contactName,
+        'contactEmail': contactEmail,
+        'contactNumber': contactNumber,
+        'contactletter': firstName
+    };
+    fillAllTasks(contactTask, contactName, contactEmail, firstName);
+}
+
+/**
+ * pushes the json into an array
+ * 
+ * @param {*} contactTask 
+ */
+function fillAllTasks(contactTask, contactName,){
+    addTasks.push(contactTask);
+    addTasks.sort((a, b) => a.contactName.localeCompare(b.contactName));
+    let letter = contactName.charAt(0); 
+    
+    if (lettertask.includes(letter)){
+        contactChild();
+    }
+    else{
+        lettertask.push(letter);
+        lettertask.sort();
+        for (let i = 0; i < addTasks.length; i++) {
+            let l = addTasks[i]['contactletter']
+            createContactBar(l);
+            contactChild();
+        }
+        
+    }
+    
+}
+
+function contactChild(){
+    for (let index = 0; index < addTasks.length; index++) {
+        let l = addTasks[index]['contactletter'];
+        let n = addTasks[index]['contactName']; 
+        let e = addTasks[index]['contactEmail']; 
+        let contactchilds = document.getElementById(l);
+     contactchilds.innerHTML += contactChildHtml(n, e);       
+    }
+    
+    
+    
+
+    
+}
+
+function  createContactBar(l){
+    let contactBar = document.getElementById('contactbar');
+    
+        contactBar.innerHTML += contactBarHtml(l);
+    
+    
+}
+
+function contactChildHtml(contactname, contactemail){
+    return`
+    <div class="contact-child-div">
+        <div class="contact-child">
+            <p></p>
+        </div>
+        <div>
+            <p class="contact-child-name">${contactname}</p>
+            <p class="contact-child-email">${contactemail}</p>
+        </div>
+    </div>
+    `
+}
+
+function contactBarHtml(letter){
+    return `
+    <div class="contact-letter-main" >
+        <h4  class="contact-letter">${letter}</h4>
+        <div id="${letter}"></div>
+    </div>
+    `
+}
+
 function addNewContactHtml(){
     return`
     <div class="add-contact animationFadeIn">
@@ -31,8 +122,8 @@ function addNewContactHtml(){
         <div class="add-contact-cross">
             <img class="img-cross" src="/src/assets/img/pngegg.png" alt="">
         </div>
-        <div class="add-contact-header-info">
-            <div >
+        <div class="add-contact-header-info" >
+            <div>
                 <img onclick="closeAddContact()" src="/src/assets/img/Capa 1.png" alt="">
             </div>
             <div class="add-contact-h">
@@ -47,13 +138,13 @@ function addNewContactHtml(){
         <div class="contact-member"><img src="/src/assets/img/contact-member.png" alt="">
         </div>
         <div>
-            <div><input type="text">
+            <div><input type="text" id="contactName">
                 <img src="/src/assets/img/signup-user.png" alt="">
             </div>
-            <div><input type="e-mail">
+            <div><input type="e-mail" id="contactEmail">
                 <img src="/src/assets/img/login-email.png" alt="">
             </div>
-            <div><input type="text">
+            <div><input type="text" id="contactNumber">
                 <img src="/src/assets/img/phone.png" alt="">
             </div>
         </div>
@@ -63,7 +154,7 @@ function addNewContactHtml(){
                 <img src="/src/assets/img/cancel.png" alt="">
             </div>
             <div class="button-create">
-                <div> Create contact</div>
+                <div onclick="createContact()"> Create contact</div>
                 <img src="/src/assets/img/rithe.png" alt="">
             </div>
         </div>
