@@ -57,10 +57,10 @@ function fillAllTasks(contactTask, contactName,) {
     addTasks.push(contactTask);
     addTasks.sort((a, b) => a.contactName.localeCompare(b.contactName));
     let letter = contactName.charAt(0);
-
+    closeAddContact();
     if (lettertask.includes(letter)) {
+        clearContactBar();
         
-        contactChild();
     }
     else {
         let contactBar = document.getElementById('contactbar');
@@ -74,15 +74,23 @@ function fillAllTasks(contactTask, contactName,) {
 
     }
 
-
+function clearContactBar(){
+    for (let i = 0; i < lettertask.length; i++) {
+        let clear = lettertask[i];
+        let contactSmall = document.getElementById(clear)
+        while(contactSmall.lastChild){
+        contactSmall.removeChild(contactSmall.lastChild);
+        }
+    }
+    contactChild();
+}
 
 function contactChild() {
     for (let index = 0; index < addTasks.length; index++) {
         let l = addTasks[index]['contactletter'];
         let n = addTasks[index]['contactName'];
         let e = addTasks[index]['contactEmail'];
-        let contactSmall = document.getElementById(l);
-        contactSmall.innerHTML = '';
+        
         let contactchilds = document.getElementById(l);
         contactchilds.innerHTML += contactChildHtml(n, e);
     }
