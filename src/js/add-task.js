@@ -57,12 +57,13 @@ function openAddTaskMask() {
             <input id="AddTitle" type="text" placeholder="Ener a title" autocomplete="off" required>
         </div>
 
-        <div id="category_selector">
+        <div id="user_selector">
              <div class="selector-header" onclick="showUsers()">
                 Select contacts to assign
                 <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
               </div>
         </div>
+        <div class="selector-user-dropdown" id="selector_user_dropdown">  </div>
 
         <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
            <p>Due Date</p>
@@ -77,6 +78,7 @@ function openAddTaskMask() {
            </div>
         </div>
         <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">  </div>
+
          <div class="priorityContainer">
             <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
                 <p>Urgent</p> 
@@ -100,6 +102,36 @@ function openAddTaskMask() {
   </form>
     `;
 }
+
+//renders the Drop Down Menu for the User selection
+function showUsers() {
+  let staticUsers = [
+    { statUser: 'You', cagtegoryID: 0 },
+    { statUser: 'Maximillian Vogel', categoryID: 1 },
+    { statUser: 'Invite new contact', categoryID: 2 },
+  ];
+
+  document.getElementById('selector_user_dropdown').innerHTML = ``;
+  document.getElementById('selector_user_dropdown').innerHTML += /*html*/`  
+  <div onclick="selectedUser('${staticUsers[2].statUser}')" class="selectorCell pointer">
+      ${staticUsers[2].statUser}
+      <img src="./assets/img/newContact-img.png">
+    
+  </div>
+  `;
+
+  for (let y = 1; y < staticUsers.length; y++) {
+    document.getElementById('selector_user_dropdown').innerHTML += /*html*/`
+    <div onclick="selectedUser('${staticUsers[y].statUser}')" class="selectorCell pointer">
+        <div>${staticUsers[y].statUser}</div>
+        <div><img src="./assets/img/userSelect-img.png"></div>
+    </div>
+    `;
+  }
+
+}
+
+
 
 
 // renders the Drop Down Menu for the categories

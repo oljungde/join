@@ -299,6 +299,8 @@ h1 {
 
 .AddTaskMaskContainer {
     width: 518px;
+    height: 1024px;
+    overflow-y: scroll;
     background-color: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border-radius: 30px 0px 30px 30px;
@@ -307,7 +309,7 @@ h1 {
     flex-direction: column;
     gap: 10px;
     position: fixed;
-    top: 20px;
+    top: 5px;
     right: 0;
     margin-top: 60px;
 }
@@ -485,6 +487,7 @@ h1 {
 
 .selectorCell {
     display: flex;
+    align-items: center;
     gap: 10px;
     padding: 18px 21px;
 }
