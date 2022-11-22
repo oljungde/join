@@ -1,3 +1,10 @@
+async function initLogin() {
+    await init();
+    passwordInputIconChange();
+    passwordConfirmIconChange();
+}
+
+
 /**
  * get data from login form an execute the function to check it
  */
@@ -113,4 +120,94 @@ function passwordTimeoutTemplate() {
             Unfortunately, the link has expired. You have a maximum of 24 hours to reset a password after requesting the link.<br> You can request the link again <a href="./forgot-password.html">here</a>.
         </div>
     `;
+}
+
+
+/**
+ * check if the input field length with the id user_password on index.html is longer as 0 letters and change the icon on end of input
+ */
+function passwordInputIconChange() {
+    let userPasswordInput = document.getElementById('user_password');
+    let passwordIcon = document.getElementById('user_password_icon');
+    let passwordIconHidden = document.getElementById('user_password_hidden');
+    userPasswordInput.addEventListener('input', function () {
+        console.log('geändert');
+        if (userPasswordInput.value.length > 0) {
+            passwordIcon.classList.add('display-none');
+            passwordIconHidden.classList.remove('display-none');
+        } else {
+            passwordIcon.classList.remove('display-none');
+            passwordIconHidden.classList.add('display-none');
+        }
+    })
+}
+
+
+function passwordConfirmIconChange() {
+    let userPasswordConfirmInput = document.getElementById('new_password_confirm');
+    let passwordConfirmIcon = document.getElementById('user_password_confirm_icon');
+    let passwordConfirmIconHidden = document.getElementById('user_password_confirm_hidden');
+    userPasswordConfirmInput.addEventListener('input', function () {
+        console.log('geändert');
+        if (userPasswordConfirmInput.value.length > 0) {
+            passwordConfirmIcon.classList.add('display-none');
+            passwordConfirmIconHidden.classList.remove('display-none');
+        } else {
+            passwordConfirmIcon.classList.remove('display-none');
+            passwordConfirmIconHidden.classList.add('display-none');
+        }
+    })
+}
+
+
+/**
+ * makes the password input readable
+ */
+function makePasswordVisible() {
+    let passwordIconHidden = document.getElementById('user_password_hidden');
+    let passwordIconVisible = document.getElementById('user_password_visible');
+    let userPasswordInput = document.getElementById('user_password');
+    passwordIconHidden.classList.add('display-none');
+    passwordIconVisible.classList.remove('display-none');
+    userPasswordInput.type = 'text';
+}
+
+
+/**
+ * makes the password input unreadable
+ */
+function makePasswordUnvisible() {
+    let passwordIconHidden = document.getElementById('user_password_hidden');
+    let passwordIconVisible = document.getElementById('user_password_visible');
+    let userPasswordInput = document.getElementById('user_password');
+    passwordIconHidden.classList.remove('display-none');
+    passwordIconVisible.classList.add('display-none');
+    userPasswordInput.type = 'password';
+}
+
+
+/**
+ * makes the password confirm
+  input readable
+ */
+function makePasswordConfirmVisible() {
+    let passwordConfirmIconHidden = document.getElementById('user_password_confirm_hidden');
+    let passwordConfirmIconVisible = document.getElementById('user_password_confirm_visible');
+    let userPasswordConfirmInput = document.getElementById('new_password_confirm');
+    passwordConfirmIconHidden.classList.add('display-none');
+    passwordConfirmIconVisible.classList.remove('display-none');
+    userPasswordConfirmInput.type = 'text';
+}
+
+
+/**
+ * makes the password confirm input unreadable
+ */
+function makePasswordConfirmUnvisible() {
+    let passwordConfirmIconHidden = document.getElementById('user_password_confirm_hidden');
+    let passwordConfirmIconVisible = document.getElementById('user_password_confirm_visible');
+    let userPasswordConfirmInput = document.getElementById('new_password_confirm');
+    passwordConfirmIconHidden.classList.remove('display-none');
+    passwordConfirmIconVisible.classList.add('display-none');
+    userPasswordConfirmInput.type = 'password';
 }
