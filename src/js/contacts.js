@@ -2,7 +2,7 @@ let addTasks = [];
 let lettertask = [];
 
 async function initContacts() {
-    checkUserIsLoggedIn();
+    // checkUserIsLoggedIn();
     await init();
 }
 
@@ -45,7 +45,7 @@ function createContact() {
         'contactNumber': contactNumber,
         'contactletter': firstName
     };
-    fillAllTasks(contactTask, contactName, contactEmail, firstName);
+    fillAllTasks(contactTask, contactName, );
 }
 
 /**
@@ -59,26 +59,30 @@ function fillAllTasks(contactTask, contactName,) {
     let letter = contactName.charAt(0);
 
     if (lettertask.includes(letter)) {
+        
         contactChild();
     }
     else {
+        let contactBar = document.getElementById('contactbar');
+        contactBar.innerHTML = '';
         lettertask.push(letter);
         lettertask.sort();
-        for (let i = 0; i < addTasks.length; i++) {
-            let l = addTasks[i]['contactletter']
-            createContactBar(l);
+        
+            createContactBar();
             contactChild();
         }
 
     }
 
-}
+
 
 function contactChild() {
     for (let index = 0; index < addTasks.length; index++) {
         let l = addTasks[index]['contactletter'];
         let n = addTasks[index]['contactName'];
         let e = addTasks[index]['contactEmail'];
+        let contactSmall = document.getElementById(l);
+        contactSmall.innerHTML = '';
         let contactchilds = document.getElementById(l);
         contactchilds.innerHTML += contactChildHtml(n, e);
     }
@@ -89,23 +93,25 @@ function contactChild() {
 
 }
 
-function createContactBar(l) {
+function createContactBar() {
+    for (let i = 0; i < lettertask.length; i++) {
+        let l = lettertask[i];
     let contactBar = document.getElementById('contactbar');
 
     contactBar.innerHTML += contactBarHtml(l);
-
+    }
 
 }
 
-function contactChildHtml(contactname, contactemail) {
+function contactChildHtml(n, e) {
     return `
     <div class="contact-child-div">
         <div class="contact-child">
             <p></p>
         </div>
         <div>
-            <p class="contact-child-name">${contactname}</p>
-            <p class="contact-child-email">${contactemail}</p>
+            <p class="contact-child-name">${n}</p>
+            <p class="contact-child-email">${e}</p>
         </div>
     </div>
     `
