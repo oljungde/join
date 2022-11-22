@@ -49,6 +49,32 @@ function checkRememberMeStatus() {
 
 
 /**
+ * shows the popup menu to log out and change the user image
+ */
+function showMenu() {
+    let noMenuShow = document.getElementById('no_menu_show');
+    let menuShow = document.getElementById('menu_show');
+    let menu = document.getElementById('header_nav_popup');
+    noMenuShow.classList.add('display-none');
+    menuShow.classList.remove('display-none');
+    menu.classList.add('show-menu')
+}
+
+
+/**
+ * hides the popup Menu to log out an change the user image
+ */
+function hideMenu() {
+    let noMenuShow = document.getElementById('no_menu_show');
+    let menuShow = document.getElementById('menu_show');
+    let menu = document.getElementById('header_nav_popup');
+    noMenuShow.classList.remove('display-none');
+    menuShow.classList.add('display-none');
+    menu.classList.remove('show-menu')
+}
+
+
+/**
  * function to include html files e.g. header.html and sidebar-navigation.html
  */
 async function includeHTML() {
