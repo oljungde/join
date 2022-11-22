@@ -1,6 +1,12 @@
 async function initLogin() {
     await init();
     passwordInputIconChange();
+}
+
+
+async function initResetPassword() {
+    await init();
+    passwordInputIconChange();
     passwordConfirmIconChange();
 }
 
@@ -48,8 +54,13 @@ function checkUserData(userEmail, userPassword) {
  */
 function guestLogin() {
     let loginForm = document.getElementById('login_form')
+    let dataCheck = document.getElementById('data_check');
     loginForm.setAttribute('novalidate', 'true');
-    checkUserData('noreply@nix.de', 'guest')
+    dataCheck.innerHTML = '';
+    localStorage.setItem('userLoggedInName', 'Guest User');
+    localStorage.setItem('userLoggedInEmail', '');
+    sessionStorage.setItem('loggedIn', 'true');
+    window.location.href = './dashboard.html';
 }
 
 

@@ -100,6 +100,7 @@ a:hover {
 }
 
 .rightContainer {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 20px;
@@ -115,6 +116,27 @@ a:hover {
 
 .Main-Container {
     display: flex;
+}
+
+.header-nav-popup {
+    width: 120px;
+    background-color: white;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    display: flex;
+    padding: 16px 32px;
+    border-radius: 20px 0 20px 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: var(--color-blue-main);
+}
+
+.header-nav-popup:hover {
+    background-color: var(--color-blue-light);
+}
+
+.header-nav-popup span {
+    cursor: pointer;
 }
 
 

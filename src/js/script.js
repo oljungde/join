@@ -27,7 +27,7 @@ function checkUserIsLoggedIn() {
 
 
 /**
- * logs the out, deletes the session storage key loggedIn and the local storage key remeberMe
+ * logs the user out, deletes the session storage key loggedIn and the local storage key remeberMe
  * user will redirect to log in page index.html
  */
 function logout() {
