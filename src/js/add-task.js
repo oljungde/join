@@ -152,20 +152,22 @@ function selectedCategory(category, color) {
 function changeInputCategory() {
   document.getElementById('selector_Category_Dropdown').innerHTML = /*html*/`
   <div class="inputCategory">
-  <input class="input border-bottom" id="newCategoryText" type="text" placeholder="New category name" required>
-  <div class="checkAndCrossIconsCategory">
-    <img src="./assets/img/blue-cross.png" onclick="rechangeCategoryInput()" class="blue-cross">
-        <img src="./assets/img/devider.png">
-        <img src="./assets/img/blue-check.png" onclick="addCategory()" class="blue-check">
-      </div>
+    <div class="inputfield-new-category">
+       <input class="input border-bottom" id="newCategoryText" type="text" placeholder="New category name" required>
+       <div class="checkAndCrossIconsCategory">
+          <img src="./assets/img/blue-cross.png" onclick="rechangeCategoryInput()" class="blue-cross pointer">
+          <img src="./assets/img/devider.png">
+          <img src="./assets/img/blue-check.png" onclick="addCategory()" class="blue-check pointer">
+       </div>
+    </div>
   
   <div id="categoryColorCells"style="margin-top: 10px; margin-left: 20px; ">
-  <img onclick="addCategoryColor('grayCategory')" class="categoryColor" style="margin-right: 20px;" src="./assets/img/lightblueCategory.png">
-  <img onclick="addCategoryColor('redCategory')" class="categoryColor" style="margin-right: 20px;" src="./assets/img/redCategory.png">
-  <img onclick="addCategoryColor('greenCategory')" class="categoryColor" style="margin-right: 20px;" src="./assets/img/greenCategory.png">
-  <img onclick="addCategoryColor('orangeCategory')" class="categoryColor" style="margin-right: 20px;" src="./assets/img/orangeCategory.png">
-  <img onclick="addCategoryColor('purpleCategory')" class="categoryColor" style="margin-right: 20px;" src="./assets/img/purpleCategory.png">
-  <img onclick="addCategoryColor('blueCategory')" class="categoryColor" src="./assets/img/blueCategory.png">
+  <img onclick="addCategoryColor('grayCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/lightblueCategory.png">
+  <img onclick="addCategoryColor('redCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/redCategory.png">
+  <img onclick="addCategoryColor('greenCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/greenCategory.png">
+  <img onclick="addCategoryColor('orangeCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/orangeCategory.png">
+  <img onclick="addCategoryColor('purpleCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/purpleCategory.png">
+  <img onclick="addCategoryColor('blueCategory')" class="categoryColor pointer" src="./assets/img/blueCategory.png">
   </div>
   <div id="mistakeReportCategory"></div>
   </div>`;
