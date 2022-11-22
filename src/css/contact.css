@@ -34,11 +34,17 @@
 }
 
 .new-contact-button{
+    display: flex;
+    justify-content:center ;
+    align-items: center;
     background-color: #4589ff;
     width: 197px;
     height: 53px;
     border-radius: 10px;
     border: 1px solid #4589ff;
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: 400;
 }
 
 .contact-right-side{
@@ -52,6 +58,7 @@
 }
 
 .show-button{
+    
     height: 14vh;
     display: flex;
     align-items:center;

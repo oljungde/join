@@ -57,22 +57,20 @@ function fillAllTasks(contactTask, contactName,) {
     addTasks.push(contactTask);
     addTasks.sort((a, b) => a.contactName.localeCompare(b.contactName));
     let letter = contactName.charAt(0);
+
     closeAddContact();
     if (lettertask.includes(letter)) {
-        clearContactBar();
-        
+        clearContactBar();    
     }
     else {
         let contactBar = document.getElementById('contactbar');
         contactBar.innerHTML = '';
         lettertask.push(letter);
         lettertask.sort();
-        
-            createContactBar();
-            contactChild();
-        }
-
+        createContactBar();
+        contactChild();
     }
+}
 
 function clearContactBar(){
     for (let i = 0; i < lettertask.length; i++) {
@@ -89,26 +87,19 @@ function contactChild() {
     for (let index = 0; index < addTasks.length; index++) {
         let l = addTasks[index]['contactletter'];
         let n = addTasks[index]['contactName'];
-        let e = addTasks[index]['contactEmail'];
-        
+        let e = addTasks[index]['contactEmail'];       
         let contactchilds = document.getElementById(l);
         contactchilds.innerHTML += contactChildHtml(n, e);
     }
-
-
-
-
 
 }
 
 function createContactBar() {
     for (let i = 0; i < lettertask.length; i++) {
         let l = lettertask[i];
-    let contactBar = document.getElementById('contactbar');
-
-    contactBar.innerHTML += contactBarHtml(l);
+        let contactBar = document.getElementById('contactbar');
+        contactBar.innerHTML += contactBarHtml(l);
     }
-
 }
 
 function contactChildHtml(n, e) {
@@ -156,27 +147,25 @@ function addNewContactHtml() {
     <div class="add-contact-main">
         <div class="contact-member"><img src="/src/assets/img/contact-member.png" alt="">
         </div>
-        <div>
-            <div><input type="text" id="contactName">
-                <img src="/src/assets/img/signup-user.png" alt="">
+        <form onsubmit="createContact()">
+            <div>
+                <div><input required pattern="[A-Z]{1,} type="text" id="contactName" class="input-contact-name">
+                    <img src="/src/assets/img/signup-user.png" alt="">
+                </div>
+                <div><input required type="email" id="contactEmail">
+                    <img src="/src/assets/img/login-email.png" alt="">
+                </div>
+                <div><input required type="text" id="contactNumber">
+                    <img src="/src/assets/img/phone.png" alt="">
+                </div>
             </div>
-            <div><input type="e-mail" id="contactEmail">
-                <img src="/src/assets/img/login-email.png" alt="">
+            <div class="button-container">
+              
+                <button class="button-cancel" onclick="closeAddContact()">Cancel <img src="/src/assets/img/cancel.png" alt=""></button>
+                <button class="button-create">Create contact <img src="/src/assets/img/rithe.png" alt=""></button>
+                
             </div>
-            <div><input type="text" id="contactNumber">
-                <img src="/src/assets/img/phone.png" alt="">
-            </div>
-        </div>
-        <div class="button-container">
-            <div class="button-cancel" onclick="closeAddContact()">
-                <div>Cancel</div>
-                <img src="/src/assets/img/cancel.png" alt="">
-            </div>
-            <div class="button-create">
-                <div onclick="createContact()"> Create contact</div>
-                <img src="/src/assets/img/rithe.png" alt="">
-            </div>
-        </div>
+        </form>
     </div>
 </div>
     `
