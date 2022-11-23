@@ -16,15 +16,16 @@ async function initAddTask() {
 async function addToTask() {
   let title = document.getElementById('AddTitle');
   let description = document.getElementById('AddDescription');
-  let user = document.getElementById('AddUser');
   let dueDate = document.getElementById('add-date');
 
   let currentTask = {
     "id": j,
+    "category": categorySelect,
     "title": title.value,
     "description": description.value,
     "dueDate": dueDate.value,
     "priority": prioritySelect,
+    "user": userSelect,
     'status': 'toDo'
   };
 
@@ -157,6 +158,8 @@ function showUsers() {
 }
 
 
+
+
 // getting selected User
 function selectedUser(user) {
   if (user == "Invite new contact") {
@@ -166,7 +169,7 @@ function selectedUser(user) {
        <div class="inputfield-new-user">
          <input class="input border-bottom" id="newUserText" type="text" placeholder="Contact email" required>
          <div class="checkAndCrossIconsCategory">
-          <img src="./assets/img/blue-cross.png" onclick="rechangeCategoryInput()" class="blue-cross pointer">
+          <img src="./assets/img/blue-cross.png" onclick="exitCategorySelector()" class="blue-cross pointer">
           <img src="./assets/img/devider.png">
           <img src="./assets/img/blue-check.png" onclick="addCategory()" class="blue-check pointer">
        </div>
@@ -176,8 +179,15 @@ function selectedUser(user) {
   if (user == "Maximillian Vogel") {
     userSelect = "Maximillian Vogel";
     document.getElementById('user_select').src = 'assets/img/userSelect-selected.png';
-  }
 
+
+
+  }
+  if (user == "You") {
+    userSelect = "You";
+    document.getElementById('user_select').src = 'assets/img/userSelect-selected.png';
+
+  }
 }
 
 
@@ -212,20 +222,15 @@ function showTaskCategories() {
 function selectedCategory(category, color) {
   if (category == "New category") {
     changeInputCategory();
-  } else {
-    CategoryForTask = category;
-    CategoryColorForTask = color;
-    document.getElementById("selectorCategory").innerHTML = /*html*/`
-    <div class="selectorHeader pointer" onclick="renderingTaskCategorySelector()">
-       <div class="selected">
-          ${category}
-          <img src="./assets/img/categoryColors/${color}.png" />
-       </div>
-       <img class="selectorArrow" src="./assets/img/selectorArrow.png">
-      </div>
-      `;
+  }
+  if (category == "Sales") {
+    categorySelect = "Sales"
+  }
+  if (category == "Backoffice") {
+    categorySelect = "Backoffice"
   }
 }
+
 
 
 // renders the Input field for New tasks

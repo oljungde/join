@@ -30,12 +30,17 @@ function identifyId() {
 
 // Drag and Drop Bereiche werden definiert und Tasks gerendert
 function updateToDoStatus() {
+    
+    
     let toDo = allTasks.filter(t => t['status'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
 
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
+        
+
         document.getElementById('toDo').innerHTML += generateTodoHTML(element);
+      
     }
 }
 
@@ -46,6 +51,8 @@ function updateInProgressStatus() {
 
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
+
+
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
     }
 }
@@ -58,6 +65,8 @@ function updateAwaitingFeedbackStatus() {
 
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
+
+
         document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);
     }
 }
@@ -71,6 +80,7 @@ function updateDoneStatus() {
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
         document.getElementById('done').innerHTML += generateTodoHTML(element);
+
     }
 }
 
@@ -84,12 +94,64 @@ function generateTodoHTML(element) {
           <h4 class="title">${element['title']}</h4>
           <div class="text">${element['description']}</div>
       </div>
+
+      <div class="task-progress">
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="fill${element["id"]}"></div>
+        </div>
+        <span id="fill-text${element["id"]}"> Done</span>
+      </div>
+
       <div class=UserAndPriority>
         <div class="user">${element['user']}</div>
         <div class="priority"><img src="assets/img/prio-${element['priority']}.png" alt=""></div>
       </div>
     </div>`
 }
+
+// Progress-bar
+function updateProgressBar(status, id) {
+    let fill = getDoc("fill" + id);
+    let filltext = getDoc("fill-text" + id);
+    fillWhenToDo(status, fill, filltext);
+    fillWhenInProgress(status, fill, filltext);
+    fillWhenAwaitProgress(status, fill, filltext);
+    fillWhenDone(status, fill, filltext);
+  }
+
+
+  function fillWhenToDo(status, fill, filltext) {
+    if (status == "toDo") {
+      fill.style.width = "0%";
+      filltext.innerHTML = `0/3 Done`;
+    }
+  }
+  
+  
+  function fillWhenInProgress(status, fill, filltext) {
+    if (status == "inProgress") {
+      fill.style.width = "33%";
+      filltext.innerHTML = `1/3 Done`;
+    }
+  }
+  
+  
+  function fillWhenAwaitProgress(status, fill, filltext) {
+    if (status == "awaitFeedback") {
+      fill.style.width = "66%";
+      filltext.innerHTML = `2/3 Done`;
+    }
+  }
+  
+  
+  function fillWhenDone(status, fill, filltext) {
+    if (status == "done") {
+      fill.style.width = "100%";
+      filltext.innerHTML = `3/3 Done`;
+    }
+  }
+
+
 
 
 // Drag and Drop
@@ -108,7 +170,9 @@ function allowDrop(ev) {
 // changes the status of the task according to the dropped area
 function moveTo(status) {
     allTasks[currentDraggedElement]['status'] = status;
+ 
     updateHTML();
+    
 }
 
 
