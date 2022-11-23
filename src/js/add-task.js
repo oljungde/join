@@ -66,11 +66,11 @@ function openAddTaskMask() {
         <div class="selector-user-dropdown" id="selector_user_dropdown">  </div>
 
         <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
-           <p>Due Date</p>
+           <h4>Due Date</h4>
            <input type="date">
         </div>
 
-        <h3>Category</h3>        
+        <h4>Category</h4>        
         <div id="category_selector">
            <div class="selector-header" onclick="showTaskCategories()">
               Select task category
@@ -94,10 +94,10 @@ function openAddTaskMask() {
           </div>
        </div>
        <div>
-         <h3>Description</h3>
+         <h4>Description</h4>
          <input class="add-description" id="AddDescription" type="text" placeholder="Enter a Description">
        </div>
-    
+       <h4>Subtasks</h4>
        <input type="text" placeholder="Add a new subtask">
   </form>
     `;
@@ -116,7 +116,6 @@ function showUsers() {
   <div onclick="selectedUser('${staticUsers[2].statUser}')" class="selectorCell pointer">
       ${staticUsers[2].statUser}
       <img src="./assets/img/newContact-img.png">
-    
   </div>
   `;
 
@@ -128,10 +127,7 @@ function showUsers() {
     </div>
     `;
   }
-
 }
-
-
 
 
 // renders the Drop Down Menu for the categories

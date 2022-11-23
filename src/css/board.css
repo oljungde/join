@@ -318,6 +318,15 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.addTaskForm h4 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 120%;
+    color: #42526E;
+    margin-bottom: 5px;
 
 }
 
@@ -408,7 +417,7 @@ h1 {
     width: 422px;
     border: none;
 
- 
+
 }
 
 .input input {
@@ -477,7 +486,7 @@ h1 {
     padding: 18px 21px;
 }
 
-.checkAndCrossIconsCategory{
+.checkAndCrossIconsCategory {
     display: flex;
     gap: 10px;
     justify-content: center;
