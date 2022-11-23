@@ -35,15 +35,19 @@ function closeAddContact() {
  */
 function createContact() {
 
-    let contactName = document.getElementById('contactName').value;
+    let smallName = document.getElementById('contactName').value;
     let contactEmail = document.getElementById('contactEmail').value;
     let contactNumber = document.getElementById('contactNumber').value;
+    let contactName  = smallName.charAt(0).toUpperCase() + smallName.slice(1);
     let firstName = contactName.charAt(0);
+    var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+    
     let contactTask = {
         'contactName': contactName,
         'contactEmail': contactEmail,
         'contactNumber': contactNumber,
-        'contactletter': firstName
+        'contactletter': firstName,
+        'contactcolor':  randomColor
     };
     fillAllTasks(contactTask, contactName, );
 }
@@ -57,7 +61,7 @@ function fillAllTasks(contactTask, contactName,) {
     addTasks.push(contactTask);
     addTasks.sort((a, b) => a.contactName.localeCompare(b.contactName));
     let letter = contactName.charAt(0);
-
+    
     closeAddContact();
     if (lettertask.includes(letter)) {
         clearContactBar();    
@@ -87,9 +91,12 @@ function contactChild() {
     for (let index = 0; index < addTasks.length; index++) {
         let l = addTasks[index]['contactletter'];
         let n = addTasks[index]['contactName'];
-        let e = addTasks[index]['contactEmail'];       
+        let e = addTasks[index]['contactEmail'];
+        let m = addTasks[index]['contactNumber'];
+        let c = addTasks[index]['contactcolor'];
+        let lettersFB = n.match(/\b(\w)/g).join('');       
         let contactchilds = document.getElementById(l);
-        contactchilds.innerHTML += contactChildHtml(n, e);
+        contactchilds.innerHTML += contactChildHtml(n, e, m, c, lettersFB);
     }
 
 }
@@ -102,11 +109,46 @@ function createContactBar() {
     }
 }
 
-function contactChildHtml(n, e) {
+function openDetailContact(lettersFB, n, e, m, c){
+console.log(lettersFB, n, e, m);
+let contactdetails = document.getElementById('contactdetails');
+contactdetails.innerHTML ='';
+contactdetails.innerHTML = contactDetailHtml(lettersFB, n, e, m, c);
+}
+
+function contactDetailHtml(lettersFB, n, e, m, c){
     return `
-    <div class="contact-child-div">
-        <div class="contact-child">
-            <p></p>
+    <div class="contact-detail-main-side animationFadeInRight">
+                        <div class="contact-detail-head">
+                            <div style="background-color: ${c}" class="contact-detail-big-letter">${lettersFB}</div>
+                            <div class="contact-detail-name-task">
+                                <p class="contact-detail-big-name">${n}</p>
+                                <p class="contact-detail-add-task"><img src="./assets/img/blue-plus.png" alt="">Add Task</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-info-main">
+                            <p class="contact-detail-info">Contact Information</p>
+                            <p class="contact-detail-edit">Edit Contact</p>
+                        </div>
+                        <div>
+                            <div>
+                                <p class="contact-detail-email-number">Email</p>
+                                <a href="${e}">${e}</a>
+                            </div>
+                            <div>
+                                <p class="contact-detail-email-number">Mobile</p>
+                                <p>${m}</p>
+                            </div>
+                        </div>
+                    </div>
+    `
+}
+
+function contactChildHtml(n, e, m,  c, lettersFB) {
+    return `
+    <div class="contact-child-div" onclick="openDetailContact('${lettersFB}', '${n}', '${e}', '${m}', '${c}')">
+        <div style="background-color: ${c}" class="contact-child">
+            <p>${lettersFB}</p>
         </div>
         <div>
             <p class="contact-child-name">${n}</p>
@@ -149,7 +191,7 @@ function addNewContactHtml() {
         </div>
         <form onsubmit="createContact()">
             <div>
-                <div><input required pattern="[A-Z]{1,} type="text" id="contactName" class="input-contact-name">
+                <div><input required  type="text" id="contactName" class="input-contact-name">
                     <img src="/src/assets/img/signup-user.png" alt="">
                 </div>
                 <div><input required type="email" id="contactEmail">

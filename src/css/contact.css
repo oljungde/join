@@ -54,7 +54,7 @@
 .show-contact{
     
     height: 75vh;
-    background-color: aqua;
+    
 }
 
 .show-button{
@@ -194,7 +194,6 @@
     width: 42px;
     height: 42px;
     border-radius: 100%;
-    background-color: #4589ff;
     margin-right: 16px;
 }
 
@@ -215,10 +214,79 @@
     color: #4589ff;
 }
 
+.contact-detail-head{
+    height: 130px;
+    width: 600px;
+    display: flex;
+    
+    align-items: center;
+}
 
+.contact-detail-name-task{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 25px;
+}
 
+.contact-detail-big-letter{
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    margin-right: 25px;
+    font-size: 47px;
+    font-weight: 500;
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+    
+}
 
+.contact-detail-big-name{
+    font-size: 48px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 13px;
+    margin-top: 13px;
+}
 
+.contact-detail-add-task{
+    color: #005DFF;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0;
+}
+
+.contact-detail-info-main{
+    display: flex;
+    align-items: center;
+    width: 600px;
+    
+}
+
+.contact-detail-info{
+    font-size: 23px;
+    font-weight: 700;
+    margin-right: 50px;
+}
+
+.contact-detail-edit{
+    font-size: 16px;
+    font-weight: 400;
+    margin-left: 50px;
+}
+
+.contact-detail-email-number{
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.contact-detail-main-side{
+padding: 50px;
+}
 
 .animationFadeIn {
     animation: fadeIn 1s ease 0s 1 normal forwards;
@@ -235,6 +303,28 @@
   
     0% {
       transform: translateX(-100%);
+    }
+  
+    100% {
+      transform: translateX(0);
+    }
+}
+
+.animationFadeInRight {
+    animation: fadeInright 1s ease 0s 1 normal forwards;
+}
+  
+  @keyframes fadeInright {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  
+    0% {
+      transform: translateX(100%);
     }
   
     100% {
