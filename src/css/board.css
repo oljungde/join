@@ -435,6 +435,8 @@ h1 {
     color: white;
 }
 
+
+
 .input-title{
     display: flex;
     align-items: center;
@@ -442,7 +444,6 @@ h1 {
     border: none;
     border-bottom: 1px solid #D1D1D1;
     padding: 13px 21px;
-
 }
 
 
@@ -461,15 +462,74 @@ h1 {
     line-height: 120%;
 }
 
+
 .input-title input:focus {
     outline: none;
 }
 
+
 .input-title select {
     width: 420px;
     border: none;
+}
+
+.inputfield-new-user {
+    display: flex;
+    border-bottom: 1px solid #D1D1D1;
+    width: 422px;
+    padding: 18px 21px;
+}
+
+.input-date{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #D1D1D1;
+    width: 422px;
+    padding: 18px 21px;
+}
+
+.input-date input{
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 120%;
+    color: #D1D1D1;
+}
+
+
+
+
+.inputfield-new-category {
+    display: flex;
+    border-bottom: 1px solid #D1D1D1;
+    width: 422px;
+    padding: 18px 21px;
+}
+
+.input-subtasks{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 422px;
+    border: none;
+    border-bottom: 1px solid #D1D1D1;
+    padding: 13px 21px;
 
 }
+
+.input-subtasks input {
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 120%; 
+    color: #D1D1D1;
+}
+
+
+
 
 .add-description {
     width: 422px;
@@ -491,30 +551,6 @@ h1 {
     cursor: pointer;
 }
 
-.input-subtasks{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 422px;
-    border: none;
-    border-bottom: 1px solid #D1D1D1;
-    padding: 13px 21px;
-
-}
-
-
-
-.input-subtasks input {
-    border: none;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 19px;
-    line-height: 120%; 
-    color: #D1D1D1;
-}
-
-
-
 
 
 .selector-header {
@@ -535,27 +571,6 @@ h1 {
     cursor: pointer;
 }
 
-.inputfield-new-user {
-    display: flex;
-    border-bottom: 1px solid #D1D1D1;
-    width: 422px;
-    padding: 18px 21px;
-}
-
-.input-date{
-    display: flex;
-    border-bottom: 1px solid #D1D1D1;
-    width: 422px;
-    padding: 18px 21px;
-}
-
-
-.inputfield-new-category {
-    display: flex;
-    border-bottom: 1px solid #D1D1D1;
-    width: 422px;
-    padding: 18px 21px;
-}
 
 .checkAndCrossIconsCategory {
     display: flex;
