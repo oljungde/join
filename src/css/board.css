@@ -299,7 +299,6 @@ h1 {
 
 .AddTaskMaskContainer {
     width: 518px;
-    height: 1024px;
     overflow-y: scroll;
     background-color: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
@@ -309,9 +308,9 @@ h1 {
     flex-direction: column;
     gap: 10px;
     position: fixed;
-    top: 5px;
+    top: 0;
     right: 0;
-    margin-top: 60px;
+    bottom: 0;
 }
 
 .addTaskForm {
@@ -327,8 +326,33 @@ h1 {
     line-height: 120%;
     color: #42526E;
     margin-bottom: 5px;
-
 }
+
+.addTaskForm h2 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 120%;
+    color: #000000;
+    padding-left: 20px;
+}
+
+.addTaskForm button{
+    width: 180px;
+    height: 61px;
+    background-color: var(--color-blue-main);
+    padding: 18px 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: var(--font-size-xxlarge);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
 
 .addTask-top {
     display: flex;
@@ -411,28 +435,40 @@ h1 {
     color: white;
 }
 
+.input-title{
+    display: flex;
+    align-items: center;
+    width: 422px;
+    border: none;
+    border-bottom: 1px solid #D1D1D1;
+    padding: 13px 21px;
+
+}
+
+
 .input {
     display: flex;
     align-items: center;
     width: 422px;
     border: none;
-
-
 }
 
-.input input {
+.input-title input {
     border: none;
-    font-size: var(--font-size-regular);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 120%;
 }
 
-.input input:focus {
+.input-title input:focus {
     outline: none;
 }
 
-.input select {
+.input-title select {
     width: 420px;
     border: none;
-    font-size: var(--font-size-regular);
+
 }
 
 .add-description {
@@ -455,6 +491,27 @@ h1 {
     cursor: pointer;
 }
 
+.input-subtasks{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 422px;
+    border: none;
+    border-bottom: 1px solid #D1D1D1;
+    padding: 13px 21px;
+
+}
+
+
+
+.input-subtasks input {
+    border: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 120%; 
+    color: #D1D1D1;
+}
 
 
 
@@ -476,6 +533,20 @@ h1 {
 
 .selector-header:hover {
     cursor: pointer;
+}
+
+.inputfield-new-user {
+    display: flex;
+    border-bottom: 1px solid #D1D1D1;
+    width: 422px;
+    padding: 18px 21px;
+}
+
+.input-date{
+    display: flex;
+    border-bottom: 1px solid #D1D1D1;
+    width: 422px;
+    padding: 18px 21px;
 }
 
 

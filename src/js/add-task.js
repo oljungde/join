@@ -50,11 +50,11 @@ function openAddTaskMask() {
         <img class="CloseCross" onclick="closeAddTaskMask()" src="assets/img/group 11.png" alt="">
         <div class="addTask-top">
            <h2>Add Task</h2>
-           <button class="btn">Create Task</button>
+           <button class="btn">Create Task <img src="assets/img/white-check.png" alt=""></button>
          </div>
     
-        <div class="input border-bottom">
-            <input id="AddTitle" type="text" placeholder="Ener a title" autocomplete="off" required>
+        <div class="input-title">
+            <input id="AddTitle" type="text" placeholder="Enter a title" autocomplete="off" required>
         </div>
 
         <div id="user_selector">
@@ -67,7 +67,10 @@ function openAddTaskMask() {
 
         <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
            <h4>Due Date</h4>
-           <input type="date">
+           <div class= "input-date" id="input-date">
+             <input id="add-date" class="add-date" placeholder="dd/mm/yy" type="date">
+             <img src="assets/img/dateSelect-img.png" alt="">
+           </div>
         </div>
 
         <h4>Category</h4>        
@@ -98,10 +101,32 @@ function openAddTaskMask() {
          <input class="add-description" id="AddDescription" type="text" placeholder="Enter a Description">
        </div>
        <h4>Subtasks</h4>
+       <div class="input-subtasks pointer" id="newSubtask_select" onclick="showNewSubtasks()">
        <input type="text" placeholder="Add a new subtask">
+       <img src="assets/img/blue-plus.png" alt="">
+       </div>
   </form>
     `;
 }
+
+
+// renders the NewSubtaskinput
+function showNewSubtasks() {
+  
+    document.getElementById("newSubtask_select").innerHTML = /*html*/`
+    <div class="inputUser">
+       <div class="inputfield-new-user">
+         <input class="input border-bottom pointer" id="newUserText" type="text" placeholder="Create new icons" required>
+         <div class="checkAndCrossIconsCategory">
+          <img src="./assets/img/blue-cross.png" onclick="rechangeCategoryInput()" class="blue-cross pointer">
+          <img src="./assets/img/devider.png">
+          <img src="./assets/img/blue-check.png" onclick="addCategory()" class="blue-check pointer">
+       </div>
+    </div>
+    `;
+}
+
+
 
 //renders the Drop Down Menu for the User selection
 function showUsers() {
@@ -128,6 +153,26 @@ function showUsers() {
     `;
   }
 }
+
+
+// getting selected User
+function selectedUser(user) {
+  if (user == "Invite new contact") {
+    document.getElementById('selector_user_dropdown').classList.add('d-none');
+    document.getElementById("user_selector").innerHTML = /*html*/`
+    <div class="inputUser">
+       <div class="inputfield-new-user">
+         <input class="input border-bottom" id="newUserText" type="text" placeholder="Contact email" required>
+         <div class="checkAndCrossIconsCategory">
+          <img src="./assets/img/blue-cross.png" onclick="rechangeCategoryInput()" class="blue-cross pointer">
+          <img src="./assets/img/devider.png">
+          <img src="./assets/img/blue-check.png" onclick="addCategory()" class="blue-check pointer">
+       </div>
+    </div>
+    `;
+  } 
+}
+
 
 
 // renders the Drop Down Menu for the categories
@@ -178,7 +223,8 @@ function selectedCategory(category, color) {
 
 // renders the Input field for New tasks
 function changeInputCategory() {
-  document.getElementById('selector_Category_Dropdown').innerHTML = /*html*/`
+  document.getElementById('selector_Category_Dropdown').classList.add('d-none');
+  document.getElementById('category_selector').innerHTML = /*html*/`
   <div class="inputCategory">
     <div class="inputfield-new-category">
        <input class="input border-bottom" id="newCategoryText" type="text" placeholder="New category name" required>
