@@ -145,7 +145,8 @@ function generateDetailTodoHTML(element, category, title, description, dueDate, 
     <div class="detail-dueDate"> <span>Due date: </span>  <p>${dueDate}</p></div>
     
     <div class="detail-priority">
-     <p> Priority:</p> <img src="assets/img/detail-prio-${priority}.png" alt="">
+      <p> Priority:</p> 
+      <img src="assets/img/detail-prio-${priority}.png" alt="">
     </div>
     <div class="detail-assignedTo">Assigned To:${user}</div>
     <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask()">

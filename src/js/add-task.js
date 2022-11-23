@@ -114,8 +114,8 @@ function openAddTaskMask() {
 
 // renders the NewSubtaskinput
 function showNewSubtasks() {
-  
-    document.getElementById("newSubtask_select").innerHTML = /*html*/`
+
+  document.getElementById("newSubtask_select").innerHTML = /*html*/`
     <div class="inputUser">
        <div class="inputfield-new-user">
          <input class="input border-bottom pointer" id="newUserText" type="text" placeholder="Create new icons" required>
@@ -140,17 +140,17 @@ function showUsers() {
 
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   document.getElementById('selector_user_dropdown').innerHTML += /*html*/`  
-  <div onclick="selectedUser('${staticUsers[2].statUser}')" class="selectorCell pointer">
+  <div onclick="selectedUser('${staticUsers[2].statUser}')" class="selectorCell pointer" >
       ${staticUsers[2].statUser}
       <img src="./assets/img/newContact-img.png">
   </div>
   `;
 
-  for (let y = 1; y < staticUsers.length; y++) {
+  for (let y = 0; y < 2; y++) {
     document.getElementById('selector_user_dropdown').innerHTML += /*html*/`
     <div onclick="selectedUser('${staticUsers[y].statUser}')" class="selectorCell pointer">
         <div>${staticUsers[y].statUser}</div>
-        <div><img src="./assets/img/userSelect-img.png"></div>
+        <div><img id="user_select" src="./assets/img/userSelect-img.png"></div>
     </div>
     `;
   }
@@ -172,7 +172,12 @@ function selectedUser(user) {
        </div>
     </div>
     `;
-  } 
+  }
+  if (user == "Maximillian Vogel") {
+    userSelect = "Maximillian Vogel";
+    document.getElementById('user_select').src = 'assets/img/userSelect-selected.png';
+  }
+
 }
 
 
