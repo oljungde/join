@@ -94,8 +94,8 @@
 }
 
 .contact-member{
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     background-color: #D1D1D1;
     border-radius: 100%;
     display: flex;
@@ -286,6 +286,20 @@
 
 .contact-detail-main-side{
 padding: 50px;
+}
+
+.input-contact{
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border-bottom: 1px solid #D1D1D1;
+}
+
+.input-contact-name{
+    width: 370px;
+    height: 50px;
+    border: 0;
+    font-size: 19px;
+    font-weight: 400;
 }
 
 .animationFadeIn {

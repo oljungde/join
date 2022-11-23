@@ -34,14 +34,12 @@ function closeAddContact() {
  * 
  */
 function createContact() {
-
     let smallName = document.getElementById('contactName').value;
     let contactEmail = document.getElementById('contactEmail').value;
     let contactNumber = document.getElementById('contactNumber').value;
     let contactName  = smallName.charAt(0).toUpperCase() + smallName.slice(1);
     let firstName = contactName.charAt(0);
     var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
-    
     let contactTask = {
         'contactName': contactName,
         'contactEmail': contactEmail,
@@ -61,7 +59,6 @@ function fillAllTasks(contactTask, contactName,) {
     addTasks.push(contactTask);
     addTasks.sort((a, b) => a.contactName.localeCompare(b.contactName));
     let letter = contactName.charAt(0);
-    
     closeAddContact();
     if (lettertask.includes(letter)) {
         clearContactBar();    
@@ -110,10 +107,9 @@ function createContactBar() {
 }
 
 function openDetailContact(lettersFB, n, e, m, c){
-console.log(lettersFB, n, e, m);
-let contactdetails = document.getElementById('contactdetails');
-contactdetails.innerHTML ='';
-contactdetails.innerHTML = contactDetailHtml(lettersFB, n, e, m, c);
+    let contactdetails = document.getElementById('contactdetails');
+    contactdetails.innerHTML ='';
+    contactdetails.innerHTML = contactDetailHtml(lettersFB, n, e, m, c);
 }
 
 function contactDetailHtml(lettersFB, n, e, m, c){
@@ -171,12 +167,12 @@ function addNewContactHtml() {
     return `
     <div class="add-contact animationFadeIn">
     <div class="add-contact-head">
-        <div class="add-contact-cross">
+        <div class="add-contact-cross" onclick="closeAddContact()">
             <img class="img-cross" src="/src/assets/img/pngegg.png" alt="">
         </div>
         <div class="add-contact-header-info" >
-            <div>
-                <img onclick="closeAddContact()" src="/src/assets/img/Capa 1.png" alt="">
+            <div onclick="closeAddContact()>
+                <img " src="/src/assets/img/Capa 1.png" alt="">
             </div>
             <div class="add-contact-h">
                 Add contact
@@ -191,13 +187,13 @@ function addNewContactHtml() {
         </div>
         <form onsubmit="createContact()">
             <div>
-                <div><input required  type="text" id="contactName" class="input-contact-name">
+                <div class="input-contact"><input placeholder="Name" required  type="text" id="contactName" class="input-contact-name">
                     <img src="/src/assets/img/signup-user.png" alt="">
                 </div>
-                <div><input required type="email" id="contactEmail">
+                <div class="input-contact"><input placeholder="Email" required type="email" id="contactEmail" class="input-contact-name">
                     <img src="/src/assets/img/login-email.png" alt="">
                 </div>
-                <div><input required type="text" id="contactNumber">
+                <div class="input-contact"><input placeholder="Phone" required type="text" id="contactNumber" class="input-contact-name">
                     <img src="/src/assets/img/phone.png" alt="">
                 </div>
             </div>
