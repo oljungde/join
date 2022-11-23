@@ -17,11 +17,13 @@ async function addToTask() {
   let title = document.getElementById('AddTitle');
   let description = document.getElementById('AddDescription');
   let user = document.getElementById('AddUser');
+  let dueDate = document.getElementById('add-date');
 
   let currentTask = {
     "id": j,
     "title": title.value,
     "description": description.value,
+    "dueDate": dueDate.value,
     "priority": prioritySelect,
     'status': 'toDo'
   };
