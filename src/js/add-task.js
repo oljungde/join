@@ -219,7 +219,7 @@ function showTaskCategories() {
 
 
 // getting selected Category
-function selectedCategory(category, color) {
+function selectedCategory(category) {
   if (category == "New category") {
     changeInputCategory();
   }
