@@ -160,6 +160,9 @@ function startDragging(id) {
 //Allows the task to be dropped
 function allowDrop(ev) {
     ev.preventDefault();
+
+    ev.target.classList.add('drag-over');
+
 }
 
 
@@ -170,6 +173,33 @@ async function moveTo(status) {
     saveToBackend();
     
 }
+
+
+//Highlighting the Drag and Drop Area
+
+function dragEnter(e) {
+    e.target.classList.add('drag-over');
+}
+
+function dragOver(e) {
+    e.target.classList.add('drag-over');
+}
+
+function dragLeave(e) {
+    e.target.classList.remove('drag-over');
+}
+
+function drop(e) {
+    e.target.classList.remove('drag-over');
+
+}
+
+
+
+
+
+
+
 
 
 // Generates the Detail Window
