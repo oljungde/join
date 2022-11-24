@@ -5,16 +5,16 @@ let currentDraggedElement;
 async function initBoard() {
     checkUserIsLoggedIn();
     await init();
-    identifyId()
+    identifyId();
     updateHTML();
 }
 
 // Updates the individual Areas of the board
 function updateHTML() {
-    updateToDoStatus()
-    updateInProgressStatus()
-    updateAwaitingFeedbackStatus()
-    updateDoneStatus()
+    updateToDoStatus();
+    updateInProgressStatus();
+    updateAwaitingFeedbackStatus();
+    updateDoneStatus();
 }
 
 
@@ -37,10 +37,7 @@ function updateToDoStatus() {
 
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
-        
-
         document.getElementById('toDo').innerHTML += generateTodoHTML(element);
-      
     }
 }
 
@@ -51,7 +48,7 @@ function updateInProgressStatus() {
 
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
-        document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
+        document.getElementById('inProgress').innerHTML += generateTodoHTML(element);   
     }
 }
 
@@ -63,7 +60,7 @@ function updateAwaitingFeedbackStatus() {
 
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
-        document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);
+        document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element); 
     }
 }
 
@@ -76,7 +73,6 @@ function updateDoneStatus() {
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
         document.getElementById('done').innerHTML += generateTodoHTML(element);
-
     }
 }
 
@@ -116,6 +112,7 @@ function updateProgressBar(status, id) {
   }
 
 
+// Fills the progress bar when in category ToDo
   function fillWhenToDo(status, fill, filltext) {
     if (status == "toDo") {
       fill.style.width = "0%";
@@ -123,7 +120,8 @@ function updateProgressBar(status, id) {
     }
   }
   
-  
+
+  // Fills the progress bar when in category inProgress
   function fillWhenInProgress(status, fill, filltext) {
     if (status == "inProgress") {
       fill.style.width = "33%";
@@ -131,7 +129,8 @@ function updateProgressBar(status, id) {
     }
   }
   
-  
+
+  // Fills the progress bar when in category awaitingFeedback
   function fillWhenAwaitProgress(status, fill, filltext) {
     if (status == "awaitingFeedback") {
       fill.style.width = "66%";
@@ -139,7 +138,8 @@ function updateProgressBar(status, id) {
     }
   }
   
-  
+
+  // Fills the progress bar when in category Done
   function fillWhenDone(status, fill, filltext) {
     if (status == "done") {
       fill.style.width = "100%";
@@ -160,7 +160,6 @@ function startDragging(id) {
 //Allows the task to be dropped
 function allowDrop(ev) {
     ev.preventDefault();
-
 }
 
 
@@ -193,13 +192,6 @@ function drop(e) {
     e.target.classList.remove('drag-over');
 
 }
-
-
-
-
-
-
-
 
 
 // Generates the Detail Window
@@ -251,6 +243,7 @@ function generateDetailTodoHTML(element, category, title, description, dueDate, 
     `;
 }
 
+// renders the mask for editing an existing task
 function changeTask(){
     document.getElementById('Detail').innerHTML = /*html*/`
     <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
@@ -299,7 +292,6 @@ function changeTask(){
 }
 
 // search function for tasks on the board --not working
-
 function searchTasks() {
     let search = document.getElementById('search_input');
     search = search.value.toLowerCase();
@@ -311,8 +303,6 @@ function searchTasks() {
         }
     }
 }
-
-
 
 
 //Closes the Detail Window
