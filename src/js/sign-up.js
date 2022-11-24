@@ -40,9 +40,19 @@ function checkRegistrationData(indexOfName, indexOfEmail) {
     if (indexOfName == -1 && indexOfEmail == -1) {
         userRegister(userName, userEmail, userPassword);
     }
+    userNameIsRegistered(indexOfName);
+    userEmailIsRegistered(indexOfEmail);
+}
+
+
+function userNameIsRegistered(indexOfName) {
     if (indexOfName != -1) {
         nameAssign.classList.remove('display-none');
     }
+}
+
+
+function userEmailIsRegistered(indexOfEmail) {
     if (indexOfEmail != -1) {
         emailAssign.classList.remove('display-none');
     }

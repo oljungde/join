@@ -18,10 +18,13 @@ async function init() {
  * checks if the user is logged in
  */
 function checkUserIsLoggedIn() {
-    checkRememberMeStatus();
+    let pathname = window.location.pathname;
     let loginStatus = sessionStorage.getItem('loggedIn');
-    if (loginStatus != 'true') {
-        window.location.href = "./index.html";
+    checkRememberMeStatus();
+    if ((pathname != '/src/' && pathname != '/src/index.html') && loginStatus != 'true') {
+        window.location.href = './index.html';
+    } else if ((pathname == '/src/' || pathname == '/src/index.html') && loginStatus == 'true') {
+        window.location.href = './dashboard.html';
     }
 }
 

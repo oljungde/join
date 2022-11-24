@@ -1,5 +1,6 @@
 async function initLogin() {
     await init();
+    checkUserIsLoggedIn();
     passwordInputIconChange();
 }
 
@@ -76,7 +77,7 @@ async function resetPassword() {
         let checkMail = users.find(user => user.email == resetEmail);
         console.log(checkMail);
         if (checkMail) {
-            let newPassword = document.getElementById('new_password').value;
+            let newPassword = document.getElementById('user_password').value;
             let newPasswordConfirm = document.getElementById('new_password_confirm').value;
             if (newPassword === newPasswordConfirm) {
                 checkMail.password = newPasswordConfirm;
@@ -97,7 +98,7 @@ async function resetPassword() {
 
 
 /**
- * Message text when password chenged
+ * Message text when password changed
  * @returns the html code to render the success message when password is chenged
  */
 function passwordResetedTemplate() {
