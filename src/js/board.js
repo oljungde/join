@@ -107,8 +107,8 @@ function generateTodoHTML(element) {
 
 // Progress-bar for the Tasks -- not working
 function updateProgressBar(status, id) {
-    let fill = getDoc("fill" + id);
-    let filltext = getDoc("fill-text" + id);
+    let fill = document.getElementById("fill" + id);
+    let filltext = document.getElementById("fill-text" + id);
     fillWhenToDo(status, fill, filltext);
     fillWhenInProgress(status, fill, filltext);
     fillWhenAwaitProgress(status, fill, filltext);
@@ -133,7 +133,7 @@ function updateProgressBar(status, id) {
   
   
   function fillWhenAwaitProgress(status, fill, filltext) {
-    if (status == "awaitFeedback") {
+    if (status == "awaitingFeedback") {
       fill.style.width = "66%";
       filltext.innerHTML = `2/3 Done`;
     }
@@ -161,15 +161,15 @@ function startDragging(id) {
 function allowDrop(ev) {
     ev.preventDefault();
 
-    ev.target.classList.add('drag-over');
-
 }
 
 
 // changes the status of the task according to the dropped area
 async function moveTo(status) {
     allTasks[currentDraggedElement]['status'] = status;
+    
     updateHTML();
+    updateProgressBar(status, currentDraggedElement)
     saveToBackend();
     
 }

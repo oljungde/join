@@ -233,7 +233,7 @@ h1 {
     max-width: 140px;
     height: 8px;
     background: #F4F4F4;
-    border-radius: 2px;
+    border-radius: 8px;
     overflow: hidden;
     box-sizing: border-box;
 }

@@ -30,7 +30,7 @@ async function addToTask() {
   };
 
   allTasks.push(currentTask);
-
+  updateProgressBar()
   saveToBackend()
   updateHTML()
   setIdOneHigher()
