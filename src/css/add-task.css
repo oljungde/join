@@ -2,7 +2,11 @@
     width: 422px;
     padding-left: 88px;
     display: flex;
+}
 
+.addTaskFormHTML h4 {
+ margin-bottom: 10px;
+ margin-top: 15px;
 }
 
 

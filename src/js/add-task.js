@@ -30,7 +30,8 @@ async function addToTask() {
   };
 
   allTasks.push(currentTask);
-  await backend.setItem("allTasks", JSON.stringify(allTasks));
+
+  saveToBackend()
   updateHTML()
   setIdOneHigher()
 }
@@ -78,7 +79,7 @@ function openAddTaskMask() {
 
         <h4>Category</h4>        
         <div id="category_selector">
-           <div class="selector-header" onclick="showTaskCategories()">
+           <div id="selected_category" class="selector-header" onclick="showTaskCategories()">
               Select task category
               <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
            </div>
@@ -179,15 +180,17 @@ function selectedUser(user) {
   if (user == "Maximillian Vogel") {
     userSelect = "Maximillian Vogel";
     document.getElementById('user_select').src = 'assets/img/userSelect-selected.png';
-
-
-
   }
   if (user == "You") {
     userSelect = "You";
     document.getElementById('user_select').src = 'assets/img/userSelect-selected.png';
-
   }
+}
+
+function exitCategorySelector(){
+  document.getElementById('user_selector').classList.add('d-none');
+  document.getElementById('selector_user_dropdown').classList.remove('d-none');
+
 }
 
 
@@ -219,15 +222,29 @@ function showTaskCategories() {
 
 
 // getting selected Category
-function selectedCategory(category) {
+function selectedCategory(category, color) {
   if (category == "New category") {
     changeInputCategory();
   }
   if (category == "Sales") {
     categorySelect = "Sales"
+    document.getElementById('selector_Category_Dropdown').innerHTML = ``
+    document.getElementById('selected_category').innerHTML = /*html*/`
+    <div style="display: flex; align-itmens: center; gap: 10px;"> 
+      ${category} 
+      <img src="./assets/img/${color}.png"> 
+    </div> 
+   `
   }
   if (category == "Backoffice") {
     categorySelect = "Backoffice"
+    document.getElementById('selector_Category_Dropdown').innerHTML = ``
+    document.getElementById('selected_category').innerHTML = /*html*/`
+    <div style="display: flex; align-itmens: center; gap: 10px;"> 
+      ${category} 
+      <img src="./assets/img/${color}.png"> 
+    </div>
+    `
   }
 }
 
@@ -241,7 +258,7 @@ function changeInputCategory() {
     <div class="inputfield-new-category">
        <input class="input border-bottom" id="newCategoryText" type="text" placeholder="New category name" required>
        <div class="checkAndCrossIconsCategory">
-          <img src="./assets/img/blue-cross.png" onclick="rechangeCategoryInput()" class="blue-cross pointer">
+          <img src="./assets/img/blue-cross.png" onclick="exitCategoryInput()" class="blue-cross pointer">
           <img src="./assets/img/devider.png">
           <img src="./assets/img/blue-check.png" onclick="addCategory()" class="blue-check pointer">
        </div>
@@ -257,6 +274,12 @@ function changeInputCategory() {
   </div>
   <div id="mistakeReportCategory"></div>
   </div>`;
+}
+
+function exitCategoryInput(){
+  document.getElementById('category_selector').classList.add('d-none');
+  document.getElementById('selector_Category_Dropdown').classList.remove('d-none');
+
 }
 
 

@@ -51,8 +51,6 @@ function updateInProgressStatus() {
 
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
-
-
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
     }
 }
@@ -65,8 +63,6 @@ function updateAwaitingFeedbackStatus() {
 
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
-
-
         document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);
     }
 }
@@ -109,7 +105,7 @@ function generateTodoHTML(element) {
     </div>`
 }
 
-// Progress-bar
+// Progress-bar for the Tasks -- not working
 function updateProgressBar(status, id) {
     let fill = getDoc("fill" + id);
     let filltext = getDoc("fill-text" + id);
@@ -168,10 +164,10 @@ function allowDrop(ev) {
 
 
 // changes the status of the task according to the dropped area
-function moveTo(status) {
+async function moveTo(status) {
     allTasks[currentDraggedElement]['status'] = status;
- 
     updateHTML();
+    saveToBackend();
     
 }
 
@@ -206,13 +202,21 @@ function generateDetailTodoHTML(element, category, title, description, dueDate, 
     <div class="detail-category ${category}">${category}</div>
     <h2 class="detail-title">${title}</h2>
     <div class="detail-text">${description}</div>
-    <div class="detail-dueDate"> <span>Due date: </span>  <p>${dueDate}</p></div>
+    <div class="detail-dueDate"> 
+      <span>Due date:</span>  
+      <p>${dueDate}</p>
+    </div>
     
     <div class="detail-priority">
       <p> Priority:</p> 
       <img src="assets/img/detail-prio-${priority}.png" alt="">
     </div>
-    <div class="detail-assignedTo">Assigned To:${user}</div>
+    
+    <div class="detail-assignedTo"> 
+      <p>Assigned To:</p> 
+      <div>${user}</div> 
+    </div>
+    
     <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask()">
     `;
 }
@@ -261,9 +265,24 @@ function changeTask(){
         </div>
         <div class="selector-user-dropdown" id="selector_user_dropdown">  </div>
         <button class="btn">Ok <img src="assets/img/white-check.png" alt=""></button>
-
     `
 }
+
+// search function for tasks on the board --not working
+
+function searchTasks() {
+    let search = document.getElementById('search_input');
+    search = search.value.toLowerCase();
+
+    for (let i = 0; i < allTasks.length; i++) {
+        let taskSearched = allTasks[i]['title'];
+        if (taskSearched.toLowerCase().includes(search)) {
+            updateHTML(taskSearched);
+        }
+    }
+}
+
+
 
 
 //Closes the Detail Window
