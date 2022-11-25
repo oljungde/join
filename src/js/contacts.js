@@ -252,8 +252,7 @@ function addNewContactHtml() {
 }
 
 function editContactHtml(lettersFB, n, e, m, c, i) {
-    function editContactHtml(lettersFB, n, e, m, c) {
-        return `
+    return `
     <div class="add-contact animationFadeIn">
     <div class="add-contact-head">
         <div class="add-contact-cross" onclick="closeAddContact()">
@@ -296,4 +295,4 @@ function editContactHtml(lettersFB, n, e, m, c, i) {
     </div>
 </div>
     `
-    }
+}
