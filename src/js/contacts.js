@@ -112,6 +112,14 @@ function openDetailContact(lettersFB, n, e, m, c){
     contactdetails.innerHTML = contactDetailHtml(lettersFB, n, e, m, c);
 }
 
+function editContact(lettersFB, n, e, m, c){
+    let editcontact = document.getElementById('opencontact');
+    editcontact.classList.remove('d-none');
+    editcontact.innerHTML = '';
+    editcontact.innerHTML = editContactHtml(lettersFB, n, e, m, c);
+
+}
+
 function contactDetailHtml(lettersFB, n, e, m, c){
     return `
     <div class="contact-detail-main-side animationFadeInRight">
@@ -124,7 +132,7 @@ function contactDetailHtml(lettersFB, n, e, m, c){
                         </div>
                         <div class="contact-detail-info-main">
                             <p class="contact-detail-info">Contact Information</p>
-                            <p class="contact-detail-edit">Edit Contact</p>
+                            <p class="contact-detail-edit" onclick="editContact('${lettersFB}', '${n}', '${e}', '${m}', '${c}')">Edit Contact</p>
                         </div>
                         <div>
                             <div>
@@ -201,6 +209,52 @@ function addNewContactHtml() {
               
                 <button class="button-cancel" onclick="closeAddContact()">Cancel <img src="/src/assets/img/cancel.png" alt=""></button>
                 <button class="button-create">Create contact <img src="/src/assets/img/rithe.png" alt=""></button>
+                
+            </div>
+        </form>
+    </div>
+</div>
+    `
+}
+
+function editContactHtml(lettersFB, n, e, m, c){
+    return `
+    <div class="add-contact animationFadeIn">
+    <div class="add-contact-head">
+        <div class="add-contact-cross" onclick="closeAddContact()">
+            <img class="img-cross" src="/src/assets/img/pngegg.png" alt="">
+        </div>
+        <div class="add-contact-header-info" >
+            <div onclick="closeAddContact()>
+                <img " src="/src/assets/img/Capa 1.png" alt="">
+            </div>
+            <div class="add-contact-h">
+                Edit contact
+            </div>
+            
+        </div>
+    </div>
+    <div class="add-contact-main">
+    <div style="background-color: ${c}" class="contact-detail-big-letter">
+        <p>${lettersFB}</p>
+        </div>
+        <form onsubmit="createContact()">
+            <div>
+                <div class="input-contact"><input placeholder="${n}" required  type="text" id="contactName" class="input-contact-name">
+                
+                    <img src="/src/assets/img/signup-user.png" alt="">
+                </div>
+                <div class="input-contact"><input placeholder="${e}" required type="email" id="contactEmail" class="input-contact-name">
+                    <img src="/src/assets/img/login-email.png" alt="">
+                </div>
+                <div class="input-contact"><input placeholder="${m}" required type="text" id="contactNumber" class="input-contact-name">
+                    <img src="/src/assets/img/phone.png" alt="">
+                </div>
+            </div>
+            <div class="button-container">
+              
+                <button class="button-cancel" onclick="closeAddContact()">Delete <img src="/src/assets/img/cancel.png" alt=""></button>
+                <button class="button-create">Save <img src="/src/assets/img/rithe.png" alt=""></button>
                 
             </div>
         </form>
