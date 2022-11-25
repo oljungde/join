@@ -236,6 +236,7 @@ function selectedCategory(category, color) {
       ${category} 
       <img src="./assets/img/${color}.png"> 
     </div> 
+    <img src="assets/img/blue-dropdown-arrow.png" alt="">
    `
   }
   if (category == "Backoffice") {
@@ -246,6 +247,7 @@ function selectedCategory(category, color) {
       ${category} 
       <img src="./assets/img/${color}.png"> 
     </div>
+    <img src="assets/img/blue-dropdown-arrow.png" alt="">
     `
   }
 }

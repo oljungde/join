@@ -30,8 +30,6 @@ function identifyId() {
 
 // Drag and Drop Bereiche werden definiert und Tasks gerendert
 function updateToDoStatus() {
-    
-    
     let toDo = allTasks.filter(t => t['status'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
 
@@ -166,10 +164,12 @@ function allowDrop(ev) {
 // changes the status of the task according to the dropped area
 async function moveTo(status) {
     allTasks[currentDraggedElement]['status'] = status;
+  
     
     updateHTML();
     updateProgressBar(status, currentDraggedElement)
     saveToBackend();
+
     
 }
 
