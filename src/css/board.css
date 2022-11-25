@@ -525,6 +525,7 @@ h1 {
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
     background: transparent;
+    
   }
 
 

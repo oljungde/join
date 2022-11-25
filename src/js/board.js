@@ -204,13 +204,36 @@ function showDetailWindow(id) {
 
     let toDo = allTasks.filter(t => t['status'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
-
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
         document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, dueDate, user, priority)
     }
-}
 
+    let inProgress = allTasks.filter(t => t['status'] == 'inProgress');
+    document.getElementById('inProgress').innerHTML = '';
+    for (let index = 0; index < inProgress.length; index++) {
+        const element = inProgress[index];
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, dueDate, user, priority)
+    }
+
+    let awaitingFeedback = allTasks.filter(t => t['status'] == 'awaitingFeedback');
+    document.getElementById('awaitingFeedback').innerHTML = '';
+    for (let index = 0; index < awaitingFeedback.length; index++) {
+        const element = awaitingFeedback[index];
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, dueDate, user, priority)
+    }
+
+    let done = allTasks.filter(t => t['status'] == 'done');
+    document.getElementById('done').innerHTML = '';
+    for (let index = 0; index < done.length; index++) {
+        const element = done[index];
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, dueDate, user, priority)
+    }
+
+
+    
+}
+ 
 
 // renders the Detail Window
 function generateDetailTodoHTML(element, category, title, description, dueDate, user, priority) {
