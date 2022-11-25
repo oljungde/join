@@ -162,9 +162,9 @@ function allowDrop(ev) {
 
 
 // changes the status of the task according to the dropped area
-async function moveTo(status) {
+async function moveTo(e, status) {
     allTasks[currentDraggedElement]['status'] = status;
-  
+    e.target.classList.remove('drag-over');
     
     updateHTML();
     updateProgressBar(status, currentDraggedElement)
@@ -175,7 +175,6 @@ async function moveTo(status) {
 
 
 //Highlighting the Drag and Drop Area
-
 function dragEnter(e) {
     e.target.classList.add('drag-over');
 }
@@ -188,10 +187,7 @@ function dragLeave(e) {
     e.target.classList.remove('drag-over');
 }
 
-function drop(e) {
-    e.target.classList.remove('drag-over');
 
-}
 
 
 // Generates the Detail Window
