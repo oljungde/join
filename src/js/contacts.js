@@ -122,7 +122,7 @@ function editContact(lettersFB, n, e, m, c) {
     editcontact.classList.remove('d-none');
 
     editcontact.innerHTML = '';
-    editcontact.innerHTML = editContactHtml(lettersFB, n, e, m, c, i);
+    editcontact.innerHTML = editContactHtml(lettersFB, n, e, m, c);
     document.getElementById('contactEditName').value = n;
     document.getElementById('contactEditEmail').value = e;
     document.getElementById('contactEditNumber').value = m;
@@ -166,7 +166,7 @@ function contactDetailHtml(lettersFB, n, e, m, c) {
                         </div>
                         <div class="contact-detail-info-main">
                             <p class="contact-detail-info">Contact Information</p>
-                            <p class="contact-detail-edit" onclick="editContact('${lettersFB}', '${n}', '${e}', '${m}', '${c}', '${i}')">Edit Contact</p>
+                            <p class="contact-detail-edit" onclick="editContact('${lettersFB}', '${n}', '${e}', '${m}', '${c}')">Edit Contact</p>
                         </div>
                         <div>
                             <div>
@@ -184,7 +184,7 @@ function contactDetailHtml(lettersFB, n, e, m, c) {
 
 function contactChildHtml(n, e, m, c, lettersFB) {
     return `
-    <div class="contact-child-div" onclick="openDetailContact('${lettersFB}', '${n}', '${e}', '${m}', '${c}', '${i}')">
+    <div class="contact-child-div" onclick="openDetailContact('${lettersFB}', '${n}', '${e}', '${m}', '${c}', )">
         <div style="background-color: ${c}" class="contact-child">
             <p>${lettersFB}</p>
         </div>
