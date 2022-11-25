@@ -115,9 +115,40 @@ function openDetailContact(lettersFB, n, e, m, c){
 function editContact(lettersFB, n, e, m, c){
     let editcontact = document.getElementById('opencontact');
     editcontact.classList.remove('d-none');
+    
     editcontact.innerHTML = '';
     editcontact.innerHTML = editContactHtml(lettersFB, n, e, m, c);
+    document.getElementById('contactEditName').value = n;
+    document.getElementById('contactEditEmail').value = e;
+    document.getElementById('contactEditNumber').value = m;
+}
 
+function invEditContact(){
+    
+    let smallName = document.getElementById('contactEditName').value;
+    let contactEmail = document.getElementById('contactEditEmail').value;
+    let contactNumber = document.getElementById('contactEditNumber').value;
+    let contactName  = smallName.charAt(0).toUpperCase() + smallName.slice(1);
+    let firstName = contactName.charAt(0);
+    
+    let contactTask = {
+        'contactName': contactName,
+        'contactEmail': contactEmail,
+        'contactNumber': contactNumber,
+        'contactletter': firstName,
+        
+    };
+    changeEditContact(contactTask);
+}
+
+function changeEditContact(contactTask){
+    let addcontact = document.getElementById('opencontact');
+    addcontact.classList.add('d-none');
+    addTasks['contactName'] = contactTask['contactName'];
+    addTasks['contactEmail'] = contactTask['contactEmail'];
+    addTasks['contactNumber'] = contactTask['contactNumber'];
+    console.log(addTasks);
+    contactChild();
 }
 
 function contactDetailHtml(lettersFB, n, e, m, c){
@@ -238,16 +269,16 @@ function editContactHtml(lettersFB, n, e, m, c){
     <div style="background-color: ${c}" class="contact-detail-big-letter">
         <p>${lettersFB}</p>
         </div>
-        <form onsubmit="createContact()">
+        <form onsubmit="invEditContact()">
             <div>
-                <div class="input-contact"><input placeholder="${n}" required  type="text" id="contactName" class="input-contact-name">
+                <div class="input-contact"><input  required  type="text" id="contactEditName" class="input-contact-name">
                 
                     <img src="/src/assets/img/signup-user.png" alt="">
                 </div>
-                <div class="input-contact"><input placeholder="${e}" required type="email" id="contactEmail" class="input-contact-name">
+                <div class="input-contact"><input  required type="email" id="contactEditEmail" class="input-contact-name">
                     <img src="/src/assets/img/login-email.png" alt="">
                 </div>
-                <div class="input-contact"><input placeholder="${m}" required type="text" id="contactNumber" class="input-contact-name">
+                <div class="input-contact"><input required type="text" id="contactEditNumber" class="input-contact-name">
                     <img src="/src/assets/img/phone.png" alt="">
                 </div>
             </div>
