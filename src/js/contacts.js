@@ -86,6 +86,7 @@ function clearContactBar(){
 
 function contactChild() {
     for (let index = 0; index < addTasks.length; index++) {
+        let i = addTasks[index];
         let l = addTasks[index]['contactletter'];
         let n = addTasks[index]['contactName'];
         let e = addTasks[index]['contactEmail'];
@@ -93,7 +94,11 @@ function contactChild() {
         let c = addTasks[index]['contactcolor'];
         let lettersFB = n.match(/\b(\w)/g).join('');       
         let contactchilds = document.getElementById(l);
-        contactchilds.innerHTML += contactChildHtml(n, e, m, c, lettersFB);
+        contactchilds.innerHTML += contactChildHtml(n, e, m, c, lettersFB, i);
+        
+            
+            
+        
     }
 
 }
@@ -106,18 +111,18 @@ function createContactBar() {
     }
 }
 
-function openDetailContact(lettersFB, n, e, m, c){
+function openDetailContact(lettersFB, n, e, m, c, i){
     let contactdetails = document.getElementById('contactdetails');
     contactdetails.innerHTML ='';
-    contactdetails.innerHTML = contactDetailHtml(lettersFB, n, e, m, c);
+    contactdetails.innerHTML = contactDetailHtml(lettersFB, n, e, m, c, i);
 }
 
-function editContact(lettersFB, n, e, m, c){
+function editContact(lettersFB, n, e, m, c, i){
     let editcontact = document.getElementById('opencontact');
     editcontact.classList.remove('d-none');
     
     editcontact.innerHTML = '';
-    editcontact.innerHTML = editContactHtml(lettersFB, n, e, m, c);
+    editcontact.innerHTML = editContactHtml(lettersFB, n, e, m, c, i);
     document.getElementById('contactEditName').value = n;
     document.getElementById('contactEditEmail').value = e;
     document.getElementById('contactEditNumber').value = m;
@@ -129,8 +134,6 @@ function invEditContact(){
     let contactEmail = document.getElementById('contactEditEmail').value;
     let contactNumber = document.getElementById('contactEditNumber').value;
     let contactName  = smallName.charAt(0).toUpperCase() + smallName.slice(1);
-    let firstName = contactName.charAt(0);
-    
     let contactTask = {
         'contactName': contactName,
         'contactEmail': contactEmail,
@@ -138,20 +141,18 @@ function invEditContact(){
         'contactletter': firstName,
         
     };
-    changeEditContact(contactTask);
+   console.log(contactTask);
+    // changeEditContact();
 }
 
-function changeEditContact(contactTask){
+function changeEditContact(){
     let addcontact = document.getElementById('opencontact');
     addcontact.classList.add('d-none');
-    addTasks['contactName'] = contactTask['contactName'];
-    addTasks['contactEmail'] = contactTask['contactEmail'];
-    addTasks['contactNumber'] = contactTask['contactNumber'];
-    console.log(addTasks);
+    
     contactChild();
 }
 
-function contactDetailHtml(lettersFB, n, e, m, c){
+function contactDetailHtml(lettersFB, n, e, m, c, i){
     return `
     <div class="contact-detail-main-side animationFadeInRight">
                         <div class="contact-detail-head">
@@ -163,7 +164,7 @@ function contactDetailHtml(lettersFB, n, e, m, c){
                         </div>
                         <div class="contact-detail-info-main">
                             <p class="contact-detail-info">Contact Information</p>
-                            <p class="contact-detail-edit" onclick="editContact('${lettersFB}', '${n}', '${e}', '${m}', '${c}')">Edit Contact</p>
+                            <p class="contact-detail-edit" onclick="editContact('${lettersFB}', '${n}', '${e}', '${m}', '${c}', '${i}')">Edit Contact</p>
                         </div>
                         <div>
                             <div>
@@ -179,9 +180,9 @@ function contactDetailHtml(lettersFB, n, e, m, c){
     `
 }
 
-function contactChildHtml(n, e, m,  c, lettersFB) {
+function contactChildHtml(n, e, m,  c, lettersFB, i) {
     return `
-    <div class="contact-child-div" onclick="openDetailContact('${lettersFB}', '${n}', '${e}', '${m}', '${c}')">
+    <div class="contact-child-div" onclick="openDetailContact('${lettersFB}', '${n}', '${e}', '${m}', '${c}', '${i}')">
         <div style="background-color: ${c}" class="contact-child">
             <p>${lettersFB}</p>
         </div>
@@ -248,7 +249,7 @@ function addNewContactHtml() {
     `
 }
 
-function editContactHtml(lettersFB, n, e, m, c){
+function editContactHtml(lettersFB, n, e, m, c, i){
     return `
     <div class="add-contact animationFadeIn">
     <div class="add-contact-head">
@@ -269,7 +270,7 @@ function editContactHtml(lettersFB, n, e, m, c){
     <div style="background-color: ${c}" class="contact-detail-big-letter">
         <p>${lettersFB}</p>
         </div>
-        <form onsubmit="invEditContact()">
+        <form onsubmit="invEditContact(); return false">
             <div>
                 <div class="input-contact"><input  required  type="text" id="contactEditName" class="input-contact-name">
                 
