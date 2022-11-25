@@ -1,6 +1,6 @@
 async function initLogin() {
     await init();
-    // checkUserIsLoggedIn();
+    // checkUserIsLoggedIn()
     passwordInputIconChange();
 }
 

@@ -1,5 +1,7 @@
 setURL('https://gruppe-377.developerakademie.net/smallest_backend_ever');
+let currentUserEmail = localStorage.getItem('userLoggedInEmail');
 let users = [];
+let currentUser;
 let allTasks = []
 
 
@@ -10,13 +12,14 @@ async function init() {
     await includeHTML();
     await downloadFromServer();
     users = await JSON.parse(backend.getItem('users')) || [];
+    getCurrentUser();
     allTasks = await JSON.parse(backend.getItem('allTasks')) || [];
 }
 
 /**
  * saves the tasks on the board in the backend
  */
-async function saveToBackend(){
+async function saveToBackend() {
     await backend.setItem("allTasks", JSON.stringify(allTasks));
 }
 
@@ -25,14 +28,23 @@ async function saveToBackend(){
  * checks if the user is logged in
  */
 function checkUserIsLoggedIn() {
-    let pathname = window.location.pathname;
-    let loginStatus = sessionStorage.getItem('loggedIn');
     checkRememberMeStatus();
-    if ((pathname != '/src/' && pathname != '/src/index.html') && loginStatus != 'true') {
+    let loginStatus = sessionStorage.getItem('loggedIn');
+    if ((loginStatus == null || loginStatus != 'true') && (window.location.pathname != '/index.html' || window.location.pathname != '/')) {
         window.location.href = './index.html';
-    } else if ((pathname == '/src/' || pathname == '/src/index.html') && loginStatus == 'true') {
+    }
+    if (loginStatus == 'true' && (window.location.pathname == '/index.html' || window.location.pathname == '/')) {
         window.location.href = './dashboard.html';
     }
+    if (loginStatus == 'true' && window.location.pathname == '/sign-up.html') {
+        window.location.href = './dashboard.html';
+    }
+}
+
+
+function getCurrentUser() {
+    currentUser = users.find(user => user.email == currentUserEmail);
+    console.log(currentUser);
 }
 
 

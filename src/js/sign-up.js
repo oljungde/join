@@ -32,8 +32,6 @@ function checkIsUserRegistered(userName, userEmail, userPassword) {
  * @param {string} indexOfEmail is the index of the users email adress in the array users, if the array don't contains this email adress the value is -1
  */
 function checkRegistrationData(indexOfName, indexOfEmail) {
-    let nameAssign = document.getElementById('name_assign');
-    let emailAssign = document.getElementById('email_assign');
     let userName = document.getElementById('user_name').value;
     let userEmail = document.getElementById('user_email').value;
     let userPassword = document.getElementById('user_password').value;
@@ -46,6 +44,7 @@ function checkRegistrationData(indexOfName, indexOfEmail) {
 
 
 function userNameIsRegistered(indexOfName) {
+    let nameAssign = document.getElementById('name_assign');
     if (indexOfName != -1) {
         nameAssign.classList.remove('display-none');
     }
@@ -53,6 +52,7 @@ function userNameIsRegistered(indexOfName) {
 
 
 function userEmailIsRegistered(indexOfEmail) {
+    let emailAssign = document.getElementById('email_assign');
     if (indexOfEmail != -1) {
         emailAssign.classList.remove('display-none');
     }
@@ -72,7 +72,8 @@ function userRegister(userName, userEmail, userPassword) {
         'email': userEmail,
         'emailMatchCode': userEmail.toLowerCase(),
         'password': userPassword,
-        'image': null
+        'tasks': [],
+        'contacts': []
     });
     backend.setItem('users', JSON.stringify(users));
     sessionStorage.setItem('loggedIn', 'false');
