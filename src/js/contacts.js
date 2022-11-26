@@ -128,7 +128,7 @@ function editContact(lettersFB, n, e, m, c) {
     document.getElementById('contactEditNumber').value = m;
 }
 
-function invEditContact() {
+function invEditContact(oldEmail) {
 
     let smallName = document.getElementById('contactEditName').value;
     let contactEmail = document.getElementById('contactEditEmail').value;
@@ -141,18 +141,53 @@ function invEditContact() {
         'contactEmail': contactEmail,
         'contactNumber': contactNumber,
         'contactletter': firstName,
-
+        'oldEmail': oldEmail
     };
-    console.log(contactTask);
-    // changeEditContact();
+    
+    changeUser(contactTask);
 }
 
-function changeEditContact(contactTask) {
-    let addcontact = document.getElementById('opencontact');
-    addcontact.classList.add('d-none');
-
-    contactChild();
+function renderContacts(letter){
+    if (lettertask.includes(letter)) {
+        clearContactBar();
+    }
+    else {
+        let contactBar = document.getElementById('contactbar');
+        contactBar.innerHTML = '';
+        lettertask.push(letter);
+        lettertask.sort();
+        createContactBar();
+        contactChild();
+    }
 }
+
+function changeUser(object) {
+    let oldEmail = object['oldEmail']; 
+    let index = getUserIndexForEmail(oldEmail);
+  
+    addTasks[index]['contactName'] = object['contactName'];
+    addTasks[index]['contactletter'] = object['contactletter'];
+    addTasks[index]['contactEmail'] = object['contactEmail'];
+    addTasks[index]['contactNumber'] = object['contactNumber'];
+    let letter = addTasks[index]['contactletter']
+    renderContacts(letter);
+    
+}
+
+
+
+function getUserIndexForEmail(email) {
+        let userindex = -1;
+        for (i = 0; i < addTasks.length; i++) {
+          if (addTasks[i]['contactEmail'].toLowerCase() == email.toLowerCase()) {
+            userindex = i; //Email found
+          }
+        }
+        return userindex;
+      }
+
+    
+
 
 function contactDetailHtml(lettersFB, n, e, m, c) {
     return `
@@ -272,7 +307,7 @@ function editContactHtml(lettersFB, n, e, m, c, i) {
     <div style="background-color: ${c}" class="contact-detail-big-letter">
         <p>${lettersFB}</p>
         </div>
-        <form onsubmit="invEditContact(); return false">
+        <form onsubmit="invEditContact('${e}'); return false">
             <div>
                 <div class="input-contact"><input  required  type="text" id="contactEditName" class="input-contact-name">
                 
