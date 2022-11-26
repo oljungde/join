@@ -76,7 +76,7 @@ a:hover {
 }
 
 .display-none {
-    display: none;
+    display: none !important;
 }
 
 .pointer {
