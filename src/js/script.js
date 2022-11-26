@@ -31,14 +31,15 @@ async function saveToBackend() {
 function checkUserIsLoggedIn() {
     checkRememberMeStatus();
     let loginStatus = sessionStorage.getItem('loggedIn');
-    if ((loginStatus == null || loginStatus != 'true') && (window.location.pathname != '/index.html' || window.location.pathname != '/')) {
+    if (loginStatus == 'true' && (window.location.pathname == '/src/index.html' || window.location.pathname == '/src/')) {
+        window.location.href = './dashboard.html';
+    } else if (loginStatus == 'true' && window.location.pathname == '/sign-up.html') {
+        window.location.href = './dashboard.html';
+    } else if (loginStatus != 'true' && window.location.pathname == '/src/sign-up.html') {
+        window.location.href = './sign-up-html';
+    }
+    else if (loginStatus == null && window.location.pathname != '/src/index.html') {
         window.location.href = './index.html';
-    }
-    if (loginStatus == 'true' && (window.location.pathname == '/index.html' || window.location.pathname == '/')) {
-        window.location.href = './dashboard.html';
-    }
-    if (loginStatus == 'true' && window.location.pathname == '/sign-up.html') {
-        window.location.href = './dashboard.html';
     }
 }
 
