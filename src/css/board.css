@@ -513,6 +513,7 @@ h1 {
     border-bottom: 1px solid #D1D1D1;
     width: 422px;
     padding: 18px 21px;
+    padding-top: 0;
 }
 
 .input-date {
@@ -628,7 +629,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .selectorCell {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
+    width: 422px;
     padding: 18px 21px;
 }
 

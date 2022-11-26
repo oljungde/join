@@ -26,7 +26,6 @@ async function addToTask() {
     "dueDate": dueDate.value,
     "priority": prioritySelect,
     "user": userSelect,
-    "subTasks": checkedSubtaskValue,
     'status': 'toDo'
   };
 
@@ -127,26 +126,25 @@ function openAddTaskMask() {
 
 //  subTasks in the AddTaskMask
 
-//Rendering the subtasks checkboxes at the footer 
+//Rendering the subtasks checkboxes when generating a new subtask
 
 function renderSubTask() {
   subTasks = JSON.parse(localStorage.getItem("subtasks")) || [];
   document.getElementById("addSubtaskCheckbox").innerHTML = ``;
   for (let i = 0; i < subTasks.length; i++) {
+    subTasks = subTasks[i];
     document.getElementById("addSubtaskCheckbox").innerHTML += `
         <div class="subtaskList" id="subtaskValue">  
-        <input id="${subTasks[i]}" value="${subTasks[i]}" class="subtaskCheckbox pointer" type="checkbox">
-        <p>${subTasks[i]}</p>
+        <input id="subTask_checkBox" value="${subTasks}" class="subtaskCheckbox pointer" type="checkbox">
+        <p>${subTasks}</p>
         </div>`;
   }
 }
 
 
-
 //gettin the checked subtask
-
 function getSelectedSubtask() {
-  let subtaskCheckboxes = document.querySelectorAll(".subtaskCheckbox");
+  let subtaskCheckboxes = document.querySelectorAll("subTask_checkBox");
   subtaskCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", (event) => {
       if (event.target.checked) {
