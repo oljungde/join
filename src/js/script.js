@@ -2,7 +2,8 @@ setURL('https://gruppe-377.developerakademie.net/smallest_backend_ever');
 let currentUserEmail = localStorage.getItem('userLoggedInEmail');
 let users = [];
 let currentUser;
-let allTasks = []
+let allTasks = [];
+let screenWidth576 = window.matchMedia('(max-width: 576px)');
 
 
 /**
@@ -14,6 +15,7 @@ async function init() {
     users = await JSON.parse(backend.getItem('users')) || [];
     getCurrentUser();
     allTasks = await JSON.parse(backend.getItem('allTasks')) || [];
+    mediaQuery576(screenWidth576);
 }
 
 /**
@@ -22,6 +24,22 @@ async function init() {
 async function saveToBackend() {
     await backend.setItem("allTasks", JSON.stringify(allTasks));
 }
+
+
+function mediaQuery576(screenWidth576) {
+    if (screenWidth576.matches) {
+        let loginHeader = document.getElementById('login_header');
+        loginHeader.classList.add('display-none')
+        let joinUser = document.getElementById('join_user');
+        joinUser.classList.remove('display-none');
+    } else {
+        let loginHeader = document.getElementById('login_header');
+        loginHeader.classList.remove('display-none')
+        let joinUser = document.getElementById('join_user');
+        joinUser.classList.add('display-none');
+    }
+}
+screenWidth576.addListener(mediaQuery576);
 
 
 /**
@@ -34,8 +52,8 @@ function checkUserIsLoggedIn() {
         window.location.href = './dashboard.html';
     } else if (loginStatus == 'true' && window.location.pathname == '/sign-up.html') {
         window.location.href = './dashboard.html';
-    } else if (loginStatus != 'true' && window.location.pathname == '/src/sign-up.html') {
-        window.location.href = './sign-up-html';
+    } else if (loginStatus == null && window.location.pathname == '/src/sign-up.html') {
+        // window.location.href = './sign-up.html';
     }
     else if (loginStatus == null && window.location.pathname != '/src/index.html') {
         window.location.href = './index.html';
