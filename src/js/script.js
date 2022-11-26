@@ -2,7 +2,8 @@ setURL('https://gruppe-377.developerakademie.net/smallest_backend_ever');
 let currentUserEmail = localStorage.getItem('userLoggedInEmail');
 let users = [];
 let currentUser;
-let allTasks = []
+let allTasks = [];
+let subTasks = [];
 
 
 /**

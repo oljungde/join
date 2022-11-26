@@ -551,9 +551,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: column;
     width: 422px;
     border: none;
-    border-bottom: 1px solid #D1D1D1;
     padding: 13px 21px;
 
 }
@@ -568,6 +568,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #D1D1D1;
 }
 
+.new-Subtasks{
+    width: 100%;
+}
+
+.subtaskList{
+    display: flex;
+    margin-top: 10px;
+}
 
 .add-description {
     width: 422px;
