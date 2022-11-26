@@ -7,6 +7,7 @@ async function initBoard() {
     await init();
     identifyId();
     updateHTML();
+    
 }
 
 // Updates the individual Areas of the board
@@ -15,6 +16,7 @@ function updateHTML() {
     updateInProgressStatus();
     updateAwaitingFeedbackStatus();
     updateDoneStatus();
+    
 }
 
 
@@ -146,8 +148,6 @@ function updateProgressBar(status, id) {
   }
 
 
-
-
 // Drag and Drop
 // Defines the dragged task
 function startDragging(id) {
@@ -169,8 +169,6 @@ async function moveTo(e, status) {
     updateHTML();
     updateProgressBar(status, currentDraggedElement)
     saveToBackend();
-
-    
 }
 
 

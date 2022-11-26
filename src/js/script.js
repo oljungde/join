@@ -3,6 +3,7 @@ let currentUserEmail = localStorage.getItem('userLoggedInEmail');
 let users = [];
 let currentUser;
 let allTasks = [];
+let subTasks = [];;
 let screenWidth576 = window.matchMedia('(max-width: 576px)');
 
 

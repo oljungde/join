@@ -26,6 +26,7 @@ async function addToTask() {
     "dueDate": dueDate.value,
     "priority": prioritySelect,
     "user": userSelect,
+    "subTasks": checkedSubtaskValue,
     'status': 'toDo'
   };
 
@@ -105,31 +106,79 @@ function openAddTaskMask() {
          <input class="add-description" id="AddDescription" type="text" placeholder="Enter a Description">
        </div>
        <h4>Subtasks</h4>
-       <div class="input-subtasks pointer" id="newSubtask_select" onclick="showNewSubtasks()">
-       <input type="text" placeholder="Add a new subtask">
-       <img src="assets/img/blue-plus.png" alt="">
+       <div class="input-subtasks pointer" id="newSubtask_select">
+       <div class="inputUser">
+       <div class="inputfield-new-user">
+         <input class="input border-bottom" id="subtaskText" type="text" placeholder="Add new subtask">
+         <div class="checkAndCrossIconsCategory">
+          <img src="./assets/img/blue-cross.png" onclick="clearSubTasks()" class="blue-cross pointer">
+          <img src="./assets/img/devider.png">
+          <img src="./assets/img/blue-check.png" onclick="pushSubtaskLocalStorage()" class="blue-check pointer">
+       </div>
+    </div>
+       </div>
+       <div class="new-Subtasks" id="addSubtaskCheckbox">
+
        </div>
   </form>
     `;
 }
 
 
-// renders the NewSubtaskinput
-function showNewSubtasks() {
+//  subTasks in the AddTaskMask
 
-  document.getElementById("newSubtask_select").innerHTML = /*html*/`
-    <div class="inputUser">
-       <div class="inputfield-new-user">
-         <input class="input border-bottom pointer" id="newUserText" type="text" placeholder="Create new icons" required>
-         <div class="checkAndCrossIconsCategory">
-          <img src="./assets/img/blue-cross.png" onclick="rechangeCategoryInput()" class="blue-cross pointer">
-          <img src="./assets/img/devider.png">
-          <img src="./assets/img/blue-check.png" onclick="addCategory()" class="blue-check pointer">
-       </div>
-    </div>
-    `;
+//Rendering the subtasks checkboxes at the footer 
+
+function renderSubTask() {
+  subTasks = JSON.parse(localStorage.getItem("subtasks")) || [];
+  document.getElementById("addSubtaskCheckbox").innerHTML = ``;
+  for (let i = 0; i < subTasks.length; i++) {
+    document.getElementById("addSubtaskCheckbox").innerHTML += `
+        <div class="subtaskList" id="subtaskValue">  
+        <input id="${subTasks[i]}" value="${subTasks[i]}" class="subtaskCheckbox pointer" type="checkbox">
+        <p>${subTasks[i]}</p>
+        </div>`;
+  }
 }
 
+
+
+//gettin the checked subtask
+
+function getSelectedSubtask() {
+  let subtaskCheckboxes = document.querySelectorAll(".subtaskCheckbox");
+  subtaskCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", (event) => {
+      if (event.target.checked) {
+        checkedSubtaskValue = event.target.value;
+      }
+    });
+  });
+}
+
+
+//pushing new subtask in the Localstorage
+function pushSubtaskLocalStorage() {
+  if (document.getElementById("subtaskText").value) {
+   
+    subTasks.push(document.getElementById("subtaskText").value);
+    document.getElementById("subtaskText").value = ``;
+    localStorage.setItem("subtasks", JSON.stringify(subTasks));
+    renderSubTask();
+  } 
+}
+
+
+//clear subtask input
+function clearSubTasks() {
+  document.getElementById("subtaskText").value = ``;
+}
+
+
+//closes the AddTaskMask
+function closeAddTaskMask() {
+  document.getElementById('AddTaskMaskBg').classList.add('d-none');
+}
 
 
 //renders the Drop Down Menu for the User selection
@@ -157,8 +206,6 @@ function showUsers() {
     `;
   }
 }
-
-
 
 
 // getting selected User
@@ -323,8 +370,4 @@ function selectedPriority(i) {
 }
 
 
-//closes the AddTaskMask
-function closeAddTaskMask() {
-  document.getElementById('AddTaskMaskBg').classList.add('d-none');
-}
 
