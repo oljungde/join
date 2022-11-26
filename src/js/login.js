@@ -1,12 +1,13 @@
 async function initLogin() {
     await init();
-    // checkUserIsLoggedIn()
+    checkUserIsLoggedIn();
     passwordInputIconChange();
 }
 
 
 async function initResetPassword() {
     await init();
+    checkUserIsLoggedIn();
     passwordInputIconChange();
     passwordConfirmIconChange();
 }
