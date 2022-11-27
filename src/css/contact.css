@@ -31,6 +31,8 @@
     min-width: 453px;
     box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
     overflow-y: scroll;
+    display: flex;
+    justify-content: center;
 }
 
 .new-contact-button{
@@ -132,6 +134,7 @@
     align-items: center;
     justify-content: space-around;
     margin-left: 16px;
+    border: 0;
 }
 
 .img-cross{
@@ -165,7 +168,7 @@
 
 .contact-bar{
     display: flex;
-    justify-content: center;
+    
     flex-direction: column;
 }
 
@@ -183,7 +186,9 @@
 .contact-child-div{
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding-left: 20px;
+    width: 357px;
+    height: 77px;
 }
 
 .contact-child{
@@ -300,6 +305,42 @@ padding: 50px;
     border: 0;
     font-size: 19px;
     font-weight: 400;
+}
+
+.new-contact-button-img{
+    height: 28px;
+    margin-left: 5px;
+}
+
+.new-contact-button:hover{
+    cursor: pointer;
+    background-color: #005DFF;
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.4);
+}
+
+.contact-child-div:hover{
+    cursor: pointer;
+    background-color: #D2E3FF;
+    width: 357px;
+    height: 77px;
+    border-radius: 10px;
+}
+
+.contact-detail-edit:hover{
+    cursor: pointer;
+}
+
+.button-create:hover{
+    cursor: pointer;
+    background-color: #005DFF;
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.4);
+}
+
+.button-cancel:hover{
+    cursor: pointer;
+    border: 2px solid #005DFF;
+    color: #005DFF;
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.4);
 }
 
 .animationFadeIn {
