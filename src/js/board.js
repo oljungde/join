@@ -5,7 +5,6 @@ let alreadyEmpty = true;
 async function initBoard() {
     await init();
     checkUserIsLoggedIn();
-    getCurrentUser();
     identifyId();
     updateHTML();
 

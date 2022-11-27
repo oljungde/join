@@ -9,7 +9,6 @@ let j = 0;
 async function initAddTask() {
   await init();
   checkUserIsLoggedIn();
-  getCurrentUser();
 }
 
 

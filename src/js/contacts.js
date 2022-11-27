@@ -4,7 +4,6 @@ let lettertask = [];
 async function initContacts() {
     checkUserIsLoggedIn();
     await init();
-    getCurrentUser();
 }
 
 

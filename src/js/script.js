@@ -13,6 +13,7 @@ async function init() {
     await includeHTML();
     await downloadFromServer();
     users = await JSON.parse(backend.getItem('users')) || [];
+    getCurrentUser();
     allTasks = await JSON.parse(backend.getItem('allTasks')) || [];
 }
 
@@ -31,9 +32,9 @@ function checkUserIsLoggedIn() {
     checkRememberMeStatus();
     let loginStatus = sessionStorage.getItem('loggedIn');
     if (loginStatus == 'true' && (window.location.pathname == '/src/index.html' || window.location.pathname == '/src/')) {
-        window.location.href = './dashboard.html';
+        window.location.href = './summary.html';
     } else if (loginStatus == 'true' && window.location.pathname == '/sign-up.html') {
-        window.location.href = './dashboard.html';
+        window.location.href = './summary.html';
     } else if (loginStatus == null && window.location.pathname == '/src/sign-up.html') {
         // window.location.href = './sign-up.html';
     }

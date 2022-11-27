@@ -6,7 +6,6 @@ let screenWidth576 = window.matchMedia('(max-width: 576px)');
  */
 async function initLogin() {
     await init();
-    getCurrentUser();
     checkUserIsLoggedIn();
     passwordInputIconChange();
     mediaQuery576(screenWidth576)
@@ -24,11 +23,7 @@ function userLogin() {
 }
 
 
-async function initSignUp() {
-    await init();
-    checkUserIsLoggedIn();
-    passwordInputIconChange();
-}
+
 
 
 function mediaQuery576(screenWidth576) {
@@ -85,7 +80,7 @@ function userLogIn(indexOfEmail) {
     localStorage.setItem('userLoggedInName', users[indexOfEmail].name);
     localStorage.setItem('userLoggedInEmail', users[indexOfEmail].email);
     sessionStorage.setItem('loggedIn', 'true');
-    window.location.href = './dashboard.html';
+    window.location.href = './summary.html';
 }
 
 
@@ -100,7 +95,7 @@ function guestLogin() {
     localStorage.setItem('userLoggedInName', 'Guest User');
     localStorage.setItem('userLoggedInEmail', '');
     sessionStorage.setItem('loggedIn', 'true');
-    window.location.href = './dashboard.html';
+    window.location.href = './summary.html';
 }
 
 
