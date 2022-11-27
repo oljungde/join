@@ -74,7 +74,7 @@
 }
 
 .input input {
-    width: 320px;
+    width: 100%;
     border: none;
     font-size: var(--font-size-regular);
 }
@@ -146,7 +146,7 @@ input[type="checkbox"]:checked:before {
 }
 
 .input-forgot-password {
-    width: 430px !important;
+    width: 100%;
 }
 
 .check-user-data {
@@ -206,10 +206,6 @@ input[type="checkbox"]:checked:before {
     .headline {
         text-align: center;
     }
-
-    .input-forgot-password {
-        width: 320px !important;
-    }
 }
 
 @media (max-width: 576px) {
@@ -218,7 +214,8 @@ input[type="checkbox"]:checked:before {
         margin: 48px 0;
     }
 
-    .login-content {
+    .login-content,
+    .forgot-content {
         padding: 32px 24px;
     }
 
@@ -228,6 +225,13 @@ input[type="checkbox"]:checked:before {
 
     input[type="checkbox"] {
         width: 16px;
+    }
+
+    .signup-back {
+        width: 16px;
+        object-fit: cover;
+        top: 30px;
+        left: 30px;
     }
 }
 
@@ -263,6 +267,4 @@ input[type="checkbox"]:checked:before {
     .login-btns-container .btn-light {
         width: 60%;
     }
-
-
 }

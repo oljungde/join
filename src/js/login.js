@@ -1,3 +1,6 @@
+let screenWidth576 = window.matchMedia('(max-width: 576px)');
+
+
 /**
  * init function for index.html, loads the global functions from script.js, an funcionality for password field in login form
  */
@@ -5,16 +8,8 @@ async function initLogin() {
     await init();
     checkUserIsLoggedIn();
     passwordInputIconChange();
-}
-
-
-/**
- * init function for reset-password.html, loads the global functions from script.js, an funcionality for password fields in reset password form
- */
-async function initResetPassword() {
-    await init();
-    passwordInputIconChange();
-    passwordConfirmIconChange();
+    mediaQuery576(screenWidth576)
+    screenWidth576.addListener(mediaQuery576);
 }
 
 
@@ -25,6 +20,38 @@ function userLogin() {
     let userEmail = document.getElementById('user_email').value;
     let userPassword = document.getElementById('user_password').value;
     checkUserData(userEmail, userPassword)
+}
+
+
+async function initSignUp() {
+    await init();
+    checkUserIsLoggedIn();
+    passwordInputIconChange();
+}
+
+
+function mediaQuery576(screenWidth576) {
+    if (screenWidth576.matches) {
+        let loginHeader = document.getElementById('login_header');
+        loginHeader.classList.add('display-none')
+        let joinUser = document.getElementById('join_user');
+        joinUser.classList.remove('display-none');
+    } else {
+        let loginHeader = document.getElementById('login_header');
+        loginHeader.classList.remove('display-none')
+        let joinUser = document.getElementById('join_user');
+        joinUser.classList.add('display-none');
+    }
+}
+
+
+/**
+ * init function for reset-password.html, loads the global functions from script.js, an funcionality for password fields in reset password form
+ */
+async function initResetPassword() {
+    await init();
+    passwordInputIconChange();
+    passwordConfirmIconChange();
 }
 
 
