@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: start-overlay-animation 0.7s ease-in-out both;
+    animation: start-overlay-animation 1.5s ease-in-out both;
 }
 
 @keyframes start-overlay-animation {
@@ -32,7 +32,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    animation: start-logo-animation 0.4s ease-in-out both;
+    animation: start-logo-animation 0.8s ease-in-out both;
 }
 
 @keyframes start-logo-animation {
