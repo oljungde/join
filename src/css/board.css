@@ -513,6 +513,7 @@ h1 {
     border-bottom: 1px solid #D1D1D1;
     width: 422px;
     padding: 18px 21px;
+    padding-top: 0;
 }
 
 .input-date {
@@ -551,9 +552,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: column;
     width: 422px;
     border: none;
-    border-bottom: 1px solid #D1D1D1;
     padding: 13px 21px;
 
 }
@@ -568,6 +569,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #D1D1D1;
 }
 
+.new-Subtasks{
+    width: 100%;
+}
+
+.subtaskList{
+    display: flex;
+    margin-top: 10px;
+}
 
 .add-description {
     width: 422px;
@@ -620,7 +629,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .selectorCell {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
+    width: 422px;
     padding: 18px 21px;
 }
 

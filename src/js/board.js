@@ -1,5 +1,5 @@
 let currentDraggedElement;
-
+let alreadyEmpty = true;
 
 //Update the board
 async function initBoard() {
@@ -7,6 +7,7 @@ async function initBoard() {
     await init();
     identifyId();
     updateHTML();
+    
 }
 
 // Updates the individual Areas of the board
@@ -15,6 +16,7 @@ function updateHTML() {
     updateInProgressStatus();
     updateAwaitingFeedbackStatus();
     updateDoneStatus();
+    
 }
 
 
@@ -76,7 +78,7 @@ function updateDoneStatus() {
 
 
 // renders the Task-Card on the Board
-function generateTodoHTML(element) {
+function generateTodoHTML(element, i) {
     return /*html*/`
     <div onclick="showDetailWindow(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">   
       <div class="${element['category']}">${element['category']}</div>
@@ -146,8 +148,6 @@ function updateProgressBar(status, id) {
   }
 
 
-
-
 // Drag and Drop
 // Defines the dragged task
 function startDragging(id) {
@@ -169,8 +169,6 @@ async function moveTo(e, status) {
     updateHTML();
     updateProgressBar(status, currentDraggedElement)
     saveToBackend();
-
-    
 }
 
 
@@ -310,6 +308,7 @@ function changeTask(){
     `
 }
 
+/*
 // search function for tasks on the board --not working
 function searchTasks() {
     let search = document.getElementById('search_input');
@@ -322,6 +321,48 @@ function searchTasks() {
         }
     }
 }
+*/
+
+function searchTasks() {
+    let search = document.getElementById('search_input');
+    let todo = document.getElementById('toDo');
+    let inProgress = document.getElementById('inProgress');
+    let awaitingFeedback = document.getElementById('awaitingFeedback');
+    let done = document.getElementById('done');
+    todo.innerHTML = ``;
+    inProgress.innerHTML = ``;
+    awaitingFeedback.innerHTML = ``;
+    done.innerHTML = ``;
+    if (search.value == '' && alreadyEmpty == true) {
+        updateHTML();
+        alreadyEmpty = false;
+    } else {
+        alreadyEmpty = true;
+        for (let i = 0; i < allTasks.length; i++) {
+            if (allTasks[i]['title'].includes(search.value)) {
+                if (allTasks[i]['status'] == 'toDo') {
+                    todo.innerHTML += updateToDoStatus(i);
+
+                }
+                if (allTasks[i]['status'] == 'inProgress') {
+                    inProgress.innerHTML += updateInProgressStatus(i);
+
+                }
+                if (allTasks[i]['status'] == 'awaitingFeedback') {
+                    awaitingFeedback.innerHTML += updateAwaitingFeedbackStatus(i);
+
+                }
+                if (allTasks[i]['status'] == 'done') {
+                    done.innerHTML += updateDoneStatus(i);
+
+                }
+            }
+        }
+    }
+}
+
+
+
 
 
 //Closes the Detail Window

@@ -10,22 +10,21 @@
     <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/animations.css">
     <script src="./smallest_backend_ever/mini_backend.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/login.js"></script>
 </head>
 
 <body onload="initLogin()">
+    <div class="start-overlay"><img src="./assets/img/logo-big.svg" alt="Join Logo big" class="start-logo"></div>
     <img src="./assets/img/logo-dark.png" alt="Join Logo" class="logo-login">
-    <header class="login-header">
+    <header id="login_header" class="login-header">
         <span>Not a Join user?</span>
         <button class="btn"><a href="./sign-up.html">Sign up</a></button>
     </header>
 
     <section class="login-site">
-        <div class="display-none">
-
-        </div>
         <div id="login_content" class="login-content">
             <div>
                 <h1 class="headline">Log in</h1>
@@ -48,7 +47,7 @@
                     <img id="user_password_visible" onclick="makePasswordUnvisible()" src="./assets//img/password-visible.png" alt="password symbol" class="display-none">
                 </div>
 
-                <div class="input">
+                <div class="input input-column ps-0">
                     <div>
                         <input id="remember_me" type="checkbox" name="remember me">
                         <label for="remember me">Remember me</label>
@@ -61,6 +60,10 @@
                     <button onclick="guestLogin()" class="btn-light">Guest log in</button>
                 </div>
             </form>
+        </div>
+        <div id="join_user" class="login-header display-none">
+            <span>Not a Join user?</span>
+            <button class="btn"><a href="./sign-up.html">Sign up</a></button>
         </div>
     </section>
 
