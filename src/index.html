@@ -10,12 +10,14 @@
     <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/animations.css">
     <script src="./smallest_backend_ever/mini_backend.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/login.js"></script>
 </head>
 
 <body onload="initLogin()">
+    <div class="start-overlay"><img src="./assets/img/logo-big.svg" alt="Join Logo big" class="start-logo"></div>
     <img src="./assets/img/logo-dark.png" alt="Join Logo" class="logo-login">
     <header id="login_header" class="login-header">
         <span>Not a Join user?</span>
@@ -23,9 +25,6 @@
     </header>
 
     <section class="login-site">
-        <div class="display-none">
-
-        </div>
         <div id="login_content" class="login-content">
             <div>
                 <h1 class="headline">Log in</h1>
