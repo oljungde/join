@@ -6,6 +6,7 @@ let screenWidth576 = window.matchMedia('(max-width: 576px)');
  */
 async function initLogin() {
     await init();
+    getCurrentUser();
     checkUserIsLoggedIn();
     passwordInputIconChange();
     mediaQuery576(screenWidth576)

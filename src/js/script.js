@@ -13,7 +13,6 @@ async function init() {
     await includeHTML();
     await downloadFromServer();
     users = await JSON.parse(backend.getItem('users')) || [];
-    getCurrentUser();
     allTasks = await JSON.parse(backend.getItem('allTasks')) || [];
 }
 
@@ -44,8 +43,24 @@ function checkUserIsLoggedIn() {
 }
 
 
+/**
+ * get the data from the user who is logged in
+ */
 function getCurrentUser() {
-    currentUser = users.find(user => user.email == currentUserEmail);
+    let isGuestLogin = localStorage.getItem('userLoggedInName');
+    if (isGuestLogin == 'Guest User') {
+        currentUser = {
+            'name': 'Guest User',
+            'nameMatchCode': 'guest user',
+            'email': 'noreply@nix.de',
+            'emailMatchCode': 'noreply@nix.de',
+            'password': '',
+            'tasks': [],
+            'contacts': []
+        }
+    } else {
+        currentUser = users.find(user => user.email == currentUserEmail);
+    }
     console.log(currentUser);
 }
 
@@ -55,6 +70,8 @@ function getCurrentUser() {
  * user will redirect to log in page index.html
  */
 function logout() {
+    localStorage.removeItem('userLoggedInEmail', '');
+    localStorage.removeItem('userLoggedInName', '');
     sessionStorage.removeItem('loggedIn');
     localStorage.removeItem('rememberMe');
     window.location.href = './index.html';
