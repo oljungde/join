@@ -1,12 +1,18 @@
 let addTasks = [];
-let lettertask = [];
+
 
 async function initContacts() {
     checkUserIsLoggedIn();
     await init();
+    renderAllContact()
 }
 
 
+
+function renderAllContact(){
+    createContactBar();
+    contactChild();
+}
 /**
  * opens a window to add contacts
  * 
@@ -49,9 +55,15 @@ function createContact() {
         'contactcolor': randomColor
         
     };
-
+    addNewContact(contactTask);
     checkEmailInArray(contactTask, contactName);
     
+}
+
+async function addNewContact(contactTask){
+    currentUser.contacts.push(contactTask);
+    currentUser.contacts.sort((a, b) => a.contactName.localeCompare(b.contactName));
+    await backend.setItem('users', JSON.stringify(users));
 }
 
 function checkEmailInArray(contactTask, contactName) {
@@ -60,11 +72,9 @@ function checkEmailInArray(contactTask, contactName) {
         if (addTasks[i]['contactEmail'].toLowerCase() == email.toLowerCase()) {
             checkEmail();     
         } 
-        else{
-            fillAllTasks(contactTask, contactName)
-        }
+           
     }
-    
+    fillAllTasks(contactName);
 }
 
 
@@ -75,51 +85,45 @@ function checkEmail(){
     
 }
 
-
-
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-
 /**
  * pushes the json into an array
  * 
  * @param {*} contactTask 
  */
-function fillAllTasks(contactTask, contactName,) {
-    addTasks.push(contactTask);
-    addTasks.sort((a, b) => a.contactName.localeCompare(b.contactName));
+function fillAllTasks(contactName,) {
     let letter = contactName.charAt(0);
     closeAddContact();
-    if (lettertask.includes(letter)) {
+    if (currentUser.lettertask.includes(letter)) {
         clearContactBar();
     }
     else {
         let contactBar = document.getElementById('contactbar');
         contactBar.innerHTML = '';
-        lettertask.push(letter);
-        lettertask.sort();
+        currentUser.lettertask.push(letter);
+        currentUser.lettertask.sort();
+        backend.setItem('users', JSON.stringify(users));
         createContactBar();
         contactChild();
     }
 }
 
 function clearContactBar() {
-    for (let i = 0; i < lettertask.length; i++) {
-        let clear = lettertask[i];
+    for (let i = 0; i < currentUser.lettertask.length; i++) {
+        let clear = currentUser.lettertask[i];
         let contactSmall = document.getElementById(clear)
         while (contactSmall.lastChild) {
             contactSmall.removeChild(contactSmall.lastChild);
         }
     }
+
     contactChild();
 }
 
 function contactChild() {
-    for (let index = 0; index < addTasks.length; index++) {
-        let i = addTasks[index];
-        let n = addTasks[index]['contactName'];
-        let l = addTasks[index]['contactletter'];
+    for (let index = 0; index < currentUser.contacts.length; index++) {
+        let i = currentUser.contacts[index];
+        let n = currentUser.contacts[index]['contactName'];
+        let l = currentUser.contacts[index]['contactletter'];
         let lettersFB = n.match(/\b(\w)/g).join('');
         let contactchilds = document.getElementById(l);
         
@@ -130,15 +134,15 @@ function contactChild() {
 }
 
 function createContactBar() {
-    for (let i = 0; i < lettertask.length; i++) {
-        let l = lettertask[i];
+    for (let i = 0; i < currentUser.lettertask.length; i++) {
+        let l = currentUser.lettertask[i];
         let contactBar = document.getElementById('contactbar');
         contactBar.innerHTML += contactBarHtml(l);
     }
 }
 
 function openDetailContact(index, lettersFB) {
-    let contact = addTasks[index];
+    let contact = currentUser.contacts[index];
     let contactdetails = document.getElementById('contactdetails');
     contactdetails.innerHTML = '';
     
@@ -146,7 +150,7 @@ function openDetailContact(index, lettersFB) {
 }
 
 function editContact(index, lettersFB) {
-    let contact = addTasks[index];
+    let contact = currentUser.contacts[index];
     let editcontact = document.getElementById('opencontact');
     editcontact.classList.remove('d-none');
 
@@ -194,14 +198,19 @@ function changeUser(object) {
     let oldEmail = object['oldEmail']; 
     let index = getUserIndexForEmail(oldEmail);
   
-    addTasks[index]['contactName'] = object['contactName'];
-    addTasks[index]['contactletter'] = object['contactletter'];
-    addTasks[index]['contactEmail'] = object['contactEmail'];
-    addTasks[index]['contactNumber'] = object['contactNumber'];
-    let letter = addTasks[index]['contactletter']
+    currentUser.contacts[index]['contactName'] = object['contactName'];
+    currentUser.contacts[index]['contactletter'] = object['contactletter'];
+    currentUser.contacts[index]['contactEmail'] = object['contactEmail'];
+    currentUser.contacts[index]['contactNumber'] = object['contactNumber'];
+    let letter = currentUser.contacts[index]['contactletter'];
+    savesInBackEnd();
     renderContacts(letter);
     closeAddContact();
     clearContactDetails();
+}
+
+async function savesInBackEnd(){
+    await backend.setItem('users', JSON.stringify(users));
 }
 
 function clearContactDetails(){
@@ -212,8 +221,8 @@ function clearContactDetails(){
 
 function getUserIndexForEmail(email) {
     let userindex = -1;
-    for (i = 0; i < addTasks.length; i++) {
-        if (addTasks[i]['contactEmail'].toLowerCase() == email.toLowerCase()) {
+    for (i = 0; i < currentUser.contacts.length; i++) {
+        if (currentUser.contacts[i]['contactEmail'].toLowerCase() == email.toLowerCase()) {
          userindex = i; //Email found
         }
     }

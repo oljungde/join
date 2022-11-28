@@ -73,7 +73,8 @@ function userRegister(userName, userEmail, userPassword) {
         'emailMatchCode': userEmail.toLowerCase(),
         'password': userPassword,
         'tasks': [],
-        'contacts': []
+        'contacts': [],
+        'lettertask':[]
     });
     backend.setItem('users', JSON.stringify(users));
     sessionStorage.setItem('loggedIn', 'false');
