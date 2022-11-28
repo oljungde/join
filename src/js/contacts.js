@@ -55,9 +55,20 @@ function createContact() {
         'contactcolor': randomColor
 
     };
-    addNewContact(contactTask);
-    checkEmailInArray(contactTask, contactName);
+    let look = checkEmailInArray(contactTask);
+    checkOrLoad(look, contactName, contactTask)
+    
 
+}
+
+function checkOrLoad(look, contactName, contactTask){
+    if(look == -1){
+        addNewContact(contactTask);
+        fillAllTasks(contactName,);
+    }
+    else{
+        checkEmail();
+    }
 }
 
 async function addNewContact(contactTask){
@@ -66,15 +77,17 @@ async function addNewContact(contactTask){
     await backend.setItem('users', JSON.stringify(users));
 }
 
-function checkEmailInArray(contactTask, contactName) {
+function checkEmailInArray(contactTask, ) {
     let email = contactTask['contactEmail'];
-    for (i = 0; i < addTasks.length; i++) {
-        if (addTasks[i]['contactEmail'].toLowerCase() == email.toLowerCase()) {
-            checkEmail();     
-        } 
-           
+    let userindex = -1;
+    for (i = 0; i < currentUser.contacts.length; i++) {
+        if (currentUser.contacts[i]['contactEmail'].toLowerCase() == email.toLowerCase()) {
+         userindex = i; //Email found
+        }
     }
-    fillAllTasks(contactName);
+    return userindex;
+    
+    
 }
 
 
@@ -181,7 +194,7 @@ function invEditContact(oldEmail) {
 }
 
 function renderContacts(letter) {
-    if (lettertask.includes(letter)) {
+    if (currentUser.lettertask.includes(letter)) {
         clearContactBar();
     }
     else {
@@ -305,7 +318,7 @@ function addNewContactHtml() {
     <div class="add-contact-main">
         <div class="contact-member"><img src="/src/assets/img/contact-member.png" alt="">
         </div>
-        <form onsubmit="createContact(); return false">
+        <form onsubmit="createContact(); return false;">
             <div>
                 <div class="input-contact"><input placeholder="Name" required  type="text" id="contactName" class="input-contact-name">
                     <img src="/src/assets/img/signup-user.png" alt="">
