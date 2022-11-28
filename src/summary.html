@@ -5,25 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Join</title>
+    <title>summary | Join</title>
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/summary.css">
     <script src="./smallest_backend_ever/mini_backend.js"></script>
     <script src="./js/script.js"></script>
-    <script src="./js/dashboard.js"></script>
+    <script src="./js/summary.js"></script>
 </head>
 
-<body onload="initDashboard()">
-    <div class="headline" w3-include-html="./assets/templates/header.html"></div>
+<body onload="initsummary()">
+    <div class="Mainheader" w3-include-html="./assets/templates/header.html"></div>
     <div class="displayflex">
-        <div class="navigation" w3-include-html="./assets/templates/navigation.html"></div>
+        <div class="sideBar" w3-include-html="./assets/templates/navigation.html"></div>
         <div class="mainside">
             <!-- good morning/ name -->
             <div class="flexmid mainmorning">
-                <div class="morning">Good morning,</div>
-                <div class="name">Sofia Müller</div>
+                <div id="user_greeting" class="morning"></div>
+                <div id="current_user_name" class="name"></div>
             </div>
             <!-- Task Urgent / Tasks to-do -->
             <div class="displayflex">

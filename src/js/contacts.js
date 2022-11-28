@@ -40,7 +40,7 @@ function closeAddContact() {
  * 
  */
 function createContact() {
-    
+
     let smallName = document.getElementById('contactName').value;
     let contactEmail = document.getElementById('contactEmail').value;
     let contactNumber = document.getElementById('contactNumber').value;
@@ -53,11 +53,11 @@ function createContact() {
         'contactNumber': contactNumber,
         'contactletter': firstName,
         'contactcolor': randomColor
-        
+
     };
     addNewContact(contactTask);
     checkEmailInArray(contactTask, contactName);
-    
+
 }
 
 async function addNewContact(contactTask){
@@ -79,10 +79,10 @@ function checkEmailInArray(contactTask, contactName) {
 
 
 
-function checkEmail(){
+function checkEmail() {
     let emaildone = document.getElementById('emailDone');
     emaildone.classList.remove('d-none');
-    
+
 }
 
 /**
@@ -126,7 +126,7 @@ function contactChild() {
         let l = currentUser.contacts[index]['contactletter'];
         let lettersFB = n.match(/\b(\w)/g).join('');
         let contactchilds = document.getElementById(l);
-        
+
         contactchilds.innerHTML += contactChildHtml(i, lettersFB, index);
 
     }
@@ -145,7 +145,7 @@ function openDetailContact(index, lettersFB) {
     let contact = currentUser.contacts[index];
     let contactdetails = document.getElementById('contactdetails');
     contactdetails.innerHTML = '';
-    
+
     contactdetails.innerHTML = contactDetailHtml(contact, lettersFB, index);
 }
 
@@ -176,11 +176,11 @@ function invEditContact(oldEmail) {
         'contactletter': firstName,
         'oldEmail': oldEmail
     };
-    
+
     changeUser(contactTask);
 }
 
-function renderContacts(letter){
+function renderContacts(letter) {
     if (lettertask.includes(letter)) {
         clearContactBar();
     }
@@ -195,7 +195,7 @@ function renderContacts(letter){
 }
 
 function changeUser(object) {
-    let oldEmail = object['oldEmail']; 
+    let oldEmail = object['oldEmail'];
     let index = getUserIndexForEmail(oldEmail);
   
     currentUser.contacts[index]['contactName'] = object['contactName'];
@@ -229,7 +229,7 @@ function getUserIndexForEmail(email) {
     return userindex;
 }
 
-    
+
 
 
 function contactDetailHtml(contact, lettersFB, index) {
@@ -330,7 +330,7 @@ function addNewContactHtml() {
     `
 }
 
-function editContactHtml(contact, lettersFB ) {
+function editContactHtml(contact, lettersFB) {
     return `
     <div class="add-contact animationFadeIn">
     <div class="add-contact-head">

@@ -1,3 +1,10 @@
+async function initSignUp() {
+    await init();
+    checkUserIsLoggedIn();
+    passwordInputIconChange();
+}
+
+
 /**
  * get user data from html5 form and check if user is registered
  */

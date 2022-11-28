@@ -7,8 +7,8 @@ let j = 0;
  * execute "global" init function from script.js
  */
 async function initAddTask() {
-  checkUserIsLoggedIn();
   await init();
+  checkUserIsLoggedIn();
 }
 
 
@@ -158,12 +158,12 @@ function getSelectedSubtask() {
 //pushing new subtask in the Localstorage
 function pushSubtaskLocalStorage() {
   if (document.getElementById("subtaskText").value) {
-   
+
     subTasks.push(document.getElementById("subtaskText").value);
     document.getElementById("subtaskText").value = ``;
     localStorage.setItem("subtasks", JSON.stringify(subTasks));
     renderSubTask();
-  } 
+  }
 }
 
 
@@ -234,7 +234,7 @@ function selectedUser(user) {
 
 
 // function for exting the categorySelector by clicking on the cross
-function exitCategorySelector(){
+function exitCategorySelector() {
   document.getElementById('user_selector').classList.add('d-none');
   document.getElementById('selector_user_dropdown').classList.remove('d-none');
 
@@ -326,7 +326,7 @@ function changeInputCategory() {
 }
 
 // function for exting the categoryInput by clicking on the cross
-function exitCategoryInput(){
+function exitCategoryInput() {
   document.getElementById('category_selector').classList.add('d-none');
   document.getElementById('selector_Category_Dropdown').classList.remove('d-none');
 
