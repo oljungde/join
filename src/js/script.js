@@ -48,20 +48,7 @@ function checkUserIsLoggedIn() {
  * get the data from the user who is logged in
  */
 function getCurrentUser() {
-    let isGuestLogin = localStorage.getItem('userLoggedInName');
-    if (isGuestLogin == 'Guest User') {
-        currentUser = {
-            'name': 'Guest User',
-            'nameMatchCode': 'guest user',
-            'email': 'noreply@nix.de',
-            'emailMatchCode': 'noreply@nix.de',
-            'password': '',
-            'tasks': [],
-            'contacts': []
-        }
-    } else {
-        currentUser = users.find(user => user.email == currentUserEmail);
-    }
+    currentUser = users.find(user => user.email == currentUserEmail);
     console.log(currentUser);
 }
 

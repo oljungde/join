@@ -92,10 +92,7 @@ function guestLogin() {
     let dataCheck = document.getElementById('data_check');
     loginForm.setAttribute('novalidate', 'true');
     dataCheck.innerHTML = '';
-    localStorage.setItem('userLoggedInName', 'Guest User');
-    localStorage.setItem('userLoggedInEmail', '');
-    sessionStorage.setItem('loggedIn', 'true');
-    window.location.href = './summary.html';
+    checkUserData('noreply@nix.de', 'password');
 }
 
 

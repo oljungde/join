@@ -28,7 +28,6 @@ function updateHTML() {
     updateInProgressStatus();
     updateAwaitingFeedbackStatus();
     updateDoneStatus();
-
 }
 
 

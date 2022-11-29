@@ -32,11 +32,10 @@ async function addToTask() {
   // allTasks.push(currentTask);
   currentUserTasks.push(currentTask); // NEW BY OJ 29.11.2022
   console.log(currentUserTasks);
-  updateProgressBar()
-  saveToBackend()
-  updateHTML()
-  setIdOneHigher()
-
+  updateProgressBar();
+  saveToBackend();
+  updateHTML();
+  setIdOneHigher();
 }
 
 
