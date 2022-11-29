@@ -1,18 +1,30 @@
 let currentDraggedElement;
 let alreadyEmpty = true;
+let currentUserTasks;
 
 //Update the board
 async function initBoard() {
     await init();
     checkUserIsLoggedIn();
+    getTasksOfCurrentUser();
     identifyId();
     updateHTML();
+}
 
+
+/**
+ * NEW BY OJ 29.11.2022
+ * get the tasks of the current user
+ */
+function getTasksOfCurrentUser() {
+    currentUserTasks = currentUser.tasks;
+    console.log(currentUserTasks);
 }
 
 // Updates the individual Areas of the board
 function updateHTML() {
-    updateToDoStatus();
+    // updateToDoStatus();
+    getCurrentUserTodos(); // NEW BY OJ 29.11.2022
     updateInProgressStatus();
     updateAwaitingFeedbackStatus();
     updateDoneStatus();
@@ -30,16 +42,30 @@ function identifyId() {
 }
 
 
-// Drag and Drop Bereiche werden definiert und Tasks gerendert
-function updateToDoStatus() {
-    let toDo = allTasks.filter(t => t['status'] == 'toDo');
+/**
+ * NEW BY OJ 29.11.2022
+ * get the tasks with status 'toDo' from current user and render it
+ */
+function getCurrentUserTodos() {
+    let toDo = currentUserTasks.filter(t => t['status'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
-
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
         document.getElementById('toDo').innerHTML += generateTodoHTML(element);
     }
 }
+
+
+// // Drag and Drop Bereiche werden definiert und Tasks gerendert
+// function updateToDoStatus() {
+//     let toDo = allTasks.filter(t => t['status'] == 'toDo');
+//     document.getElementById('toDo').innerHTML = '';
+
+//     for (let index = 0; index < toDo.length; index++) {
+//         const element = toDo[index];
+//         document.getElementById('toDo').innerHTML += generateTodoHTML(element);
+//     }
+// }
 
 //render the InProgress Area
 function updateInProgressStatus() {

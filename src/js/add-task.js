@@ -29,11 +29,14 @@ async function addToTask() {
     'status': 'toDo'
   };
 
-  allTasks.push(currentTask);
+  // allTasks.push(currentTask);
+  currentUserTasks.push(currentTask); // NEW BY OJ 29.11.2022
+  console.log(currentUserTasks);
   updateProgressBar()
   saveToBackend()
   updateHTML()
   setIdOneHigher()
+
 }
 
 
