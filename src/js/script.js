@@ -17,13 +17,6 @@ async function init() {
     allTasks = await JSON.parse(backend.getItem('allTasks')) || [];
 }
 
-/**
- * saves the tasks on the board in the backend
- */
-async function saveToBackend() {
-    await backend.setItem("allTasks", JSON.stringify(allTasks));
-}
-
 
 /**
  * checks if the user is logged in

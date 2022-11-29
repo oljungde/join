@@ -28,12 +28,9 @@ async function addToTask() {
     "user": userSelect,
     'status': 'toDo'
   };
-
-  // allTasks.push(currentTask);
-  currentUserTasks.push(currentTask); // NEW BY OJ 29.11.2022
-  console.log(currentUserTasks);
+  currentUserTasks.push(currentTask);
+  backend.setItem('users', JSON.stringify(users));
   updateProgressBar();
-  saveToBackend();
   updateHTML();
   setIdOneHigher();
 }

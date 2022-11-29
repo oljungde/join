@@ -1,11 +1,11 @@
-body {
+/* body {
     margin: 0;
     font-style: normal;
 }
 
 /* Style for the Header   */
 
-.Mainheader {
+/* .Mainheader {
     height: 100px;
     background-color: #4589ff;
     ;
@@ -33,12 +33,12 @@ body {
 
 .Main-Container {
     display: flex;
-}
+} */
 
 
 /* Style for the SideBar  */
 
-.sideBar {
+/* .sideBar {
     background-color: white;
     height: 100vh;
     width: 15%;
@@ -79,7 +79,7 @@ body {
     gap: 20px;
     color: black;
     padding-bottom: 112px;
-}
+}  */
 
 
 /* Style for the Mainboard  */
@@ -217,7 +217,7 @@ h1 {
     color: #4589ff;
 }
 
-.task-progress{
+.task-progress {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -228,7 +228,7 @@ h1 {
     height: 16px;
 }
 
-.progress-bar{
+.progress-bar {
     width: 100%;
     max-width: 140px;
     height: 8px;
@@ -238,7 +238,7 @@ h1 {
     box-sizing: border-box;
 }
 
-.progress-bar-fill{
+.progress-bar-fill {
     transition: all ease-in 225ms;
     background-color: #4589ff;
     height: 8px;
@@ -524,10 +524,11 @@ h1 {
     width: 422px;
     padding: 18px 21px;
 }
+
 input[type="date"]::-webkit-calendar-picker-indicator {
     background: transparent;
-    
-  }
+
+}
 
 
 .input-date input {
@@ -569,11 +570,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #D1D1D1;
 }
 
-.new-Subtasks{
+.new-Subtasks {
     width: 100%;
 }
 
-.subtaskList{
+.subtaskList {
     display: flex;
     margin-top: 10px;
 }
@@ -720,7 +721,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 400;
     font-size: 21px;
     line-height: 120%;
-  
+
 }
 
 .detail-assignedTo p {
