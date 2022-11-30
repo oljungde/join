@@ -13,7 +13,6 @@ async function initBoard() {
 
 
 /**
- * NEW BY OJ 29.11.2022
  * get the tasks of the current user
  */
 function getTasksOfCurrentUser() {
@@ -23,18 +22,16 @@ function getTasksOfCurrentUser() {
 
 // Updates the individual Areas of the board
 function updateHTML() {
-    // updateToDoStatus();
-    getCurrentUserTodos(); // NEW BY OJ 29.11.2022
+    getCurrentUserTodos();
     updateInProgressStatus();
     updateAwaitingFeedbackStatus();
     updateDoneStatus();
-
 }
 
 
 // Update the board
 function identifyId() {
-    let length = allTasks.length - 1;
+    let length = currentUserTasks.length - 1;
     if (j > 0 || length >= 0) {
         j = length;
         j++;
@@ -43,7 +40,6 @@ function identifyId() {
 
 
 /**
- * NEW BY OJ 29.11.2022
  * get the tasks with status 'toDo' from current user and render it
  */
 function getCurrentUserTodos() {
@@ -52,53 +48,46 @@ function getCurrentUserTodos() {
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
         document.getElementById('toDo').innerHTML += generateTodoHTML(element);
+        updateProgressBar('toDo', index);
     }
 }
 
 
-// // Drag and Drop Bereiche werden definiert und Tasks gerendert
-// function updateToDoStatus() {
-//     let toDo = allTasks.filter(t => t['status'] == 'toDo');
-//     document.getElementById('toDo').innerHTML = '';
-
-//     for (let index = 0; index < toDo.length; index++) {
-//         const element = toDo[index];
-//         document.getElementById('toDo').innerHTML += generateTodoHTML(element);
-//     }
-// }
-
 //render the InProgress Area
 function updateInProgressStatus() {
-    let inProgress = allTasks.filter(p => p['status'] == 'inProgress');
+    let inProgress = currentUserTasks.filter(p => p['status'] == 'inProgress');
     document.getElementById('inProgress').innerHTML = '';
 
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
+        updateProgressBar('inProgress', index);
     }
 }
 
 
 //render the updateAwaiting Area
 function updateAwaitingFeedbackStatus() {
-    let awaitingFeedback = allTasks.filter(a => a['status'] == 'awaitingFeedback');
+    let awaitingFeedback = currentUserTasks.filter(a => a['status'] == 'awaitingFeedback');
     document.getElementById('awaitingFeedback').innerHTML = '';
 
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
         document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);
+        updateProgressBar('awaitingFeedback', index);
     }
 }
 
 
 //render the Done Area
 function updateDoneStatus() {
-    let done = allTasks.filter(d => d['status'] == 'done');
+    let done = currentUserTasks.filter(d => d['status'] == 'done');
     document.getElementById('done').innerHTML = '';
 
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
         document.getElementById('done').innerHTML += generateTodoHTML(element);
+        updateProgressBar('done', index);
     }
 }
 
@@ -189,12 +178,12 @@ function allowDrop(ev) {
 
 // changes the status of the task according to the dropped area
 async function moveTo(e, status) {
-    allTasks[currentDraggedElement]['status'] = status;
+    currentUserTasks[currentDraggedElement]['status'] = status;
     e.target.classList.remove('drag-over');
-
     updateHTML();
     updateProgressBar(status, currentDraggedElement)
-    saveToBackend();
+    console.log(currentUserTasks);
+    backend.setItem('users', JSON.stringify(users));
 }
 
 
@@ -218,7 +207,7 @@ function dragLeave(e) {
 function showDetailWindow(id) {
     document.getElementById('detail-container').classList.remove('d-none');
 
-    let detailTodo = allTasks[id];
+    let detailTodo = currentUserTasks[id];
     let category = detailTodo['category'];
     let title = detailTodo['title'];
     let description = detailTodo['description'];
@@ -226,28 +215,28 @@ function showDetailWindow(id) {
     let priority = detailTodo['priority'];
     let user = detailTodo['user'];
 
-    let toDo = allTasks.filter(t => t['status'] == 'toDo');
+    let toDo = currentUserTasks.filter(t => t['status'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
         document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, dueDate, user, priority)
     }
 
-    let inProgress = allTasks.filter(t => t['status'] == 'inProgress');
+    let inProgress = currentUserTasks.filter(t => t['status'] == 'inProgress');
     document.getElementById('inProgress').innerHTML = '';
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
         document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, dueDate, user, priority)
     }
 
-    let awaitingFeedback = allTasks.filter(t => t['status'] == 'awaitingFeedback');
+    let awaitingFeedback = currentUserTasks.filter(t => t['status'] == 'awaitingFeedback');
     document.getElementById('awaitingFeedback').innerHTML = '';
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
         document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, dueDate, user, priority)
     }
 
-    let done = allTasks.filter(t => t['status'] == 'done');
+    let done = currentUserTasks.filter(t => t['status'] == 'done');
     document.getElementById('done').innerHTML = '';
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
@@ -340,8 +329,8 @@ function searchTasks() {
     let search = document.getElementById('search_input');
     search = search.value.toLowerCase();
 
-    for (let i = 0; i < allTasks.length; i++) {
-        let taskSearched = allTasks[i]['title'];
+    for (let i = 0; i < currentUserTasks.length; i++) {
+        let taskSearched = currentUserTasks[i]['title'];
         if (taskSearched.toLowerCase().includes(search)) {
             updateHTML(taskSearched);
         }
@@ -364,21 +353,21 @@ function searchTasks() {
         alreadyEmpty = false;
     } else {
         alreadyEmpty = true;
-        for (let i = 0; i < allTasks.length; i++) {
-            if (allTasks[i]['title'].includes(search.value)) {
-                if (allTasks[i]['status'] == 'toDo') {
+        for (let i = 0; i < currentUserTasks.length; i++) {
+            if (currentUserTasks[i]['title'].includes(search.value)) {
+                if (currentUserTasks[i]['status'] == 'toDo') {
                     todo.innerHTML += updateToDoStatus(i);
 
                 }
-                if (allTasks[i]['status'] == 'inProgress') {
+                if (currentUserTasks[i]['status'] == 'inProgress') {
                     inProgress.innerHTML += updateInProgressStatus(i);
 
                 }
-                if (allTasks[i]['status'] == 'awaitingFeedback') {
+                if (currentUserTasks[i]['status'] == 'awaitingFeedback') {
                     awaitingFeedback.innerHTML += updateAwaitingFeedbackStatus(i);
 
                 }
-                if (allTasks[i]['status'] == 'done') {
+                if (currentUserTasks[i]['status'] == 'done') {
                     done.innerHTML += updateDoneStatus(i);
 
                 }
