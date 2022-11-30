@@ -11,16 +11,22 @@ async function initsummary() {
 }
 
 
+/**
+ * shows the name of logged in user after the greeting
+ */
 function showCurrentUserName() {
     let currentUserNameBox = document.getElementById('current_user_name');
     currentUserNameBox.innerHTML = currentUser.name;
 }
 
 
+/**
+ * shows the greeting by time of day 
+ */
 function greetingUser() {
     let userGreetingBox = document.getElementById('user_greeting');
     let hour = new Date().getHours();
-    let welcomeTimes = ['Good mornimg,', 'Good afternoon,', 'Good evening,'];
+    let welcomeTimes = ['Good morning,', 'Good afternoon,', 'Good evening,'];
     let welcomeMessage;
     if (hour < 12) {
         welcomeMessage = welcomeTimes[0];

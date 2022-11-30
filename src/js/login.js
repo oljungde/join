@@ -14,6 +14,16 @@ async function initLogin() {
 
 
 /**
+ * init function for reset-password.html, loads the global functions from script.js, an funcionality for password fields in reset password form
+ */
+async function initResetPassword() {
+    await init();
+    passwordInputIconChange();
+    passwordConfirmIconChange();
+}
+
+
+/**
  * get data from login form an execute the function to check it
  */
 function userLogin() {
@@ -23,9 +33,10 @@ function userLogin() {
 }
 
 
-
-
-
+/**
+ * checks the screenwidh and shows the sign up button under the login form if the screen width is less then 576px
+ * @param {string} screenWidth576 is the css property of max screen width
+ */
 function mediaQuery576(screenWidth576) {
     if (screenWidth576.matches) {
         let loginHeader = document.getElementById('login_header');
@@ -38,16 +49,6 @@ function mediaQuery576(screenWidth576) {
         let joinUser = document.getElementById('join_user');
         joinUser.classList.add('display-none');
     }
-}
-
-
-/**
- * init function for reset-password.html, loads the global functions from script.js, an funcionality for password fields in reset password form
- */
-async function initResetPassword() {
-    await init();
-    passwordInputIconChange();
-    passwordConfirmIconChange();
 }
 
 
