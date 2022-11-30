@@ -48,13 +48,18 @@ function setIdOneHigher() {
 }
 
 
-//renders the AddTask Mask
-function openAddTaskMask() {
+//renders the AddTask Mask new by Seb 30.11!!
+function openAddTaskMask(i) {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
 
-  document.getElementById('AddTaskMaskContainer').innerHTML = /*html*/`
+  let openaddtask = document.getElementById('AddTaskMaskContainer');
+  openaddtask.innerHTML = openAddTaskHtml(i);
+}
+// new by Seb 30.11!!
+function openAddTaskHtml(i){
+  return `
   <form class="addTaskForm" onsubmit="addToTask(); return false; ">
-        <img class="CloseCross" onclick="closeAddTaskMask()" src="assets/img/group 11.png" alt="">
+        <img class="CloseCross" onclick="closeAddTaskMask(${i})" src="assets/img/group 11.png" alt="">
         <div class="addTask-top">
            <h2>Add Task</h2>
            <button class="btn">Create Task <img src="assets/img/white-check.png" alt=""></button>
@@ -126,7 +131,6 @@ function openAddTaskMask() {
     `;
 }
 
-
 //  subTasks in the AddTaskMask
 
 //Rendering the subtasks checkboxes when generating a new subtask
@@ -176,9 +180,14 @@ function clearSubTasks() {
 }
 
 
-//closes the AddTaskMask
-function closeAddTaskMask() {
+//closes the AddTaskMask new by Seb 30.11
+function closeAddTaskMask(i) { 
+  if(i == 2){
   document.getElementById('AddTaskMaskBg').classList.add('d-none');
+  }
+  else if(i == 1){
+    document.getElementById('openContactAddtaskBG').classList.add('d-none');
+  }
 }
 
 

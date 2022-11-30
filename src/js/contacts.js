@@ -242,7 +242,11 @@ function getUserIndexForEmail(email) {
     return userindex;
 }
 
-
+function OpenContactAddTask(i){
+    let openaddtask = document.getElementById('openContactAddtask');
+    document.getElementById('openContactAddtaskBG').classList.remove('d-none');
+    openaddtask.innerHTML = openAddTaskHtml(i);
+}
 
 
 function contactDetailHtml(contact, lettersFB, index) {
@@ -252,7 +256,7 @@ function contactDetailHtml(contact, lettersFB, index) {
                             <div style="background-color: ${contact['contactcolor']}" class="contact-detail-big-letter">${lettersFB}</div>
                             <div class="contact-detail-name-task">
                                 <p class="contact-detail-big-name">${contact['contactName']}</p>
-                                <p class="contact-detail-add-task"><img src="./assets/img/blue-plus.png" alt="">Add Task</p>
+                                <p class="contact-detail-add-task" onclick="OpenContactAddTask(1)"><img src="./assets/img/blue-plus.png" alt="">Add Task</p>
                             </div>
                         </div>
                         <div class="contact-detail-info-main">
@@ -348,11 +352,11 @@ function editContactHtml(contact, lettersFB) {
     <div class="add-contact animationFadeIn">
     <div class="add-contact-head">
         <div class="add-contact-cross" onclick="closeAddContact()">
-            <img class="img-cross" src="/src/assets/img/pngegg.png" alt="">
+            <img class="img-cross" src="./assets/img/pngegg.png" alt="">
         </div>
         <div class="add-contact-header-info" >
             <div onclick="closeAddContact()>
-                <img " src="/src/assets/img/Capa 1.png" alt="">
+                <img " src="./assets/img/Capa 1.png" alt="">
             </div>
             <div class="add-contact-h">
                 Edit contact
@@ -368,13 +372,13 @@ function editContactHtml(contact, lettersFB) {
             <div>
                 <div class="input-contact"><input  required  type="text" id="contactEditName" class="input-contact-name">
                 
-                    <img src="/src/assets/img/signup-user.png" alt="">
+                    <img src="./assets/img/signup-user.png" alt="">
                 </div>
                 <div class="input-contact"><input  required type="email" id="contactEditEmail" class="input-contact-name">
-                    <img src="/src/assets/img/login-email.png" alt="">
+                    <img src="./assets/img/login-email.png" alt="">
                 </div>
                 <div class="input-contact"><input required type="text" id="contactEditNumber" class="input-contact-name">
-                    <img src="/src/assets/img/phone.png" alt="">
+                    <img src="./assets/img/phone.png" alt="">
                 </div>
             </div>
             <div class="button-container">
