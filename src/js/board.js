@@ -22,10 +22,11 @@ function getTasksOfCurrentUser() {
 
 // Updates the individual Areas of the board
 function updateHTML() {
-    getCurrentUserTodos();
+    updateToDoStatus();
     updateInProgressStatus();
     updateAwaitingFeedbackStatus();
     updateDoneStatus();
+    updateProgressBar();
 }
 
 
@@ -42,13 +43,13 @@ function identifyId() {
 /**
  * get the tasks with status 'toDo' from current user and render it
  */
-function getCurrentUserTodos() {
+function updateToDoStatus() {
     let toDo = currentUserTasks.filter(t => t['status'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
         document.getElementById('toDo').innerHTML += generateTodoHTML(element);
-        updateProgressBar('toDo', index);
+        // updateProgressBar('toDo', index);
     }
 }
 
@@ -61,7 +62,7 @@ function updateInProgressStatus() {
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
         document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
-        updateProgressBar('inProgress', index);
+        // updateProgressBar('inProgress', index);
     }
 }
 
@@ -74,7 +75,7 @@ function updateAwaitingFeedbackStatus() {
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
         document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);
-        updateProgressBar('awaitingFeedback', index);
+        // updateProgressBar('awaitingFeedback', index);
     }
 }
 
@@ -87,7 +88,7 @@ function updateDoneStatus() {
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
         document.getElementById('done').innerHTML += generateTodoHTML(element);
-        updateProgressBar('done', index);
+        // updateProgressBar('done', index);
     }
 }
 
@@ -116,51 +117,77 @@ function generateTodoHTML(element, i) {
     </div>`
 }
 
-// Progress-bar for the Tasks -- not working
-function updateProgressBar(status, id) {
-    let fill = document.getElementById("fill" + id);
-    let filltext = document.getElementById("fill-text" + id);
-    fillWhenToDo(status, fill, filltext);
-    fillWhenInProgress(status, fill, filltext);
-    fillWhenAwaitProgress(status, fill, filltext);
-    fillWhenDone(status, fill, filltext);
-}
 
-
-// Fills the progress bar when in category ToDo
-function fillWhenToDo(status, fill, filltext) {
-    if (status == "toDo") {
-        fill.style.width = "0%";
-        filltext.innerHTML = `0/3 Done`;
+function updateProgressBar() {
+    for (i = 0; i < currentUserTasks.length; i++) {
+        let fill = document.getElementById('fill' + i);
+        let fillText = document.getElementById('fill-text' + i);
+        let taskStatus = currentUserTasks[i].status;
+        if (taskStatus == 'toDo') {
+            fill.style.width = "0";
+            fillText.innerHTML = `0/3 Done`;
+        }
+        if (taskStatus == 'inProgress') {
+            fill.style.width = "33%";
+            fillText.innerHTML = `1/3 Done`;
+        }
+        if (taskStatus == 'awaitingFeedback') {
+            fill.style.width = "66%";
+            fillText.innerHTML = `2/3 Done`;
+        }
+        if (taskStatus == 'done') {
+            fill.style.width = "100%";
+            fillText.innerHTML = `3/3 Done`;
+        }
     }
 }
 
 
-// Fills the progress bar when in category inProgress
-function fillWhenInProgress(status, fill, filltext) {
-    if (status == "inProgress") {
-        fill.style.width = "33%";
-        filltext.innerHTML = `1/3 Done`;
-    }
-}
+// // Progress-bar for the Tasks -- not working
+// function updateProgressBar(status, id) {
+//     let fill = document.getElementById("fill" + id);
+//     let filltext = document.getElementById("fill-text" + id);
+//     fillWhenToDo(status, fill, filltext);
+//     fillWhenInProgress(status, fill, filltext);
+//     fillWhenAwaitProgress(status, fill, filltext);
+//     fillWhenDone(status, fill, filltext);
+// }
 
 
-// Fills the progress bar when in category awaitingFeedback
-function fillWhenAwaitProgress(status, fill, filltext) {
-    if (status == "awaitingFeedback") {
-        fill.style.width = "66%";
-        filltext.innerHTML = `2/3 Done`;
-    }
-}
+// // Fills the progress bar when in category ToDo
+// function fillWhenToDo(status, fill, filltext) {
+//     if (status == "toDo") {
+//         fill.style.width = "0";
+//         filltext.innerHTML = `0/3 Done`;
+//     }
+// }
 
 
-// Fills the progress bar when in category Done
-function fillWhenDone(status, fill, filltext) {
-    if (status == "done") {
-        fill.style.width = "100%";
-        filltext.innerHTML = `3/3 Done`;
-    }
-}
+// // Fills the progress bar when in category inProgress
+// function fillWhenInProgress(status, fill, filltext) {
+//     if (status == "inProgress") {
+//         fill.style.width = "33%";
+//         filltext.innerHTML = `1/3 Done`;
+//     }
+// }
+
+
+// // Fills the progress bar when in category awaitingFeedback
+// function fillWhenAwaitProgress(status, fill, filltext) {
+//     if (status == "awaitingFeedback") {
+//         fill.style.width = "66%";
+//         filltext.innerHTML = `2/3 Done`;
+//     }
+// }
+
+
+// // Fills the progress bar when in category Done
+// function fillWhenDone(status, fill, filltext) {
+//     if (status == "done") {
+//         fill.style.width = "100%";
+//         filltext.innerHTML = `3/3 Done`;
+//     }
+// }
 
 
 // Drag and Drop
@@ -181,7 +208,7 @@ async function moveTo(e, status) {
     currentUserTasks[currentDraggedElement]['status'] = status;
     e.target.classList.remove('drag-over');
     updateHTML();
-    updateProgressBar(status, currentDraggedElement)
+    // updateProgressBar(status, currentDraggedElement)
     console.log(currentUserTasks);
     backend.setItem('users', JSON.stringify(users));
 }
