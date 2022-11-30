@@ -30,9 +30,10 @@ async function addToTask() {
   };
   currentUserTasks.push(currentTask);
   await backend.setItem('users', JSON.stringify(users));
-  updateProgressBar();
-  updateHTML();
   setIdOneHigher();
+  if (window.location.href == './board.html') {
+    updateHTML();
+  }
 }
 
 
