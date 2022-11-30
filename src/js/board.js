@@ -1,6 +1,5 @@
 let currentDraggedElement;
 let alreadyEmpty = true;
-let currentUserTasks;
 
 //Update the board
 async function initBoard() {

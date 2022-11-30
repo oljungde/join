@@ -29,7 +29,7 @@ async function addToTask() {
     'status': 'toDo'
   };
   currentUserTasks.push(currentTask);
-  backend.setItem('users', JSON.stringify(users));
+  await backend.setItem('users', JSON.stringify(users));
   updateProgressBar();
   updateHTML();
   setIdOneHigher();
@@ -52,7 +52,7 @@ function openAddTaskMask(i) {
   openaddtask.innerHTML = openAddTaskHtml(i);
 }
 // new by Seb 30.11!!
-function openAddTaskHtml(i){
+function openAddTaskHtml(i) {
   return `
   <form class="addTaskForm" onsubmit="addToTask(); return false; ">
         <img class="CloseCross" onclick="closeAddTaskMask(${i})" src="assets/img/group 11.png" alt="">
@@ -177,11 +177,11 @@ function clearSubTasks() {
 
 
 //closes the AddTaskMask new by Seb 30.11
-function closeAddTaskMask(i) { 
-  if(i == 2){
-  document.getElementById('AddTaskMaskBg').classList.add('d-none');
+function closeAddTaskMask(i) {
+  if (i == 2) {
+    document.getElementById('AddTaskMaskBg').classList.add('d-none');
   }
-  else if(i == 1){
+  else if (i == 1) {
     document.getElementById('openContactAddtaskBG').classList.add('d-none');
   }
 }
