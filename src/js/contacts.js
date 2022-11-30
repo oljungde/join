@@ -2,14 +2,15 @@ let addTasks = [];
 
 
 async function initContacts() {
-    checkUserIsLoggedIn();
     await init();
+    checkUserIsLoggedIn();
     renderAllContact()
+    getTasksOfCurrentUser();
 }
 
 
 
-function renderAllContact(){
+function renderAllContact() {
     createContactBar();
     contactChild();
 }
@@ -57,37 +58,37 @@ function createContact() {
     };
     let look = checkEmailInArray(contactTask);
     checkOrLoad(look, contactName, contactTask)
-    
+
 
 }
 
-function checkOrLoad(look, contactName, contactTask){
-    if(look == -1){
+function checkOrLoad(look, contactName, contactTask) {
+    if (look == -1) {
         addNewContact(contactTask);
         fillAllTasks(contactName,);
     }
-    else{
+    else {
         checkEmail();
     }
 }
 
-async function addNewContact(contactTask){
+async function addNewContact(contactTask) {
     currentUser.contacts.push(contactTask);
     currentUser.contacts.sort((a, b) => a.contactName.localeCompare(b.contactName));
     await backend.setItem('users', JSON.stringify(users));
 }
 
-function checkEmailInArray(contactTask, ) {
+function checkEmailInArray(contactTask,) {
     let email = contactTask['contactEmail'];
     let userindex = -1;
     for (i = 0; i < currentUser.contacts.length; i++) {
         if (currentUser.contacts[i]['contactEmail'].toLowerCase() == email.toLowerCase()) {
-         userindex = i; //Email found
+            userindex = i; //Email found
         }
     }
     return userindex;
-    
-    
+
+
 }
 
 
@@ -210,7 +211,7 @@ function renderContacts(letter) {
 function changeUser(object) {
     let oldEmail = object['oldEmail'];
     let index = getUserIndexForEmail(oldEmail);
-  
+
     currentUser.contacts[index]['contactName'] = object['contactName'];
     currentUser.contacts[index]['contactletter'] = object['contactletter'];
     currentUser.contacts[index]['contactEmail'] = object['contactEmail'];
@@ -222,11 +223,11 @@ function changeUser(object) {
     clearContactDetails();
 }
 
-async function savesInBackEnd(){
+async function savesInBackEnd() {
     await backend.setItem('users', JSON.stringify(users));
 }
 
-function clearContactDetails(){
+function clearContactDetails() {
     let addcontact = document.getElementById('contactdetails');
     addcontact.innerHTML = '';
 
@@ -236,13 +237,13 @@ function getUserIndexForEmail(email) {
     let userindex = -1;
     for (i = 0; i < currentUser.contacts.length; i++) {
         if (currentUser.contacts[i]['contactEmail'].toLowerCase() == email.toLowerCase()) {
-         userindex = i; //Email found
+            userindex = i; //Email found
         }
     }
     return userindex;
 }
 
-function OpenContactAddTask(i){
+function OpenContactAddTask(i) {
     let openaddtask = document.getElementById('openContactAddtask');
     document.getElementById('openContactAddtaskBG').classList.remove('d-none');
     openaddtask.innerHTML = openAddTaskHtml(i);

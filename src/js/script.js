@@ -15,7 +15,7 @@ async function init() {
     await downloadFromServer();
     users = await JSON.parse(backend.getItem('users')) || [];
     getCurrentUser();
-    allTasks = await JSON.parse(backend.getItem('allTasks')) || [];
+    // allTasks = await JSON.parse(backend.getItem('allTasks')) || [];
 }
 
 
@@ -45,6 +45,9 @@ function getCurrentUser() {
     currentUser = users.find(user => user.email == currentUserEmail);
     console.log(currentUser);
 }
+
+
+
 
 
 /**

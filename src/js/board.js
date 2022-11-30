@@ -19,6 +19,7 @@ function getTasksOfCurrentUser() {
     console.log(currentUserTasks);
 }
 
+
 // Updates the individual Areas of the board
 function updateHTML() {
     getCurrentUserTodos();
