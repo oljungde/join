@@ -78,6 +78,7 @@
     width: 500px;
     height: 100vh;
     border-radius: 0px 30px 30px 0px;
+    
 }
 
 .add-contact-head{
@@ -85,7 +86,7 @@
     width: 580px;
     height:33vh;
     border-radius: 0px 30px 0px 0px;
-    
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
 }
 
 .add-contact-main{
@@ -97,6 +98,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
 }
 
 .contact-member{

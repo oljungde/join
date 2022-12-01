@@ -138,7 +138,8 @@ function contactChild() {
         let i = currentUser.contacts[index];
         let n = currentUser.contacts[index]['contactName'];
         let l = currentUser.contacts[index]['contactletter'];
-        let lettersFB = n.match(/\b(\w)/g).join('');
+        let letterFB = n.match(/\b(\w)/g).join('');
+        let lettersFB = letterFB.toUpperCase();
         let contactchilds = document.getElementById(l);
 
         contactchilds.innerHTML += contactChildHtml(i, lettersFB, index);
@@ -169,13 +170,13 @@ function editContact(index, lettersFB) {
     editcontact.classList.remove('d-none');
 
     editcontact.innerHTML = '';
-    editcontact.innerHTML = editContactHtml(contact, lettersFB);
+    editcontact.innerHTML = editContactHtml(contact, lettersFB, index);
     document.getElementById('contactEditName').value = contact['contactName'];
     document.getElementById('contactEditEmail').value = contact['contactEmail'];
     document.getElementById('contactEditNumber').value = contact['contactNumber'];
 }
 
-function invEditContact(oldEmail) {
+function invEditContact(oldEmail, index, lettersFB) {
 
     let smallName = document.getElementById('contactEditName').value;
     let contactEmail = document.getElementById('contactEditEmail').value;
@@ -191,7 +192,7 @@ function invEditContact(oldEmail) {
         'oldEmail': oldEmail
     };
 
-    changeUser(contactTask);
+    changeUser(contactTask, index, lettersFB);
 }
 
 function renderContacts(letter) {
@@ -208,7 +209,7 @@ function renderContacts(letter) {
     }
 }
 
-function changeUser(object) {
+function changeUser(object, id, lettersFB) {
     let oldEmail = object['oldEmail'];
     let index = getUserIndexForEmail(oldEmail);
 
@@ -220,7 +221,7 @@ function changeUser(object) {
     savesInBackEnd();
     renderContacts(letter);
     closeAddContact();
-    clearContactDetails();
+    openDetailContact(id, lettersFB);
 }
 
 async function savesInBackEnd() {
@@ -252,7 +253,7 @@ function OpenContactAddTask(i) {
 
 function contactDetailHtml(contact, lettersFB, index) {
     return `
-    <div class="contact-detail-main-side animationFadeInRight">
+    <div class="contact-detail-main-side animationFadeInRight" id="${index}">
                         <div class="contact-detail-head">
                             <div style="background-color: ${contact['contactcolor']}" class="contact-detail-big-letter">${lettersFB}</div>
                             <div class="contact-detail-name-task">
@@ -348,7 +349,7 @@ function addNewContactHtml() {
     `
 }
 
-function editContactHtml(contact, lettersFB) {
+function editContactHtml(contact, lettersFB, index) {
     return `
     <div class="add-contact animationFadeIn">
     <div class="add-contact-head">
@@ -369,7 +370,7 @@ function editContactHtml(contact, lettersFB) {
     <div style="background-color: ${contact['contactcolor']}" class="contact-detail-big-letter">
         <p>${lettersFB}</p>
         </div>
-        <form onsubmit="invEditContact('${contact['contactEmail']}'); return false">
+        <form onsubmit="invEditContact('${contact['contactEmail']}', '${index}', '${lettersFB}'); return false">
             <div>
                 <div class="input-contact"><input  required  type="text" id="contactEditName" class="input-contact-name">
                 
