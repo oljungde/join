@@ -19,7 +19,7 @@ async function addToTask() {
   let dueDate = document.getElementById('add-date');
 
   let currentTask = {
-    "id": j,
+    "id": currentUserTasks.length,
     "category": categorySelect,
     "title": title.value,
     "description": description.value,
@@ -30,17 +30,8 @@ async function addToTask() {
   };
   currentUserTasks.push(currentTask);
   await backend.setItem('users', JSON.stringify(users));
-  setIdOneHigher();
   if (window.location.href == './board.html') {
     updateHTML();
-  }
-}
-
-
-// adds 1 to the id for adding tasks
-function setIdOneHigher() {
-  if (j >= 0) {
-    j++;
   }
 }
 
