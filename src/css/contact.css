@@ -197,6 +197,17 @@
     height: 77px;
 }
 
+.contact-child-div-klick{
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    width: 357px;
+    height: 77px;
+    background-color: #005DFF;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
 .contact-child{
     display: flex;
     justify-content: center;

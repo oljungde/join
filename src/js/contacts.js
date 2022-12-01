@@ -157,6 +157,9 @@ function createContactBar() {
 }
 
 function openDetailContact(index, lettersFB) {
+    
+    let changeBG = document.getElementById(index);
+    changeBG.classList.toggle('contact-child-div-klick');
     let contact = currentUser.contacts[index];
     let contactdetails = document.getElementById('contactdetails');
     contactdetails.innerHTML = '';
@@ -258,7 +261,7 @@ function contactDetailHtml(contact, lettersFB, index) {
                             <div style="background-color: ${contact['contactcolor']}" class="contact-detail-big-letter">${lettersFB}</div>
                             <div class="contact-detail-name-task">
                                 <p class="contact-detail-big-name">${contact['contactName']}</p>
-                                <p class="contact-detail-add-task" onclick="OpenContactAddTask(1)"><img src="./assets/img/blue-plus.png" alt="">Add Task</p>
+                                <p class="contact-detail-add-task" onclick="OpenContactAddTask(0)"><img src="./assets/img/blue-plus.png" alt="">Add Task</p>
                             </div>
                         </div>
                         <div class="contact-detail-info-main">
@@ -281,7 +284,7 @@ function contactDetailHtml(contact, lettersFB, index) {
 
 function contactChildHtml(i, lettersFB, index) {
     return `
-    <div class="contact-child-div" onclick="openDetailContact('${index}', '${lettersFB}' )">
+    <div class="contact-child-div" onclick="openDetailContact('${index}', '${lettersFB}' )" id="${index}">
         <div style="background-color: ${i['contactcolor']}" class="contact-child">
             <p>${lettersFB}</p>
         </div>
@@ -385,7 +388,7 @@ function editContactHtml(contact, lettersFB, index) {
             </div>
             <div class="button-container">
               
-                <button class="button-cancel" onclick="closeAddContact()">Delete <img src="/src/assets/img/cancel.png" alt=""></button>
+                <button class="button-cancel" onclick="closeAddContact()">Delete <img src="./assets/img/cancel.png" alt=""></button>
                 <button class="button-create" type="submit">Save <img src="/src/assets/img/rithe.png" alt=""></button>
                 
             </div>

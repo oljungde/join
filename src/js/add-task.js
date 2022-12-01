@@ -13,7 +13,7 @@ async function initAddTask() {
 
 
 //defines the current task and pushes it to the Array alltasks and saves it in the backend 
-async function addToTask() {
+async function addToTask(i) {
   let title = document.getElementById('AddTitle');
   let description = document.getElementById('AddDescription');
   let dueDate = document.getElementById('add-date');
@@ -30,8 +30,15 @@ async function addToTask() {
   };
   currentUserTasks.push(currentTask);
   await backend.setItem('users', JSON.stringify(users));
-  if (window.location.href == './board.html') {
+  if (i == 0) {
+    window.location.href = './board.html';
     updateHTML();
+  }
+  else if (i == 1){
+    let close = document.getElementById('AddTaskMaskBg');
+    close.classList.add('d-none');
+    updateHTML();
+    
   }
 }
 
@@ -46,7 +53,7 @@ function openAddTaskMask(i) {
 // new by Seb 30.11!!
 function openAddTaskHtml(i) {
   return `
-  <form class="addTaskForm" onsubmit="addToTask(); return false; ">
+  <form class="addTaskForm" onsubmit="addToTask(${i}); return false; ">
         <img class="CloseCross" onclick="closeAddTaskMask(${i})" src="assets/img/group 11.png" alt="">
         <div class="addTask-top">
            <h2>Add Task</h2>
@@ -170,10 +177,10 @@ function clearSubTasks() {
 
 //closes the AddTaskMask new by Seb 30.11
 function closeAddTaskMask(i) {
-  if (i == 2) {
+  if (i == 1) {
     document.getElementById('AddTaskMaskBg').classList.add('d-none');
   }
-  else if (i == 1) {
+  else if (i == 0) {
     document.getElementById('openContactAddtaskBG').classList.add('d-none');
   }
 }
