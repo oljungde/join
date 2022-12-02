@@ -270,7 +270,7 @@ function showTaskCategories() {
   let staticCategorys = [
     { taskCategory: 'New category', taskColor: 'grayCategory', cagtegoryID: 0 },
     { taskCategory: 'Sales', taskColor: 'purpleCategory', cagtegoryID: 1 },
-    { taskCategory: 'Backoffice', taskColor: 'blueCategory', cagtegoryID: 2 },
+    { taskCategory: 'Backoffice', taskColor: 'mintCategory', cagtegoryID: 2 },
   ];
 
   taskCategorySelector = JSON.parse(localStorage.getItem('taskCategory')) || [];
@@ -316,7 +316,7 @@ function selectedCategory(category, color) {
     <div class="selector-header pointer" onclick="showTaskCategories()" id="selected_category">
     <div class="selected">
     ${category}
-    <img src="./assets/img/categoryColors/${color}.png" />
+    <img src="./assets/img/${color}.png" />
     </div>
     <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt=""></div>
     <div id="selector_Category_Dropdown">
