@@ -188,28 +188,27 @@ function closeAddTaskMask(i) {
 
 //renders the Drop Down Menu for the User selection
 function showUsers() {
-  let staticUsers = [
-    { statUser: 'You', cagtegoryID: 0 },
-    { statUser: 'Maximillian Vogel', categoryID: 1 },
-    { statUser: 'Invite new contact', categoryID: 2 },
-  ];
-
+  let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
+  for (let i = 0; i < activUserContact.length; i++) {
+    document.getElementById('selector_user_dropdown').innerHTML += /*html*/`
+    <div onclick="selectedUser('${activUserContact[i].contactName}', ${activUserContact[i].contactletter})" class="selectorCell pointer">
+        <div>${activUserContact[i].contactName}</div>
+        <div><img id="user_select" src="./assets/img/userSelect-img.png"></div>
+    </div>
+    `;
+    
+  }
   document.getElementById('selector_user_dropdown').innerHTML += /*html*/`  
-  <div onclick="selectedUser('${staticUsers[2].statUser}')" class="selectorCell pointer" >
-      ${staticUsers[2].statUser}
+  <div onclick="selectedUser()" class="selectorCell pointer" >
+      <div>Invite new contact</div>
       <img src="./assets/img/newContact-img.png">
   </div>
   `;
 
-  for (let y = 0; y < 2; y++) {
-    document.getElementById('selector_user_dropdown').innerHTML += /*html*/`
-    <div onclick="selectedUser('${staticUsers[y].statUser}')" class="selectorCell pointer">
-        <div>${staticUsers[y].statUser}</div>
-        <div><img id="user_select" src="./assets/img/userSelect-img.png"></div>
-    </div>
-    `;
-  }
+  
+    
+  
 }
 
 

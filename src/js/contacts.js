@@ -48,12 +48,15 @@ function createContact() {
     let contactName = smallName.charAt(0).toUpperCase() + smallName.slice(1);
     let firstName = contactName.charAt(0);
     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    let letterFB = n.match(/\b(\w)/g).join('');
+    let lettersFB = letterFB.toUpperCase();
     let contactTask = {
         'contactName': contactName,
         'contactEmail': contactEmail,
         'contactNumber': contactNumber,
         'contactletter': firstName,
-        'contactcolor': randomColor
+        'contactcolor': randomColor,
+        'contactInitials': lettersFB
 
     };
     let look = checkEmailInArray(contactTask);
@@ -136,10 +139,9 @@ function clearContactBar() {
 function contactChild() {
     for (let index = 0; index < currentUser.contacts.length; index++) {
         let i = currentUser.contacts[index];
-        let n = currentUser.contacts[index]['contactName'];
+        let lettersFB = currentUser.contacts[index]['contactInitials'];
         let l = currentUser.contacts[index]['contactletter'];
-        let letterFB = n.match(/\b(\w)/g).join('');
-        let lettersFB = letterFB.toUpperCase();
+        
         let contactchilds = document.getElementById(l);
 
         contactchilds.innerHTML += contactChildHtml(i, lettersFB, index);
