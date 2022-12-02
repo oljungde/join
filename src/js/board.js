@@ -93,7 +93,7 @@ function updateDoneStatus() {
 function generateTodoHTML(element, i) {
     return /*html*/`
     <div onclick="showDetailWindow(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">   
-      <div class="${element['category']}">${element['category']}</div>
+      <div class="${element['category']['TaskColor']}">${element['category']['Category']}</div>
       <div class=titleAndText>
           <h4 class="title">${element['title']}</h4>
           <div class="text">${element['description']}</div>
@@ -186,7 +186,8 @@ function showDetailWindow(id) {
     document.getElementById('detail-container').classList.remove('d-none');
 
     let detailTodo = currentUserTasks[id];
-    let category = detailTodo['category'];
+    let category = detailTodo['category']['Category'];
+    let categoryColor = detailTodo['category']['TaskColor'];
     let title = detailTodo['title'];
     let description = detailTodo['description'];
     let dueDate = detailTodo['dueDate'];
@@ -197,41 +198,38 @@ function showDetailWindow(id) {
     document.getElementById('toDo').innerHTML = '';
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, dueDate, user, priority)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority)
     }
 
     let inProgress = currentUserTasks.filter(t => t['status'] == 'inProgress');
     document.getElementById('inProgress').innerHTML = '';
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, dueDate, user, priority)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority)
     }
 
     let awaitingFeedback = currentUserTasks.filter(t => t['status'] == 'awaitingFeedback');
     document.getElementById('awaitingFeedback').innerHTML = '';
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, dueDate, user, priority)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority)
     }
 
     let done = currentUserTasks.filter(t => t['status'] == 'done');
     document.getElementById('done').innerHTML = '';
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, title, description, dueDate, user, priority)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority)
     }
-
-
-
 }
 
 
 // renders the Detail Window
-function generateDetailTodoHTML(element, category, title, description, dueDate, user, priority) {
+function generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority) {
     return /*html*/`
     
     <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
-    <div class="detail-category ${category}">${category}</div>
+    <div class="detail-category ${categoryColor}">${category}</div>
     <h2 class="detail-title">${title}</h2>
     <div class="detail-text">${description}</div>
     <div class="detail-dueDate"> 

@@ -1,4 +1,7 @@
 let j = 0;
+let selectorCategoryIndex = 0;
+let taskCategorySelector = [];
+let categorySelectedColor;
 
 
 /**
@@ -20,7 +23,10 @@ async function addToTask(i) {
 
   let currentTask = {
     "id": currentUserTasks.length,
-    "category": categorySelect,
+    "category": {
+      Category: taskCategoryFinaly,
+      TaskColor: taskCategoryColorFinaly,
+    },
     "title": title.value,
     "description": description.value,
     "dueDate": dueDate.value,
@@ -52,7 +58,7 @@ function openAddTaskMask(i) {
 }
 // new by Seb 30.11!!
 function openAddTaskHtml(i) {
-  return `
+  return /*html*/`
   <form class="addTaskForm" onsubmit="addToTask(${i}); return false; ">
         <img class="CloseCross" onclick="closeAddTaskMask(${i})" src="assets/img/group 11.png" alt="">
         <div class="addTask-top">
@@ -124,6 +130,13 @@ function openAddTaskHtml(i) {
        </div>
   </form>
     `;
+}
+
+
+function showDropdown() {
+  document.getElementById('selected_category').classList.toggle("option-wrapper");
+  document.getElementById('selected_category').classList.toggle("d-none");
+  
 }
 
 //  subTasks in the AddTaskMask
@@ -256,20 +269,33 @@ function showTaskCategories() {
     { taskCategory: 'Backoffice', taskColor: 'blueCategory', cagtegoryID: 2 },
   ];
 
-  document.getElementById('selector_Category_Dropdown').innerHTML = ``;
-  document.getElementById('selector_Category_Dropdown').innerHTML += /*html*/`  
-  <div onclick="selectedCategory('${staticCategorys[0].taskCategory}','${staticCategorys[0].taskColor}')" class="selectorCell pointer">
-  <div>${staticCategorys[0]['taskCategory']}</div>
-    </div>
-  `;
+  taskCategorySelector = JSON.parse(localStorage.getItem('taskCategory')) || [];
 
-  for (let y = 1; y < staticCategorys.length; y++) {
-    document.getElementById('selector_Category_Dropdown').innerHTML += `
-    <div onclick="selectedCategory('${staticCategorys[y].taskCategory}','${staticCategorys[y].taskColor}')" class="selectorCell pointer">
-            <div>${staticCategorys[y].taskCategory}</div>
-            <div><img src="./assets/img/${staticCategorys[y].taskColor}.png"</div>
+  if (selectorCategoryIndex == 0) {
+    document.getElementById('selector_Category_Dropdown').innerHTML = ``;
+    for (let n = 0; n < staticCategorys.length; n++) {
+
+      document.getElementById('selector_Category_Dropdown').innerHTML += `  
+      <div onclick="selectedCategory('${staticCategorys[n].taskCategory}','${staticCategorys[n].taskColor}')" class="selectorCell pointer">
+      <div>${staticCategorys[n]['taskCategory']}</div>
+      <div><img src="./assets/img/${staticCategorys[n].taskColor}.png" </div>
+        </div>
+      `;
+
+    }
+
+
+    for (let y = 0; y < taskCategorySelector.length; y++) {
+      document.getElementById('selector_Category_Dropdown').innerHTML += `
+    <div onclick="selectedCategory('${taskCategorySelector[y].taskCategory}','${taskCategorySelector[y].taskColor}')" class="selectorCell pointer">
+            <div>${taskCategorySelector[y].taskCategory}</div>
           </div>
     `;
+    }
+    selectorCategoryIndex++;
+  } else {
+    document.getElementById('selector_Category_Dropdown').innerHTML = ``;
+    selectorCategoryIndex--;
   }
 };
 
@@ -279,43 +305,36 @@ function selectedCategory(category, color) {
   if (category == "New category") {
     changeInputCategory();
   }
-  if (category == "Sales") {
-    categorySelect = "Sales"
-    document.getElementById('selector_Category_Dropdown').innerHTML = ``
-    document.getElementById('selected_category').innerHTML = /*html*/`
-    <div style="display: flex; align-itmens: center; gap: 10px;"> 
-      ${category} 
-      <img src="./assets/img/${color}.png"> 
-    </div> 
-    <img src="assets/img/blue-dropdown-arrow.png" alt="">
-   `
-  }
-  if (category == "Backoffice") {
-    categorySelect = "Backoffice"
-    document.getElementById('selector_Category_Dropdown').innerHTML = ``
-    document.getElementById('selected_category').innerHTML = /*html*/`
-    <div style="display: flex; align-itmens: center; gap: 10px;"> 
-      ${category} 
-      <img src="./assets/img/${color}.png"> 
+  else {
+    taskCategoryFinaly = category;
+    taskCategoryColorFinaly = color;
+    document.getElementById("category_selector").innerHTML = /*html*/`
+    <div class="selector-header pointer" onclick="showTaskCategories()" id="selected_category">
+    <div class="selected">
+    ${category}
+    <img src="./assets/img/categoryColors/${color}.png" />
     </div>
-    <img src="assets/img/blue-dropdown-arrow.png" alt="">
-    `
+    <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt=""></div>
+    <div id="selector_Category_Dropdown">
+      <!-- Rendering selector content here -->
+    </div>`;
+
+
   }
 }
 
 
-
 // renders the Input field for New tasks
 function changeInputCategory() {
-  document.getElementById('selector_Category_Dropdown').classList.add('d-none');
+ 
   document.getElementById('category_selector').innerHTML = /*html*/`
   <div class="inputCategory">
     <div class="inputfield-new-category">
-       <input class="input border-bottom" id="newCategoryText" type="text" placeholder="New category name" required>
+       <input class="input border-bottom" id="input-new-category" type="text" placeholder="New category name" required>
        <div class="checkAndCrossIconsCategory">
           <img src="./assets/img/blue-cross.png" onclick="exitCategoryInput()" class="blue-cross pointer">
           <img src="./assets/img/devider.png">
-          <img src="./assets/img/blue-check.png" onclick="addCategory()" class="blue-check pointer">
+          <img src="./assets/img/blue-check.png" onclick="addCategory()" id="input-new-category" class="blue-check pointer">
        </div>
     </div>
   
@@ -330,6 +349,42 @@ function changeInputCategory() {
   <div id="mistakeReportCategory"></div>
   </div>`;
 }
+
+function exitCategoryInput() {
+  document.getElementById('category_selector').innerHTML = `
+  <div class="selectorHeader pointer" onclick="showTaskCategories()">Select task category <img class="selectorArrow" src="./assets/img/selectorArrow.png"></div>
+  <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">
+    <!-- Rendering selector content here -->
+  </div>`;
+  showTaskCategories();
+}
+
+function addCategoryColor(value) {
+  if (document.getElementById("input-new-category").value) {
+    categorySelectedColor = value;
+    document.getElementById("categoryColorCells").innerHTML = ``;
+    document.getElementById("input-new-category").innerHTML = /*html*/`
+    <img class="this-color" src="./assets/img/${categorySelectedColor}.png" alt="">
+    `;
+  }
+}
+
+
+
+// adds a individual category to the task
+function addCategory() {
+  newCategory = document.getElementById("input-new-category").value;
+  if (categorySelectedColor && newCategory) {
+    taskCategorySelector = JSON.parse(localStorage.getItem("taskCategory")) || [];
+    taskCategorySelector.push({
+      taskCategory: newCategory,
+      taskColor: categorySelectedColor,
+    });
+    localStorage.setItem("taskCategory", JSON.stringify(taskCategorySelector));
+    showTaskCategories()
+  }
+};
+
 
 // function for exting the categoryInput by clicking on the cross
 function exitCategoryInput() {
