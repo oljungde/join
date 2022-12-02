@@ -107,7 +107,7 @@ function generateTodoHTML(element, i) {
       </div>
 
       <div class=UserAndPriority>
-        <div class="user">${element['user']}</div>
+        <div style="background-color: ${element['usercolor']}" class="user">${element['user']}</div>
         <div class="priority"><img src="assets/img/prio-${element['priority']}.png" alt=""></div>
       </div>
     </div>`
