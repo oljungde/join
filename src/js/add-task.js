@@ -32,6 +32,7 @@ async function addToTask(i) {
     "dueDate": dueDate.value,
     "priority": prioritySelect,
     "user": userSelect,
+    'usercolor':concolor,
     'status': 'toDo'
   };
   currentUserTasks.push(currentTask);
@@ -205,9 +206,9 @@ function showUsers() {
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   for (let i = 0; i < activUserContact.length; i++) {
     document.getElementById('selector_user_dropdown').innerHTML += /*html*/`
-    <div onclick="selectedUser('${activUserContact[i].contactName}', ${activUserContact[i].contactletter})" class="selectorCell pointer">
+    <div onclick="selectedUser('${currentUser.contacts[i]['contactInitials']}', '${currentUser.contacts[i]['contactcolor']}', '${i}')" class="selectorCell pointer">
         <div>${activUserContact[i].contactName}</div>
-        <div><img id="user_select" src="./assets/img/userSelect-img.png"></div>
+        <div><img id="user_select${i}${currentUser.contacts[i]['contactInitials']}" src="./assets/img/userSelect-img.png"></div>
     </div>
     `;
     
@@ -226,29 +227,32 @@ function showUsers() {
 
 
 // getting selected User
-function selectedUser(user) {
-  if (user == "Invite new contact") {
-    document.getElementById('selector_user_dropdown').classList.add('d-none');
-    document.getElementById("user_selector").innerHTML = /*html*/`
-    <div class="inputUser">
-       <div class="inputfield-new-user">
-         <input class="input border-bottom" id="newUserText" type="text" placeholder="Contact email" required>
-         <div class="checkAndCrossIconsCategory">
-          <img src="./assets/img/blue-cross.png" onclick="exitCategorySelector()" class="blue-cross pointer">
-          <img src="./assets/img/devider.png">
-          <img src="./assets/img/blue-check.png" onclick="addCategory()" class="blue-check pointer">
-       </div>
-    </div>
-    `;
-  }
-  if (user == "Maximillian Vogel") {
-    userSelect = "Maximillian Vogel";
-    document.getElementById('user_select').src = 'assets/img/userSelect-selected.png';
-  }
-  if (user == "You") {
-    userSelect = "You";
-    document.getElementById('user_select').src = 'assets/img/userSelect-selected.png';
-  }
+function selectedUser(contactInitials, contactcolor, i) {
+  userSelect = contactInitials;
+  concolor = contactcolor;
+  document.getElementById('user_select' + i + contactInitials).src = 'assets/img/userSelect-selected.png';
+  // if (user == "Invite new contact") {
+  //   document.getElementById('selector_user_dropdown').classList.add('d-none');
+  //   document.getElementById("user_selector").innerHTML = /*html*/`
+  //   <div class="inputUser">
+  //      <div class="inputfield-new-user">
+  //        <input class="input border-bottom" id="newUserText" type="text" placeholder="Contact email" required>
+  //        <div class="checkAndCrossIconsCategory">
+  //         <img src="./assets/img/blue-cross.png" onclick="exitCategorySelector()" class="blue-cross pointer">
+  //         <img src="./assets/img/devider.png">
+  //         <img src="./assets/img/blue-check.png" onclick="addCategory()" class="blue-check pointer">
+  //      </div>
+  //   </div>
+  //   `;
+  // }
+  // if (user == "Maximillian Vogel") {
+  //   userSelect = "Maximillian Vogel";
+    
+  // }
+  // if (user == "You") {
+  //   userSelect = "You";
+  //   document.getElementById('user_select').src = 'assets/img/userSelect-selected.png';
+  // }
 }
 
 
