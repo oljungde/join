@@ -5,7 +5,7 @@ let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'A
  * checks if user is logged in 
  * execute "global" init function from script.js
  */
-async function initsummary() {
+async function initSummary() {
     checkUserIsLoggedIn();
     await init();
     showCurrentUserName();
