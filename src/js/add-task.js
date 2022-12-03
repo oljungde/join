@@ -53,6 +53,9 @@ async function addToTask(i) {
 //renders the AddTask Mask new by Seb 30.11!!
 function openAddTaskMask(i) {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
+  setTimeout(() => {
+    document.getElementById("AddTaskMaskContainer").classList.add("slideIn");
+  }, 10);
 
   let openaddtask = document.getElementById('AddTaskMaskContainer');
   openaddtask.innerHTML = openAddTaskHtml(i);
