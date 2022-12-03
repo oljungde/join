@@ -293,6 +293,8 @@ function showTaskCategories() {
       document.getElementById('selector_Category_Dropdown').innerHTML += `
     <div onclick="selectedCategory('${taskCategorySelector[y].taskCategory}','${taskCategorySelector[y].taskColor}')" class="selectorCell pointer">
             <div>${taskCategorySelector[y].taskCategory}</div>
+            <div class="selectorCellColor"><img src="./assets/img/${taskCategorySelector[y].taskColor}.png"/></div>
+            </div>
           </div>
     `;
     }
@@ -330,7 +332,7 @@ function selectedCategory(category, color) {
 
 // renders the Input field for New tasks
 function changeInputCategory() {
- 
+  document.getElementById('selector_Category_Dropdown').innerHTML = '';
   document.getElementById('category_selector').innerHTML = /*html*/`
   <div class="inputCategory">
     <div class="inputfield-new-category">
@@ -356,7 +358,7 @@ function changeInputCategory() {
 
 function exitCategoryInput() {
   document.getElementById('category_selector').innerHTML = `
-  <div class="selectorHeader pointer" onclick="showTaskCategories()">Select task category <img class="selectorArrow" src="./assets/img/selectorArrow.png"></div>
+  <div id="selected_category" class="selector-header pointer" onclick="showTaskCategories()">Select task category <img class="selectorArrow" src="./assets/img/selectorArrow.png"></div>
   <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">
     <!-- Rendering selector content here -->
   </div>`;
@@ -367,8 +369,8 @@ function addCategoryColor(value) {
   if (document.getElementById("input-new-category").value) {
     categorySelectedColor = value;
     document.getElementById("categoryColorCells").innerHTML = ``;
-    document.getElementById("input-new-category").innerHTML = /*html*/`
-    <img class="this-color" src="./assets/img/${categorySelectedColor}.png" alt="">
+    document.getElementById("categoryColorCells").innerHTML = /*html*/`
+    <img class="chosen-color" src="./assets/img/${categorySelectedColor}.png" alt="">
     `;
     document.getElementById('alert_message').innerHTML = '';
   } else {
@@ -388,20 +390,21 @@ function addCategory() {
       taskColor: categorySelectedColor,
     });
     localStorage.setItem("taskCategory", JSON.stringify(taskCategorySelector));
+    exitCategoryInput()
     showTaskCategories()
   } else {
     document.getElementById("alert_message").innerHTML = `Please select color!`;
   }
 };
 
-
+/*
 // function for exting the categoryInput by clicking on the cross
 function exitCategoryInput() {
   document.getElementById('category_selector').classList.add('d-none');
   document.getElementById('selector_Category_Dropdown').classList.remove('d-none');
 
 }
-
+*/
 
 // defines the Priority and shows the matching img
 function selectedPriority(i) {
