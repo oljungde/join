@@ -32,30 +32,53 @@ async function addToTask(i) {
     "dueDate": dueDate.value,
     "priority": prioritySelect,
     "user": userSelect,
-    'usercolor':concolor,
+    'usercolor': concolor,
     'status': 'toDo'
   };
   currentUserTasks.push(currentTask);
   await backend.setItem('users', JSON.stringify(users));
   if (i == 0) {
-    window.location.href = './board.html';
+
+    ShowTaskAddedPopUp()
+
+    setTimeout(() => {
+      window.location.href = './board.html';
+    }, 2000);
+
+
     updateHTML();
+
   }
-  else if (i == 1){
-    let close = document.getElementById('AddTaskMaskBg');
-    close.classList.add('d-none');
+  else if (i == 1) {
+
+    ShowTaskAddedPopUp()
+
+
+    setTimeout(() => {
+      let close = document.getElementById('AddTaskMaskBg');
+      close.classList.add('d-none');
+    }, 2000);
+
+
     updateHTML();
-    
+
   }
+}
+
+function ShowTaskAddedPopUp() {
+  document.getElementById('task_added_to_board_img').classList.remove('d-none');
+
+  setTimeout(() => {
+    document.getElementById('task_added_to_board_img').classList.add('d-none');
+  }, 1000);
+
 }
 
 
 //renders the AddTask Mask new by Seb 30.11!!
 function openAddTaskMask(i) {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
-  setTimeout(() => {
-    document.getElementById("AddTaskMaskContainer").classList.add("slideIn");
-  }, 10);
+  document.getElementById('AddTaskMaskContainer').classList.remove('d-none');
 
   let openaddtask = document.getElementById('AddTaskMaskContainer');
   openaddtask.innerHTML = openAddTaskHtml(i);
@@ -140,7 +163,7 @@ function openAddTaskHtml(i) {
 function showDropdown() {
   document.getElementById('selected_category').classList.toggle("option-wrapper");
   document.getElementById('selected_category').classList.toggle("d-none");
-  
+
 }
 
 //  subTasks in the AddTaskMask
@@ -214,7 +237,7 @@ function showUsers() {
         <div><img id="user_select${i}${currentUser.contacts[i]['contactInitials']}" src="./assets/img/userSelect-img.png"></div>
     </div>
     `;
-    
+
   }
   document.getElementById('selector_user_dropdown').innerHTML += /*html*/`  
   <div onclick="selectedUser()" class="selectorCell pointer" >
@@ -223,9 +246,9 @@ function showUsers() {
   </div>
   `;
 
-  
-    
-  
+
+
+
 }
 
 
@@ -250,7 +273,7 @@ function selectedUser(contactInitials, contactcolor, i) {
   // }
   // if (user == "Maximillian Vogel") {
   //   userSelect = "Maximillian Vogel";
-    
+
   // }
   // if (user == "You") {
   //   userSelect = "You";
