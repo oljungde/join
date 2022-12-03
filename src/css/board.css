@@ -767,6 +767,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     position: relative;
 }
 
+.detail-category{
+    display: flex;
+    width: 200px;
+}
+
 .detail-title {
     margin: 0;
     font-style: normal;

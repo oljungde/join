@@ -90,7 +90,7 @@ function updateDoneStatus() {
 
 
 // renders the Task-Card on the Board
-function generateTodoHTML(element, i) {
+function generateTodoHTML(element) {
     return /*html*/`
     <div onclick="showDetailWindow(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">   
       <div class="${element['category']['TaskColor']}">${element['category']['Category']}</div>
