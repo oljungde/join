@@ -259,7 +259,7 @@ h1 {
     align-items: center;
     border-radius: 5px;
     padding: 5px;
-    
+
     color: white;
 }
 
@@ -270,7 +270,7 @@ h1 {
     align-items: center;
     border-radius: 5px;
     padding: 5px;
-    
+
     color: white;
 }
 
@@ -281,7 +281,7 @@ h1 {
     align-items: center;
     border-radius: 8px;
     padding: 5px;
-    
+
     color: white;
 }
 
@@ -292,7 +292,7 @@ h1 {
     align-items: center;
     border-radius: 8px;
     padding: 5px;
-    
+
     color: white;
 }
 
@@ -303,7 +303,7 @@ h1 {
     align-items: center;
     border-radius: 8px;
     padding: 5px;
-    
+
     color: white;
 }
 
@@ -314,7 +314,7 @@ h1 {
     align-items: center;
     border-radius: 8px;
     padding: 5px;
-    
+
     color: white;
 }
 
@@ -325,7 +325,7 @@ h1 {
     align-items: center;
     border-radius: 8px;
     padding: 5px;
-    
+
     color: white;
 }
 
@@ -361,9 +361,9 @@ h1 {
     z-index: 100;
 }
 
-.slideIn{
+.slideIn {
     transform: translateX(0) !important;
-    transition: all 225ms ease-in-out !important; 
+    transition: all 225ms ease-in-out !important;
 }
 
 .animationFadeInRight {
@@ -615,7 +615,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 18px 21px;
 }
 
-.chosen-color{
+.chosen-color {
     position: relative;
     bottom: 53px;
     left: -20px;

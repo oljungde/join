@@ -1,14 +1,17 @@
+let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 /**
  * init function will execute wenn page summary.html is loading
  * checks if user is logged in 
  * execute "global" init function from script.js
  */
-async function initsummary() {
+async function initSummary() {
     checkUserIsLoggedIn();
     await init();
     showCurrentUserName();
     greetingUser();
     showNumberOfTasksUrgent();
+    showNextDueDate();
     showNumberOfTasksToDo();
     showNumberOfTasks();
     showNumberOfTasksInProgress();
@@ -45,13 +48,9 @@ function greetingUser() {
 }
 
 
-function showNumberOfTasks() {
-    let numberOfTasksContainer = document.getElementById('number_of_tasks');
-    let numberOfTasks = currentUser.tasks.length;
-    numberOfTasksContainer.innerHTML = numberOfTasks;
-}
-
-
+/**
+ * shows the number of tasks with the prority urgent on summary.html
+ */
 function showNumberOfTasksUrgent() {
     let numberOfTasksUrgentContainer = document.getElementById('number_of_tasks_urgent');
     let numberOfTasksUrgent = 0;
@@ -65,6 +64,28 @@ function showNumberOfTasksUrgent() {
 }
 
 
+/**
+ * shows the date when the next task is due that does not have the status done
+ */
+function showNextDueDate() {
+    let upcomingDeadline = document.getElementById('upcoming_deadline');
+    let tasksNotDone = currentUser.tasks.filter((tasksStatus) => {
+        return tasksStatus.status != 'done';
+    });
+    let dueDates = tasksNotDone.map((dueDates) => {
+        return dueDates.dueDate;
+    });
+    dueDates = dueDates.sort();
+    let dueDate = new Date(dueDates[0]);
+    let month = months[dueDate.getMonth()];
+    let nextDueDate = month + ' ' + dueDate.getDate() + ', ' + dueDate.getFullYear();
+    upcomingDeadline.innerHTML = nextDueDate;
+}
+
+
+/**
+ * shows the number of tasks with status todo
+ */
 function showNumberOfTasksToDo() {
     let numberOfTasksToDoContainer = document.getElementById('number_of_tasks_todo');
     let numberOfTasksToDo = 0;
@@ -78,6 +99,19 @@ function showNumberOfTasksToDo() {
 }
 
 
+/**
+ * shows the number of all tasks incl. tasks are done
+ */
+function showNumberOfTasks() {
+    let numberOfTasksContainer = document.getElementById('number_of_tasks');
+    let numberOfTasks = currentUser.tasks.length;
+    numberOfTasksContainer.innerHTML = numberOfTasks;
+}
+
+
+/**
+ * shows the number of tasks with the status in progress
+ */
 function showNumberOfTasksInProgress() {
     let numberOfTasksInProgressContainer = document.getElementById('number_of_tasks_in_progress');
     let numberOfTasksInProgress = 0;
@@ -91,6 +125,9 @@ function showNumberOfTasksInProgress() {
 }
 
 
+/**
+ * shows the number of tasks with the status awaiting feedback
+ */
 function showNumberOfTasksAwaitingFeedback() {
     let numberOfTasksAwaitingFeedbackContainer = document.getElementById('number_of_tasks_awaiting_feedback');
     let numberOfTasksAwaitingFeedback = 0;
@@ -104,6 +141,9 @@ function showNumberOfTasksAwaitingFeedback() {
 }
 
 
+/**
+ * shows the number of tasks with the status done
+ */
 function showNumberOfTasksDone() {
     let numberOfTasksAwaitingFeedbackContainer = document.getElementById('number_of_tasks_done');
     let numberOfTasksDone = 0;
