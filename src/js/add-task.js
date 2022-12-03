@@ -268,7 +268,7 @@ function exitCategorySelector() {
 // renders the Drop Down Menu for the categories
 function showTaskCategories() {
   let staticCategorys = [
-    { taskCategory: 'New category', taskColor: 'grayCategory', cagtegoryID: 0 },
+    { taskCategory: 'New category', taskColor: 'lightblueCategory', cagtegoryID: 0 },
     { taskCategory: 'Sales', taskColor: 'purpleCategory', cagtegoryID: 1 },
     { taskCategory: 'Backoffice', taskColor: 'mintCategory', cagtegoryID: 2 },
   ];
@@ -350,7 +350,7 @@ function changeInputCategory() {
   <img onclick="addCategoryColor('purpleCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/purpleCategory.png">
   <img onclick="addCategoryColor('blueCategory')" class="categoryColor pointer" src="./assets/img/blueCategory.png">
   </div>
-  <div id="mistakeReportCategory"></div>
+  <div id="alert_message"></div>
   </div>`;
 }
 
@@ -370,6 +370,9 @@ function addCategoryColor(value) {
     document.getElementById("input-new-category").innerHTML = /*html*/`
     <img class="this-color" src="./assets/img/${categorySelectedColor}.png" alt="">
     `;
+    document.getElementById('alert_message').innerHTML = '';
+  } else {
+    document.getElementById('alert_message').innerHTML = `Please enter category first!`;
   }
 }
 
@@ -386,6 +389,8 @@ function addCategory() {
     });
     localStorage.setItem("taskCategory", JSON.stringify(taskCategorySelector));
     showTaskCategories()
+  } else {
+    document.getElementById("alert_message").innerHTML = `Please select color!`;
   }
 };
 
