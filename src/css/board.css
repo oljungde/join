@@ -361,10 +361,6 @@ h1 {
     z-index: 100;
 }
 
-.slideIn {
-    transform: translateX(0) !important;
-    transition: all 225ms ease-in-out !important;
-}
 
 .animationFadeInRight {
     animation: fadeInright 1s ease 0s 1 normal forwards;
@@ -387,6 +383,33 @@ h1 {
       transform: translateX(0);
     }
   }
+
+  
+.animationFadeInBottom {
+    animation: fadeInright 1s ease 0s 1 normal forwards;
+}
+  
+  @keyframes fadeInBottom {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  
+    0% {
+      transform: translateY(100%);
+    }
+  
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+
+
+
 
 .AddTaskMaskContainer {
     width: 518px;
