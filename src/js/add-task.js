@@ -39,22 +39,31 @@ async function addToTask(i) {
   await backend.setItem('users', JSON.stringify(users));
   if (i == 0) {
     window.location.href = './board.html';
+    ShowTaskAddedPopUp()
     updateHTML();
   }
   else if (i == 1){
     let close = document.getElementById('AddTaskMaskBg');
     close.classList.add('d-none');
+    ShowTaskAddedPopUp()
     updateHTML();
     
   }
+}
+
+function ShowTaskAddedPopUp(){
+  document.getElementById('AddTaskMaskContainer').classList.remove('d-none');
 }
 
 
 //renders the AddTask Mask new by Seb 30.11!!
 function openAddTaskMask(i) {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
+  document.getElementById('AddTaskMaskContainer').classList.remove('d-none');
+ 
+
   setTimeout(() => {
-    document.getElementById("AddTaskMaskContainer").classList.add("slideIn");
+    document.getElementById("AddTaskMaskContainer").classList.add("animationFadeIn");
   }, 10);
 
   let openaddtask = document.getElementById('AddTaskMaskContainer');

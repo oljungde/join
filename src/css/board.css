@@ -366,6 +366,28 @@ h1 {
     transition: all 225ms ease-in-out !important; 
 }
 
+.animationFadeInRight {
+    animation: fadeInright 1s ease 0s 1 normal forwards;
+}
+  
+  @keyframes fadeInright {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  
+    0% {
+      transform: translateX(100%);
+    }
+  
+    100% {
+      transform: translateX(0);
+    }
+  }
+
 .AddTaskMaskContainer {
     width: 518px;
     overflow-y: scroll;
