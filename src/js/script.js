@@ -15,7 +15,6 @@ async function init() {
     await downloadFromServer();
     users = await JSON.parse(backend.getItem('users')) || [];
     getCurrentUser();
-    // allTasks = await JSON.parse(backend.getItem('allTasks')) || [];
 }
 
 
