@@ -1,5 +1,6 @@
 let currentDraggedElement;
 let alreadyEmpty = true;
+let isFilterResult = false;
 
 //Update the board
 async function initBoard() {
@@ -316,7 +317,8 @@ function searchTasks() {
 */
 
 function searchTasks() {
-    let search = document.getElementById('search_input');
+    let search = document.getElementById('search_input').value;
+    let searchTerm = search.toLowerCase();
     let todo = document.getElementById('toDo');
     let inProgress = document.getElementById('inProgress');
     let awaitingFeedback = document.getElementById('awaitingFeedback');
@@ -331,22 +333,20 @@ function searchTasks() {
     } else {
         alreadyEmpty = true;
         for (let i = 0; i < currentUserTasks.length; i++) {
-            if (currentUserTasks[i]['title'].includes(search.value)) {
+            let currentTaskTitle = currentUserTasks[i].title.toLowerCase();
+            let currentTaskDescription = currentUserTasks[i].description.toLowerCase();
+            if (currentTaskTitle.includes(searchTerm) || currentTaskDescription.includes(searchTerm)) {
                 if (currentUserTasks[i]['status'] == 'toDo') {
-                    todo.innerHTML += updateToDoStatus(i);
-
+                    updateToDoStatus();
                 }
                 if (currentUserTasks[i]['status'] == 'inProgress') {
-                    inProgress.innerHTML += updateInProgressStatus(i);
-
+                    updateInProgressStatus();
                 }
                 if (currentUserTasks[i]['status'] == 'awaitingFeedback') {
-                    awaitingFeedback.innerHTML += updateAwaitingFeedbackStatus(i);
-
+                    updateAwaitingFeedbackStatus();
                 }
                 if (currentUserTasks[i]['status'] == 'done') {
-                    done.innerHTML += updateDoneStatus(i);
-
+                    updateDoneStatus();
                 }
             }
         }
