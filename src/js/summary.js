@@ -8,6 +8,12 @@ async function initsummary() {
     await init();
     showCurrentUserName();
     greetingUser();
+    showNumberOfTasksUrgent();
+    showNumberOfTasksToDo();
+    showNumberOfTasks();
+    showNumberOfTasksInProgress();
+    showNumberOfTasksAwaitingFeedback();
+    showNumberOfTasksDone();
 }
 
 
@@ -36,4 +42,76 @@ function greetingUser() {
         welcomeMessage = welcomeTimes[2];
     }
     userGreetingBox.innerHTML = welcomeMessage;
+}
+
+
+function showNumberOfTasks() {
+    let numberOfTasksContainer = document.getElementById('number_of_tasks');
+    let numberOfTasks = currentUser.tasks.length;
+    numberOfTasksContainer.innerHTML = numberOfTasks;
+}
+
+
+function showNumberOfTasksUrgent() {
+    let numberOfTasksUrgentContainer = document.getElementById('number_of_tasks_urgent');
+    let numberOfTasksUrgent = 0;
+    for (let i = 0; i < currentUser.tasks.length; i++) {
+        let taskStatus = currentUser.tasks[i].priority;
+        if (taskStatus == 'urgent') {
+            numberOfTasksUrgent = numberOfTasksUrgent + 1;
+        }
+    }
+    numberOfTasksUrgentContainer.innerHTML = numberOfTasksUrgent;
+}
+
+
+function showNumberOfTasksToDo() {
+    let numberOfTasksToDoContainer = document.getElementById('number_of_tasks_todo');
+    let numberOfTasksToDo = 0;
+    for (let i = 0; i < currentUser.tasks.length; i++) {
+        let taskStatus = currentUser.tasks[i].status;
+        if (taskStatus == 'toDo') {
+            numberOfTasksToDo = numberOfTasksToDo + 1;
+        }
+    }
+    numberOfTasksToDoContainer.innerHTML = numberOfTasksToDo;
+}
+
+
+function showNumberOfTasksInProgress() {
+    let numberOfTasksInProgressContainer = document.getElementById('number_of_tasks_in_progress');
+    let numberOfTasksInProgress = 0;
+    for (let i = 0; i < currentUser.tasks.length; i++) {
+        let taskStatus = currentUser.tasks[i].status;
+        if (taskStatus == 'inProgress') {
+            numberOfTasksInProgress = numberOfTasksInProgress + 1;
+        }
+    }
+    numberOfTasksInProgressContainer.innerHTML = numberOfTasksInProgress;
+}
+
+
+function showNumberOfTasksAwaitingFeedback() {
+    let numberOfTasksAwaitingFeedbackContainer = document.getElementById('number_of_tasks_awaiting_feedback');
+    let numberOfTasksAwaitingFeedback = 0;
+    for (let i = 0; i < currentUser.tasks.length; i++) {
+        let taskStatus = currentUser.tasks[i].status;
+        if (taskStatus == 'awaitingFeedback') {
+            numberOfTasksAwaitingFeedback = numberOfTasksAwaitingFeedback + 1;
+        }
+    }
+    numberOfTasksAwaitingFeedbackContainer.innerHTML = numberOfTasksAwaitingFeedback;
+}
+
+
+function showNumberOfTasksDone() {
+    let numberOfTasksAwaitingFeedbackContainer = document.getElementById('number_of_tasks_done');
+    let numberOfTasksDone = 0;
+    for (let i = 0; i < currentUser.tasks.length; i++) {
+        let taskStatus = currentUser.tasks[i].status;
+        if (taskStatus == 'done') {
+            numberOfTasksDone = numberOfTasksDone + 1;
+        }
+    }
+    numberOfTasksAwaitingFeedbackContainer.innerHTML = numberOfTasksDone;
 }
