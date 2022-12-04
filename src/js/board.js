@@ -2,14 +2,17 @@ let currentDraggedElement;
 let alreadyEmpty = true;
 let filteredTasks = [];
 
-//Update the board
+
+/**
+ * init board function gets the global init function from script.js, checks if user is logged in
+ * gets the tasks from current user, init the rendering of the tasks
+ */
 async function initBoard() {
     await init();
     checkUserIsLoggedIn();
     getTasksOfCurrentUser();
     identifyId();
     handleFilterTasks();
-    // updateHTML();
 }
 
 
@@ -22,6 +25,9 @@ function getTasksOfCurrentUser() {
 }
 
 
+/**
+ * checks if search input is empty or not and filter the tasks, and calls the function to get the tasks by thier status
+ */
 function handleFilterTasks() {
     let search = document.getElementById('search_input').value;
     let searchTerm = search.toLowerCase();
@@ -37,6 +43,9 @@ function handleFilterTasks() {
 }
 
 
+/**
+ * filter all Tasks by thier status and created new arrays for each status, calls reset board function and calls function to render the board
+ */
 function filterTasksByStatus() {
     let statusTodo = filteredTasks.filter(task => task.status == 'toDo');
     let statusInProgress = filteredTasks.filter(task => task.status == 'inProgress');
@@ -47,6 +56,9 @@ function filterTasksByStatus() {
 }
 
 
+/**
+ * reset the board and deletes all tasks from the html code
+ */
 function resetBoard() {
     document.getElementById('toDo').innerHTML = '';
     document.getElementById('inProgress').innerHTML = '';
@@ -55,6 +67,13 @@ function resetBoard() {
 }
 
 
+/**
+ * renders all tasks by status
+ * @param {string} toDo all tasks with status todo
+ * @param {string} inProgress all tasks with status inProgress
+ * @param {string} awaitingFeedback all tasks with status awaitingFeedback
+ * @param {string} done all tasks with status done
+ */
 function renderBoard(toDo, inProgress, awaitingFeedback, done) {
     renderTasks(toDo);
     renderTasks(inProgress);
@@ -64,6 +83,10 @@ function renderBoard(toDo, inProgress, awaitingFeedback, done) {
 }
 
 
+/**
+ * renders a single task    
+ * @param {string} status of the single task
+ */
 function renderTasks(status) {
     for (let index = 0; index < status.length; index++) {
         const element = status[index];
@@ -71,17 +94,6 @@ function renderTasks(status) {
         document.getElementById(taskStatus).innerHTML += generateTodoHTML(element);
     }
 }
-
-
-
-// Updates the individual Areas of the board
-// function updateHTML() {
-//     updateToDoStatus();
-//     updateInProgressStatus();
-//     updateAwaitingFeedbackStatus();
-//     updateDoneStatus();
-//     updateProgressBar();
-// }
 
 
 // Update the board
@@ -92,55 +104,6 @@ function identifyId() {
         j++;
     }
 }
-
-
-/**
- * get the tasks with status 'toDo' from current user and render it
- */
-// function updateToDoStatus() {
-//     let toDo = currentUserTasks.filter(t => t['status'] == 'toDo');
-//     document.getElementById('toDo').innerHTML = '';
-//     for (let index = 0; index < toDo.length; index++) {
-//         const element = toDo[index];
-//         document.getElementById('toDo').innerHTML += generateTodoHTML(element);
-//     }
-// }
-
-
-// //render the InProgress Area
-// function updateInProgressStatus() {
-//     let inProgress = currentUserTasks.filter(p => p['status'] == 'inProgress');
-//     document.getElementById('inProgress').innerHTML = '';
-
-//     for (let index = 0; index < inProgress.length; index++) {
-//         const element = inProgress[index];
-//         document.getElementById('inProgress').innerHTML += generateTodoHTML(element);
-//     }
-// }
-
-
-// //render the updateAwaiting Area
-// function updateAwaitingFeedbackStatus() {
-//     let awaitingFeedback = currentUserTasks.filter(a => a['status'] == 'awaitingFeedback');
-//     document.getElementById('awaitingFeedback').innerHTML = '';
-
-//     for (let index = 0; index < awaitingFeedback.length; index++) {
-//         const element = awaitingFeedback[index];
-//         document.getElementById('awaitingFeedback').innerHTML += generateTodoHTML(element);
-//     }
-// }
-
-
-// //render the Done Area
-// function updateDoneStatus() {
-//     let done = currentUserTasks.filter(d => d['status'] == 'done');
-//     document.getElementById('done').innerHTML = '';
-
-//     for (let index = 0; index < done.length; index++) {
-//         const element = done[index];
-//         document.getElementById('done').innerHTML += generateTodoHTML(element);
-//     }
-// }
 
 
 // renders the Task-Card on the Board
@@ -169,7 +132,7 @@ function generateTodoHTML(element) {
 
 
 /**
- * update the progressbar in a single task
+ * update the progressbar in all rendered tasks
  */
 function updateProgressBar() {
     for (i = 0; i < filteredTasks.length; i++) {
@@ -215,7 +178,6 @@ async function moveTo(e, status) {
     currentUserTasks[currentDraggedElement]['status'] = status;
     e.target.classList.remove('drag-over');
     filterTasksByStatus();
-    // updateHTML();
     console.log(currentUserTasks);
     backend.setItem('users', JSON.stringify(users));
 }
@@ -233,8 +195,6 @@ function dragOver(e) {
 function dragLeave(e) {
     e.target.classList.remove('drag-over');
 }
-
-
 
 
 // Generates the Detail Window
@@ -356,47 +316,9 @@ function changeTask() {
     `
 }
 
-// function searchTasks() {
-//     let search = document.getElementById('search_input').value;
-//     let searchTerm = search.toLowerCase();
-//     let todo = document.getElementById('toDo');
-//     let inProgress = document.getElementById('inProgress');
-//     let awaitingFeedback = document.getElementById('awaitingFeedback');
-//     let done = document.getElementById('done');
-//     todo.innerHTML = ``;
-//     inProgress.innerHTML = ``;
-//     awaitingFeedback.innerHTML = ``;
-//     done.innerHTML = ``;
-//     if (search.value == '' && alreadyEmpty == true) {
-//         updateHTML();
-//         alreadyEmpty = false;
-//     } else {
-//         alreadyEmpty = true;
-//         for (let i = 0; i < currentUserTasks.length; i++) {
-//             let currentTaskTitle = currentUserTasks[i].title.toLowerCase();
-//             let currentTaskDescription = currentUserTasks[i].description.toLowerCase();
-//             if (currentTaskTitle.includes(searchTerm) || currentTaskDescription.includes(searchTerm)) {
-//                 if (currentUserTasks[i]['status'] == 'toDo') {
-//                     updateToDoStatus();
-//                 }
-//                 if (currentUserTasks[i]['status'] == 'inProgress') {
-//                     updateInProgressStatus();
-//                 }
-//                 if (currentUserTasks[i]['status'] == 'awaitingFeedback') {
-//                     updateAwaitingFeedbackStatus();
-//                 }
-//                 if (currentUserTasks[i]['status'] == 'done') {
-//                     updateDoneStatus();
-//                 }
-//             }
-//         }
-//     }
-// }
-
 
 //Closes the Detail Window
 function closeDetailTask() {
     document.getElementById('detail-container').classList.add('d-none');
     filterTasksByStatus();
-    // updateHTML()
 }

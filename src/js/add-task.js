@@ -46,7 +46,6 @@ async function addToTask(i) {
     }, 2000);
 
     filterTasksByStatus();
-    // updateHTML();
 
   }
   else if (i == 1) {
@@ -60,7 +59,6 @@ async function addToTask(i) {
     }, 2000);
 
     filterTasksByStatus();
-    // updateHTML();
 
   }
 }
