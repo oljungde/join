@@ -214,7 +214,8 @@ function allowDrop(ev) {
 async function moveTo(e, status) {
     currentUserTasks[currentDraggedElement]['status'] = status;
     e.target.classList.remove('drag-over');
-    updateHTML();
+    filterTasksByStatus();
+    // updateHTML();
     console.log(currentUserTasks);
     backend.setItem('users', JSON.stringify(users));
 }
@@ -240,7 +241,7 @@ function dragLeave(e) {
 function showDetailWindow(id) {
     document.getElementById('detail-container').classList.remove('d-none');
 
-    let detailTodo = currentUserTasks[id];
+    let detailTodo = filteredTasks[id];
     let category = detailTodo['category']['Category'];
     let categoryColor = detailTodo['category']['TaskColor'];
     let title = detailTodo['title'];
@@ -249,28 +250,28 @@ function showDetailWindow(id) {
     let priority = detailTodo['priority'];
     let user = detailTodo['user'];
 
-    let toDo = currentUserTasks.filter(t => t['status'] == 'toDo');
+    let toDo = filteredTasks.filter(t => t['status'] == 'toDo');
     document.getElementById('toDo').innerHTML = '';
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
         document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority)
     }
 
-    let inProgress = currentUserTasks.filter(t => t['status'] == 'inProgress');
+    let inProgress = filteredTasks.filter(t => t['status'] == 'inProgress');
     document.getElementById('inProgress').innerHTML = '';
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
         document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority)
     }
 
-    let awaitingFeedback = currentUserTasks.filter(t => t['status'] == 'awaitingFeedback');
+    let awaitingFeedback = filteredTasks.filter(t => t['status'] == 'awaitingFeedback');
     document.getElementById('awaitingFeedback').innerHTML = '';
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
         document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority)
     }
 
-    let done = currentUserTasks.filter(t => t['status'] == 'done');
+    let done = filteredTasks.filter(t => t['status'] == 'done');
     document.getElementById('done').innerHTML = '';
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
@@ -396,5 +397,6 @@ function changeTask() {
 //Closes the Detail Window
 function closeDetailTask() {
     document.getElementById('detail-container').classList.add('d-none');
-    updateHTML()
+    filterTasksByStatus();
+    // updateHTML()
 }

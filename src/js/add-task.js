@@ -45,8 +45,8 @@ async function addToTask(i) {
       window.location.href = './board.html';
     }, 2000);
 
-
-    updateHTML();
+    filterTasksByStatus();
+    // updateHTML();
 
   }
   else if (i == 1) {
@@ -59,8 +59,8 @@ async function addToTask(i) {
       close.classList.add('d-none');
     }, 2000);
 
-
-    updateHTML();
+    filterTasksByStatus();
+    // updateHTML();
 
   }
 }
