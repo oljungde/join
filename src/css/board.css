@@ -1,94 +1,8 @@
-/* body {
-    margin: 0;
-    font-style: normal;
-}
-
-/* Style for the Header   */
-
-/* .Mainheader {
-    height: 100px;
-    background-color: #4589ff;
-    ;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-    padding-left: 39px;
-    padding-right: 39px;
-}
-
-.rightContainer {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    color: white;
-}
-
-.rightContainer h2 {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 19px;
-    line-height: 120%;
-}
-
-.Main-Container {
-    display: flex;
-} */
-
-
-/* Style for the Sidenav-link  */
-
-/* .sidebar {
-    background-color: white;
-    height: 100vh;
-    width: 15%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-}
-
-.sidebar-navigation {
-    padding-top: 66px;
-}
-
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
-    color: black;
-}
-
-.nav-link img {
-    width: 22px;
-    height: 22px;
-    padding-left: 20px;
-}
-
-.nav-link p {
-    padding-right: 20px;
-}
-
-.legalNotice {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
-    color: black;
-    padding-bottom: 112px;
-}  */
-
-
 /* Style for the Mainboard  */
-
 .main-content {
     height: calc(100vh - 100px);
     width: calc(100vw - 230px);
 }
-
 
 h1 {
     font-weight: 700;
@@ -159,7 +73,6 @@ h1 {
     border: dashed 2px lightgray;
 }
 
-
 .drag-area-top-Section {
     display: flex;
     flex-direction: row;
@@ -179,14 +92,12 @@ h1 {
     cursor: pointer;
 }
 
-
 .plusButton {
     width: 30px;
     height: 30px;
 }
 
 /* Style for the Task-Cards  */
-
 .todo {
     display: flex;
     flex-direction: column;
@@ -194,7 +105,6 @@ h1 {
     align-items: flex-start;
     padding: 18px 19px;
     gap: 10px;
-
     width: 250px;
     background-color: white;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
@@ -204,7 +114,6 @@ h1 {
     flex-grow: 0;
     margin-top: 20px;
 }
-
 
 .todo:hover {
     cursor: grab;
@@ -355,11 +264,7 @@ h1 {
     color: white;
 }
 
-
-
-
 /* Style for the onclick Add Task Mask */
-
 .AddTaskMaskBg {
     position: absolute;
     top: 0;
@@ -372,7 +277,6 @@ h1 {
     align-items: center;
     z-index: 100;
 }
-
 
 .animationFadeInRight {
     animation: fadeInright 1s ease 0s 1 normal forwards;
@@ -396,7 +300,6 @@ h1 {
     }
 }
 
-
 .animationFadeInBottom {
     animation: fadeInright 1s ease 0s 1 normal forwards;
 }
@@ -418,10 +321,6 @@ h1 {
         transform: translateY(0);
     }
 }
-
-
-
-
 
 .AddTaskMaskContainer {
     width: 518px;
@@ -483,7 +382,6 @@ h1 {
     gap: 10px;
     align-items: center;
 }
-
 
 .addTask-top {
     display: flex;
@@ -566,8 +464,6 @@ h1 {
     color: white;
 }
 
-
-
 .input-title {
     display: flex;
     align-items: center;
@@ -576,7 +472,6 @@ h1 {
     border-bottom: 1px solid #D1D1D1;
     padding: 13px 21px;
 }
-
 
 .input {
     display: flex;
@@ -599,11 +494,9 @@ h1 {
     line-height: 120%;
 }
 
-
 .input-title input:focus {
     outline: none;
 }
-
 
 .input-title select {
     width: 420px;
@@ -632,7 +525,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
-
 .input-date input {
     border: none;
     font-style: normal;
@@ -641,7 +533,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height: 120%;
     color: #D1D1D1;
 }
-
 
 .inputfield-new-category {
     display: flex;
@@ -656,7 +547,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     left: -20px;
 }
 
-
 .input-subtasks {
     display: flex;
     align-items: center;
@@ -667,7 +557,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 13px 21px;
 
 }
-
 
 .input-subtasks input {
     border: none;
@@ -707,7 +596,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-
 .selector-header {
     display: flex;
     align-items: center;
@@ -725,7 +613,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .selector-header:hover {
     cursor: pointer;
 }
-
 
 .checkAndCrossIconsCategory {
     display: flex;
@@ -749,10 +636,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
-
-
 /* Style for the onclick Detail Container */
-
 .DetailContainer {
     z-index: 100;
     position: absolute;
@@ -854,8 +738,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     right: 42px;
     top: 42px;
 }
-
-
 
 .CloseCrossDetailTask:hover {
     cursor: pointer;

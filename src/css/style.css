@@ -86,14 +86,10 @@ a:hover {
     cursor: pointer;
 }
 
-
-
 /* Style for the Header   */
-
 .Mainheader {
     height: 100px;
     background-color: #4589ff;
-    ;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -148,9 +144,7 @@ a:hover {
     transform: scale(1);
 }
 
-
 /* Style for the Sidenav-link  */
-
 .sidebar {
     background-color: white;
     height: calc(100vh - 100px);
@@ -167,8 +161,6 @@ a:hover {
     color: #42526e;
 }
 
-
-
 .sidebar-navigation {
     padding-top: 66px;
     padding-left: 23px;
@@ -178,7 +170,6 @@ a:hover {
     font-size: 16px;
     line-height: 120%;
 }
-
 
 .nav-link {
     display: flex;
