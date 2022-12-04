@@ -39,11 +39,9 @@ async function addToTask(i) {
   await backend.setItem('users', JSON.stringify(users));
   if (i == 0) {
 
-    ShowTaskAddedPopUp()
-
-    setTimeout(() => {
+    
       window.location.href = './board.html';
-    }, 2000);
+    
 
     filterTasksByStatus();
 
