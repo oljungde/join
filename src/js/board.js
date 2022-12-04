@@ -9,6 +9,7 @@ let filteredTasks = [];
  */
 async function initBoard() {
     await init();
+    setNavLinkActive();
     checkUserIsLoggedIn();
     getTasksOfCurrentUser();
     identifyId();

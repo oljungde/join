@@ -12,7 +12,6 @@ let subTasks = [];;
  */
 async function init() {
     await includeHTML();
-    setNavLinkActive();
     await downloadFromServer();
     users = await JSON.parse(backend.getItem('users')) || [];
     getCurrentUser();
