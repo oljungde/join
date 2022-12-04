@@ -12,6 +12,7 @@ let subTasks = [];;
  */
 async function init() {
     await includeHTML();
+    setNavLinkActive();
     await downloadFromServer();
     users = await JSON.parse(backend.getItem('users')) || [];
     getCurrentUser();
@@ -84,6 +85,18 @@ function showMenu() {
 
 
 /**
+ * show aktive page in sidebar navigation
+ */
+function setNavLinkActive() {
+    let navLinks = document.getElementById('sidebar-navigation').getElementsByTagName('a');
+    for (let i = 0; i < navLinks.length; i++)
+        if (document.location.href.indexOf(navLinks[i].href) >= 0) {
+            navLinks[i].classList.add('active');
+        }
+}
+
+
+/**
  * hides the popup Menu to log out an change the user image
  */
 function hideMenu() {
@@ -110,27 +123,6 @@ async function includeHTML() {
         } else {
             element.innerHTML = 'Page not found';
         }
-    }
-}
-
-
-// defining which link was clicked and giving the function BgSelectedNav the matching id
-function changeNavbarBgColor(bar) {
-
-    if (bar == 1) {
-        BgSelectedNav('navigation_summary');
-    }
-    if (bar == 2) {
-        BgSelectedNav('navigation_board');
-    }
-    if (bar == 3) {
-        BgSelectedNav('navigation_addTask');
-    }
-    if (bar == 4) {
-        BgSelectedNav('navigation_contacts');
-    }
-    if (bar == 5) {
-        BgSelectedNav('navigation_legal');
     }
 }
 

@@ -36,9 +36,9 @@
 } */
 
 
-/* Style for the SideBar  */
+/* Style for the Sidenav-link  */
 
-/* .sideBar {
+/* .sidebar {
     background-color: white;
     height: 100vh;
     width: 15%;
@@ -49,12 +49,12 @@
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
 }
 
-.sideNav {
+.sidebar-navigation {
     padding-top: 66px;
 }
 
 
-.Bar {
+.nav-link {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -62,13 +62,13 @@
     color: black;
 }
 
-.Bar img {
+.nav-link img {
     width: 22px;
     height: 22px;
     padding-left: 20px;
 }
 
-.Bar p {
+.nav-link p {
     padding-right: 20px;
 }
 
@@ -84,9 +84,9 @@
 
 /* Style for the Mainboard  */
 
-.MainBoard {
-    height: 100vh;
-    width: 85%;
+.main-content {
+    height: calc(100vh - 100px);
+    width: calc(100vw - 230px);
 }
 
 
@@ -345,7 +345,7 @@ h1 {
     scale: 0;
 }
 
-.user{
+.user {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -377,47 +377,47 @@ h1 {
 .animationFadeInRight {
     animation: fadeInright 1s ease 0s 1 normal forwards;
 }
-  
-  @keyframes fadeInright {
-    from {
-      opacity: 0;
-    }
-  
-    to {
-      opacity: 1;
-    }
-  
-    0% {
-      transform: translateX(100%);
-    }
-  
-    100% {
-      transform: translateX(0);
-    }
-  }
 
-  
+@keyframes fadeInright {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
 .animationFadeInBottom {
     animation: fadeInright 1s ease 0s 1 normal forwards;
 }
-  
-  @keyframes fadeInBottom {
+
+@keyframes fadeInBottom {
     from {
-      opacity: 0;
+        opacity: 0;
     }
-  
+
     to {
-      opacity: 1;
+        opacity: 1;
     }
-  
+
     0% {
-      transform: translateY(100%);
+        transform: translateY(100%);
     }
-  
+
     100% {
-      transform: translateY(0);
+        transform: translateY(0);
     }
-  }
+}
 
 
 
@@ -779,7 +779,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     position: relative;
 }
 
-.detail-category{
+.detail-category {
     width: 200px;
 }
 
