@@ -21,7 +21,6 @@
 
 <body onload="initAddTask()">
 
-
     <div class="Mainheader" w3-include-html="./assets/templates/header.html"></div>
 
     <div class="Main-Container">
@@ -30,17 +29,13 @@
 
         <div class="main-content">
 
-
             <form class="addTaskFormHTML" onsubmit="addToTask(); return false; ">
 
                 <div class="leftcontainer">
 
-
-
                     <div class="input-title">
                         <input id="AddTitle" type="text" placeholder="Enter a title" autocomplete="off" required>
                     </div>
-
                     <div id="user_selector">
                         <div class="selector-header" onclick="showUsers()">
                             Select contacts to assign
@@ -48,15 +43,14 @@
                         </div>
                     </div>
                     <div class="selector-user-dropdown" id="selector_user_dropdown"> </div>
-
-                    <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
+                    <div class="input border-bottom"
+                        style="display:flex; flex-direction: column; align-items:flex-start;">
                         <h4>Due Date</h4>
                         <div class="input-date" id="input-date">
                             <input id="add-date" class="add-date" placeholder="dd/mm/yy" type="date">
                             <img src="assets/img/dateSelect-img.png" alt="">
                         </div>
                     </div>
-
                     <h4>Category</h4>
                     <div id="category_selector">
                         <div class="selector-header" onclick="showTaskCategories()">
@@ -65,7 +59,6 @@
                         </div>
                     </div>
                     <div class="selector-Category-Dropdown" id="selector_Category_Dropdown"> </div>
-
                     <div class="priorityContainer">
                         <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
                             <p>Urgent</p>
@@ -82,14 +75,27 @@
                     </div>
                     <div>
                         <h4>Description</h4>
-                        <input class="add-description" id="AddDescription" type="text" placeholder="Enter a Description">
+                        <input class="add-description" id="AddDescription" type="text"
+                            placeholder="Enter a Description">
                     </div>
                     <h4>Subtasks</h4>
-                    <div class="input-subtasks pointer" id="newSubtask_select" onclick="showNewSubtasks()">
-                        <input type="text" placeholder="Add a new subtask">
-                        <img src="assets/img/blue-plus.png" alt="">
+                    <div class="input-subtasks pointer" id="newSubtask_select">
+                        <div class="inputUser">
+                            <div class="inputfield-new-user">
+                                <input class="input border-bottom" id="subtaskText" type="text"
+                                    placeholder="Add new subtask">
+                                <div class="checkAndCrossIconsCategory">
+                                    <img src="./assets/img/blue-cross.png" onclick="clearSubTasks()"
+                                        class="blue-cross pointer">
+                                    <img src="./assets/img/devider.png">
+                                    <img src="./assets/img/blue-check.png" onclick="pushSubtaskLocalStorage()"
+                                        class="blue-check pointer">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="new-Subtasks" id="addSubtaskCheckbox">
+                        </div>
                     </div>
-
                 </div>
 
                 <div class="right-container">
@@ -102,17 +108,11 @@
                             <p>Create Task</p>
                             <img src="assets/img/white-check.png" alt="">
                         </button>
-
                     </div>
-
-
                 </div>
-
             </form>
-
         </div>
     </div>
-
 
 </body>
 
