@@ -118,24 +118,38 @@ async function includeHTML() {
 function changeNavbarBgColor(bar) {
 
     if (bar == 1) {
-        BgSelectedNav('navigation_summary');
+        document.getElementById('navigation_summary').classList.add('bg-blue')
+        document.getElementById('navigation_board').classList.remove('bg-blue')
+        document.getElementById('navigation_addTask').classList.remove('bg-blue')
+        document.getElementById('navigation_contacts').classList.remove('bg-blue')
+        document.getElementById('navigation_legal').classList.remove('bg-blue')
     }
     if (bar == 2) {
-        BgSelectedNav('navigation_board');
+        document.getElementById('navigation_summary').classList.remove('bg-blue')
+        document.getElementById('navigation_board').classList.add('bg-blue')
+        document.getElementById('navigation_addTask').classList.remove('bg-blue')
+        document.getElementById('navigation_contacts').classList.remove('bg-blue')
+        document.getElementById('navigation_legal').classList.remove('bg-blue')
     }
     if (bar == 3) {
-        BgSelectedNav('navigation_addTask');
+        document.getElementById('navigation_summary').classList.remove('bg-blue')
+        document.getElementById('navigation_board').classList.remove('bg-blue')
+        document.getElementById('navigation_addTask').classList.add('bg-blue')
+        document.getElementById('navigation_contacts').classList.remove('bg-blue')
+        document.getElementById('navigation_legal').classList.remove('bg-blue')
     }
     if (bar == 4) {
-        BgSelectedNav('navigation_contacts');
+        document.getElementById('navigation_summary').classList.remove('bg-blue')
+        document.getElementById('navigation_board').classList.remove('bg-blue')
+        document.getElementById('navigation_addTask').classList.remove('bg-blue')
+        document.getElementById('navigation_contacts').classList.add('bg-blue')
+        document.getElementById('navigation_legal').classList.remove('bg-blue')
     }
     if (bar == 5) {
-        BgSelectedNav('navigation_legal');
+        document.getElementById('navigation_summary').classList.remove('bg-blue')
+        document.getElementById('navigation_board').classList.remove('bg-blue')
+        document.getElementById('navigation_addTask').classList.remove('bg-blue')
+        document.getElementById('navigation_contacts').classList.remove('bg-blue')
+        document.getElementById('navigation_legal').classList.add('bg-blue')
     }
-}
-
-
-// adding class bg-blue to the selected link
-function BgSelectedNav(element) {
-    document.getElementById(`${element}`).classList.add('bg-blue');
 }
