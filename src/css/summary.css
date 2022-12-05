@@ -1,114 +1,147 @@
-.headline{
-    height: 100px;
-    background-color: #4589ff;  
-}
-
-.navigation{
-    height: 89.5vh;
-    width: 232px;
-    border-right: solid grey;
-}
-
-.displayflex{
+.displayflex {
     display: flex;
 }
 
-.flexcolumn{
+.flexcolumn {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.flexmid{
+.flexmid {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;
 }
 
-.flexaround{
+.flexaround {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 /* MainCSS */
-.mainside{
+.mainside {
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-}
-/* top */
 
-.mainmorning{
+}
+
+/* top */
+.mainmorning {
     margin-bottom: 40px;
 }
 
-.morning{
+.morning {
     font-weight: 400;
     font-size: 48px;
     margin: 15px;
 }
 
-.name{
+.name {
     font-size: 64px;
     font-weight: 700;
     color: #4589FF;
     margin: 15px;
 }
+
 /* middle */
-.tasksurgent{
+.tasksurgent {
     width: 682px;
     height: 191px;
-    background-color: #4589ff ;
+    background-color: #4589ff;
     border-radius: 30px;
     margin: 15px;
 }
 
-.bordermid{
-    height: 145px;
-    width: 3px;
+.tasksurgent:hover {
+    cursor: pointer;
+    width: 716px;
+    height: 207px;
+    border-radius: 0px 30px 30px 30px;
     background-color: #FFFFFF;
-    
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    color: #4589FF;
+    transition: 0.4s;
+
 }
 
-.imgurgent{
+.imgurgent {
     width: 65px;
     height: 66px;
     border-radius: 100%;
     border: 3px solid #FFFFFF;
 }
 
-.urgentnumber{
+.tasksurgent:hover .imgurgent {
+    width: 75px;
+    height: 76px;
+    border-radius: 100%;
+    border: 3px solid #FFFFFF;
+}
+
+.urgenttext {
+    font-size: 23px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.tasksurgent:hover .urgenttext {
+    font-size: 28px;
+    font-weight: 400;
+    color: #4589FF;
+}
+
+.deadlinetime {
+    font-size: 33px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.tasksurgent:hover .deadlinetime {
+    font-size: 43px;
+    color: #4589FF;
+}
+
+.deadlinetext {
+    font-size: 23px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.tasksurgent:hover .deadlinetext {
+    font-size: 28px;
+    color: #4589FF;
+}
+
+.bordermid {
+    height: 145px;
+    width: 3px;
+    background-color: #FFFFFF;
+
+}
+
+.tasksurgent:hover .bordermid {
+    background-color: #4589FF;
+}
+
+.urgentnumber {
     font-size: 48px;
     font-weight: 700;
     color: #FFFFFF;
     margin-left: 20px;
 }
 
-.urgenttext{
-    font-size: 23px;
-    font-weight: 400;
-    color: #FFFFFF;
-}
-
-.deadlinetime{
-    font-size: 33px;
-    font-weight: 700;
-    color: #FFFFFF;
-}
-
-.deadlinetext{
-    font-size: 23px;
-    font-weight: 400;
-    color: #FFFFFF;
+.tasksurgent:hover .urgentnumber {
+    font-size: 58px;
+    color: #4589FF;
 }
 
 /* todo */
-
-.todo{
+.todo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,21 +153,40 @@
     margin: 15px;
 }
 
-.todonumber{
+.todo:hover {
+    width: 242px;
+    height: 207px;
+    border-radius: 0px 30px 30px 30px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    /* transition: 0.4s; */
+}
+
+.todonumber {
     font-size: 48px;
     font-weight: 700;
     color: #000000;
     margin-left: 20px;
 }
 
-.todotext{
+.todo:hover .todonumber {
+    font-size: 58px;
+    color: #005DFF;
+}
+
+.todotext {
     font-weight: 400;
     font-size: 23px;
     color: #4589FF;
     line-height: 120%;
 }
 
-.taskbot{
+.todo:hover .todotext {
+    font-size: 28px;
+    color: #005DFF;
+}
+
+.taskbot {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -147,105 +199,39 @@
     margin: 15px;
 }
 
-.tasknumber{
+.taskbot:hover {
+    width: 242px;
+    height: 207px;
+    border-radius: 0px 30px 30px 30px;
+    background-color: #005DFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    /* transition: 0.4s; */
+}
+
+.tasknumber {
     font-size: 48px;
     font-weight: 700;
     color: #000000;
     margin-left: 20px;
 }
 
-.taskettext{
+.taskettext {
     font-weight: 400;
     font-size: 23px;
     color: #4589FF;
 }
 
-/* hover Urgent */
-
-.tasksurgent:hover  {
-    cursor: pointer;
-    width: 716px;
-    height: 207px;
-    border-radius: 0px 30px 30px 30px;
-    background-color: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    color: #4589FF;
-    transition: 0.4s;
-    
+.taskbot:hover .tasknumber {
+    font-size: 58px;
+    color: #FFFFFF;
 }
 
-.tasksurgent:hover .imgurgent{
-    width: 75px;
-    height: 76px;
+.taskbot:hover .taskettext {
+    font-size: 28px;
+    color: #FFFFFF;
+}
+
+.taskbot:hover .taskimg {
     border-radius: 100%;
     border: 3px solid #FFFFFF;
-}
-
-.tasksurgent:hover .urgenttext{
-    font-size: 28px;
-    font-weight: 400;
-    color: #4589FF;
-}
-
-.tasksurgent:hover .deadlinetime{
-    font-size: 43px;
-    color: #4589FF;
-}
-
-.tasksurgent:hover .deadlinetext{
-    font-size: 28px;
-    color: #4589FF;
-}
-
-.tasksurgent:hover .bordermid{
-    background-color: #4589FF;
-}
-
-.tasksurgent:hover .urgentnumber{
-    font-size: 58px;
-    color: #4589FF;
-}
-/* ------------ */
-/* Hover To-Do */
-.todo:hover{
-    width: 242px;
-    height: 207px;
-    border-radius: 0px 30px 30px 30px;
-    background-color: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    transition: 0.4s;
-}
-
-.todo:hover .todonumber{
-    font-size: 58px;
-    color: #005DFF;
-}
-
-.todo:hover .todotext{
-    font-size: 28px;
-    color: #005DFF;
-}
-
-.taskbot:hover{
-    width: 242px;
-    height: 207px;
-    border-radius: 0px 30px 30px 30px;
-    background-color: #005DFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    transition: 0.4s;
-}
-
-.taskbot:hover .taskettext{
-    font-size: 28px;
-    color: #FFFFFF;
-}
-
-.taskbot:hover .tasknumber{
-    font-size: 58px;
-    color: #FFFFFF;
-}
-
-.taskbot:hover  .taskimg{
-    border-radius: 100%;
-    border: 3px solid  #FFFFFF;
 }

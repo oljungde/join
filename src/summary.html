@@ -16,85 +16,144 @@
 </head>
 
 <body onload="initSummary()">
-    <div class="Mainheader" w3-include-html="./assets/templates/header.html"></div>
+    <div class="Mainheader" w3-include-html="./assets/templates/header.html">
+
+    </div>
+
     <div class="displayflex">
-        <div class="sidebar" w3-include-html="./assets/templates/navigation.html"></div>
+        <div class="sidebar" w3-include-html="./assets/templates/navigation.html">
+
+        </div>
+
         <div class="mainside">
-            <!-- good morning/ name -->
             <div class="flexmid mainmorning">
-                <div id="user_greeting" class="morning"></div>
-                <div id="current_user_name" class="name"></div>
+                <div id="user_greeting" class="morning">
+
+                </div>
+                <div id="current_user_name" class="name">
+
+                </div>
             </div>
-            <!-- Task Urgent / Tasks to-do -->
+
             <div class="displayflex">
                 <a href="./board.html">
                     <div class="tasksurgent flexmid ">
                         <div class="flexcolumn ">
                             <div class="displayflex">
-                                <div><img class="imgurgent" src="./assets/img/Urgent.png" alt=""></div>
-                                <div id="number_of_tasks_urgent" class="urgentnumber"></div>
+                                <div>
+                                    <img class="imgurgent" src="./assets/img/Urgent.png" alt="">
+                                </div>
+
+                                <div id="number_of_tasks_urgent" class="urgentnumber">
+                                </div>
                             </div>
-                            <div id="numberOfTasksUrgent" class="urgenttext">Tasks Urgent</div>
+
+                            <div id="numberOfTasksUrgent" class="urgenttext">
+                                Tasks Urgent
+                            </div>
                         </div>
-                        <div class="bordermid"></div>
+
+                        <div class="bordermid">
+                        </div>
+
                         <div>
-                            <div id="upcoming_deadline" class="deadlinetime"></div>
-                            <div class="deadlinetext">Upcoming Deadline</div>
+                            <div id="upcoming_deadline" class="deadlinetime">
+                            </div>
+
+                            <div class="deadlinetext">
+                                Upcoming Deadline
+                            </div>
                         </div>
                     </div>
                 </a>
+
                 <a href="./board.html">
                     <div class="todo">
                         <div class="flexaround">
-                            <div><img class="" src="./assets/img/Board.png" alt=""></div>
-                            <div id="number_of_tasks_todo" class="todonumber"></div>
+                            <div>
+                                <img class="" src="./assets/img/Board.png" alt="">
+                            </div>
+
+                            <div id="number_of_tasks_todo" class="todonumber">
+                            </div>
                         </div>
-                        <div class="todotext">Task To-do</div>
+
+                        <div class="todotext">
+                            Task To-do
+                        </div>
                     </div>
                 </a>
             </div>
 
-
-            <!-- Task Border - Task Done -->
             <div class="displayflex">
                 <a href="./board.html">
                     <div class="taskbot">
                         <div class="flexaround">
-                            <div><img class="taskimg" src="./assets/img/Board.png" alt=""></div>
-                            <div id="number_of_tasks" class="tasknumber"></div>
+                            <div>
+                                <img class="taskimg" src="./assets/img/Board.png" alt="">
+                            </div>
+
+                            <div id="number_of_tasks" class="tasknumber">
+                            </div>
                         </div>
-                        <div class="taskettext">Task in<br>Board</div>
+
+                        <div class="taskettext">
+                            Task in<br>Board
+                        </div>
                     </div>
                 </a>
+
                 <a href="./board.html">
                     <div class="taskbot">
                         <div class="flexaround">
-                            <div><img class="taskimg" src="./assets/img/In Progress.png" alt=""></div>
-                            <div id="number_of_tasks_in_progress" class="tasknumber"></div>
+                            <div>
+                                <img class="taskimg" src="./assets/img/In Progress.png" alt="">
+                            </div>
+
+                            <div id="number_of_tasks_in_progress" class="tasknumber">
+                            </div>
                         </div>
-                        <div class="taskettext">Task in<br>Progress</div>
+
+                        <div class="taskettext">
+                            Task in<br>Progress
+                        </div>
                     </div>
                 </a>
+
                 <a href="./board.html">
                     <div class="taskbot">
                         <div class="flexaround">
-                            <div><img class="taskimg" src="./assets/img/Awaiting feedback.png" alt=""></div>
-                            <div id="number_of_tasks_awaiting_feedback" class="tasknumber"></div>
+                            <div>
+                                <img class="taskimg" src="./assets/img/Awaiting feedback.png" alt="">
+                            </div>
+
+                            <div id="number_of_tasks_awaiting_feedback" class="tasknumber">
+                            </div>
                         </div>
-                        <div class="taskettext">Awaiting<br>Feedback</div>
+
+                        <div class="taskettext">
+                            Awaiting<br>Feedback
+                        </div>
                     </div>
                 </a>
+
                 <a href="./board.html">
                     <div class="taskbot">
                         <div class="flexaround">
-                            <div><img class="taskimg" src="./assets/img/Done.png" alt=""></div>
-                            <div id="number_of_tasks_done" class="tasknumber"></div>
+                            <div>
+                                <img class="taskimg" src="./assets/img/Done.png" alt="">
+                            </div>
+
+                            <div id="number_of_tasks_done" class="tasknumber">
+                            </div>
                         </div>
-                        <div class="taskettext">Task<br>Done</div>
+
+                        <div class="taskettext">
+                            Task<br>Done
+                        </div>
                     </div>
                 </a>
             </div>
-
         </div>
     </div>
 </body>
