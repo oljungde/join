@@ -53,6 +53,7 @@
     border-radius: 30px;
     margin: 15px;
     transform: scale(1);
+    transition: all 0.125s ease-in-out;
 }
 
 .tasksurgent:hover {
@@ -62,7 +63,7 @@
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     color: #4589FF;
     transform: scale(1.03);
-    transition: all 0.225s ease-in;
+    transition: all 0, 125s ease-in-out;
 }
 
 .imgurgent {
@@ -83,6 +84,7 @@
 }
 
 .deadlinetime {
+    font: 33px 'Open Sans Bold', sans-serif;
     font-size: 33px;
     font-weight: 700;
     color: #FFFFFF;
