@@ -324,7 +324,6 @@ function changeTask(clickedTask) {
 function deleteTask(clickedTask){
     currentUserTasks.splice(clickedTask, 1);
     filterTasksByStatus();
-    backend.setItem('users', JSON.stringify(users));
 }
 
 
