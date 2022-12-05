@@ -332,7 +332,6 @@ h1 {
     padding-left: 70px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     position: fixed;
     top: 0;
     right: 0;
@@ -346,7 +345,7 @@ h1 {
 .addTaskForm {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
 }
 
 .addTaskForm h4 {
@@ -508,7 +507,7 @@ h1 {
     display: flex;
     border-bottom: 1px solid #D1D1D1;
     width: 422px;
-    padding: 18px 21px;
+    padding: 10px 21px;
     padding-top: 0;
 }
 
@@ -527,8 +526,8 @@ h1 {
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-    background: transparent;
-    background: url(./assets/img/dateSelect-img.png) right no-repeat;
+    
+    background: url(src/assets/img/date.png) center no-repeat;
     background-size: 28px;
     cursor: pointer;
 
@@ -768,7 +767,27 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     right: 41px;
 }
 
-.Detail button {
+.trash-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 86px;
+    height: 61px;
+    position: absolute;
+    bottom: 130px;
+    right: 31px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 120%;
+}
+
+.trash{
+    width: 25px;
+    height: 25px;
+}
+
+.ok{
     width: 86px;
     height: 61px;
     position: absolute;
@@ -778,6 +797,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 400;
     font-size: 23px;
     line-height: 120%;
+
 }
 
 .d-none {
