@@ -86,14 +86,10 @@ a:hover {
     cursor: pointer;
 }
 
-
-
 /* Style for the Header   */
-
 .Mainheader {
     height: 100px;
     background-color: #4589ff;
-    ;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -148,13 +144,11 @@ a:hover {
     transform: scale(1);
 }
 
-
-/* Style for the SideBar  */
-
-.sideBar {
+/* Style for the Sidenav-link  */
+.sidebar {
     background-color: white;
-    height: 89vh;
-    width: 15%;
+    height: calc(100vh - 100px);
+    min-width: 230px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -162,14 +156,12 @@ a:hover {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
 }
 
-.sideBar a {
+.sidebar a {
     text-decoration: none;
     color: #42526e;
 }
 
-
-
-.sideNav {
+.sidebar-navigation {
     padding-top: 66px;
     padding-left: 23px;
     padding-right: 23px;
@@ -179,22 +171,26 @@ a:hover {
     line-height: 120%;
 }
 
-
-.Bar {
+.nav-link {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 20px;
+    border-radius: 8px;
     color: black;
 }
 
-.Bar img {
+.active {
+    background-color: var(--color-blue-light);
+}
+
+.nav-link img {
     width: 22px;
     height: 22px;
     margin-left: 20px;
 }
 
-.Bar p {
+.nav-link p {
     padding-right: 20px;
 }
 

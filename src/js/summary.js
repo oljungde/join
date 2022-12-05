@@ -8,6 +8,7 @@ let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'A
 async function initSummary() {
     checkUserIsLoggedIn();
     await init();
+    setNavLinkActive();
     showCurrentUserName();
     greetingUser();
     showNumberOfTasksUrgent();

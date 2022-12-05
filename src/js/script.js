@@ -84,6 +84,18 @@ function showMenu() {
 
 
 /**
+ * show aktive page in sidebar navigation
+ */
+function setNavLinkActive() {
+    let navLinks = document.getElementById('sidebar-navigation').getElementsByTagName('a');
+    for (let i = 0; i < navLinks.length; i++)
+        if (document.location.href.indexOf(navLinks[i].href) >= 0) {
+            navLinks[i].classList.add('active');
+        }
+}
+
+
+/**
  * hides the popup Menu to log out an change the user image
  */
 function hideMenu() {
@@ -114,6 +126,7 @@ async function includeHTML() {
 }
 
 
+<<<<<<< HEAD
 // defining which link was clicked and giving the function BgSelectedNav the matching id
 function changeNavbarBgColor(bar) {
 
@@ -153,3 +166,9 @@ function changeNavbarBgColor(bar) {
         document.getElementById('navigation_legal').classList.add('bg-blue')
     }
 }
+=======
+// adding class bg-blue to the selected link
+function BgSelectedNav(element) {
+    document.getElementById(`${element}`).classList.add('bg-blue');
+}
+>>>>>>> ec1ef3908a3abb205bde66bcbde394a4d4d7eeef

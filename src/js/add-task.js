@@ -11,6 +11,7 @@ let categorySelectedColor;
  */
 async function initAddTask() {
   await init();
+  setNavLinkActive();
   checkUserIsLoggedIn();
 }
 
@@ -39,9 +40,9 @@ async function addToTask(i) {
   await backend.setItem('users', JSON.stringify(users));
   if (i == 0) {
 
-    
-      window.location.href = './board.html';
-    
+
+    window.location.href = './board.html';
+
 
     filterTasksByStatus();
 

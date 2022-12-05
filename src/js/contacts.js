@@ -3,6 +3,7 @@ let addTasks = [];
 
 async function initContacts() {
     await init();
+    setNavLinkActive();
     checkUserIsLoggedIn();
     renderAllContact()
     getTasksOfCurrentUser();
@@ -141,7 +142,7 @@ function contactChild() {
         let i = currentUser.contacts[index];
         let lettersFB = currentUser.contacts[index]['contactInitials'];
         let l = currentUser.contacts[index]['contactletter'];
-        
+
         let contactchilds = document.getElementById(l);
 
         contactchilds.innerHTML += contactChildHtml(i, lettersFB, index);
@@ -159,7 +160,7 @@ function createContactBar() {
 }
 
 function openDetailContact(index, lettersFB) {
-    
+
     let changeBG = document.getElementById(index);
     changeBG.classList.toggle('contact-child-div-klick');
     let contact = currentUser.contacts[index];
