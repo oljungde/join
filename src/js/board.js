@@ -261,7 +261,7 @@ function generateDetailTodoHTML(element, category, categoryColor, title, descrip
     
     <div class="detail-assignedTo"> 
       <p>Assigned To:</p> 
-      <div>${user}</div> 
+      <div  >${user}</div> 
     </div>
     
     <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask()">

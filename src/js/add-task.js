@@ -106,7 +106,6 @@ function openAddTaskHtml(i) {
            <h4>Due Date</h4>
            <div class= "input-date" id="input-date">
              <input id="add-date" class="add-date" placeholder="dd/mm/yy" type="date">
-             <img src="assets/img/dateSelect-img.png" alt="">
            </div>
         </div>
 
@@ -156,12 +155,6 @@ function openAddTaskHtml(i) {
     `;
 }
 
-
-function showDropdown() {
-  document.getElementById('selected_category').classList.toggle("option-wrapper");
-  document.getElementById('selected_category').classList.toggle("d-none");
-
-}
 
 //  subTasks in the AddTaskMask
 

@@ -124,6 +124,3 @@ async function includeHTML() {
         }
     }
 }
-
-
-
