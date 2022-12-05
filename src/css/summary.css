@@ -27,7 +27,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 /* top */
@@ -36,14 +35,12 @@
 }
 
 .morning {
-    font-weight: 400;
     font-size: 48px;
     margin: 15px;
 }
 
 .name {
-    font-size: 64px;
-    font-weight: 700;
+    font: var(--font-size-xxxlarge) 'Open Sans Bold', sans-serif;
     color: #4589FF;
     margin: 15px;
 }
@@ -55,30 +52,22 @@
     background-color: #4589ff;
     border-radius: 30px;
     margin: 15px;
+    transform: scale(1);
 }
 
 .tasksurgent:hover {
     cursor: pointer;
-    width: 716px;
-    height: 207px;
     border-radius: 0px 30px 30px 30px;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     color: #4589FF;
-    transition: 0.4s;
-
+    transform: scale(1.03);
+    transition: all 0.225s ease-in;
 }
 
 .imgurgent {
     width: 65px;
     height: 66px;
-    border-radius: 100%;
-    border: 3px solid #FFFFFF;
-}
-
-.tasksurgent:hover .imgurgent {
-    width: 75px;
-    height: 76px;
     border-radius: 100%;
     border: 3px solid #FFFFFF;
 }
@@ -90,8 +79,6 @@
 }
 
 .tasksurgent:hover .urgenttext {
-    font-size: 28px;
-    font-weight: 400;
     color: #4589FF;
 }
 
@@ -102,7 +89,6 @@
 }
 
 .tasksurgent:hover .deadlinetime {
-    font-size: 43px;
     color: #4589FF;
 }
 
@@ -113,7 +99,6 @@
 }
 
 .tasksurgent:hover .deadlinetext {
-    font-size: 28px;
     color: #4589FF;
 }
 
@@ -136,7 +121,6 @@
 }
 
 .tasksurgent:hover .urgentnumber {
-    font-size: 58px;
     color: #4589FF;
 }
 
