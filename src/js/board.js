@@ -321,8 +321,9 @@ function changeTask(clickedTask) {
     `
 }
 
-function deleteTask(clickedTask){
+async function deleteTask(clickedTask) {
     currentUserTasks.splice(clickedTask, 1);
+    // await backend.setItem('users', JSON.stringify(users));
     filterTasksByStatus();
     closeDetailTask()
 }
@@ -334,5 +335,5 @@ function deleteTask(clickedTask){
 function closeDetailTask() {
     document.getElementById('detail-container').classList.add('d-none');
     filterTasksByStatus();
-    
+
 }

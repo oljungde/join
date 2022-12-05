@@ -77,10 +77,14 @@ function showNextDueDate() {
         return dueDates.dueDate;
     });
     dueDates = dueDates.sort();
-    let dueDate = new Date(dueDates[0]);
-    let month = months[dueDate.getMonth()];
-    let nextDueDate = month + ' ' + dueDate.getDate() + ', ' + dueDate.getFullYear();
-    upcomingDeadline.innerHTML = nextDueDate;
+    if (dueDates.length > 0) {
+        let dueDate = new Date(dueDates[0]);
+        let month = months[dueDate.getMonth()];
+        let nextDueDate = month + ' ' + dueDate.getDate() + ', ' + dueDate.getFullYear();
+        upcomingDeadline.innerHTML = nextDueDate;
+    } else {
+        upcomingDeadline.innerHTML = `No upcoming deadline`;
+    }
 }
 
 
