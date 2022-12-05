@@ -324,6 +324,7 @@ function changeTask(clickedTask) {
 function deleteTask(clickedTask){
     currentUserTasks.splice(clickedTask, 1);
     filterTasksByStatus();
+    closeDetailTask()
 }
 
 
@@ -333,4 +334,5 @@ function deleteTask(clickedTask){
 function closeDetailTask() {
     document.getElementById('detail-container').classList.add('d-none');
     filterTasksByStatus();
+    
 }
