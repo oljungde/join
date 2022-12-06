@@ -189,3 +189,35 @@
     border-radius: 100%;
     border: 3px solid #FFFFFF;
 }
+
+@media (max-width: 1200px) {
+
+    .mainmorning {
+        margin-top: 55px;
+    }
+
+    .urgent-todo {
+        flex-direction: column;
+    }
+
+    .todo {
+        width: 682px;
+        height: 106px;
+        flex-direction: row;
+        gap: 20px;
+
+    }
+
+    .task-line {
+        width: 682px;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin: 15px 0 30px;
+    }
+
+    .taskbot {
+        width: 326px;
+        margin: 0;
+
+    }
+}
