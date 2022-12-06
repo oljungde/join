@@ -73,35 +73,22 @@
     border: 3px solid #FFFFFF;
 }
 
-.urgenttext {
-    font-size: 23px;
-    font-weight: 400;
+.urgenttext,
+.deadlinetext {
+    font: var(--font-size-xxlarge) 'Open Sans', sans-serif;
     color: #FFFFFF;
 }
 
-.tasksurgent:hover .urgenttext {
+.tasksurgent:hover .urgenttext,
+.tasksurgent:hover .deadlinetime,
+.tasksurgent:hover .deadlinetext,
+.tasksurgent:hover .urgentnumber {
     color: #4589FF;
 }
 
 .deadlinetime {
-    font: 33px 'Open Sans Bold', sans-serif;
-    font-size: 33px;
-    font-weight: 700;
+    font: bold 33px 'Open Sans', sans-serif;
     color: #FFFFFF;
-}
-
-.tasksurgent:hover .deadlinetime {
-    color: #4589FF;
-}
-
-.deadlinetext {
-    font-size: 23px;
-    font-weight: 400;
-    color: #FFFFFF;
-}
-
-.tasksurgent:hover .deadlinetext {
-    color: #4589FF;
 }
 
 .bordermid {
@@ -116,62 +103,13 @@
 }
 
 .urgentnumber {
-    font-size: 48px;
-    font-weight: 700;
+    font: bold var(--font-size-h1) 'Open Sans', sans-serif;
     color: #FFFFFF;
     margin-left: 20px;
 }
 
-.tasksurgent:hover .urgentnumber {
-    color: #4589FF;
-}
-
 /* todo */
-.todo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 208px;
-    height: 191px;
-    border-radius: 30px;
-    background-color: #D2E3FF;
-    margin: 15px;
-}
-
-.todo:hover {
-    width: 242px;
-    height: 207px;
-    border-radius: 0px 30px 30px 30px;
-    background-color: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    /* transition: 0.4s; */
-}
-
-.todonumber {
-    font-size: 48px;
-    font-weight: 700;
-    color: #000000;
-    margin-left: 20px;
-}
-
-.todo:hover .todonumber {
-    font-size: 58px;
-    color: #005DFF;
-}
-
-.todotext {
-    font-weight: 400;
-    font-size: 23px;
-    color: #4589FF;
-    line-height: 120%;
-}
-
-.todo:hover .todotext {
-    font-size: 28px;
-    color: #005DFF;
-}
-
+.todo,
 .taskbot {
     display: flex;
     justify-content: center;
@@ -180,18 +118,54 @@
     width: 208px;
     height: 191px;
     border-radius: 30px;
-    background-color: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     margin: 15px;
+    transform: scale(1);
+    transition: all 0.125s ease-in-out;
+}
+
+.todo:hover,
+.taskbot:hover {
+    border-radius: 0px 30px 30px 30px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    transform: scale(1.08);
+    transition: all 0, 125s ease-in-out;
+}
+
+.todo {
+    background-color: var(--color-blue-light);
+}
+
+.todo:hover {
+    background-color: white;
+}
+
+.taskbot {
+    background-color: white;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
 }
 
 .taskbot:hover {
-    width: 242px;
-    height: 207px;
-    border-radius: 0px 30px 30px 30px;
-    background-color: #005DFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    /* transition: 0.4s; */
+    background-color: var(--color-blue-main);
+}
+
+.todonumber {
+    font: bold var(--font-size-h1) 'OpenSans', sans-serif;
+    color: #000000;
+    margin-left: 20px;
+}
+
+.todo:hover .todonumber {
+    color: #005DFF;
+}
+
+.todotext {
+    font: var(--font-size-xxlarge) 'Open Sans', sans-serif;
+    color: #4589FF;
+    line-height: 120%;
+}
+
+.todo:hover .todotext {
+    color: #005DFF;
 }
 
 .tasknumber {
@@ -201,20 +175,14 @@
     margin-left: 20px;
 }
 
-.taskettext {
-    font-weight: 400;
-    font-size: 23px;
-    color: #4589FF;
-}
-
-.taskbot:hover .tasknumber {
-    font-size: 58px;
-    color: #FFFFFF;
-}
-
+.taskbot:hover .tasknumber,
 .taskbot:hover .taskettext {
-    font-size: 28px;
     color: #FFFFFF;
+}
+
+.taskettext {
+    font: var(--font-size-xxlarge) 'Open Sans', sans-serif;
+    color: #4589FF;
 }
 
 .taskbot:hover .taskimg {
