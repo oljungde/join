@@ -215,34 +215,34 @@ function showDetailWindow(id) {
     document.getElementById('toDo').innerHTML = '';
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, detailTodo)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, id)
     }
 
     let inProgress = filteredTasks.filter(t => t['status'] == 'inProgress');
     document.getElementById('inProgress').innerHTML = '';
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, detailTodo)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, id)
     }
 
     let awaitingFeedback = filteredTasks.filter(t => t['status'] == 'awaitingFeedback');
     document.getElementById('awaitingFeedback').innerHTML = '';
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, detailTodo)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, id)
     }
 
     let done = filteredTasks.filter(t => t['status'] == 'done');
     document.getElementById('done').innerHTML = '';
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, detailTodo)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, id)
     }
 }
 
 
 // renders the Detail Window
-function generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, detailTodo) {
+function generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, id) {
     return /*html*/`
     
     <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
@@ -264,13 +264,13 @@ function generateDetailTodoHTML(element, category, categoryColor, title, descrip
       <div  >${user}</div> 
     </div>
     
-    <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask(${detailTodo})">
+    <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask(${id})">
     `;
 }
 
 
 // renders the mask for editing an existing task
-function changeTask(detailTodo) {
+function changeTask(id) {
     document.getElementById('Detail').innerHTML = /*html*/`
     <div class="editTask">
     <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
@@ -315,18 +315,20 @@ function changeTask(detailTodo) {
         </div>
         <div class="selector-user-dropdown" id="selector_user_dropdown">  </div>
         <div>
-        <button onclick="deleteTask(${detailTodo})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
+        <button onclick="deleteTask(${id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
         <button class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
         </div>
         </div>
     `
 }
 
-async function deleteTask(detailTodo) {
-    currentUserTasks.splice(detailTodo, 1);
+async function deleteTask(id) {
+    currentUserTasks.splice(id, 1);
     // await backend.setItem('users', JSON.stringify(users));
-    filterTasksByStatus();
     closeDetailTask()
+    filterTasksByStatus();
+    renderBoard()
+   
 }
 
 
