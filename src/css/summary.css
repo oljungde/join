@@ -193,7 +193,7 @@
 @media (max-width: 1200px) {
 
     .mainmorning {
-        margin-top: 55px;
+        margin-top: 40px;
     }
 
     .urgent-todo {
@@ -219,5 +219,53 @@
         width: 326px;
         margin: 0;
 
+    }
+}
+
+@media (max-width: 992px) {
+
+    .mainmorning {
+        flex-direction: column;
+    }
+
+    .mainmorning:first-child {
+        margin-bottom: 16px;
+    }
+
+    .morning {
+        font-size: var(--font-size-xxllarge);
+    }
+
+    .name {
+        font-size: var(--font-size-h1);
+    }
+
+    .tasksurgent,
+    .todo {
+        width: 490px;
+    }
+
+    .imgurgent {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+    }
+
+    .urgentnumber,
+    .todonumber {
+        font-size: var(--font-size-xxxllarge);
+    }
+
+    .urgenttext,
+    .todotext {
+        font-size: var(--font-size-regular);
+    }
+
+    .deadlinetime {
+        font-size: var(--font-size-xxlarge);
+    }
+
+    .deadlinetext {
+        font-size: var(--font-size-large);
     }
 }
