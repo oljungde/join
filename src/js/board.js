@@ -334,8 +334,6 @@ async function deleteTask(id) {
 }
 
 
-
-
 //Closes the Detail Window
 function closeDetailTask() {
     document.getElementById('detail-container').classList.add('d-none');
