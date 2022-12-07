@@ -767,6 +767,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     right: 41px;
 }
 
+.editTask h4{
+margin: 20px;
+}
+
 .trash-button{
     display: flex;
     justify-content: center;

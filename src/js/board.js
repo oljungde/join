@@ -273,6 +273,7 @@ function generateDetailTodoHTML(element, category, categoryColor, title, descrip
 // renders the mask for editing an existing task
 function changeTask(clickedTask) {
     document.getElementById('Detail').innerHTML = /*html*/`
+    <div class="editTask">
     <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
     
     <div class="input-title">
@@ -317,6 +318,7 @@ function changeTask(clickedTask) {
         <div>
         <button onclick="deleteTask(${clickedTask})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
         <button class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
+        </div>
         </div>
     `
 }
