@@ -109,9 +109,8 @@ function identifyId() {
 
 // renders the Task-Card on the Board
 function generateTodoHTML(element) {
-    let clickedTask = element['id'];
     return /*html*/`
-    <div onclick="showDetailWindow(${clickedTask})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">   
+    <div onclick="showDetailWindow(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">   
       <div class="${element['category']['TaskColor']}">${element['category']['Category']}</div>
       <div class=titleAndText>
           <h4 class="title">${element['title']}</h4>
@@ -200,7 +199,7 @@ function dragLeave(e) {
 
 
 // Generates the Detail Window
-function showDetailWindow(id, clickedTask) {
+function showDetailWindow(id) {
     document.getElementById('detail-container').classList.remove('d-none');
 
     let detailTodo = filteredTasks[id];
@@ -216,34 +215,34 @@ function showDetailWindow(id, clickedTask) {
     document.getElementById('toDo').innerHTML = '';
     for (let index = 0; index < toDo.length; index++) {
         const element = toDo[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, clickedTask)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, detailTodo)
     }
 
     let inProgress = filteredTasks.filter(t => t['status'] == 'inProgress');
     document.getElementById('inProgress').innerHTML = '';
     for (let index = 0; index < inProgress.length; index++) {
         const element = inProgress[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, clickedTask)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, detailTodo)
     }
 
     let awaitingFeedback = filteredTasks.filter(t => t['status'] == 'awaitingFeedback');
     document.getElementById('awaitingFeedback').innerHTML = '';
     for (let index = 0; index < awaitingFeedback.length; index++) {
         const element = awaitingFeedback[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, clickedTask)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, detailTodo)
     }
 
     let done = filteredTasks.filter(t => t['status'] == 'done');
     document.getElementById('done').innerHTML = '';
     for (let index = 0; index < done.length; index++) {
         const element = done[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, clickedTask)
+        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, detailTodo)
     }
 }
 
 
 // renders the Detail Window
-function generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, clickedTask) {
+function generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, detailTodo) {
     return /*html*/`
     
     <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
@@ -265,13 +264,13 @@ function generateDetailTodoHTML(element, category, categoryColor, title, descrip
       <div  >${user}</div> 
     </div>
     
-    <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask(${clickedTask})">
+    <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask(${detailTodo})">
     `;
 }
 
 
 // renders the mask for editing an existing task
-function changeTask(clickedTask) {
+function changeTask(detailTodo) {
     document.getElementById('Detail').innerHTML = /*html*/`
     <div class="editTask">
     <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
@@ -316,15 +315,15 @@ function changeTask(clickedTask) {
         </div>
         <div class="selector-user-dropdown" id="selector_user_dropdown">  </div>
         <div>
-        <button onclick="deleteTask(${clickedTask})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
+        <button onclick="deleteTask(${detailTodo})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
         <button class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
         </div>
         </div>
     `
 }
 
-async function deleteTask(clickedTask) {
-    currentUserTasks.splice(clickedTask, 1);
+async function deleteTask(detailTodo) {
+    currentUserTasks.splice(detailTodo, 1);
     // await backend.setItem('users', JSON.stringify(users));
     filterTasksByStatus();
     closeDetailTask()
