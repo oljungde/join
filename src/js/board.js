@@ -271,23 +271,24 @@ function generateDetailTodoHTML(element, category, categoryColor, title, descrip
 
 // renders the mask for editing an existing task
 function changeTask(id) {
+    filteredTasks[id]
     document.getElementById('Detail').innerHTML = /*html*/`
-    <div class="editTask">
+    <form class="editTask">
     <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
     
     <div class="input-title">
-        <input id="AddTitle" type="text" placeholder="Enter a title" autocomplete="off" required>
+        <input id="AddTitle" type="text" value="${filteredTasks[id]['title']}" autocomplete="off" required>
     </div>
 
     <div>
         <h4>Description</h4>
-        <input class="add-description" id="AddDescription" type="text" placeholder="Enter a Description">
+        <input class="add-description" id="AddDescription" type="text" value="${filteredTasks[id]['description']}">
     </div>
 
     <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
         <h4>Due Date</h4>
         <div class= "input-date" id="input-date">
-            <input id="add-date" class="add-date" placeholder="dd/mm/yy" type="date">
+            <input id="add-date" class="add-date" value="${filteredTasks[id]['dueDate']}" type="date">
             <img src="assets/img/dateSelect-img.png" alt="">
         </div>
     </div>
@@ -316,11 +317,12 @@ function changeTask(id) {
         <div class="selector-user-dropdown" id="selector_user_dropdown">  </div>
         <div>
         <button onclick="deleteTask(${id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
-        <button class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
+        <button onclick="pushChangedTask(${filteredTasks[id]});" class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
         </div>
-        </div>
+</form>
     `
 }
+
 
 async function deleteTask(id) {
     currentUserTasks.splice(id, 1);
@@ -328,7 +330,7 @@ async function deleteTask(id) {
     closeDetailTask()
     filterTasksByStatus();
     renderBoard()
-   
+
 }
 
 
