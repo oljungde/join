@@ -325,7 +325,7 @@ function changeTask(id) {
 
 
 async function deleteTask(id) {
-    currentUserTasks.splice(id, 1);
+    currentUserTasks.splice(currentUserTasks[id], 1);
     // await backend.setItem('users', JSON.stringify(users));
     closeDetailTask()
     filterTasksByStatus();
