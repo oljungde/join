@@ -256,6 +256,39 @@ function OpenContactAddTask(i) {
     openaddtask.innerHTML = openAddTaskHtml(i);
 }
 
+function deleteContacts(index) {
+    closeAddContact();
+    let letter = currentUser.contacts[index]['contactletter'];
+    currentUser.contacts.splice(index, 1);
+    let indexofletter = deleteContactletter(letter);
+    if (indexofletter == -1) {
+        for (let l = 0; l < currentUser.lettertask.length; l++) {
+            let element = currentUser.lettertask[l];
+            if (element == letter) {
+                currentUser.lettertask.splice(l, 1);
+                let clear = document.getElementById(letter);
+                clear.remove();
+            }
+        }
+    }
+    document.getElementById('contactbar').innerHTML = '';
+    clearContactDetails();
+    createContactBar();
+    contactChild();
+    savesInBackEnd();
+    
+}
+
+function deleteContactletter(letter) {
+    let userindex = -1;
+    for (i = 0; i < currentUser.contacts.length; i++) {
+        let lettersFB = currentUser.contacts[i]['contactName'].charAt(0);
+        if (lettersFB == letter) {
+            userindex = i; 
+        }
+    }
+    return userindex;
+}
 
 function contactDetailHtml(contact, lettersFB, index) {
     return `
@@ -391,11 +424,12 @@ function editContactHtml(contact, lettersFB, index) {
             </div>
             <div class="button-container">
               
-                <button class="button-cancel" onclick="closeAddContact()">Delete <img src="./assets/img/cancel.png" alt=""></button>
+                <button class="button-cancel" type="button" onclick="deleteContacts(${index})">Delete <img src="./assets/img/cancel.png" alt=""></button>
                 <button class="button-create" type="submit">Save <img src="/src/assets/img/rithe.png" alt=""></button>
                 
             </div>
         </form>
+        
     </div>
 </div>
     `
