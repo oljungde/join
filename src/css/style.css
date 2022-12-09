@@ -9,6 +9,7 @@ body {
 }
 
 body {
+    position: relative;
     font: var(--font-size-regular) 'Open Sans', sans-serif;
 }
 
@@ -210,6 +211,29 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+
+    .Main-Container {
+        flex-direction: column-reverse;
+    }
+
+    .sidebar {
+        min-width: 100%;
+        max-height: 80px;
+        position: sticky;
+        bottom: 0;
+        left: 0;
+
+    }
+
+    .sidebar-navigation {
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+    }
+
+    .legalNotice {
+        display: none;
+    }
 
     .btn,
     .btn-light {
