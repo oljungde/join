@@ -110,7 +110,7 @@ function identifyId() {
 // renders the Task-Card on the Board
 function generateTodoHTML(element) {
     return /*html*/`
-    <div onclick="showDetailWindow(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo">   
+    <div onclick="showDetailWindow(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo" id="${element['id']}">   
       <div class="${element['category']['TaskColor']}">${element['category']['Category']}</div>
       <div class=titleAndText>
           <h4 class="title">${element['title']}</h4>
@@ -325,14 +325,18 @@ function changeTask(id) {
 
 
 async function deleteTask(id) {
-    currentUserTasks.splice(currentUserTasks[id], 1);
-    // await backend.setItem('users', JSON.stringify(users));
-    closeDetailTask()
+    currentUser.tasks.splice(id, 1);
+    console.log(currentUser);
+    
+    closeDetailTask();
     filterTasksByStatus();
-    renderBoard()
-
+    renderBoard();
+    saveDeletetTask();
 }
 
+async function saveDeletetTask(){
+    await backend.setItem('users', JSON.stringify(users));
+}
 
 //Closes the Detail Window
 function closeDetailTask() {
