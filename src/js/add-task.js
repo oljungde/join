@@ -16,14 +16,17 @@ async function initAddTask() {
 }
 
 
+
+
 //defines the current task and pushes it to the Array alltasks and saves it in the backend 
 async function addToTask(i) {
   let title = document.getElementById('AddTitle');
   let description = document.getElementById('AddDescription');
   let dueDate = document.getElementById('add-date');
+  
 
   let currentTask = {
-    "id": currentUserTasks.length,
+    "id": j,
     "category": {
       Category: taskCategoryFinaly,
       TaskColor: taskCategoryColorFinaly,
@@ -38,27 +41,25 @@ async function addToTask(i) {
   };
   currentUserTasks.push(currentTask);
   await backend.setItem('users', JSON.stringify(users));
+  setIdOneHigher();
   if (i == 0) {
-
-
     window.location.href = './board.html';
-
-
     filterTasksByStatus();
-
   }
   else if (i == 1) {
-
     ShowTaskAddedPopUp()
-
-
     setTimeout(() => {
       let close = document.getElementById('AddTaskMaskBg');
       close.classList.add('d-none');
     }, 2000);
-
     filterTasksByStatus();
+  }
+}
 
+// adds 1 to the id for adding tasks
+function setIdOneHigher() {
+  if (j >= 0) {
+    j++;
   }
 }
 
