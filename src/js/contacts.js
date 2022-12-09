@@ -111,6 +111,7 @@ function checkEmail() {
 function fillAllTasks(contactName,) {
     let letter = contactName.charAt(0);
     closeAddContact();
+    popupContactSave();
     if (currentUser.lettertask.includes(letter)) {
         clearContactBar();
     }
@@ -123,6 +124,14 @@ function fillAllTasks(contactName,) {
         createContactBar();
         contactChild();
     }
+}
+
+function popupContactSave(){
+    document.getElementById('popup-ContactBar').classList.remove('d-none');
+
+    setTimeout(() => {
+        document.getElementById('popup-ContactBar').classList.add('d-none');
+      }, 2000);
 }
 
 function clearContactBar() {
