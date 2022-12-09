@@ -327,11 +327,11 @@ function changeTask(id) {
 async function deleteTask(id) {
     currentUser.tasks.splice(id, 1);
     console.log(currentUser);
-    
-    closeDetailTask();
-    filterTasksByStatus();
-    renderBoard();
     saveDeletetTask();
+    closeDetailTask();
+    
+    filterTasksByStatus();
+    
 }
 
 async function saveDeletetTask(){
@@ -341,6 +341,6 @@ async function saveDeletetTask(){
 //Closes the Detail Window
 function closeDetailTask() {
     document.getElementById('detail-container').classList.add('d-none');
-    filterTasksByStatus();
+    
 
 }
