@@ -54,7 +54,8 @@
 }
 
 .contact-right-side{
-    width: 70vw;
+    width: 50vw;
+    margin-left: 50px;
 }
 
 .show-contact{
@@ -114,6 +115,7 @@
 
 .button-container{
     display: flex;
+    margin-top: 30px;
 }
 
 .button-cancel{
@@ -145,6 +147,10 @@
 
 .img-cross{
     margin: 20px;
+}
+
+.img-cross:hover{
+    cursor: pointer;
 }
 
 .add-contact-header-info{
@@ -179,7 +185,7 @@
 }
 
 .contact-letter-main{
-    width: 80%;
+    width: 100%;
     
 }
 
@@ -203,9 +209,10 @@
     padding-left: 20px;
     width: 357px;
     height: 77px;
-    background-color: #005DFF;
-    color: #ffffff;
+    background-color: #4589ff;
+    color: #ffffff !important;
     border-radius: 10px;
+
 }
 
 .contact-child{
@@ -217,6 +224,7 @@
     height: 42px;
     border-radius: 100%;
     margin-right: 16px;
+    border: 2px solid white;
 }
 
 .contact-child-name{
@@ -233,12 +241,12 @@
     margin-top: 2.5px;
     margin-bottom: 2.5px;
     margin-left: 16px;
-    color: #4589ff;
+    
 }
 
 .contact-detail-head{
     height: 130px;
-    width: 600px;
+    
     display: flex;
     
     align-items: center;
@@ -252,7 +260,7 @@
 }
 
 .contact-detail-big-letter{
-    width: 120px;
+    min-width: 120px;
     height: 120px;
     border-radius: 100%;
     border: 3px solid #ffffff;
@@ -285,7 +293,7 @@
 .contact-detail-info-main{
     display: flex;
     align-items: center;
-    width: 600px;
+    
     
 }
 
@@ -311,7 +319,7 @@ padding: 50px;
 }
 
 .input-contact{
-    margin-bottom: 30px;
+    
     margin-top: 30px;
     border-bottom: 1px solid #D1D1D1;
 }
@@ -322,6 +330,7 @@ padding: 50px;
     border: 0;
     font-size: 19px;
     font-weight: 400;
+    outline: none;
 }
 
 .new-contact-button-img{
@@ -372,6 +381,10 @@ padding: 50px;
     justify-content: center;
     align-items: center;
 }
+.contact-email-done{
+    font-size: small;
+    color: red;
+    }
 
 .animationFadeInBottom {
     animation: fadeInBottom 1s ease 0s 1 normal forwards;

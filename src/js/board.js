@@ -327,11 +327,9 @@ function changeTask(id) {
 async function deleteTask(id) {
     currentUser.tasks.splice(id, 1);
     console.log(currentUser);
-    saveDeletetTask();
     closeDetailTask();
-    
     filterTasksByStatus();
-    
+    saveDeletetTask();
 }
 
 async function saveDeletetTask(){
