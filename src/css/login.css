@@ -127,7 +127,6 @@ input[type="checkbox"]:checked:before {
 }
 
 .body-signup {
-    
     background-color: var(--color-blue-main);
 }
 
