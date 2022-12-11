@@ -186,11 +186,20 @@ function createContactBar() {
  */
 function openDetailContact(index, lettersFB) {
     changeColorInContact(index);
-    
     let contact = currentUser.contacts[index];
+    let contactMedia = window.matchMedia('(max-width: 1120px)')
+    if(contactMedia.matches){
+        document.getElementById('contactbar').classList.add('display-contact-none');
+        document.getElementById('contact-detail-in-main').classList.remove('display-contact-none');
+    }
+    
+    let contactdetailsinmedia = document.getElementById('contact-detail-in-main');
+    contactdetailsinmedia.innerHTML = '';
+    contactdetailsinmedia.innerHTML = contactDetailHtml(contact, lettersFB, index);
     let contactdetails = document.getElementById('contactdetails');
     contactdetails.innerHTML = '';
     contactdetails.innerHTML = contactDetailHtml(contact, lettersFB, index);
+    
 }
 
 function changeColorInContact(index){
@@ -292,6 +301,11 @@ function clearContactDetails() {
 
 }
 
+function closeMediaContact(){
+    document.getElementById('contact-detail-in-main').classList.add('display-contact-none');
+    document.getElementById('contactbar').classList.remove('display-contact-none');
+}
+
 /**
  * Lokking for index in array
  * 
@@ -366,6 +380,7 @@ function deleteContactletter(letter) {
 function contactDetailHtml(contact, lettersFB, index) {
     return `
     <div class="contact-detail-main-side animationFadeInRight" id="${index}">
+                        <div class="back-in-media-contact"><img onclick="closeMediaContact()" src="./assets/img/arrow-back.png" alt=""></div>
                         <div class="contact-detail-head">
                             <div style="background-color: ${contact['contactcolor']}" class="contact-detail-big-letter">${lettersFB}</div>
                             <div class="contact-detail-name-task">
@@ -375,7 +390,7 @@ function contactDetailHtml(contact, lettersFB, index) {
                         </div>
                         <div class="contact-detail-info-main">
                             <p class="contact-detail-info">Contact Information</p>
-                            <p class="contact-detail-edit" onclick="editContact('${index}', '${lettersFB}')">Edit Contact</p>
+                            <p class="contact-detail-edit" onclick="editContact('${index}', '${lettersFB}')"><img class="icon-edit-contact" src="./assets/img/icon_edit_contact.png" alt=""> Edit Contact</p>
                         </div>
                         <div>
                             <div>
@@ -387,6 +402,9 @@ function contactDetailHtml(contact, lettersFB, index) {
                                 <p>${contact['contactNumber']}</p>
                             </div>
                         </div>
+                        <div class="show-button">
+                <div class="new-contact-button d-none" onclick="openAddContact()">New contact <img class="new-contact-button-img" src="./assets/img/contact-member.png" alt=""></div>
+            </div>
                     </div>
     `
 }
