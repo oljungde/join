@@ -164,6 +164,7 @@ function updateProgressBar() {
 // Drag and Drop
 // Defines the dragged task
 function startDragging(id) {
+    console.log(id);
     currentDraggedElement = id;
 }
 
@@ -333,13 +334,7 @@ async function deleteTask(id) {
     filterTasksByStatus();
 }
 
-async function saveDeletetTask() {
-    await backend.setItem('users', JSON.stringify(users));
-}
-
 //Closes the Detail Window
 function closeDetailTask() {
     document.getElementById('detail-container').classList.add('d-none');
-
-
 }
