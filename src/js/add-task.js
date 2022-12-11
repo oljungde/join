@@ -23,7 +23,7 @@ async function addToTask(i) {
   let title = document.getElementById('AddTitle');
   let description = document.getElementById('AddDescription');
   let dueDate = document.getElementById('add-date');
-  
+
 
   let currentTask = {
     "id": j,
@@ -47,12 +47,17 @@ async function addToTask(i) {
     filterTasksByStatus();
   }
   else if (i == 1) {
-    ShowTaskAddedPopUp()
+    ShowTaskAddedPopUp();
+    document.getElementById('AddTaskMaskBg').classList.add('d-none');
+
+    // setTimeout(() => {
+    //   let close = document.getElementById('AddTaskMaskBg');
+    //   close.classList.add('d-none');
+    // }, 2000);
     setTimeout(() => {
-      let close = document.getElementById('AddTaskMaskBg');
-      close.classList.add('d-none');
-    }, 2000);
-    filterTasksByStatus();
+      filterTasksByStatus();
+    }, 1100);
+
   }
 }
 
