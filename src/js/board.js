@@ -164,7 +164,6 @@ function updateProgressBar() {
 // Drag and Drop
 // Defines the dragged task
 function startDragging(id) {
-    console.log(id);
     currentDraggedElement = id;
 }
 
@@ -177,10 +176,11 @@ function allowDrop(ev) {
 
 // changes the status of the task according to the dropped area
 async function moveTo(e, status) {
-    const currentTask = filteredTasks.filter((currentTask) => {
+    const currentTask = filteredTasks.find((currentTask) => {
         return currentTask.id == currentDraggedElement;
     });
-    currentTask[0].status = status;
+    console.log(currentTask);
+    currentTask.status = status;
     e.target.classList.remove('drag-over');
     filterTasksByStatus();
     await backend.setItem('users', JSON.stringify(users));
@@ -204,8 +204,11 @@ function dragLeave(e) {
 // Generates the Detail Window
 function showDetailWindow(id) {
     document.getElementById('detail-container').classList.remove('d-none');
-
-    let detailTodo = filteredTasks[id];
+    const detailTodo = filteredTasks.find((detailTodo) => {
+        return detailTodo.id == id;
+    });
+    console.log(detailTodo);
+    // let detailTodo = filteredTasks[id];
     let category = detailTodo['category']['Category'];
     let categoryColor = detailTodo['category']['TaskColor'];
     let title = detailTodo['title'];
@@ -274,7 +277,7 @@ function generateDetailTodoHTML(element, category, categoryColor, title, descrip
 
 // renders the mask for editing an existing task
 function changeTask(id) {
-    filteredTasks[id]
+    // filteredTasks[id]
     document.getElementById('Detail').innerHTML = /*html*/`
     <form onsubmit="pushChangedTask(${filteredTasks[id]}); return false;" class="editTask">
     <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">

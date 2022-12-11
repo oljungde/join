@@ -26,7 +26,7 @@ async function addToTask(i) {
 
 
   let currentTask = {
-    "id": j,
+    "id": (new Date().getTime() * Math.random()).toFixed(0),
     "category": {
       Category: taskCategoryFinaly,
       TaskColor: taskCategoryColorFinaly,
@@ -47,17 +47,9 @@ async function addToTask(i) {
     filterTasksByStatus();
   }
   else if (i == 1) {
-    ShowTaskAddedPopUp();
     document.getElementById('AddTaskMaskBg').classList.add('d-none');
-
-    // setTimeout(() => {
-    //   let close = document.getElementById('AddTaskMaskBg');
-    //   close.classList.add('d-none');
-    // }, 2000);
-    setTimeout(() => {
-      filterTasksByStatus();
-    }, 1100);
-
+    ShowTaskAddedPopUp();
+    filterTasksByStatus();
   }
 }
 
