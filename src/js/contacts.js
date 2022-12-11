@@ -66,6 +66,13 @@ function createContact() {
 
 }
 
+/**
+ * Check e-mail or create a contact
+ * 
+ * @param {*} look 
+ * @param {*} contactName 
+ * @param {*} contactTask 
+ */
 function checkOrLoad(look, contactName, contactTask) {
     if (look == -1) {
         addNewContact(contactTask);
@@ -76,12 +83,23 @@ function checkOrLoad(look, contactName, contactTask) {
     }
 }
 
+/**
+ * Pusht ContactTask in CurrentUser and Save it in Backend
+ * 
+ * @param {*} contactTask 
+ */
 async function addNewContact(contactTask) {
     currentUser.contacts.push(contactTask);
     currentUser.contacts.sort((a, b) => a.contactName.localeCompare(b.contactName));
     await backend.setItem('users', JSON.stringify(users));
 }
 
+/**
+ * Checks if e-mail is assigned in array
+ * 
+ * @param {*} contactTask 
+ * @returns 
+ */
 function checkEmailInArray(contactTask,) {
     let email = contactTask['contactEmail'];
     let userindex = -1;
@@ -91,16 +109,13 @@ function checkEmailInArray(contactTask,) {
         }
     }
     return userindex;
-
-
 }
 
 
-
+// email already taken appears
 function checkEmail() {
     let emaildone = document.getElementById('emailDone');
     emaildone.classList.remove('d-none');
-
 }
 
 /**
@@ -111,6 +126,7 @@ function checkEmail() {
 function fillAllTasks(contactName,) {
     let letter = contactName.charAt(0);
     closeAddContact();
+    popupContactSave();
     if (currentUser.lettertask.includes(letter)) {
         clearContactBar();
     }
@@ -125,6 +141,15 @@ function fillAllTasks(contactName,) {
     }
 }
 
+// save contact popup
+function popupContactSave(){
+    document.getElementById('popup-ContactBar').classList.remove('d-none');
+    setTimeout(() => {
+        document.getElementById('popup-ContactBar').classList.add('d-none');
+      }, 2000);
+}
+
+// Clear Contact Letter Bar
 function clearContactBar() {
     for (let i = 0; i < currentUser.lettertask.length; i++) {
         let clear = currentUser.lettertask[i];
@@ -133,24 +158,21 @@ function clearContactBar() {
             contactSmall.removeChild(contactSmall.lastChild);
         }
     }
-
     contactChild();
 }
 
+// for loop for contact child
 function contactChild() {
     for (let index = 0; index < currentUser.contacts.length; index++) {
         let i = currentUser.contacts[index];
         let lettersFB = currentUser.contacts[index]['contactInitials'];
         let l = currentUser.contacts[index]['contactletter'];
-
         let contactchilds = document.getElementById(l);
-
         contactchilds.innerHTML += contactChildHtml(i, lettersFB, index);
-
     }
-
 }
 
+// Create a Contact Letter Bar
 function createContactBar() {
     for (let i = 0; i < currentUser.lettertask.length; i++) {
         let l = currentUser.lettertask[i];
@@ -159,22 +181,31 @@ function createContactBar() {
     }
 }
 
+/**
+ * opens detail view of contact
+ * 
+ * @param {*} index 
+ * @param {*} lettersFB 
+ */
 function openDetailContact(index, lettersFB) {
-
     let changeBG = document.getElementById(index);
     changeBG.classList.toggle('contact-child-div-klick');
     let contact = currentUser.contacts[index];
     let contactdetails = document.getElementById('contactdetails');
     contactdetails.innerHTML = '';
-
     contactdetails.innerHTML = contactDetailHtml(contact, lettersFB, index);
 }
 
+/**
+ * opens Edit view of Contact
+ * 
+ * @param {*} index 
+ * @param {*} lettersFB 
+ */
 function editContact(index, lettersFB) {
     let contact = currentUser.contacts[index];
     let editcontact = document.getElementById('opencontact');
     editcontact.classList.remove('d-none');
-
     editcontact.innerHTML = '';
     editcontact.innerHTML = editContactHtml(contact, lettersFB, index);
     document.getElementById('contactEditName').value = contact['contactName'];
@@ -182,14 +213,19 @@ function editContact(index, lettersFB) {
     document.getElementById('contactEditNumber').value = contact['contactNumber'];
 }
 
+/**
+ * Changes a contact
+ * 
+ * @param {*} oldEmail 
+ * @param {*} index 
+ * @param {*} lettersFB 
+ */
 function invEditContact(oldEmail, index, lettersFB) {
-
     let smallName = document.getElementById('contactEditName').value;
     let contactEmail = document.getElementById('contactEditEmail').value;
     let contactNumber = document.getElementById('contactEditNumber').value;
     let contactName = smallName.charAt(0).toUpperCase() + smallName.slice(1);
     let firstName = contactName.charAt(0);
-
     let contactTask = {
         'contactName': contactName,
         'contactEmail': contactEmail,
@@ -197,24 +233,16 @@ function invEditContact(oldEmail, index, lettersFB) {
         'contactletter': firstName,
         'oldEmail': oldEmail
     };
-
     changeUser(contactTask, index, lettersFB);
 }
 
-function renderContacts(letter) {
-    if (currentUser.lettertask.includes(letter)) {
-        clearContactBar();
-    }
-    else {
-        let contactBar = document.getElementById('contactbar');
-        contactBar.innerHTML = '';
-        lettertask.push(letter);
-        lettertask.sort();
-        createContactBar();
-        contactChild();
-    }
-}
-
+/**
+ * Changes a contact
+ * 
+ * @param {*} object 
+ * @param {*} id 
+ * @param {*} lettersFB 
+ */
 function changeUser(object, id, lettersFB) {
     let oldEmail = object['oldEmail'];
     let index = getUserIndexForEmail(oldEmail);
@@ -230,16 +258,43 @@ function changeUser(object, id, lettersFB) {
     openDetailContact(id, lettersFB);
 }
 
+/**
+ * Render a Contact
+ * 
+ * @param {*} letter 
+ */
+function renderContacts(letter) {
+    if (currentUser.lettertask.includes(letter)) {
+        clearContactBar();
+    }
+    else {
+        let contactBar = document.getElementById('contactbar');
+        contactBar.innerHTML = '';
+        lettertask.push(letter);
+        lettertask.sort();
+        createContactBar();
+        contactChild();
+    }
+}
+
+// Save in Backend
 async function savesInBackEnd() {
     await backend.setItem('users', JSON.stringify(users));
 }
 
+// close contact detail
 function clearContactDetails() {
     let addcontact = document.getElementById('contactdetails');
     addcontact.innerHTML = '';
 
 }
 
+/**
+ * Lokking for index in array
+ * 
+ * @param {*} email 
+ * @returns 
+ */
 function getUserIndexForEmail(email) {
     let userindex = -1;
     for (i = 0; i < currentUser.contacts.length; i++) {
@@ -250,12 +305,60 @@ function getUserIndexForEmail(email) {
     return userindex;
 }
 
+/**
+ * Open AddTask in contact
+ * 
+ * @param {*} i 
+ */
 function OpenContactAddTask(i) {
     let openaddtask = document.getElementById('openContactAddtask');
     document.getElementById('openContactAddtaskBG').classList.remove('d-none');
     openaddtask.innerHTML = openAddTaskHtml(i);
 }
 
+/**
+ * Delete a Contact
+ * 
+ * @param {*} index 
+ */
+function deleteContacts(index) {
+    closeAddContact();
+    let letter = currentUser.contacts[index]['contactletter'];
+    currentUser.contacts.splice(index, 1);
+    let indexofletter = deleteContactletter(letter);
+    if (indexofletter == -1) {
+        for (let l = 0; l < currentUser.lettertask.length; l++) {
+            let element = currentUser.lettertask[l];
+            if (element == letter) {
+                currentUser.lettertask.splice(l, 1);
+                let clear = document.getElementById(letter);
+                clear.remove();
+            }
+        }
+    }
+    document.getElementById('contactbar').innerHTML = '';
+    clearContactDetails();
+    createContactBar();
+    contactChild();
+    savesInBackEnd();    
+}
+
+/**
+ * Delete Contact Letter Bar
+ * 
+ * @param {*} letter 
+ * @returns 
+ */
+function deleteContactletter(letter) {
+    let userindex = -1;
+    for (i = 0; i < currentUser.contacts.length; i++) {
+        let lettersFB = currentUser.contacts[i]['contactName'].charAt(0);
+        if (lettersFB == letter) {
+            userindex = i; 
+        }
+    }
+    return userindex;
+}
 
 function contactDetailHtml(contact, lettersFB, index) {
     return `
@@ -391,11 +494,12 @@ function editContactHtml(contact, lettersFB, index) {
             </div>
             <div class="button-container">
               
-                <button class="button-cancel" onclick="closeAddContact()">Delete <img src="./assets/img/cancel.png" alt=""></button>
+                <button class="button-cancel" type="button" onclick="deleteContacts(${index})">Delete <img src="./assets/img/cancel.png" alt=""></button>
                 <button class="button-create" type="submit">Save <img src="/src/assets/img/rithe.png" alt=""></button>
                 
             </div>
         </form>
+        
     </div>
 </div>
     `
