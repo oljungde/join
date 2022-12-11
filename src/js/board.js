@@ -177,10 +177,12 @@ function allowDrop(ev) {
 
 // changes the status of the task according to the dropped area
 async function moveTo(e, status) {
-    currentUserTasks[currentDraggedElement]['status'] = status;
+    const currentTask = filteredTasks.filter((currentTask) => {
+        return currentTask.id == currentDraggedElement;
+    });
+    currentTask[0].status = status;
     e.target.classList.remove('drag-over');
     filterTasksByStatus();
-    console.log(currentUserTasks);
     backend.setItem('users', JSON.stringify(users));
 }
 
