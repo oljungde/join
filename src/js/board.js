@@ -273,7 +273,7 @@ function generateDetailTodoHTML(element, category, categoryColor, title, descrip
 function changeTask(id) {
     filteredTasks[id]
     document.getElementById('Detail').innerHTML = /*html*/`
-    <form class="editTask">
+    <form onsubmit="pushChangedTask(${filteredTasks[id]}); return false;" class="editTask">
     <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
     
     <div class="input-title">
@@ -289,7 +289,7 @@ function changeTask(id) {
         <h4>Due Date</h4>
         <div class= "input-date" id="input-date">
             <input id="add-date" class="add-date" value="${filteredTasks[id]['dueDate']}" type="date">
-            <img src="assets/img/dateSelect-img.png" alt="">
+            <img src="./assets/img/dateSelect-img.png" alt="">
         </div>
     </div>
 
@@ -316,30 +316,30 @@ function changeTask(id) {
         </div>
         <div class="selector-user-dropdown" id="selector_user_dropdown">  </div>
         <div>
-        <button onclick="deleteTask(${id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
-        <button onclick="pushChangedTask(${filteredTasks[id]});" class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
+        
+        <button type="submit" class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
         </div>
 </form>
+<button onclick="deleteTask(${id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
     `
 }
 
 
 async function deleteTask(id) {
-    currentUser.tasks.splice(id, 1);
-    console.log(currentUser);
-    //saveDeletetTask();
+    filteredTasks.splice(id, 1);
+    console.log(filteredTasks);
+    await backend.setItem('users', JSON.stringify(users));
     closeDetailTask();
     filterTasksByStatus();
-    
 }
 
-async function saveDeletetTask(){
+async function saveDeletetTask() {
     await backend.setItem('users', JSON.stringify(users));
 }
 
 //Closes the Detail Window
 function closeDetailTask() {
     document.getElementById('detail-container').classList.add('d-none');
-    
+
 
 }

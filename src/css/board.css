@@ -526,8 +526,8 @@ h1 {
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-    
-    background: url(src/assets/img/date.png) center no-repeat;
+
+    background: url(./../assets/img/date.png) center no-repeat;
     background-size: 28px;
     cursor: pointer;
 
@@ -767,11 +767,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     right: 41px;
 }
 
-.editTask h4{
-margin: 20px;
+.editTask h4 {
+    margin: 20px;
 }
 
-.trash-button{
+.trash-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -786,12 +786,12 @@ margin: 20px;
     line-height: 120%;
 }
 
-.trash{
+.trash {
     width: 25px;
     height: 25px;
 }
 
-.ok{
+.ok {
     width: 86px;
     height: 61px;
     position: absolute;

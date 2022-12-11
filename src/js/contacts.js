@@ -58,12 +58,9 @@ function createContact() {
         'contactletter': firstName,
         'contactcolor': randomColor,
         'contactInitials': lettersFB
-
     };
     let look = checkEmailInArray(contactTask);
     checkOrLoad(look, contactName, contactTask)
-
-
 }
 
 /**
@@ -188,12 +185,19 @@ function createContactBar() {
  * @param {*} lettersFB 
  */
 function openDetailContact(index, lettersFB) {
-    let changeBG = document.getElementById(index);
-    changeBG.classList.toggle('contact-child-div-klick');
+    changeColorInContact(index);
+    
     let contact = currentUser.contacts[index];
     let contactdetails = document.getElementById('contactdetails');
     contactdetails.innerHTML = '';
     contactdetails.innerHTML = contactDetailHtml(contact, lettersFB, index);
+}
+
+function changeColorInContact(index){
+    for (let i = 0; i < currentUser.contacts.length; i++) {
+        document.getElementById(i).classList.remove('contact-child-div-klick')    
+    }
+    document.getElementById(index).classList.add('contact-child-div-klick');
 }
 
 /**
@@ -246,7 +250,6 @@ function invEditContact(oldEmail, index, lettersFB) {
 function changeUser(object, id, lettersFB) {
     let oldEmail = object['oldEmail'];
     let index = getUserIndexForEmail(oldEmail);
-
     currentUser.contacts[index]['contactName'] = object['contactName'];
     currentUser.contacts[index]['contactletter'] = object['contactletter'];
     currentUser.contacts[index]['contactEmail'] = object['contactEmail'];
@@ -415,8 +418,8 @@ function addNewContactHtml() {
     return `
     <div class="add-contact animationFadeIn">
     <div class="add-contact-head">
-        <div class="add-contact-cross" onclick="closeAddContact()">
-            <img class="img-cross" src="/src/assets/img/pngegg.png" alt="">
+        <div class="add-contact-cross" >
+            <img class="img-cross" onclick="closeAddContact()" src="/src/assets/img/pngegg.png" alt="">
         </div>
         <div class="add-contact-header-info" >
             <div onclick="closeAddContact()>
@@ -434,14 +437,14 @@ function addNewContactHtml() {
         <div class="contact-member"><img src="/src/assets/img/contact-member.png" alt="">
         </div>
         <form onsubmit="createContact(); return false;">
-            <div>
+            <div class="input-add-contact-container">
                 <div class="input-contact"><input placeholder="Name" required  type="text" id="contactName" class="input-contact-name">
                     <img src="/src/assets/img/signup-user.png" alt="">
                 </div>
                 <div class="input-contact"><input placeholder="Email" required type="email" id="contactEmail" class="input-contact-name">
                     <img src="/src/assets/img/login-email.png" alt="">
                 </div>
-                <div  id="emailDone" class="d-none"> Email bereits vorhanden</div>
+                <div  id="emailDone" class="d-none contact-email-done">This Email already exists</div>
                 <div class="input-contact"><input placeholder="Phone" required type="text" id="contactNumber" class="input-contact-name">
                     <img src="/src/assets/img/phone.png" alt="">
                 </div>
