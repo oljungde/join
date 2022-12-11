@@ -330,11 +330,13 @@ async function deleteTask(id) {
     filteredTasks.splice(id, 1);
     console.log(filteredTasks);
     await backend.setItem('users', JSON.stringify(users));
-    closeDetailTask();
+    document.getElementById('detail-container').classList.add('d-none');
     filterTasksByStatus();
 }
 
 //Closes the Detail Window
 function closeDetailTask() {
     document.getElementById('detail-container').classList.add('d-none');
+    filterTasksByStatus();
+
 }
