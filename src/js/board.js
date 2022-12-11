@@ -183,7 +183,7 @@ async function moveTo(e, status) {
     currentTask[0].status = status;
     e.target.classList.remove('drag-over');
     filterTasksByStatus();
-    backend.setItem('users', JSON.stringify(users));
+    await backend.setItem('users', JSON.stringify(users));
 }
 
 
