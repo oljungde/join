@@ -328,9 +328,11 @@ function getUserIndexForEmail(email) {
  * @param {*} i 
  */
 function OpenContactAddTask(i) {
+    
     let openaddtask = document.getElementById('openContactAddtask');
     document.getElementById('openContactAddtaskBG').classList.remove('d-none');
     openaddtask.innerHTML = openAddTaskHtml(i);
+    
 }
 
 /**
