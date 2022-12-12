@@ -98,7 +98,7 @@ function renderTasks(status) {
 }
 
 // function renderContactInTask(element){
-    // wenn man contacte angeklickt haben werden sie in currentuser. tasks. user gespeichert mann muss sie nur noch da rausziehen
+    // wenn man contacte angeklickt hat und den task erstellt hat werden sie in currentuser. tasks. user gespeichert 
 //         document.getElementById('contactInAddTask').innerHTML  +=`
 //         <div style="background-color: ${element[user]['concolor']}" class="user">${element[user]['contactInitials']}</div>
 //         `;     

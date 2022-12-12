@@ -94,7 +94,7 @@ function openAddTaskHtml(i) {
         </div>
 
         <div id="user_selector">
-             <div class="selector-header" onclick="showUsers()">
+             <div class="selector-header"  onclick="showUsers()">
                 Select contacts to assign
                 <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
               </div>
@@ -229,7 +229,7 @@ function showUsers() {
       `; 
     }
     document.getElementById('selector_user_dropdown').innerHTML += /*html*/`  
-    <div onclick="selectedUser()" class="selectorCell pointer" >
+    <div onclick="inviteNewContact()" class="selectorCell pointer" >
         <div>Invite new contact</div>
         <img src="./assets/img/newContact-img.png">
     </div>
@@ -262,28 +262,24 @@ function selectedUser(  contactInitials, contactcolor, i) {
   }
   
   
-  // if (user == "Invite new contact") {
-  //   document.getElementById('selector_user_dropdown').classList.add('d-none');
-  //   document.getElementById("user_selector").innerHTML = /*html*/`
-  //   <div class="inputUser">
-  //      <div class="inputfield-new-user">
-  //        <input class="input border-bottom" id="newUserText" type="text" placeholder="Contact email" required>
-  //        <div class="checkAndCrossIconsCategory">
-  //         <img src="./assets/img/blue-cross.png" onclick="exitCategorySelector()" class="blue-cross pointer">
-  //         <img src="./assets/img/devider.png">
-  //         <img src="./assets/img/blue-check.png" onclick="addCategory()" class="blue-check pointer">
-  //      </div>
-  //   </div>
-  //   `;
-  // }
-  // if (user == "Maximillian Vogel") {
-  //   userSelect = "Maximillian Vogel";
+  
+  
+}
 
-  // }
-  // if (user == "You") {
-  //   userSelect = "You";
-  //   document.getElementById('user_select').src = 'assets/img/userSelect-selected.png';
-  // }
+function inviteNewContact(){ 
+  // document.getElementById('inviteNewUser').classList.remove('d-none');
+    document.getElementById('selector_user_dropdown').classList.add('d-none');
+    document.getElementById("user_selector").innerHTML = /*html*/`
+    <div class="inputUser" id="inviteNewUser">
+       <div class="inputfield-new-user">
+         <input class="input border-bottom" id="newUserText" type="text" placeholder="Contact email" required>
+         <div class="checkAndCrossIconsCategory">
+          <img src="./assets/img/blue-cross.png" onclick="exitCategorySelector()" class="blue-cross pointer">
+          <img src="./assets/img/devider.png">
+          <img src="./assets/img/blue-check.png" onclick="" class="blue-check pointer">
+       </div>
+    </div>
+    `;
 }
 
 function findeContactIndex(contactcolor){
@@ -297,9 +293,14 @@ function findeContactIndex(contactcolor){
 
 // function for exting the categorySelector by clicking on the cross
 function exitCategorySelector() {
-  document.getElementById('user_selector').classList.add('d-none');
+  document.getElementById('inviteNewUser').classList.add('d-none');
   document.getElementById('selector_user_dropdown').classList.remove('d-none');
-
+  document.getElementById("user_selector").innerHTML = `
+  <div class="selector-header"  onclick="showUsers()">
+  Select contacts to assign
+  <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
+  </div>
+  `
 }
 
 
