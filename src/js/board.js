@@ -93,9 +93,17 @@ function renderTasks(status) {
         const element = status[index];
         let taskStatus = element.status;
         document.getElementById(taskStatus).innerHTML += generateTodoHTML(element);
+        // renderContactInTask(element);
     }
 }
 
+// function renderContactInTask(element){
+    
+//         document.getElementById('contactInAddTask').innerHTML  +=`
+//         <div style="background-color: ${element[user]['concolor']}" class="user">${element[user]['contactInitials']}</div>
+//         `;     
+    
+// }
 
 // Update the board
 function identifyId() {
@@ -125,7 +133,8 @@ function generateTodoHTML(element) {
       </div>
 
       <div class=UserAndPriority>
-        <div style="background-color: ${element['usercolor']}" class="user">${element['user']}</div>
+        <div id="contactInAddTask"></div>
+        
         <div class="priority"><img src="assets/img/prio-${element['priority']}.png" alt=""></div>
       </div>
     </div>`

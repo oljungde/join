@@ -2,6 +2,8 @@ let j = 0;
 let selectorCategoryIndex = 0;
 let taskCategorySelector = [];
 let categorySelectedColor;
+let selectorcontactIndex = 0;
+let userSelect = [];
 
 
 /**
@@ -35,8 +37,7 @@ async function addToTask(i) {
     "description": description.value,
     "dueDate": dueDate.value,
     "priority": prioritySelect,
-    "user": userSelect,
-    'usercolor': concolor,
+    "user": userSelect,   
     'status': 'toDo'
   };
   currentUserTasks.push(currentTask);
@@ -74,7 +75,7 @@ function ShowTaskAddedPopUp() {
 function openAddTaskMask(i) {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
   document.getElementById('AddTaskMaskContainer').classList.remove('d-none');
-
+  userSelect = [];
   let openaddtask = document.getElementById('AddTaskMaskContainer');
   openaddtask.innerHTML = openAddTaskHtml(i);
 }
@@ -218,33 +219,49 @@ function closeAddTaskMask(i) {
 function showUsers() {
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
-  for (let i = 0; i < activUserContact.length; i++) {
-    document.getElementById('selector_user_dropdown').innerHTML += /*html*/`
-    <div onclick="selectedUser('${currentUser.contacts[i]['contactInitials']}', '${currentUser.contacts[i]['contactcolor']}', '${i}')" class="selectorCell pointer">
-        <div>${activUserContact[i].contactName}</div>
-        <div><img id="user_select${i}${currentUser.contacts[i]['contactInitials']}" src="./assets/img/userSelect-img.png"></div>
+  if (selectorcontactIndex == 0) {
+    for (let i = 0; i < activUserContact.length; i++) {
+      document.getElementById('selector_user_dropdown').innerHTML += /*html*/`
+      <div onclick="selectedUser('${currentUser.contacts[i]['contactInitials']}', '${currentUser.contacts[i]['contactcolor']}', '${i}')" class="selectorCell pointer">
+          <div>${activUserContact[i].contactName}</div>
+          <div><img id="user_select${currentUser.contacts[i]['contactInitials']}${currentUser.contacts[i]['contactcolor']}${i}" src="./assets/img/userSelect-img.png"></div>
+      </div>
+      `; 
+    }
+    document.getElementById('selector_user_dropdown').innerHTML += /*html*/`  
+    <div onclick="selectedUser()" class="selectorCell pointer" >
+        <div>Invite new contact</div>
+        <img src="./assets/img/newContact-img.png">
     </div>
     `;
-
+    selectorcontactIndex++;
   }
-  document.getElementById('selector_user_dropdown').innerHTML += /*html*/`  
-  <div onclick="selectedUser()" class="selectorCell pointer" >
-      <div>Invite new contact</div>
-      <img src="./assets/img/newContact-img.png">
-  </div>
-  `;
-
-
-
-
+  else{
+    document.getElementById('selector_user_dropdown').innerHTML = ``;
+    selectorcontactIndex--;
+  }
 }
 
 
 // getting selected User
-function selectedUser(contactInitials, contactcolor, i) {
-  userSelect = contactInitials;
-  concolor = contactcolor;
-  document.getElementById('user_select' + i + contactInitials).src = 'assets/img/userSelect-selected.png';
+function selectedUser(  contactInitials, contactcolor, i) {
+  let index = findeContactIndex(contactcolor);
+  if(document.getElementById('user_select' + contactInitials + contactcolor + i).classList.contains('checked')){
+    userSelect.splice(index, 1)
+    document.getElementById('user_select'  + contactInitials + contactcolor + i).classList.remove('checked');
+    document.getElementById('user_select'  + contactInitials + contactcolor + i).src = 'assets/img/userSelect-img.png';
+  }
+  else{
+    userSelect.push({
+      'id': i,
+      'contactInitials': contactInitials,
+      'concolor': contactcolor
+    });
+    document.getElementById('user_select'  + contactInitials  + contactcolor + i).classList.add('checked');
+    document.getElementById('user_select'  + contactInitials + contactcolor + i).src = 'assets/img/userSelect-selected.png';
+  }
+  
+  
   // if (user == "Invite new contact") {
   //   document.getElementById('selector_user_dropdown').classList.add('d-none');
   //   document.getElementById("user_selector").innerHTML = /*html*/`
@@ -269,6 +286,14 @@ function selectedUser(contactInitials, contactcolor, i) {
   // }
 }
 
+function findeContactIndex(contactcolor){
+  let index;
+  for (let i = 0; i < userSelect.length; i++) {
+    if(userSelect[i].concolor == contactcolor)
+      index = i;
+  }
+  return index;
+}
 
 // function for exting the categorySelector by clicking on the cross
 function exitCategorySelector() {
