@@ -469,8 +469,8 @@ function addNewContactHtml() {
             </div>
             <div class="button-container">
               
-                <button class="button-cancel" type="reset" >Cancel <img src="/src/assets/img/cancel.png" alt=""></button>
-                <button class="button-create" type="submit">Create contact <img src="/src/assets/img/rithe.png" alt=""></button>
+                <button class="button-cancel" type="reset" >Cancel <img src="./assets/img/cancel.png" alt=""></button>
+                <button class="button-create" type="submit">Create contact <img src="./assets/img/rithe.png" alt=""></button>
                 
             </div>
         </form>

@@ -103,7 +103,7 @@ function openAddTaskHtml(i) {
         <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
            <h4>Due Date</h4>
            <div class= "input-date" id="input-date">
-             <input id="add-date" class="add-date" placeholder="dd/mm/yy" type="data" onfocus="this.type='date' " onblur="(this.type='text')" required>
+             <input id="add-date" background: url(./assets/img/data.png) no-repeat scroll 7px 7px; class="add-date" placeholder="dd/mm/yy" type="date"   required>
            </div>
         </div>
 

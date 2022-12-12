@@ -810,3 +810,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .d-none {
     display: none;
 }
+
+.add-date{
+    outline: none;
+}
+
+.add-date:hover{
+    cursor: pointer;
+}
