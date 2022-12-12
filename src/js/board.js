@@ -93,17 +93,22 @@ function renderTasks(status) {
         const element = status[index];
         let taskStatus = element.status;
         document.getElementById(taskStatus).innerHTML += generateTodoHTML(element);
-        // renderContactInTask(element);
+        renderContactInTask(element);
     }
 }
 
-// function renderContactInTask(element){
-    // wenn man contacte angeklickt hat und den task erstellt hat werden sie in currentuser. tasks. user gespeichert 
-//         document.getElementById('contactInAddTask').innerHTML  +=`
-//         <div style="background-color: ${element[user]['concolor']}" class="user">${element[user]['contactInitials']}</div>
-//         `;     
+function renderContactInTask(element){
+        for (let i = 0; i < element.user.length; i++) {
+            let letter = element.user[i]['contactInitials'];
+            let color = element.user[i]['concolor'];
+            let id = element.id;
+            document.getElementById(id).innerHTML  +=`
+            <div style="background-color: ${color}" class="user">${letter}</div>
+            `;    
+        }
+         
     
-// }
+}
 
 // Update the board
 function identifyId() {
@@ -133,7 +138,7 @@ function generateTodoHTML(element) {
       </div>
 
       <div class=UserAndPriority>
-        <div id="contactInAddTask"></div>
+        <div id="${element['id']}"></div>
         
         <div class="priority"><img src="assets/img/prio-${element['priority']}.png" alt=""></div>
       </div>
