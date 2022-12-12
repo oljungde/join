@@ -409,15 +409,17 @@ padding: 50px;
     justify-content: flex-end;
 }
 
-.animationFadeInBottom {
-    animation: fadeInBottom 1s ease 0s 1 normal forwards;
-}
-
 .display-contact-none{
     display: none;
 }
 
-@keyframes fadeInBottom {
+.animationFadeIncontactBottom {
+    animation: fadeIncontactBottom 1s ease 0s 1 normal forwards;
+}
+
+
+
+@keyframes fadeIncontactBottom {
     from {
         opacity: 0;
     }
