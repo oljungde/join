@@ -17,9 +17,6 @@ async function initAddTask() {
   checkUserIsLoggedIn();
 }
 
-
-
-
 //defines the current task and pushes it to the Array alltasks and saves it in the backend 
 async function addToTask(i) {
   let title = document.getElementById('AddTitle');
@@ -79,6 +76,7 @@ function openAddTaskMask(i) {
   let openaddtask = document.getElementById('AddTaskMaskContainer');
   openaddtask.innerHTML = openAddTaskHtml(i);
 }
+
 // new by Seb 30.11!!
 function openAddTaskHtml(i) {
   return /*html*/`
@@ -228,12 +226,7 @@ function showUsers() {
       </div>
       `; 
     }
-    document.getElementById('selector_user_dropdown').innerHTML += /*html*/`  
-    <div onclick="inviteNewContact()" class="selectorCell pointer" >
-        <div>Invite new contact</div>
-        <img src="./assets/img/newContact-img.png">
-    </div>
-    `;
+   
     selectorcontactIndex++;
   }
   else{
@@ -260,27 +253,9 @@ function selectedUser(  contactInitials, contactcolor, i) {
     document.getElementById('user_select'  + contactInitials  + contactcolor + i).classList.add('checked');
     document.getElementById('user_select'  + contactInitials + contactcolor + i).src = 'assets/img/userSelect-selected.png';
   }
-  
-  
-  
-  
 }
 
-function inviteNewContact(){ 
-  // document.getElementById('inviteNewUser').classList.remove('d-none');
-    document.getElementById('selector_user_dropdown').classList.add('d-none');
-    document.getElementById("user_selector").innerHTML = /*html*/`
-    <div class="inputUser" id="inviteNewUser">
-       <div class="inputfield-new-user">
-         <input class="input border-bottom" id="newUserText" type="text" placeholder="Contact email" required>
-         <div class="checkAndCrossIconsCategory">
-          <img src="./assets/img/blue-cross.png" onclick="exitCategorySelector()" class="blue-cross pointer">
-          <img src="./assets/img/devider.png">
-          <img src="./assets/img/blue-check.png" onclick="" class="blue-check pointer">
-       </div>
-    </div>
-    `;
-}
+
 
 function findeContactIndex(contactcolor){
   let index;
@@ -289,18 +264,6 @@ function findeContactIndex(contactcolor){
       index = i;
   }
   return index;
-}
-
-// function for exting the categorySelector by clicking on the cross
-function exitCategorySelector() {
-  document.getElementById('inviteNewUser').classList.add('d-none');
-  document.getElementById('selector_user_dropdown').classList.remove('d-none');
-  document.getElementById("user_selector").innerHTML = `
-  <div class="selector-header"  onclick="showUsers()">
-  Select contacts to assign
-  <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
-  </div>
-  `
 }
 
 
@@ -364,8 +327,6 @@ function selectedCategory(category, color) {
     <div id="selector_Category_Dropdown">
       <!-- Rendering selector content here -->
     </div>`;
-
-
   }
 }
 
