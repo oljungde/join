@@ -7,9 +7,15 @@ async function initContacts() {
     checkUserIsLoggedIn();
     renderAllContact()
     getTasksOfCurrentUser();
+    imgheader();
 }
 
+function imgheader(){
+    let letterFB = currentUser['name'].match(/\b(\w)/g).join('');
+    let lettersFB = letterFB.toUpperCase();
+    document.getElementById('menu_show').innerHTML = lettersFB;
 
+}
 
 function renderAllContact() {
     createContactBar();

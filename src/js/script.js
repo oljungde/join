@@ -5,7 +5,7 @@ let currentUser;
 let currentUserTasks = [];
 let allTasks = [];
 let subTasks = [];;
-
+let showMenuinheader = 0;
 
 /**
  * init function will be executed when loading the page, includes heder an sidebar navigation, and get several arrays from the backend
@@ -74,12 +74,16 @@ function checkRememberMeStatus() {
  * shows the popup menu to log out and change the user image
  */
 function showMenu() {
-    let noMenuShow = document.getElementById('no_menu_show');
-    let menuShow = document.getElementById('menu_show');
+    if(showMenuinheader == 0){
     let menu = document.getElementById('header_nav_popup');
-    noMenuShow.classList.add('display-none');
-    menuShow.classList.remove('display-none');
-    menu.classList.add('show-menu')
+    menu.classList.add('show-menu');
+    showMenuinheader++;
+    }
+    else{
+        let menu = document.getElementById('header_nav_popup');
+        menu.classList.remove('show-menu');
+        showMenuinheader--;
+    }
 }
 
 
@@ -92,19 +96,6 @@ function setNavLinkActive() {
         if (document.location.href.indexOf(navLinks[i].href) >= 0) {
             navLinks[i].classList.add('active');
         }
-}
-
-
-/**
- * hides the popup Menu to log out an change the user image
- */
-function hideMenu() {
-    let noMenuShow = document.getElementById('no_menu_show');
-    let menuShow = document.getElementById('menu_show');
-    let menu = document.getElementById('header_nav_popup');
-    noMenuShow.classList.remove('display-none');
-    menuShow.classList.add('display-none');
-    menu.classList.remove('show-menu')
 }
 
 
