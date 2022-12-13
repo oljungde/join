@@ -15,6 +15,7 @@ async function initAddTask() {
   await init();
   setNavLinkActive();
   checkUserIsLoggedIn();
+  imgheader();
 }
 
 //defines the current task and pushes it to the Array alltasks and saves it in the backend 

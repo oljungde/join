@@ -115,3 +115,9 @@ async function includeHTML() {
         }
     }
 }
+
+function imgheader(){
+    let letterFB = currentUser['name'].match(/\b(\w)/g).join('');
+    let lettersFB = letterFB.toUpperCase();
+    document.getElementById('menu_show').innerHTML = lettersFB;
+}
