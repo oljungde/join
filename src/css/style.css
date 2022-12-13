@@ -99,6 +99,16 @@ a:hover {
     padding-right: 39px;
 }
 
+.header-img-user{
+    width: 55px;
+    height: 55px;
+    border: white solid;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .rightContainer {
     position: relative;
     display: flex;
