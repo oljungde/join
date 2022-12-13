@@ -93,17 +93,9 @@ function renderTasks(status) {
         const element = status[index];
         let taskStatus = element.status;
         document.getElementById(taskStatus).innerHTML += generateTodoHTML(element);
-        // renderContactInTask(element);
     }
 }
 
-// function renderContactInTask(element){
-    // wenn man contacte angeklickt hat und den task erstellt hat werden sie in currentuser. tasks. user gespeichert 
-//         document.getElementById('contactInAddTask').innerHTML  +=`
-//         <div style="background-color: ${element[user]['concolor']}" class="user">${element[user]['contactInitials']}</div>
-//         `;     
-    
-// }
 
 // Update the board
 function identifyId() {
@@ -133,8 +125,7 @@ function generateTodoHTML(element) {
       </div>
 
       <div class=UserAndPriority>
-        <div id="contactInAddTask"></div>
-        
+        <div style="background-color: ${element['usercolor']}" class="user">${element['user']}</div>
         <div class="priority"><img src="assets/img/prio-${element['priority']}.png" alt=""></div>
       </div>
     </div>`
@@ -185,14 +176,11 @@ function allowDrop(ev) {
 
 // changes the status of the task according to the dropped area
 async function moveTo(e, status) {
-    const currentTask = filteredTasks.find((currentTask) => {
-        return currentTask.id == currentDraggedElement;
-    });
-    console.log(currentTask);
-    currentTask.status = status;
+    currentUserTasks[currentDraggedElement]['status'] = status;
     e.target.classList.remove('drag-over');
     filterTasksByStatus();
-    await backend.setItem('users', JSON.stringify(users));
+    console.log(currentUserTasks);
+    backend.setItem('users', JSON.stringify(users));
 }
 
 
@@ -213,11 +201,8 @@ function dragLeave(e) {
 // Generates the Detail Window
 function showDetailWindow(id) {
     document.getElementById('detail-container').classList.remove('d-none');
-    const detailTodo = filteredTasks.find((detailTodo) => {
-        return detailTodo.id == id;
-    });
-    console.log(detailTodo);
-    // let detailTodo = filteredTasks[id];
+
+    let detailTodo = filteredTasks[id];
     let category = detailTodo['category']['Category'];
     let categoryColor = detailTodo['category']['TaskColor'];
     let title = detailTodo['title'];
@@ -286,7 +271,7 @@ function generateDetailTodoHTML(element, category, categoryColor, title, descrip
 
 // renders the mask for editing an existing task
 function changeTask(id) {
-    // filteredTasks[id]
+    filteredTasks[id]
     document.getElementById('Detail').innerHTML = /*html*/`
     <form onsubmit="pushChangedTask(${filteredTasks[id]}); return false;" class="editTask">
     <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
@@ -346,6 +331,10 @@ async function deleteTask(id) {
     await backend.setItem('users', JSON.stringify(users));
     document.getElementById('detail-container').classList.add('d-none');
     filterTasksByStatus();
+}
+
+async function saveDeletetTask() {
+    await backend.setItem('users', JSON.stringify(users));
 }
 
 //Closes the Detail Window
