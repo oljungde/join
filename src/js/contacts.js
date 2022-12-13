@@ -1,4 +1,4 @@
-let addTasks = [];
+let savecontactforaddtask = [];
 
 
 async function initContacts() {
@@ -327,7 +327,10 @@ function getUserIndexForEmail(email) {
  * 
  * @param {*} i 
  */
-function OpenContactAddTask(i) {
+function OpenContactAddTask(i, index) {
+    savecontactforaddtask = [];
+    savecontactforaddtask = index;
+    console.log(savecontactforaddtask);
     let openaddtask = document.getElementById('openContactAddtask');
     document.getElementById('openContactAddtaskBG').classList.remove('d-none');
     openaddtask.innerHTML = openAddTaskHtml(i);
@@ -386,7 +389,7 @@ function contactDetailHtml(contact, lettersFB, index) {
                             <div style="background-color: ${contact['contactcolor']}" class="contact-detail-big-letter">${lettersFB}</div>
                             <div class="contact-detail-name-task">
                                 <p class="contact-detail-big-name">${contact['contactName']}</p>
-                                <p class="contact-detail-add-task" onclick="OpenContactAddTask(0)"><img src="./assets/img/blue-plus.png" alt="">Add Task</p>
+                                <p class="contact-detail-add-task" onclick="OpenContactAddTask('0', ${index})"><img src="./assets/img/blue-plus.png" alt="">Add Task</p>
                             </div>
                         </div>
                         <div class="contact-detail-info-main">

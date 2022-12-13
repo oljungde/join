@@ -92,7 +92,7 @@ function openAddTaskHtml(i) {
         </div>
 
         <div id="user_selector">
-             <div class="selector-header"  onclick="showUsers()">
+             <div class="selector-header"  onclick="showUsers(${i})">
                 Select contacts to assign
                 <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
               </div>
@@ -209,12 +209,13 @@ function closeAddTaskMask(i) {
   }
   else if (i == 0) {
     document.getElementById('openContactAddtaskBG').classList.add('d-none');
+    LFContact();
   }
 }
 
 
 //renders the Drop Down Menu for the User selection
-function showUsers() {
+function showUsers(contact) {
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   if (selectorcontactIndex == 0) {
@@ -226,15 +227,31 @@ function showUsers() {
       </div>
       `; 
     }
-   
+    if (contact == 0) {
+      let f = savecontactforaddtask; 
+     let contactintask = currentUser.contacts[f];
+     let contactInitials = contactintask['contactInitials'];
+     let contactcolor = contactintask['contactcolor'];
+     selectedUser(  contactInitials, contactcolor, f)
+    }
     selectorcontactIndex++;
   }
   else{
     document.getElementById('selector_user_dropdown').innerHTML = ``;
     selectorcontactIndex--;
   }
+  
 }
 
+function LFContact(){
+  let f = savecontactforaddtask; 
+  let contactintask = currentUser.contacts[f];
+  
+  let contactcolor = contactintask['contactcolor'];
+  let index = findeContactIndex(contactcolor);
+  userSelect.splice(index, 1);
+  document.getElementById('selector_user_dropdown').innerHTML = ``;
+}
 
 // getting selected User
 function selectedUser(  contactInitials, contactcolor, i) {
