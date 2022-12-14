@@ -288,37 +288,29 @@ function findeContactIndex(contactcolor){
 
 // renders the Drop Down Menu for the categories
 function showTaskCategories() {
-  let staticCategorys = [
-    { taskCategory: 'New category', taskColor: 'lightblueCategory', cagtegoryID: 0 },
-    { taskCategory: 'Sales', taskColor: 'purpleCategory', cagtegoryID: 1 },
-    { taskCategory: 'Backoffice', taskColor: 'mintCategory', cagtegoryID: 2 },
-  ];
-
-  taskCategorySelector = JSON.parse(localStorage.getItem('taskCategory')) || [];
-
   if (selectorCategoryIndex == 0) {
     document.getElementById('selector_Category_Dropdown').innerHTML = ``;
-    for (let n = 0; n < staticCategorys.length; n++) {
-
+    document.getElementById('selector_Category_Dropdown').innerHTML += `
+    <div onclick="changeInputCategory()" class="selectorCell pointer">
+            <div>New category</div>
+            <div class="selectorCellColor"><img src=""></div>
+            </div>
+          </div>
+    `;
+    for (let n = 0; n < currentUser.category.length; n++) {
+        let staticCategorys = currentUser.category[n];
+      
       document.getElementById('selector_Category_Dropdown').innerHTML += `  
-      <div onclick="selectedCategory('${staticCategorys[n].taskCategory}','${staticCategorys[n].taskColor}')" class="selectorCell pointer">
-      <div>${staticCategorys[n]['taskCategory']}</div>
-      <div><img src="./assets/img/${staticCategorys[n].taskColor}.png" </div>
+      <div onclick="selectedCategory('${staticCategorys['taskCategory']}','${staticCategorys['taskColor']}')" class="selectorCell pointer">
+      <div>${staticCategorys['taskCategory']}</div>
+      <div><img src="./assets/img/${staticCategorys['taskColor']}.png" </div>
         </div>
       `;
 
     }
-
-
-    for (let y = 0; y < taskCategorySelector.length; y++) {
-      document.getElementById('selector_Category_Dropdown').innerHTML += `
-    <div onclick="selectedCategory('${taskCategorySelector[y].taskCategory}','${taskCategorySelector[y].taskColor}')" class="selectorCell pointer">
-            <div>${taskCategorySelector[y].taskCategory}</div>
-            <div class="selectorCellColor"><img src="./assets/img/${taskCategorySelector[y].taskColor}.png"/></div>
-            </div>
-          </div>
-    `;
-    }
+     
+    
+    
     selectorCategoryIndex++;
   } else {
     document.getElementById('selector_Category_Dropdown').innerHTML = ``;
@@ -377,7 +369,7 @@ function changeInputCategory() {
 
 function exitCategoryInput() {
   document.getElementById('category_selector').innerHTML = `
-  <div id="selected_category" class="selector-header pointer" onclick="showTaskCategories()">Select task category <img class="selectorArrow" src="./assets/img/selectorArrow.png"></div>
+  <div id="selected_category" class="selector-header pointer" onclick="showTaskCategories()">Select task category <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png"></div>
   <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">
     <!-- Rendering selector content here -->
   </div>`;
@@ -400,17 +392,17 @@ function addCategoryColor(value) {
 
 
 // adds a individual category to the task
-function addCategory() {
+async function addCategory() {
   newCategory = document.getElementById("input-new-category").value;
   if (categorySelectedColor && newCategory) {
-    taskCategorySelector = JSON.parse(localStorage.getItem("taskCategory")) || [];
-    taskCategorySelector.push({
-      taskCategory: newCategory,
-      taskColor: categorySelectedColor,
+    currentUser.category.push({
+      'taskCategory': newCategory,
+      'taskColor': categorySelectedColor
     });
-    localStorage.setItem("taskCategory", JSON.stringify(taskCategorySelector));
-    exitCategoryInput()
-    showTaskCategories()
+    await backend.setItem('users', JSON.stringify(users));
+    console.log(currentUser);
+    exitCategoryInput();
+    showTaskCategories();
   } else {
     document.getElementById("alert_message").innerHTML = `Please select color!`;
   }
