@@ -352,11 +352,13 @@ function changeTaskTemplate(currentTask) {
 // }
 
 
-async function deleteTask(currentTask) {
-    filteredTasks.splice(id, 1);
+async function deleteTask(currentTaskId) {
+    let taskToDelete = filteredTasks.findIndex((taskId) => taskId.id == currentTaskId);
+    console.log(taskToDelete);
+    filteredTasks.splice(taskToDelete, 1);
     console.log(filteredTasks);
     await backend.setItem('users', JSON.stringify(users));
-    document.getElementById('detail-container').classList.add('d-none');
+    document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
 }
 
