@@ -283,61 +283,76 @@ function renderAssignedContactsDetails(currentTask) {
 
 // renders the mask for editing an existing task
 function changeTask(id) {
-    // filteredTasks[id]
-    document.getElementById('Detail').innerHTML = /*html*/`
-    <form onsubmit="pushChangedTask(${filteredTasks[id]}); return false;" class="editTask">
-    <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
-    
-    <div class="input-title">
-        <input id="AddTitle" type="text" value="${filteredTasks[id]['title']}" autocomplete="off" required>
-    </div>
+    let detailContent = document.getElementById('detail_content');
+    for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
+        const currentTask = filteredTasks[filteredTasksIndex];
+        if (currentTask.id == id) {
+            detailContent.innerHTML = changeTaskTemplate(currentTask);
+        }
+    }
+}
 
-    <div>
-        <h4>Description</h4>
-        <input class="add-description" id="AddDescription" type="text" value="${filteredTasks[id]['description']}">
-    </div>
 
-    <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
-        <h4>Due Date</h4>
-        <div class= "input-date" id="input-date">
-            <input id="add-date" class="add-date" value="${filteredTasks[id]['dueDate']}" type="date">
-            <img src="./assets/img/dateSelect-img.png" alt="">
-        </div>
-    </div>
-
-    <div class="priorityContainer">
-            <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
-                <p>Urgent</p> 
-                <img id="priorityUrgentImg" src="assets/img/prio-urgent.png" alt="">
-            </div>
-          <div class="priority-medium" id="priorityMedium" onclick="selectedPriority(2)">
-              <p>Medium</p> 
-              <img id="priorityMediumImg" src="assets/img/prio-medium.png" alt="">
-          </div>
-          <div class="priority-low" id="priorityLow" onclick="selectedPriority(3)">
-              <p>Low</p> 
-              <img id="priorityLowImg" src="assets/img/prio-low.png" alt="">
-          </div>
-       </div>
-
-       <div id="user_selector">
-             <div class="selector-header" onclick="showUsers()">
-                Select contacts to assign
-                <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
-              </div>
-        </div>
-        <div class="selector-user-dropdown" id="selector_user_dropdown">  </div>
-        <div>
+function changeTaskTemplate(currentTask) {
+    return /*html*/`
+        <form onsubmit="pushChangedTask(${currentTask}); return false;" class="editTask">
+            <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
         
-        <button type="submit" class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
-        </div>
-</form>
-<button onclick="deleteTask(${id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
+            <div class="input-title">
+                <input id="AddTitle" type="text" value="${currentTask.title}" autocomplete="off" required>
+            </div>
+
+            <div>
+                <h4>Description</h4>
+                <input class="add-description" id="AddDescription" type="text" value="${currentTask.description}">
+            </div>
+
+            <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
+                <h4>Due Date</h4>
+                <div class= "input-date" id="input-date">
+                    <input id="add-date" class="add-date" value="${currentTask.dueDate}" type="date">
+                    <img src="./assets/img/dateSelect-img.png" alt="">
+                </div>
+            </div>
+
+            <div class="priorityContainer">
+                    <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
+                        <p>Urgent</p> 
+                        <img id="priorityUrgentImg" src="assets/img/prio-urgent.png" alt="">
+                    </div>
+                <div class="priority-medium" id="priorityMedium" onclick="selectedPriority(2)">
+                    <p>Medium</p> 
+                    <img id="priorityMediumImg" src="assets/img/prio-medium.png" alt="">
+                </div>
+                <div class="priority-low" id="priorityLow" onclick="selectedPriority(3)">
+                    <p>Low</p> 
+                    <img id="priorityLowImg" src="assets/img/prio-low.png" alt="">
+                </div>
+            </div>
+
+            <div id="user_selector">
+                <div class="selector-header" onclick="showUsers()">
+                    Select contacts to assign
+                    <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
+                </div>
+            </div>
+            <div class="selector-user-dropdown" id="selector_user_dropdown">  
+            </div>
+            <div>
+                <button type="submit" class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
+            </div>
+        </form>
+        <button onclick="deleteTask(${currentTask.id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
     `
 }
 
 
-async function deleteTask(id) {
+// function pushChangedTask(currentTask) {
+
+// }
+
+
+async function deleteTask(currentTask) {
     filteredTasks.splice(id, 1);
     console.log(filteredTasks);
     await backend.setItem('users', JSON.stringify(users));
@@ -349,5 +364,4 @@ async function deleteTask(id) {
 function closeDetailTask() {
     document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
-
 }
