@@ -14,6 +14,7 @@ async function initBoard() {
     getTasksOfCurrentUser();
     identifyId();
     handleFilterTasks();
+    imgheader();
 }
 
 
