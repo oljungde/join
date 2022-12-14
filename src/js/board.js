@@ -295,7 +295,7 @@ function changeTask(id) {
 
 function changeTaskTemplate(currentTask) {
     return /*html*/`
-        <form onsubmit="pushChangedTask(${currentTask}); return false;" class="editTask">
+        <form onsubmit="saveChangedTask(${currentTask.id}); return false;" class="editTask">
             <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
         
             <div class="input-title">
@@ -339,7 +339,7 @@ function changeTaskTemplate(currentTask) {
             <div class="selector-user-dropdown" id="selector_user_dropdown">  
             </div>
             <div>
-                <button type="submit" class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
+                <button class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
             </div>
         </form>
         <button onclick="deleteTask(${currentTask.id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
@@ -347,9 +347,18 @@ function changeTaskTemplate(currentTask) {
 }
 
 
-// function pushChangedTask(currentTask) {
-
-// }
+async function saveChangedTask(currentTaskId) {
+    console.log(currentTaskId);
+    let taskToChange = filteredTasks.find((taskId) => taskId.id == currentTaskId);
+    console.log(taskToChange);
+    console.log(taskToChange.description);
+    taskToChange.description = 'Eine neue Beschreibung';
+    await backend.setItem('users', JSON.stringify(users));
+    console.log(taskToChange.description);
+    console.log(taskToChange);
+    console.log(filteredTasks);
+    console.log(users);
+}
 
 
 async function deleteTask(currentTaskId) {
