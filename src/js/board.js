@@ -342,12 +342,17 @@ function changeTaskTemplate(currentTask) {
                 <button type="submit" class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
             </div>
         </form>
-        <button onclick="deleteTask(${currentTask})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
+        <button onclick="deleteTask(${currentTask.id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
     `
 }
 
 
-async function deleteTask(id) {
+// function pushChangedTask(currentTask) {
+
+// }
+
+
+async function deleteTask(currentTask) {
     filteredTasks.splice(id, 1);
     console.log(filteredTasks);
     await backend.setItem('users', JSON.stringify(users));
