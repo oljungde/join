@@ -321,10 +321,7 @@ function showTaskCategories() {
 
 // getting selected Category
 function selectedCategory(category, color) {
-  if (category == "New category") {
-    changeInputCategory();
-  }
-  else {
+  
     taskCategoryFinaly = category;
     taskCategoryColorFinaly = color;
     document.getElementById("category_selector").innerHTML = /*html*/`
@@ -334,10 +331,8 @@ function selectedCategory(category, color) {
     <img src="./assets/img/${color}.png" />
     </div>
     <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt=""></div>
-    <div id="selector_Category_Dropdown">
-      <!-- Rendering selector content here -->
-    </div>`;
-  }
+    `;
+    document.getElementById('selector_Category_Dropdown').innerHTML = '';
 }
 
 
