@@ -357,9 +357,9 @@ async function deleteTask(currentTaskId) {
     console.log(taskToDelete);
     filteredTasks.splice(taskToDelete, 1);
     console.log(filteredTasks);
-    await backend.setItem('users', JSON.stringify(users));
     document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
+    await backend.setItem('users', JSON.stringify(users));
 }
 
 //Closes the Detail Window
