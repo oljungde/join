@@ -35,7 +35,7 @@ async function addToTask(i) {
     "description": description.value,
     "dueDate": dueDate.value,
     "priority": prioritySelect,
-    "user": userSelect,   
+    "user": userSelect,
     'status': 'toDo'
   };
   currentUserTasks.push(currentTask);
@@ -226,28 +226,28 @@ function showUsers(contact) {
           <div>${activUserContact[i].contactName}</div>
           <div><img id="user_select${currentUser.contacts[i]['contactInitials']}${currentUser.contacts[i]['contactcolor']}${i}" src="./assets/img/userSelect-img.png"></div>
       </div>
-      `; 
+      `;
     }
     if (contact == 0) {
-      let f = savecontactforaddtask; 
-     let contactintask = currentUser.contacts[f];
-     let contactInitials = contactintask['contactInitials'];
-     let contactcolor = contactintask['contactcolor'];
-     selectedUser(  contactInitials, contactcolor, f)
+      let f = savecontactforaddtask;
+      let contactintask = currentUser.contacts[f];
+      let contactInitials = contactintask['contactInitials'];
+      let contactcolor = contactintask['contactcolor'];
+      selectedUser(contactInitials, contactcolor, f)
     }
     selectorcontactIndex++;
   }
-  else{
+  else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
     selectorcontactIndex--;
   }
-  
+
 }
 
-function LFContact(){
-  let f = savecontactforaddtask; 
+function LFContact() {
+  let f = savecontactforaddtask;
   let contactintask = currentUser.contacts[f];
-  
+
   let contactcolor = contactintask['contactcolor'];
   let index = findeContactIndex(contactcolor);
   userSelect.splice(index, 1);
@@ -255,30 +255,30 @@ function LFContact(){
 }
 
 // getting selected User
-function selectedUser(  contactInitials, contactcolor, i) {
+function selectedUser(contactInitials, contactcolor, i) {
   let index = findeContactIndex(contactcolor);
-  if(document.getElementById('user_select' + contactInitials + contactcolor + i).classList.contains('checked')){
+  if (document.getElementById('user_select' + contactInitials + contactcolor + i).classList.contains('checked')) {
     userSelect.splice(index, 1)
-    document.getElementById('user_select'  + contactInitials + contactcolor + i).classList.remove('checked');
-    document.getElementById('user_select'  + contactInitials + contactcolor + i).src = 'assets/img/userSelect-img.png';
+    document.getElementById('user_select' + contactInitials + contactcolor + i).classList.remove('checked');
+    document.getElementById('user_select' + contactInitials + contactcolor + i).src = 'assets/img/userSelect-img.png';
   }
-  else{
+  else {
     userSelect.push({
       'id': i,
       'contactInitials': contactInitials,
       'concolor': contactcolor
     });
-    document.getElementById('user_select'  + contactInitials  + contactcolor + i).classList.add('checked');
-    document.getElementById('user_select'  + contactInitials + contactcolor + i).src = 'assets/img/userSelect-selected.png';
+    document.getElementById('user_select' + contactInitials + contactcolor + i).classList.add('checked');
+    document.getElementById('user_select' + contactInitials + contactcolor + i).src = 'assets/img/userSelect-selected.png';
   }
 }
 
 
 
-function findeContactIndex(contactcolor){
+function findeContactIndex(contactcolor) {
   let index;
   for (let i = 0; i < userSelect.length; i++) {
-    if(userSelect[i].concolor == contactcolor)
+    if (userSelect[i].concolor == contactcolor)
       index = i;
   }
   return index;
@@ -458,6 +458,3 @@ function selectedPriority(i) {
     document.getElementById('priorityLowImg').src = 'assets/img/prio-low-white.png';
   }
 }
-
-
-

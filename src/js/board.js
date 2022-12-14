@@ -284,28 +284,33 @@ function renderAssignedContactsDetails(currentTask) {
 // renders the mask for editing an existing task
 function changeTask(id) {
     let detailContent = document.getElementById('detail_content');
-    detailContent.innerHTML = changeTaskTemplate();
+    for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
+        const currentTask = filteredTasks[filteredTasksIndex];
+        if (currentTask.id == id) {
+            detailContent.innerHTML = changeTaskTemplate(currentTask);
+        }
+    }
 }
 
 
 function changeTaskTemplate(currentTask) {
     return /*html*/`
-        <form onsubmit="pushChangedTask(${filteredTasks[id]}); return false;" class="editTask">
+        <form onsubmit="pushChangedTask(${currentTask}); return false;" class="editTask">
             <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
         
             <div class="input-title">
-                <input id="AddTitle" type="text" value="${filteredTasks[id]['title']}" autocomplete="off" required>
+                <input id="AddTitle" type="text" value="${currentTask.title}" autocomplete="off" required>
             </div>
 
             <div>
                 <h4>Description</h4>
-                <input class="add-description" id="AddDescription" type="text" value="${filteredTasks[id]['description']}">
+                <input class="add-description" id="AddDescription" type="text" value="${currentTask.description}">
             </div>
 
             <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
                 <h4>Due Date</h4>
                 <div class= "input-date" id="input-date">
-                    <input id="add-date" class="add-date" value="${filteredTasks[id]['dueDate']}" type="date">
+                    <input id="add-date" class="add-date" value="${currentTask.dueDate}" type="date">
                     <img src="./assets/img/dateSelect-img.png" alt="">
                 </div>
             </div>
@@ -337,7 +342,7 @@ function changeTaskTemplate(currentTask) {
                 <button type="submit" class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
             </div>
         </form>
-        <button onclick="deleteTask(${id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
+        <button onclick="deleteTask(${currentTask})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
     `
 }
 
@@ -354,5 +359,4 @@ async function deleteTask(id) {
 function closeDetailTask() {
     document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
-
 }
