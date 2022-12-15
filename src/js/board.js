@@ -369,6 +369,7 @@ async function deleteTask(currentTaskId) {
 
 //Closes the Detail Window
 function closeDetailTask() {
+    document.getElementById('detail_content').innerHTML= '';
     document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
 }
