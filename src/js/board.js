@@ -299,18 +299,18 @@ function changeTaskTemplate(currentTask) {
             <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
         
             <div class="input-title">
-                <input id="AddTitle" type="text" value="${currentTask.title}" autocomplete="off" required>
+                <input id="changed_title" type="text" value="${currentTask.title}" autocomplete="off" required>
             </div>
 
             <div>
                 <h4>Description</h4>
-                <input class="add-description" id="AddDescription" type="text" value="${currentTask.description}">
+                <input class="add-description" id="changed_description" type="text" value="${currentTask.description}">
             </div>
 
             <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
                 <h4>Due Date</h4>
                 <div class= "input-date" id="input-date">
-                    <input id="add-date" class="add-date" value="${currentTask.dueDate}" type="date">
+                    <input id="changed_date" class="add-date" value="${currentTask.dueDate}" type="date">
                     <img src="./assets/img/dateSelect-img.png" alt="">
                 </div>
             </div>
@@ -348,27 +348,23 @@ function changeTaskTemplate(currentTask) {
 
 
 async function saveChangedTask(currentTaskId) {
-    console.log(currentTaskId);
+    let changedTitle = document.getElementById('changed_title').value;
+    let changedDescription = document.getElementById('changed_description').value;
+    let changedDueDate = document.getElementById('changed_date').value;
     let taskToChange = filteredTasks.find((taskId) => taskId.id == currentTaskId);
-    console.log(taskToChange);
-    console.log(taskToChange.description);
-    taskToChange.description = 'Eine neue Beschreibung';
+    taskToChange.title = changedTitle;
+    taskToChange.description = changedDescription;
+    taskToChange.dueDate = changedDueDate;
     await backend.setItem('users', JSON.stringify(users));
-    console.log(taskToChange.description);
-    console.log(taskToChange);
-    console.log(filteredTasks);
-    console.log(users);
+    closeDetailTask();
 }
 
 
 async function deleteTask(currentTaskId) {
     let taskToDelete = filteredTasks.findIndex((taskId) => taskId.id == currentTaskId);
-    console.log(taskToDelete);
     filteredTasks.splice(taskToDelete, 1);
-    console.log(filteredTasks);
-    document.getElementById('detail_container').classList.add('d-none');
-    filterTasksByStatus();
     await backend.setItem('users', JSON.stringify(users));
+    closeDetailTask()
 }
 
 //Closes the Detail Window
