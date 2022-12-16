@@ -333,6 +333,7 @@ function selectedCategory(category, color) {
     <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt=""></div>
     `;
     document.getElementById('selector_Category_Dropdown').innerHTML = '';
+    selectorCategoryIndex--;
 }
 
 
