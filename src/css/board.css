@@ -635,6 +635,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
+.selected{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .selectorCell {
     display: flex;
     align-items: center;
