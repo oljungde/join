@@ -23,7 +23,7 @@ async function addToTask(i) {
   let title = document.getElementById('AddTitle');
   let description = document.getElementById('AddDescription');
   let dueDate = document.getElementById('add-date');
-
+  selectorcontactIndex--;
 
   let currentTask = {
     "id": (new Date().getTime() * Math.random()).toFixed(0),
