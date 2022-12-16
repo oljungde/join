@@ -331,7 +331,7 @@ function changeTaskTemplate(currentTask) {
             </div>
 
             <div id="user_selector">
-                <div class="selector-header" onclick="showUsers()">
+                <div class="selector-header" onclick="showUsers(${currentTask.id})">
                     Select contacts to assign
                     <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
                 </div>
@@ -348,10 +348,13 @@ function changeTaskTemplate(currentTask) {
 
 
 async function saveChangedTask(currentTaskId) {
+    selectorcontactIndex--;
     let changedTitle = document.getElementById('changed_title').value;
     let changedDescription = document.getElementById('changed_description').value;
     let changedDueDate = document.getElementById('changed_date').value;
     let taskToChange = filteredTasks.find((taskId) => taskId.id == currentTaskId);
+    taskToChange.user = [];
+    taskToChange.user = userSelect;
     taskToChange.title = changedTitle;
     taskToChange.description = changedDescription;
     taskToChange.dueDate = changedDueDate;

@@ -1,4 +1,4 @@
-let savecontactforaddtask = [];
+let savecontactforaddtask;
 
 
 async function initContacts() {
@@ -327,7 +327,7 @@ function getUserIndexForEmail(email) {
  * @param {*} i 
  */
 function OpenContactAddTask(i, index) {
-    savecontactforaddtask = [];
+    
     savecontactforaddtask = index;
     console.log(savecontactforaddtask);
     let openaddtask = document.getElementById('openContactAddtask');
