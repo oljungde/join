@@ -16,6 +16,7 @@ async function initAddTask() {
   setNavLinkActive();
   checkUserIsLoggedIn();
   imgheader();
+  getTasksOfCurrentUser();
 }
 
 //defines the current task and pushes it to the Array alltasks and saves it in the backend 
@@ -218,7 +219,7 @@ function closeAddTaskMask(i) {
 //renders the Drop Down Menu for the User selection
 function showUsers(contact) {
   userSelect = [];
-  
+
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   if (selectorcontactIndex == 0) {
@@ -231,26 +232,26 @@ function showUsers(contact) {
       `;
     }
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
-    let currentTask = filteredTasks[filteredTasksIndex];
-    if (contact == 0) {
-      let f = savecontactforaddtask;
-      let contactintask = currentUser.contacts[f];
-      let contactInitials = contactintask['contactInitials'];
-      let contactcolor = contactintask['contactcolor'];
-      selectedUser(contactInitials, contactcolor, f)
-    }
-    if (currentTask.id == contact) {
-      for (let u = 0; u < currentTask.user.length; u++) {
+      let currentTask = filteredTasks[filteredTasksIndex];
+      if (contact == 0) {
+        let f = savecontactforaddtask;
+        let contactintask = currentUser.contacts[f];
+        let contactInitials = contactintask['contactInitials'];
+        let contactcolor = contactintask['contactcolor'];
+        selectedUser(contactInitials, contactcolor, f)
+      }
+      if (currentTask.id == contact) {
+        for (let u = 0; u < currentTask.user.length; u++) {
           let user = currentTask.user[u];
           let contactInitials = user['contactInitials'];
           let contactcolor = user['concolor'];
           let id = user['id'];
           selectedUser(contactInitials, contactcolor, id);
+        }
       }
+
     }
-    
-  }
-  selectorcontactIndex++;
+    selectorcontactIndex++;
   }
   else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
@@ -313,8 +314,8 @@ function showTaskCategories() {
           </div>
     `;
     for (let n = 0; n < currentUser.category.length; n++) {
-        let staticCategorys = currentUser.category[n];
-      
+      let staticCategorys = currentUser.category[n];
+
       document.getElementById('selector_Category_Dropdown').innerHTML += `  
       <div onclick="selectedCategory('${staticCategorys['taskCategory']}','${staticCategorys['taskColor']}')" class="selectorCell pointer">
       <div>${staticCategorys['taskCategory']}</div>
@@ -323,9 +324,9 @@ function showTaskCategories() {
       `;
 
     }
-     
-    
-    
+
+
+
     selectorCategoryIndex++;
   } else {
     document.getElementById('selector_Category_Dropdown').innerHTML = ``;
@@ -336,10 +337,10 @@ function showTaskCategories() {
 
 // getting selected Category
 function selectedCategory(category, color) {
-  
-    taskCategoryFinaly = category;
-    taskCategoryColorFinaly = color;
-    document.getElementById("category_selector").innerHTML = /*html*/`
+
+  taskCategoryFinaly = category;
+  taskCategoryColorFinaly = color;
+  document.getElementById("category_selector").innerHTML = /*html*/`
     <div class="selector-header pointer" onclick="showTaskCategories()" id="selected_category">
     <div class="selected">
     ${category}
@@ -347,8 +348,8 @@ function selectedCategory(category, color) {
     </div>
     <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt=""></div>
     `;
-    document.getElementById('selector_Category_Dropdown').innerHTML = '';
-    selectorCategoryIndex--;
+  document.getElementById('selector_Category_Dropdown').innerHTML = '';
+  selectorCategoryIndex--;
 }
 
 
