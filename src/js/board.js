@@ -331,7 +331,7 @@ function changeTaskTemplate(currentTask) {
             </div>
 
             <div id="user_selector">
-                <div class="selector-header" onclick="showUsers()">
+                <div class="selector-header" onclick="showUsers(${currentTask.id})">
                     Select contacts to assign
                     <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
                 </div>

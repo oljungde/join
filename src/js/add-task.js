@@ -217,6 +217,8 @@ function closeAddTaskMask(i) {
 
 //renders the Drop Down Menu for the User selection
 function showUsers(contact) {
+  userSelect = [];
+  
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   if (selectorcontactIndex == 0) {
@@ -228,6 +230,8 @@ function showUsers(contact) {
       </div>
       `;
     }
+    for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
+    let currentTask = filteredTasks[filteredTasksIndex];
     if (contact == 0) {
       let f = savecontactforaddtask;
       let contactintask = currentUser.contacts[f];
@@ -235,7 +239,18 @@ function showUsers(contact) {
       let contactcolor = contactintask['contactcolor'];
       selectedUser(contactInitials, contactcolor, f)
     }
-    selectorcontactIndex++;
+    if (currentTask.id == contact) {
+      for (let u = 0; u < currentTask.user.length; u++) {
+          let user = currentTask.user[u];
+          let contactInitials = user['contactInitials'];
+          let contactcolor = user['concolor'];
+          let id = user['id'];
+          selectedUser(contactInitials, contactcolor, id);
+      }
+    }
+    
+  }
+  selectorcontactIndex++;
   }
   else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
