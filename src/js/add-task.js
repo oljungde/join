@@ -15,6 +15,7 @@ async function initAddTask() {
   await init();
   setNavLinkActive();
   checkUserIsLoggedIn();
+  imgheader();
 }
 
 //defines the current task and pushes it to the Array alltasks and saves it in the backend 
@@ -34,7 +35,7 @@ async function addToTask(i) {
     "description": description.value,
     "dueDate": dueDate.value,
     "priority": prioritySelect,
-    "user": userSelect,   
+    "user": userSelect,
     'status': 'toDo'
   };
   currentUserTasks.push(currentTask);
@@ -225,28 +226,28 @@ function showUsers(contact) {
           <div>${activUserContact[i].contactName}</div>
           <div><img id="user_select${currentUser.contacts[i]['contactInitials']}${currentUser.contacts[i]['contactcolor']}${i}" src="./assets/img/userSelect-img.png"></div>
       </div>
-      `; 
+      `;
     }
     if (contact == 0) {
-      let f = savecontactforaddtask; 
-     let contactintask = currentUser.contacts[f];
-     let contactInitials = contactintask['contactInitials'];
-     let contactcolor = contactintask['contactcolor'];
-     selectedUser(  contactInitials, contactcolor, f)
+      let f = savecontactforaddtask;
+      let contactintask = currentUser.contacts[f];
+      let contactInitials = contactintask['contactInitials'];
+      let contactcolor = contactintask['contactcolor'];
+      selectedUser(contactInitials, contactcolor, f)
     }
     selectorcontactIndex++;
   }
-  else{
+  else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
     selectorcontactIndex--;
   }
-  
+
 }
 
-function LFContact(){
-  let f = savecontactforaddtask; 
+function LFContact() {
+  let f = savecontactforaddtask;
   let contactintask = currentUser.contacts[f];
-  
+
   let contactcolor = contactintask['contactcolor'];
   let index = findeContactIndex(contactcolor);
   userSelect.splice(index, 1);
@@ -254,30 +255,30 @@ function LFContact(){
 }
 
 // getting selected User
-function selectedUser(  contactInitials, contactcolor, i) {
+function selectedUser(contactInitials, contactcolor, i) {
   let index = findeContactIndex(contactcolor);
-  if(document.getElementById('user_select' + contactInitials + contactcolor + i).classList.contains('checked')){
+  if (document.getElementById('user_select' + contactInitials + contactcolor + i).classList.contains('checked')) {
     userSelect.splice(index, 1)
-    document.getElementById('user_select'  + contactInitials + contactcolor + i).classList.remove('checked');
-    document.getElementById('user_select'  + contactInitials + contactcolor + i).src = 'assets/img/userSelect-img.png';
+    document.getElementById('user_select' + contactInitials + contactcolor + i).classList.remove('checked');
+    document.getElementById('user_select' + contactInitials + contactcolor + i).src = 'assets/img/userSelect-img.png';
   }
-  else{
+  else {
     userSelect.push({
       'id': i,
       'contactInitials': contactInitials,
       'concolor': contactcolor
     });
-    document.getElementById('user_select'  + contactInitials  + contactcolor + i).classList.add('checked');
-    document.getElementById('user_select'  + contactInitials + contactcolor + i).src = 'assets/img/userSelect-selected.png';
+    document.getElementById('user_select' + contactInitials + contactcolor + i).classList.add('checked');
+    document.getElementById('user_select' + contactInitials + contactcolor + i).src = 'assets/img/userSelect-selected.png';
   }
 }
 
 
 
-function findeContactIndex(contactcolor){
+function findeContactIndex(contactcolor) {
   let index;
   for (let i = 0; i < userSelect.length; i++) {
-    if(userSelect[i].concolor == contactcolor)
+    if (userSelect[i].concolor == contactcolor)
       index = i;
   }
   return index;
@@ -287,37 +288,29 @@ function findeContactIndex(contactcolor){
 
 // renders the Drop Down Menu for the categories
 function showTaskCategories() {
-  let staticCategorys = [
-    { taskCategory: 'New category', taskColor: 'lightblueCategory', cagtegoryID: 0 },
-    { taskCategory: 'Sales', taskColor: 'purpleCategory', cagtegoryID: 1 },
-    { taskCategory: 'Backoffice', taskColor: 'mintCategory', cagtegoryID: 2 },
-  ];
-
-  taskCategorySelector = JSON.parse(localStorage.getItem('taskCategory')) || [];
-
   if (selectorCategoryIndex == 0) {
     document.getElementById('selector_Category_Dropdown').innerHTML = ``;
-    for (let n = 0; n < staticCategorys.length; n++) {
-
+    document.getElementById('selector_Category_Dropdown').innerHTML += `
+    <div onclick="changeInputCategory()" class="selectorCell pointer">
+            <div>New category</div>
+            <div class="selectorCellColor"><img src=""></div>
+            </div>
+          </div>
+    `;
+    for (let n = 0; n < currentUser.category.length; n++) {
+        let staticCategorys = currentUser.category[n];
+      
       document.getElementById('selector_Category_Dropdown').innerHTML += `  
-      <div onclick="selectedCategory('${staticCategorys[n].taskCategory}','${staticCategorys[n].taskColor}')" class="selectorCell pointer">
-      <div>${staticCategorys[n]['taskCategory']}</div>
-      <div><img src="./assets/img/${staticCategorys[n].taskColor}.png" </div>
+      <div onclick="selectedCategory('${staticCategorys['taskCategory']}','${staticCategorys['taskColor']}')" class="selectorCell pointer">
+      <div>${staticCategorys['taskCategory']}</div>
+      <div><img src="./assets/img/${staticCategorys['taskColor']}.png" </div>
         </div>
       `;
 
     }
-
-
-    for (let y = 0; y < taskCategorySelector.length; y++) {
-      document.getElementById('selector_Category_Dropdown').innerHTML += `
-    <div onclick="selectedCategory('${taskCategorySelector[y].taskCategory}','${taskCategorySelector[y].taskColor}')" class="selectorCell pointer">
-            <div>${taskCategorySelector[y].taskCategory}</div>
-            <div class="selectorCellColor"><img src="./assets/img/${taskCategorySelector[y].taskColor}.png"/></div>
-            </div>
-          </div>
-    `;
-    }
+     
+    
+    
     selectorCategoryIndex++;
   } else {
     document.getElementById('selector_Category_Dropdown').innerHTML = ``;
@@ -328,10 +321,7 @@ function showTaskCategories() {
 
 // getting selected Category
 function selectedCategory(category, color) {
-  if (category == "New category") {
-    changeInputCategory();
-  }
-  else {
+  
     taskCategoryFinaly = category;
     taskCategoryColorFinaly = color;
     document.getElementById("category_selector").innerHTML = /*html*/`
@@ -341,10 +331,8 @@ function selectedCategory(category, color) {
     <img src="./assets/img/${color}.png" />
     </div>
     <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt=""></div>
-    <div id="selector_Category_Dropdown">
-      <!-- Rendering selector content here -->
-    </div>`;
-  }
+    `;
+    document.getElementById('selector_Category_Dropdown').innerHTML = '';
 }
 
 
@@ -376,7 +364,7 @@ function changeInputCategory() {
 
 function exitCategoryInput() {
   document.getElementById('category_selector').innerHTML = `
-  <div id="selected_category" class="selector-header pointer" onclick="showTaskCategories()">Select task category <img class="selectorArrow" src="./assets/img/selectorArrow.png"></div>
+  <div id="selected_category" class="selector-header pointer" onclick="showTaskCategories()">Select task category <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png"></div>
   <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">
     <!-- Rendering selector content here -->
   </div>`;
@@ -399,17 +387,17 @@ function addCategoryColor(value) {
 
 
 // adds a individual category to the task
-function addCategory() {
+async function addCategory() {
   newCategory = document.getElementById("input-new-category").value;
   if (categorySelectedColor && newCategory) {
-    taskCategorySelector = JSON.parse(localStorage.getItem("taskCategory")) || [];
-    taskCategorySelector.push({
-      taskCategory: newCategory,
-      taskColor: categorySelectedColor,
+    currentUser.category.push({
+      'taskCategory': newCategory,
+      'taskColor': categorySelectedColor
     });
-    localStorage.setItem("taskCategory", JSON.stringify(taskCategorySelector));
-    exitCategoryInput()
-    showTaskCategories()
+    await backend.setItem('users', JSON.stringify(users));
+    console.log(currentUser);
+    exitCategoryInput();
+    showTaskCategories();
   } else {
     document.getElementById("alert_message").innerHTML = `Please select color!`;
   }
@@ -457,6 +445,3 @@ function selectedPriority(i) {
     document.getElementById('priorityLowImg').src = 'assets/img/prio-low-white.png';
   }
 }
-
-
-

@@ -14,6 +14,7 @@ async function initBoard() {
     getTasksOfCurrentUser();
     identifyId();
     handleFilterTasks();
+    imgheader();
 }
 
 
@@ -97,17 +98,15 @@ function renderTasks(status) {
     }
 }
 
-function renderContactInTask(element){
-        for (let i = 0; i < element.user.length; i++) {
-            let letter = element.user[i]['contactInitials'];
-            let color = element.user[i]['concolor'];
-            let id = element.id;
-            document.getElementById(id).innerHTML  +=`
+function renderContactInTask(element) {
+    for (let i = 0; i < element.user.length; i++) {
+        let letter = element.user[i]['contactInitials'];
+        let color = element.user[i]['concolor'];
+        let id = element.id;
+        document.getElementById(id).innerHTML += `
             <div style="background-color: ${color}" class="user">${letter}</div>
-            `;    
-        }
-         
-    
+        `;
+    }
 }
 
 // Update the board
@@ -212,139 +211,161 @@ function dragLeave(e) {
 }
 
 
-// Generates the Detail Window
+/**
+ * open the task details
+ * @param {number} id is the uniqe id from the array entry of the task
+ */
 function showDetailWindow(id) {
-    document.getElementById('detail-container').classList.remove('d-none');
-
-    let detailTodo = filteredTasks[id];
-    let category = detailTodo['category']['Category'];
-    let categoryColor = detailTodo['category']['TaskColor'];
-    let title = detailTodo['title'];
-    let description = detailTodo['description'];
-    let dueDate = detailTodo['dueDate'];
-    let priority = detailTodo['priority'];
-    let user = detailTodo['user'];
-
-    let toDo = filteredTasks.filter(t => t['status'] == 'toDo');
-    document.getElementById('toDo').innerHTML = '';
-    for (let index = 0; index < toDo.length; index++) {
-        const element = toDo[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, id)
-    }
-
-    let inProgress = filteredTasks.filter(t => t['status'] == 'inProgress');
-    document.getElementById('inProgress').innerHTML = '';
-    for (let index = 0; index < inProgress.length; index++) {
-        const element = inProgress[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, id)
-    }
-
-    let awaitingFeedback = filteredTasks.filter(t => t['status'] == 'awaitingFeedback');
-    document.getElementById('awaitingFeedback').innerHTML = '';
-    for (let index = 0; index < awaitingFeedback.length; index++) {
-        const element = awaitingFeedback[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, id)
-    }
-
-    let done = filteredTasks.filter(t => t['status'] == 'done');
-    document.getElementById('done').innerHTML = '';
-    for (let index = 0; index < done.length; index++) {
-        const element = done[index];
-        document.getElementById('Detail').innerHTML = generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, id)
+    let detailContainer = document.getElementById('detail_container');
+    let detailContent = document.getElementById('detail_content');
+    for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
+        let currentTask = filteredTasks[filteredTasksIndex];
+        if (currentTask.id == id) {
+            detailContainer.classList.remove('d-none');
+            detailContent.innerHTML = detailContentTemplate(currentTask);
+            renderAssignedContactsDetails(currentTask);
+        }
     }
 }
 
 
-// renders the Detail Window
-function generateDetailTodoHTML(element, category, categoryColor, title, description, dueDate, user, priority, id) {
+/**
+ * @param {opject} currentTask is the selected task to show the details window
+ * @returns the html code for rendering the task details window
+ */
+function detailContentTemplate(currentTask) {
     return /*html*/`
-    
-    <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
-    <div class="detail-category ${categoryColor}">${category}</div>
-    <h2 class="detail-title">${title}</h2>
-    <div class="detail-text">${description}</div>
-    <div class="detail-dueDate"> 
-      <span>Due date:</span>  
-      <p>${dueDate}</p>
-    </div>
-    
-    <div class="detail-priority">
-      <p> Priority:</p> 
-      <img src="assets/img/detail-prio-${priority}.png" alt="">
-    </div>
-    
-    <div class="detail-assignedTo"> 
-      <p>Assigned To:</p> 
-      <div  >${user}</div> 
-    </div>
-    
-    <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask(${id})">
+        <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
+        <div class="detail-category ${currentTask.category.TaskColor}">
+            ${currentTask.category.Category}
+        </div>
+        <h2 class="detail-title">${currentTask.title}</h2>
+        <div class="detail-text">
+            ${currentTask.description}
+        </div>
+        <div class="detail-dueDate"> 
+            <span>Due date:</span>  
+            <p>${currentTask.dueDate}</p>
+        </div>
+        <div class="detail-priority">
+            <p> Priority:</p> 
+            <img src="assets/img/detail-prio-${currentTask.priority}.png" alt="">
+        </div>
+        <div class="detail-assignedTo"> 
+            <p>Assigned To:</p> 
+            <div id="detail_assigned_contacts">
+                
+            </div> 
+        </div>
+        <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask(${currentTask.id})">
     `;
+}
+
+
+/**
+ * renders the assigned contacts from the current task
+ * @param {object} currentTask is the task to show the details from
+ */
+function renderAssignedContactsDetails(currentTask) {
+    let detailAssignedContacts = document.getElementById('detail_assigned_contacts');
+    for (let assignedContactsIndex = 0; assignedContactsIndex < currentTask.user.length; assignedContactsIndex++) {
+        let letter = currentTask.user[assignedContactsIndex]['contactInitials'];
+        let color = currentTask.user[assignedContactsIndex]['concolor'];
+        detailAssignedContacts.innerHTML += `
+            <div style="background-color: ${color}" class="user">${letter}</div>
+        `;
+    }
 }
 
 
 // renders the mask for editing an existing task
 function changeTask(id) {
-    filteredTasks[id]
-    document.getElementById('Detail').innerHTML = /*html*/`
-    <form onsubmit="pushChangedTask(${filteredTasks[id]}); return false;" class="editTask">
-    <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
-    
-    <div class="input-title">
-        <input id="AddTitle" type="text" value="${filteredTasks[id]['title']}" autocomplete="off" required>
-    </div>
+    let detailContent = document.getElementById('detail_content');
+    for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
+        const currentTask = filteredTasks[filteredTasksIndex];
+        if (currentTask.id == id) {
+            detailContent.innerHTML = changeTaskTemplate(currentTask);
+        }
+    }
+}
 
-    <div>
-        <h4>Description</h4>
-        <input class="add-description" id="AddDescription" type="text" value="${filteredTasks[id]['description']}">
-    </div>
 
-    <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
-        <h4>Due Date</h4>
-        <div class= "input-date" id="input-date">
-            <input id="add-date" class="add-date" value="${filteredTasks[id]['dueDate']}" type="date">
-            <img src="./assets/img/dateSelect-img.png" alt="">
-        </div>
-    </div>
-
-    <div class="priorityContainer">
-            <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
-                <p>Urgent</p> 
-                <img id="priorityUrgentImg" src="assets/img/prio-urgent.png" alt="">
-            </div>
-          <div class="priority-medium" id="priorityMedium" onclick="selectedPriority(2)">
-              <p>Medium</p> 
-              <img id="priorityMediumImg" src="assets/img/prio-medium.png" alt="">
-          </div>
-          <div class="priority-low" id="priorityLow" onclick="selectedPriority(3)">
-              <p>Low</p> 
-              <img id="priorityLowImg" src="assets/img/prio-low.png" alt="">
-          </div>
-       </div>
-
-       <div id="user_selector">
-             <div class="selector-header" onclick="showUsers()">
-                Select contacts to assign
-                <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
-              </div>
-        </div>
-        <div class="selector-user-dropdown" id="selector_user_dropdown">  </div>
-        <div>
+function changeTaskTemplate(currentTask) {
+    return /*html*/`
+        <form onsubmit="saveChangedTask(${currentTask.id}); return false;" class="editTask">
+            <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
         
-        <button type="submit" class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
-        </div>
-</form>
-<button onclick="deleteTask(${id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
+            <div class="input-title">
+                <input id="AddTitle" type="text" value="${currentTask.title}" autocomplete="off" required>
+            </div>
+
+            <div>
+                <h4>Description</h4>
+                <input class="add-description" id="AddDescription" type="text" value="${currentTask.description}">
+            </div>
+
+            <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
+                <h4>Due Date</h4>
+                <div class= "input-date" id="input-date">
+                    <input id="add-date" class="add-date" value="${currentTask.dueDate}" type="date">
+                    <img src="./assets/img/dateSelect-img.png" alt="">
+                </div>
+            </div>
+
+            <div class="priorityContainer">
+                    <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
+                        <p>Urgent</p> 
+                        <img id="priorityUrgentImg" src="assets/img/prio-urgent.png" alt="">
+                    </div>
+                <div class="priority-medium" id="priorityMedium" onclick="selectedPriority(2)">
+                    <p>Medium</p> 
+                    <img id="priorityMediumImg" src="assets/img/prio-medium.png" alt="">
+                </div>
+                <div class="priority-low" id="priorityLow" onclick="selectedPriority(3)">
+                    <p>Low</p> 
+                    <img id="priorityLowImg" src="assets/img/prio-low.png" alt="">
+                </div>
+            </div>
+
+            <div id="user_selector">
+                <div class="selector-header" onclick="showUsers()">
+                    Select contacts to assign
+                    <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
+                </div>
+            </div>
+            <div class="selector-user-dropdown" id="selector_user_dropdown">  
+            </div>
+            <div>
+                <button class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
+            </div>
+        </form>
+        <button onclick="deleteTask(${currentTask.id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
     `
 }
 
 
-async function deleteTask(id) {
-    filteredTasks.splice(id, 1);
-    console.log(filteredTasks);
+async function saveChangedTask(currentTaskId) {
+    console.log(currentTaskId);
+    let taskToChange = filteredTasks.find((taskId) => taskId.id == currentTaskId);
+    console.log(taskToChange);
+    console.log(taskToChange.description);
+    taskToChange.description = 'Eine neue Beschreibung';
     await backend.setItem('users', JSON.stringify(users));
-    document.getElementById('detail-container').classList.add('d-none');
+    console.log(taskToChange.description);
+    console.log(taskToChange);
+    console.log(filteredTasks);
+    console.log(users);
+}
+
+
+async function deleteTask(currentTaskId) {
+    let taskToDelete = filteredTasks.findIndex((taskId) => taskId.id == currentTaskId);
+    console.log(taskToDelete);
+    filteredTasks.splice(taskToDelete, 1);
+    console.log(filteredTasks);
+    document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
+    await backend.setItem('users', JSON.stringify(users));
 }
 
 async function saveDeletetTask() {
@@ -353,7 +374,6 @@ async function saveDeletetTask() {
 
 //Closes the Detail Window
 function closeDetailTask() {
-    document.getElementById('detail-container').classList.add('d-none');
+    document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
-
 }

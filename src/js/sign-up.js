@@ -81,7 +81,10 @@ function userRegister(userName, userEmail, userPassword) {
         'password': userPassword,
         'tasks': [],
         'contacts': [],
-        'lettertask':[]
+        'lettertask':[],
+        'category': 
+        [{taskCategory: 'Sales', taskColor: 'purpleCategory'},
+        {taskCategory: 'Backoffice', taskColor: 'blueCategory'}]
     });
     backend.setItem('users', JSON.stringify(users));
     sessionStorage.setItem('loggedIn', 'false');
