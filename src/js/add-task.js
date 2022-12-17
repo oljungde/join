@@ -185,7 +185,6 @@ function renderSubTask() {
     subTask = subTasks[i];
     document.getElementById("addSubtaskCheckbox").innerHTML += `
         <div class="subtaskList" id="subtaskValue">  
-        <input id="subTask_checkBox" value="${subTask}" class="subtaskCheckbox pointer" type="checkbox">
         <p>${subTask}</p>
         </div>`;
   }
