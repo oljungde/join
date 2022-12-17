@@ -365,7 +365,7 @@ function changeTaskTemplate(currentTask) {
 
 
 async function saveChangedTask(currentTaskId) {
-    selectorcontactIndex--;
+    
     let changedTitle = document.getElementById('changed_title').value;
     let changedDescription = document.getElementById('changed_description').value;
     let changedDueDate = document.getElementById('changed_date').value;
@@ -375,6 +375,7 @@ async function saveChangedTask(currentTaskId) {
     taskToChange.title = changedTitle;
     taskToChange.description = changedDescription;
     taskToChange.dueDate = changedDueDate;
+    userSelect = [];
     await backend.setItem('users', JSON.stringify(users));
     closeDetailTask();
 }

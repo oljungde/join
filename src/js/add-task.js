@@ -24,7 +24,7 @@ async function addToTask(i) {
   let title = document.getElementById('AddTitle');
   let description = document.getElementById('AddDescription');
   let dueDate = document.getElementById('add-date');
-  selectorcontactIndex--;
+  
 
   let currentTask = {
     "id": (new Date().getTime() * Math.random()).toFixed(0),
@@ -260,6 +260,7 @@ function showUsers(contact) {
         let contactintask = currentUser.contacts[f];
         let contactInitials = contactintask['contactInitials'];
         let contactcolor = contactintask['contactcolor'];
+        selectorcontactIndex++;
         selectedUser(contactInitials, contactcolor, f)
       }
       if (currentTask.id == contact) {
@@ -268,6 +269,7 @@ function showUsers(contact) {
           let contactInitials = user['contactInitials'];
           let contactcolor = user['concolor'];
           let id = user['id'];
+          selectorcontactIndex++;
           selectedUser(contactInitials, contactcolor, id);
         }
       }
@@ -294,6 +296,7 @@ function LFContact() {
 
 // getting selected User
 function selectedUser(contactInitials, contactcolor, i) {
+  selectorcontactIndex--;
   let index = findeContactIndex(contactcolor);
   if (document.getElementById('user_select' + contactInitials + contactcolor + i).classList.contains('checked')) {
     userSelect.splice(index, 1)
