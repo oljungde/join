@@ -24,7 +24,6 @@ async function addToTask(i) {
   let title = document.getElementById('AddTitle');
   let description = document.getElementById('AddDescription');
   let dueDate = document.getElementById('add-date');
-  let subTaskSelect = document.getElementById('subTask_checkBox').value;
   selectorcontactIndex--;
 
   let currentTask = {
@@ -38,7 +37,7 @@ async function addToTask(i) {
     "dueDate": dueDate.value,
     "priority": prioritySelect,
     "user": userSelect,
-    "subTask": subTaskSelect,
+    "subTask": subTasks,
     'status': 'toDo'
   };
   currentUserTasks.push(currentTask);
@@ -77,6 +76,7 @@ function openAddTaskMask(i) {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
   document.getElementById('AddTaskMaskContainer').classList.remove('d-none');
   userSelect = [];
+  selectedSubtasks = [];
   let openaddtask = document.getElementById('AddTaskMaskContainer');
   openaddtask.innerHTML = openAddTaskHtml(i);
 }
@@ -145,7 +145,7 @@ function openAddTaskHtml(i) {
          <div class="checkAndCrossIconsCategory">
           <img src="./assets/img/blue-cross.png" onclick="clearSubTasks()" class="blue-cross pointer">
           <img src="./assets/img/devider.png">
-          <img src="./assets/img/blue-check.png" onclick="pushSubtaskLocalStorage()" class="blue-check pointer">
+          <img src="./assets/img/blue-check.png" onclick="pushSubtasks()" class="blue-check pointer">
        </div>
     </div>
        </div>
@@ -161,11 +161,13 @@ function openAddTaskHtml(i) {
 
 //Rendering the subtasks checkboxes when generating a new subtask
 
-function renderSubTask() {
-  subTasks = JSON.parse(localStorage.getItem("subtasks")) || [];
+/*
+
+function renderSubTask(newSubTask) {
+  let createdSubTasks = currentUserTasks.subTask
   document.getElementById("addSubtaskCheckbox").innerHTML = ``;
-  for (let i = 0; i < subTasks.length; i++) {
-    subTasks = subTasks[i];
+  for (let i = 0; i < createdSubTasks.length; i++) {
+    subTasks = createdSubTasks[i];
     document.getElementById("addSubtaskCheckbox").innerHTML += `
         <div class="subtaskList" id="subtaskValue">  
         <input id="subTask_checkBox" value="${subTasks}" class="subtaskCheckbox pointer" type="checkbox">
@@ -174,7 +176,24 @@ function renderSubTask() {
   }
 }
 
+*/
 
+function renderSubTask() {
+ 
+  document.getElementById("addSubtaskCheckbox").innerHTML = ``;
+  for (let i = 0; i < subTasks.length; i++) {
+    subTask = subTasks[i];
+    document.getElementById("addSubtaskCheckbox").innerHTML += `
+        <div class="subtaskList" id="subtaskValue">  
+        <input id="subTask_checkBox" value="${subTask}" class="subtaskCheckbox pointer" type="checkbox">
+        <p>${subTask}</p>
+        </div>`;
+  }
+}
+
+
+
+/*
 //gettin the checked subtask
 function getSelectedSubtask() {
   let subtaskCheckboxes = document.querySelectorAll("subTask_checkBox");
@@ -186,16 +205,18 @@ function getSelectedSubtask() {
     });
   });
 }
-
+*/
 
 //pushing new subtask in the Localstorage
-function pushSubtaskLocalStorage() {
-  if (document.getElementById("subtaskText").value) {
-
-    subTasks.push(document.getElementById("subtaskText").value);
+function pushSubtasks() {
+  newSubTask = document.getElementById("subtaskText").value;
+  if (newSubTask) {
+    subTasks.push(newSubTask)
+   // subTasks.push(document.getElementById("subtaskText").value);
     document.getElementById("subtaskText").value = ``;
-    localStorage.setItem("subtasks", JSON.stringify(subTasks));
-    renderSubTask();
+
+    //localStorage.setItem("subtasks", JSON.stringify(subTasks));
+    renderSubTask(newSubTask);
   }
 }
 

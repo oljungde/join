@@ -227,6 +227,7 @@ function showDetailWindow(id) {
             detailContainer.classList.remove('d-none');
             detailContent.innerHTML = detailContentTemplate(currentTask);
             renderAssignedContactsDetails(currentTask);
+            renderAssignedSubTasks(currentTask);
         }
     }
 }
@@ -262,9 +263,8 @@ function detailContentTemplate(currentTask) {
         </div>
         <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask(${currentTask.id})">
         <div class="detail-subTasks" id="detail_subTasks">
-          <p>Subtasks:</p>
-          <div> ${currentTask.subTask}</div>
-         </div>
+        <p>Subtasks:</p>
+        </div>
     `;
 }
 
@@ -281,6 +281,20 @@ function renderAssignedContactsDetails(currentTask) {
         detailAssignedContacts.innerHTML += `
             <div style="background-color: ${color}" class="user">${letter}</div>
         `;
+    }
+}
+
+/**
+ * renders the assigned subTasks from the current task
+ * @param {object} currentTask is the task to show the details from
+ */
+function renderAssignedSubTasks(currentTask){
+    let detailAssignedSubTasks = document.getElementById('detail_subTasks')
+    for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
+        let subTask = currentTask.subTask[assignedSubTaskIndex];
+        detailAssignedSubTasks.innerHTML += `
+        <div> ${subTask}</div>
+        `
     }
 }
 
