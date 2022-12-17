@@ -329,7 +329,6 @@ function changeTaskTemplate(currentTask) {
                 <h4>Due Date</h4>
                 <div class= "input-date" id="input-date">
                     <input id="changed_date" class="add-date" value="${currentTask.dueDate}" type="date">
-                    <img src="./assets/img/dateSelect-img.png" alt="">
                 </div>
             </div>
 
@@ -390,7 +389,7 @@ async function deleteTask(currentTaskId) {
 
 //Closes the Detail Window
 function closeDetailTask() {
-    document.getElementById('detail_content').innerHTML= '';
+    document.getElementById('detail_content').innerHTML = '';
     document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
 }
