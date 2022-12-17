@@ -24,6 +24,7 @@ async function addToTask(i) {
   let title = document.getElementById('AddTitle');
   let description = document.getElementById('AddDescription');
   let dueDate = document.getElementById('add-date');
+  let subTaskSelect = document.getElementById('subTask_checkBox').value;
   selectorcontactIndex--;
 
   let currentTask = {
@@ -37,6 +38,7 @@ async function addToTask(i) {
     "dueDate": dueDate.value,
     "priority": prioritySelect,
     "user": userSelect,
+    "subTask": subTaskSelect,
     'status': 'toDo'
   };
   currentUserTasks.push(currentTask);
@@ -179,7 +181,7 @@ function getSelectedSubtask() {
   subtaskCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", (event) => {
       if (event.target.checked) {
-        checkedSubtaskValue = event.target.value;
+        subTaskSelect = event.target.value;
       }
     });
   });
@@ -324,9 +326,6 @@ function showTaskCategories() {
       `;
 
     }
-
-
-
     selectorCategoryIndex++;
   } else {
     document.getElementById('selector_Category_Dropdown').innerHTML = ``;

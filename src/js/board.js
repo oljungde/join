@@ -261,6 +261,10 @@ function detailContentTemplate(currentTask) {
             </div> 
         </div>
         <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask(${currentTask.id})">
+        <div class="detail-subTasks" id="detail_subTasks">
+          <p>Subtasks:</p>
+          <div> ${currentTask.subTask}</div>
+         </div>
     `;
 }
 

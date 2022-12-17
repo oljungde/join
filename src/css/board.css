@@ -749,6 +749,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
+.detail-subTasks p{
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+}
+
+.detail-subTasks{
+    display: flex;
+    align-items: center;
+    font-style: normal;
+    gap: 20px;
+}
+
 .CloseCross-DetailTask {
 
     width: 21.65px;
