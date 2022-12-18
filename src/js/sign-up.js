@@ -73,6 +73,21 @@ function userEmailIsRegistered(indexOfEmail) {
  * @param {string} userPassword ist the choosen password string to register
  */
 function userRegister(userName, userEmail, userPassword) {
+    pushNewUser(userName, userEmail, userPassword);
+    backend.setItem('users', JSON.stringify(users));
+    sessionStorage.setItem('loggedIn', 'false');
+    localStorage.setItem('rememberMe', 'false');
+    registrationComplete();
+}
+
+
+/**
+ * push the opject with user data to the array users
+ * @param {string} userName is the name of the user to push
+ * @param {string} userEmail is the email adress from the user to push
+ * @param {string} userPassword ist the password from the user to push
+ */
+function pushNewUser(userName, userEmail, userPassword) {
     users.push({
         'name': userName,
         'nameMatchCode': userName.toLowerCase(),
@@ -81,15 +96,11 @@ function userRegister(userName, userEmail, userPassword) {
         'password': userPassword,
         'tasks': [],
         'contacts': [],
-        'lettertask':[],
-        'category': 
-        [{taskCategory: 'Sales', taskColor: 'purpleCategory'},
-        {taskCategory: 'Backoffice', taskColor: 'blueCategory'}]
+        'lettertask': [],
+        'category':
+            [{ taskCategory: 'Sales', taskColor: 'purpleCategory' },
+            { taskCategory: 'Backoffice', taskColor: 'blueCategory' }]
     });
-    backend.setItem('users', JSON.stringify(users));
-    sessionStorage.setItem('loggedIn', 'false');
-    localStorage.setItem('rememberMe', 'false');
-    registrationComplete();
 }
 
 
@@ -100,21 +111,3 @@ function registrationComplete() {
     let signupContent = document.getElementById('sign_up');
     signupContent.innerHTML = registrationCompleteTemplate();
 }
-
-
-/**
- * @returns html code for registration success message
- */
-function registrationCompleteTemplate() {
-    return /*html*/ `
-        <a href="./index.html"><img src="./assets/img/arrow-back.png" alt="back to login" class="signup-back"></a>
-        <div class="headline-container">
-            <h1 class="headline">Registration complete</h1>
-            <div class="login-headline-border"></div>
-        </div>
-
-        <div class="signup-complete-text">
-            Thank you for your registration.<br> You can log in <a href="./index.html">here</a>.
-        </div>
-    `;
-};
