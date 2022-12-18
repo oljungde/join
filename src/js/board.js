@@ -434,7 +434,7 @@ function editSelectedPriority(i) {
 
 
 async function saveChangedTask(currentTaskId) {
-    
+    selectorcontactIndex--;
     let changedTitle = document.getElementById('changed_title').value;
     let changedDescription = document.getElementById('changed_description').value;
     let changedDueDate = document.getElementById('changed_date').value;
