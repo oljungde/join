@@ -5,6 +5,7 @@ let categorySelectedColor;
 let selectorcontactIndex = 0;
 let userSelect = [];
 let taskCategoryFinaly =[];
+let prioritySelect = [];
 
 /**
  * init function will execute wenn page add-task.html is loading
@@ -22,7 +23,10 @@ async function initAddTask() {
 //defines the current task and pushes it to the Array alltasks and saves it in the backend 
 async function addToTask(i) {
   if ( taskCategoryFinaly.length == 0) {
-    document.getElementById('chooseCategory').classList.remove('d-none')
+    document.getElementById('chooseCategory').classList.remove('d-none');
+  }
+  if (prioritySelect.length == 0) {
+    document.getElementById('chossePriority').classList.remove('d-none');
   }
   else{
   let title = document.getElementById('AddTitle');
@@ -45,6 +49,8 @@ async function addToTask(i) {
   };
   currentUserTasks.push(currentTask);
   await backend.setItem('users', JSON.stringify(users));
+  prioritySelect = [];
+  taskCategoryFinaly =[];
   setIdOneHigher();
   if (i == 0) {
     window.location.href = './board.html';
@@ -56,6 +62,7 @@ async function addToTask(i) {
     filterTasksByStatus();
   }
 }
+selectorcontactIndex = 0;
 }
 
 // adds 1 to the id for adding tasks
@@ -122,7 +129,7 @@ function openAddTaskHtml(i) {
            </div>
         </div>
         <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">  </div>
-
+          <span id="chossePriority" class="d-none">Please choose a Priority</span>
          <div class="priorityContainer">
             <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
                 <p>Urgent</p> 
