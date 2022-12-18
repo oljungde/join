@@ -288,7 +288,7 @@ function renderAssignedContactsDetails(currentTask) {
  * renders the assigned subTasks from the current task
  * @param {object} currentTask is the task to show the details from
  */
-function renderAssignedSubTasks(currentTask){
+function renderAssignedSubTasks(currentTask) {
     let detailAssignedSubTasks = document.getElementById('detail_subTasks')
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
         let subTask = currentTask.subTask[assignedSubTaskIndex];
@@ -364,77 +364,76 @@ function changeTaskTemplate(currentTask) {
     `
 }
 
-function editShowSelectedPriority(currentTask){
+function editShowSelectedPriority(currentTask) {
 
     if (currentTask.priority == "urgent") {
-        //prioritySelect = "urgent";
+        prioritySelect = "urgent";
         document.getElementById("editPriorityUrgent").classList.add('prio-urgent-selected');
         document.getElementById("editPriorityMedium").classList.remove('prio-medium-selected');
         document.getElementById("editPriorityLow").classList.remove('prio-low-selected');
-    
+
         document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent-white.png';
         document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium.png';
         document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low.png';
-      }
-      if (currentTask.priority == "medium") {
-        //prioritySelect = "medium";
+    }
+    if (currentTask.priority == "medium") {
+        prioritySelect = "medium";
         document.getElementById("editPriorityMedium").classList.add('prio-medium-selected');
         document.getElementById("editPriorityUrgent").classList.remove('prio-urgent-selected');
         document.getElementById("editPriorityLow").classList.remove('prio-low-selected');
-    
+
         document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent.png';
         document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium-white.png';
         document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low.png';
-      }
-      if (currentTask.priority == "low") {
-        //prioritySelect = "low";
+    }
+    if (currentTask.priority == "low") {
+        prioritySelect = "low";
         document.getElementById("editPriorityLow").classList.add('prio-low-selected');
         document.getElementById("editPriorityUrgent").classList.remove('prio-urgent-selected');
         document.getElementById("editPriorityMedium").classList.remove('prio-medium-selected');
-    
+
         document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent.png';
         document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium.png';
         document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low-white.png';
-      }
+    }
 }
 
-function editSelectedPriority(i){
+function editSelectedPriority(i) {
 
     if (i == 1) {
         prioritySelect = "urgent";
         document.getElementById("editPriorityUrgent").classList.add('prio-urgent-selected');
         document.getElementById("editPriorityMedium").classList.remove('prio-medium-selected');
         document.getElementById("editPriorityLow").classList.remove('prio-low-selected');
-    
+
         document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent-white.png';
         document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium.png';
         document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low.png';
-      }
-      if (i == 2) {
+    }
+    if (i == 2) {
         prioritySelect = "medium";
         document.getElementById("editPriorityMedium").classList.add('prio-medium-selected');
         document.getElementById("editPriorityUrgent").classList.remove('prio-urgent-selected');
         document.getElementById("editPriorityLow").classList.remove('prio-low-selected');
-    
+
         document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent.png';
         document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium-white.png';
         document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low.png';
-      }
-      if (i == 3) {
+    }
+    if (i == 3) {
         prioritySelect = "low";
         document.getElementById("editPriorityLow").classList.add('prio-low-selected');
         document.getElementById("editPriorityUrgent").classList.remove('prio-urgent-selected');
         document.getElementById("editPriorityMedium").classList.remove('prio-medium-selected');
-    
+
         document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent.png';
         document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium.png';
         document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low-white.png';
-      }
+    }
 }
 
 
 async function saveChangedTask(currentTaskId) {
-    
     let changedTitle = document.getElementById('changed_title').value;
     let changedDescription = document.getElementById('changed_description').value;
     let changedDueDate = document.getElementById('changed_date').value;
@@ -444,6 +443,7 @@ async function saveChangedTask(currentTaskId) {
     taskToChange.title = changedTitle;
     taskToChange.description = changedDescription;
     taskToChange.dueDate = changedDueDate;
+    taskToChange.priority = prioritySelect;
     userSelect = [];
     await backend.setItem('users', JSON.stringify(users));
     closeDetailTask();
