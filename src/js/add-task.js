@@ -255,6 +255,9 @@ function showUsers(contact) {
     }
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
       let currentTask = filteredTasks[filteredTasksIndex];
+      if (contact == 1) {
+        selectorcontactIndex++;
+      }
       if (contact == 0) {
         let f = savecontactforaddtask;
         let contactintask = currentUser.contacts[f];
@@ -264,24 +267,25 @@ function showUsers(contact) {
         selectedUser(contactInitials, contactcolor, f)
       }
       if (currentTask.id == contact) {
+        selectorcontactIndex++;
         for (let u = 0; u < currentTask.user.length; u++) {
           let user = currentTask.user[u];
           let contactInitials = user['contactInitials'];
           let contactcolor = user['concolor'];
           let id = user['id'];
-          selectorcontactIndex++;
+          
           selectedUser(contactInitials, contactcolor, id);
         }
       }
 
     }
-    selectorcontactIndex++;
+    
   }
   else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
     selectorcontactIndex--;
   }
-
+  
 }
 
 function LFContact() {
@@ -296,7 +300,7 @@ function LFContact() {
 
 // getting selected User
 function selectedUser(contactInitials, contactcolor, i) {
-  selectorcontactIndex--;
+  
   let index = findeContactIndex(contactcolor);
   if (document.getElementById('user_select' + contactInitials + contactcolor + i).classList.contains('checked')) {
     userSelect.splice(index, 1)
