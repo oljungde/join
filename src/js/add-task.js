@@ -4,7 +4,7 @@ let taskCategorySelector = [];
 let categorySelectedColor;
 let selectorcontactIndex = 0;
 let userSelect = [];
-
+let taskCategoryFinaly =[];
 
 /**
  * init function will execute wenn page add-task.html is loading
@@ -21,10 +21,13 @@ async function initAddTask() {
 
 //defines the current task and pushes it to the Array alltasks and saves it in the backend 
 async function addToTask(i) {
+  if ( taskCategoryFinaly.length == 0) {
+    document.getElementById('chooseCategory').classList.remove('d-none')
+  }
+  else{
   let title = document.getElementById('AddTitle');
   let description = document.getElementById('AddDescription');
   let dueDate = document.getElementById('add-date');
-  
 
   let currentTask = {
     "id": (new Date().getTime() * Math.random()).toFixed(0),
@@ -52,6 +55,7 @@ async function addToTask(i) {
     ShowTaskAddedPopUp();
     filterTasksByStatus();
   }
+}
 }
 
 // adds 1 to the id for adding tasks
@@ -110,7 +114,7 @@ function openAddTaskHtml(i) {
            </div>
         </div>
 
-        <h4>Category</h4>        
+        <h4>Category</h4>  <span class="d-none" id="chooseCategory">Please choose a Category</span>      
         <div id="category_selector">
            <div id="selected_category" class="selector-header" onclick="showTaskCategories()">
               Select task category
