@@ -230,9 +230,11 @@ function clearSubTasks() {
 function closeAddTaskMask(i) {
   if (i == 1) {
     document.getElementById('AddTaskMaskBg').classList.add('d-none');
+    selectorcontactIndex = 0;
   }
   else if (i == 0) {
     document.getElementById('openContactAddtaskBG').classList.add('d-none');
+    selectorcontactIndex = 0;
     LFContact();
   }
 }
