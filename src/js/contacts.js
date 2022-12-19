@@ -1,5 +1,4 @@
-let savecontactforaddtask = [];
-
+let savecontactforaddtask;
 
 async function initContacts() {
     await init();
@@ -14,6 +13,7 @@ function renderAllContact() {
     createContactBar();
     contactChild();
 }
+
 /**
  * opens a window to add contacts
  * 
@@ -41,7 +41,6 @@ function closeAddContact() {
  * 
  */
 function createContact() {
-
     let smallName = document.getElementById('contactName').value;
     let contactEmail = document.getElementById('contactEmail').value;
     let contactNumber = document.getElementById('contactNumber').value;
@@ -129,12 +128,17 @@ function fillAllTasks(contactName,) {
     else {
         let contactBar = document.getElementById('contactbar');
         contactBar.innerHTML = '';
-        currentUser.lettertask.push(letter);
-        currentUser.lettertask.sort();
-        backend.setItem('users', JSON.stringify(users));
+        saveLetterContact(letter);
         createContactBar();
         contactChild();
     }
+}
+
+// push letter in currentUser
+function saveLetterContact(letter){
+    currentUser.lettertask.push(letter);
+    currentUser.lettertask.sort();
+    backend.setItem('users', JSON.stringify(users));
 }
 
 // save contact popup
@@ -190,17 +194,20 @@ function openDetailContact(index, lettersFB) {
     if(contactMedia.matches){
         document.getElementById('contactbar').classList.add('display-contact-none');
         document.getElementById('contact-detail-in-main').classList.remove('display-contact-none');
-    }
-    
+    } 
     let contactdetailsinmedia = document.getElementById('contact-detail-in-main');
     contactdetailsinmedia.innerHTML = '';
     contactdetailsinmedia.innerHTML = contactDetailHtml(contact, lettersFB, index);
     let contactdetails = document.getElementById('contactdetails');
     contactdetails.innerHTML = '';
-    contactdetails.innerHTML = contactDetailHtml(contact, lettersFB, index);
-    
+    contactdetails.innerHTML = contactDetailHtml(contact, lettersFB, index);   
 }
 
+/**
+ * change coler of background in letterTask
+ * 
+ * @param {*} index 
+ */
 function changeColorInContact(index){
     for (let i = 0; i < currentUser.contacts.length; i++) {
         document.getElementById(i).classList.remove('contact-child-div-klick')    
@@ -258,15 +265,25 @@ function invEditContact(oldEmail, index, lettersFB) {
 function changeUser(object, id, lettersFB) {
     let oldEmail = object['oldEmail'];
     let index = getUserIndexForEmail(oldEmail);
-    currentUser.contacts[index]['contactName'] = object['contactName'];
-    currentUser.contacts[index]['contactletter'] = object['contactletter'];
-    currentUser.contacts[index]['contactEmail'] = object['contactEmail'];
-    currentUser.contacts[index]['contactNumber'] = object['contactNumber'];
     let letter = currentUser.contacts[index]['contactletter'];
+    changeContact(object, index);
     savesInBackEnd();
     renderContacts(letter);
     closeAddContact();
     openDetailContact(id, lettersFB);
+}
+
+/**
+ * change new name, email, Number, in old contact
+ * 
+ * @param {*} object 
+ * @param {*} index 
+ */
+function changeContact(object, index){
+    currentUser.contacts[index]['contactName'] = object['contactName'];
+    currentUser.contacts[index]['contactletter'] = object['contactletter'];
+    currentUser.contacts[index]['contactEmail'] = object['contactEmail'];
+    currentUser.contacts[index]['contactNumber'] = object['contactNumber'];  
 }
 
 /**
@@ -300,6 +317,7 @@ function clearContactDetails() {
 
 }
 
+// close window under 1160px
 function closeMediaContact(){
     document.getElementById('contact-detail-in-main').classList.add('display-contact-none');
     document.getElementById('contactbar').classList.remove('display-contact-none');
@@ -327,7 +345,7 @@ function getUserIndexForEmail(email) {
  * @param {*} i 
  */
 function OpenContactAddTask(i, index) {
-    savecontactforaddtask = [];
+    
     savecontactforaddtask = index;
     console.log(savecontactforaddtask);
     let openaddtask = document.getElementById('openContactAddtask');
@@ -398,7 +416,7 @@ function contactDetailHtml(contact, lettersFB, index) {
                         <div>
                             <div>
                                 <p class="contact-detail-email-number">Email</p>
-                                <a href="${contact['contactEmail']}">${contact['contactEmail']}</a>
+                                <a href="mailto:${contact['contactEmail']}"><span>${contact['contactEmail']}</span></a>
                             </div>
                             <div>
                                 <p class="contact-detail-email-number">Mobile</p>

@@ -4,7 +4,7 @@ let users = [];
 let currentUser;
 let currentUserTasks = [];
 let allTasks = [];
-let subTasks = [];;
+let subTasks = [];
 let showMenuinheader = 0;
 
 /**
@@ -28,8 +28,8 @@ function checkUserIsLoggedIn() {
         window.location.href = './summary.html';
     } else if (loginStatus == 'true' && window.location.pathname == '/sign-up.html') {
         window.location.href = './summary.html';
-    } else if (loginStatus == null && window.location.pathname == '/src/sign-up.html') {
-        // window.location.href = './sign-up.html';
+    } else if (loginStatus == null && (window.location.pathname == '/src/sign-up.html' || window.location.pathname == '/src/')) {
+
     }
     else if (loginStatus == null && window.location.pathname != '/src/index.html') {
         window.location.href = './index.html';
@@ -74,12 +74,12 @@ function checkRememberMeStatus() {
  * shows the popup menu to log out and change the user image
  */
 function showMenu() {
-    if(showMenuinheader == 0){
-    let menu = document.getElementById('header_nav_popup');
-    menu.classList.add('show-menu');
-    showMenuinheader++;
+    if (showMenuinheader == 0) {
+        let menu = document.getElementById('header_nav_popup');
+        menu.classList.add('show-menu');
+        showMenuinheader++;
     }
-    else{
+    else {
         let menu = document.getElementById('header_nav_popup');
         menu.classList.remove('show-menu');
         showMenuinheader--;
@@ -116,7 +116,7 @@ async function includeHTML() {
     }
 }
 
-function imgheader(){
+function imgheader() {
     let letterFB = currentUser['name'].match(/\b(\w)/g).join('');
     let lettersFB = letterFB.toUpperCase();
     document.getElementById('menu_show').innerHTML = lettersFB;

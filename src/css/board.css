@@ -635,6 +635,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
+.selected{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .selectorCell {
     display: flex;
     align-items: center;
@@ -741,6 +747,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 21px;
     line-height: 120%;
 
+}
+
+.detail-subTasks p{
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+}
+
+.detail-subTasks{
+    display: flex;
+    align-items: center;
+    font-style: normal;
+    gap: 20px;
 }
 
 .CloseCross-DetailTask {

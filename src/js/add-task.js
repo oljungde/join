@@ -4,7 +4,8 @@ let taskCategorySelector = [];
 let categorySelectedColor;
 let selectorcontactIndex = 0;
 let userSelect = [];
-
+let taskCategoryFinaly =[];
+let prioritySelect = [];
 
 /**
  * init function will execute wenn page add-task.html is loading
@@ -16,14 +17,21 @@ async function initAddTask() {
   setNavLinkActive();
   checkUserIsLoggedIn();
   imgheader();
+  getTasksOfCurrentUser();
 }
 
 //defines the current task and pushes it to the Array alltasks and saves it in the backend 
 async function addToTask(i) {
+  if ( taskCategoryFinaly.length == 0) {
+    document.getElementById('chooseCategory').classList.remove('d-none');
+  }
+  if (prioritySelect.length == 0) {
+    document.getElementById('chossePriority').classList.remove('d-none');
+  }
+  else{
   let title = document.getElementById('AddTitle');
   let description = document.getElementById('AddDescription');
   let dueDate = document.getElementById('add-date');
-
 
   let currentTask = {
     "id": (new Date().getTime() * Math.random()).toFixed(0),
@@ -36,10 +44,13 @@ async function addToTask(i) {
     "dueDate": dueDate.value,
     "priority": prioritySelect,
     "user": userSelect,
+    "subTask": subTasks,
     'status': 'toDo'
   };
   currentUserTasks.push(currentTask);
   await backend.setItem('users', JSON.stringify(users));
+  prioritySelect = [];
+  taskCategoryFinaly =[];
   setIdOneHigher();
   if (i == 0) {
     window.location.href = './board.html';
@@ -50,6 +61,8 @@ async function addToTask(i) {
     ShowTaskAddedPopUp();
     filterTasksByStatus();
   }
+}
+selectorcontactIndex = 0;
 }
 
 // adds 1 to the id for adding tasks
@@ -74,6 +87,7 @@ function openAddTaskMask(i) {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
   document.getElementById('AddTaskMaskContainer').classList.remove('d-none');
   userSelect = [];
+  selectedSubtasks = [];
   let openaddtask = document.getElementById('AddTaskMaskContainer');
   openaddtask.innerHTML = openAddTaskHtml(i);
 }
@@ -107,7 +121,7 @@ function openAddTaskHtml(i) {
            </div>
         </div>
 
-        <h4>Category</h4>        
+        <h4>Category</h4>  <span class="d-none" id="chooseCategory">Please choose a Category</span>      
         <div id="category_selector">
            <div id="selected_category" class="selector-header" onclick="showTaskCategories()">
               Select task category
@@ -115,7 +129,7 @@ function openAddTaskHtml(i) {
            </div>
         </div>
         <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">  </div>
-
+          <span id="chossePriority" class="d-none">Please choose a Priority</span>
          <div class="priorityContainer">
             <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
                 <p>Urgent</p> 
@@ -142,7 +156,7 @@ function openAddTaskHtml(i) {
          <div class="checkAndCrossIconsCategory">
           <img src="./assets/img/blue-cross.png" onclick="clearSubTasks()" class="blue-cross pointer">
           <img src="./assets/img/devider.png">
-          <img src="./assets/img/blue-check.png" onclick="pushSubtaskLocalStorage()" class="blue-check pointer">
+          <img src="./assets/img/blue-check.png" onclick="pushSubtasks()" class="blue-check pointer">
        </div>
     </div>
        </div>
@@ -158,11 +172,13 @@ function openAddTaskHtml(i) {
 
 //Rendering the subtasks checkboxes when generating a new subtask
 
-function renderSubTask() {
-  subTasks = JSON.parse(localStorage.getItem("subtasks")) || [];
+/*
+
+function renderSubTask(newSubTask) {
+  let createdSubTasks = currentUserTasks.subTask
   document.getElementById("addSubtaskCheckbox").innerHTML = ``;
-  for (let i = 0; i < subTasks.length; i++) {
-    subTasks = subTasks[i];
+  for (let i = 0; i < createdSubTasks.length; i++) {
+    subTasks = createdSubTasks[i];
     document.getElementById("addSubtaskCheckbox").innerHTML += `
         <div class="subtaskList" id="subtaskValue">  
         <input id="subTask_checkBox" value="${subTasks}" class="subtaskCheckbox pointer" type="checkbox">
@@ -171,28 +187,46 @@ function renderSubTask() {
   }
 }
 
+*/
 
+function renderSubTask() {
+ 
+  document.getElementById("addSubtaskCheckbox").innerHTML = ``;
+  for (let i = 0; i < subTasks.length; i++) {
+    subTask = subTasks[i];
+    document.getElementById("addSubtaskCheckbox").innerHTML += `
+        <div class="subtaskList" id="subtaskValue">  
+        <p>${subTask}</p>
+        </div>`;
+  }
+}
+
+
+
+/*
 //gettin the checked subtask
 function getSelectedSubtask() {
   let subtaskCheckboxes = document.querySelectorAll("subTask_checkBox");
   subtaskCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", (event) => {
       if (event.target.checked) {
-        checkedSubtaskValue = event.target.value;
+        subTaskSelect = event.target.value;
       }
     });
   });
 }
-
+*/
 
 //pushing new subtask in the Localstorage
-function pushSubtaskLocalStorage() {
-  if (document.getElementById("subtaskText").value) {
-
-    subTasks.push(document.getElementById("subtaskText").value);
+function pushSubtasks() {
+  newSubTask = document.getElementById("subtaskText").value;
+  if (newSubTask) {
+    subTasks.push(newSubTask)
+   // subTasks.push(document.getElementById("subtaskText").value);
     document.getElementById("subtaskText").value = ``;
-    localStorage.setItem("subtasks", JSON.stringify(subTasks));
-    renderSubTask();
+
+    //localStorage.setItem("subtasks", JSON.stringify(subTasks));
+    renderSubTask(newSubTask);
   }
 }
 
@@ -207,9 +241,11 @@ function clearSubTasks() {
 function closeAddTaskMask(i) {
   if (i == 1) {
     document.getElementById('AddTaskMaskBg').classList.add('d-none');
+    selectorcontactIndex = 0;
   }
   else if (i == 0) {
     document.getElementById('openContactAddtaskBG').classList.add('d-none');
+    selectorcontactIndex = 0;
     LFContact();
   }
 }
@@ -217,6 +253,8 @@ function closeAddTaskMask(i) {
 
 //renders the Drop Down Menu for the User selection
 function showUsers(contact) {
+  userSelect = [];
+
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   if (selectorcontactIndex == 0) {
@@ -228,20 +266,39 @@ function showUsers(contact) {
       </div>
       `;
     }
-    if (contact == 0) {
-      let f = savecontactforaddtask;
-      let contactintask = currentUser.contacts[f];
-      let contactInitials = contactintask['contactInitials'];
-      let contactcolor = contactintask['contactcolor'];
-      selectedUser(contactInitials, contactcolor, f)
+    for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
+      let currentTask = filteredTasks[filteredTasksIndex];
+      if (contact == 1) {
+        selectorcontactIndex++;
+      }
+      if (contact == 0) {
+        let f = savecontactforaddtask;
+        let contactintask = currentUser.contacts[f];
+        let contactInitials = contactintask['contactInitials'];
+        let contactcolor = contactintask['contactcolor'];
+        selectorcontactIndex++;
+        selectedUser(contactInitials, contactcolor, f)
+      }
+      if (currentTask.id == contact) {
+        selectorcontactIndex++;
+        for (let u = 0; u < currentTask.user.length; u++) {
+          let user = currentTask.user[u];
+          let contactInitials = user['contactInitials'];
+          let contactcolor = user['concolor'];
+          let id = user['id'];
+          
+          selectedUser(contactInitials, contactcolor, id);
+        }
+      }
+
     }
-    selectorcontactIndex++;
+    
   }
   else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
     selectorcontactIndex--;
   }
-
+  
 }
 
 function LFContact() {
@@ -256,6 +313,7 @@ function LFContact() {
 
 // getting selected User
 function selectedUser(contactInitials, contactcolor, i) {
+  
   let index = findeContactIndex(contactcolor);
   if (document.getElementById('user_select' + contactInitials + contactcolor + i).classList.contains('checked')) {
     userSelect.splice(index, 1)
@@ -298,8 +356,8 @@ function showTaskCategories() {
           </div>
     `;
     for (let n = 0; n < currentUser.category.length; n++) {
-        let staticCategorys = currentUser.category[n];
-      
+      let staticCategorys = currentUser.category[n];
+
       document.getElementById('selector_Category_Dropdown').innerHTML += `  
       <div onclick="selectedCategory('${staticCategorys['taskCategory']}','${staticCategorys['taskColor']}')" class="selectorCell pointer">
       <div>${staticCategorys['taskCategory']}</div>
@@ -308,9 +366,6 @@ function showTaskCategories() {
       `;
 
     }
-     
-    
-    
     selectorCategoryIndex++;
   } else {
     document.getElementById('selector_Category_Dropdown').innerHTML = ``;
@@ -321,10 +376,10 @@ function showTaskCategories() {
 
 // getting selected Category
 function selectedCategory(category, color) {
-  
-    taskCategoryFinaly = category;
-    taskCategoryColorFinaly = color;
-    document.getElementById("category_selector").innerHTML = /*html*/`
+
+  taskCategoryFinaly = category;
+  taskCategoryColorFinaly = color;
+  document.getElementById("category_selector").innerHTML = /*html*/`
     <div class="selector-header pointer" onclick="showTaskCategories()" id="selected_category">
     <div class="selected">
     ${category}
@@ -332,7 +387,8 @@ function selectedCategory(category, color) {
     </div>
     <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt=""></div>
     `;
-    document.getElementById('selector_Category_Dropdown').innerHTML = '';
+  document.getElementById('selector_Category_Dropdown').innerHTML = '';
+  selectorCategoryIndex--;
 }
 
 
@@ -351,7 +407,7 @@ function changeInputCategory() {
     </div>
   
   <div id="categoryColorCells"style="margin-top: 10px; margin-left: 20px; ">
-  <img onclick="addCategoryColor('grayCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/lightblueCategory.png">
+  <img onclick="addCategoryColor('lightblueCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/lightblueCategory.png">
   <img onclick="addCategoryColor('redCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/redCategory.png">
   <img onclick="addCategoryColor('greenCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/greenCategory.png">
   <img onclick="addCategoryColor('orangeCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/orangeCategory.png">
