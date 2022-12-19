@@ -1,0 +1,152 @@
+function contactDetailHtml(contact, lettersFB, index) {
+    return /*html*/`
+    <div class="contact-detail-main-side animationFadeInRight" id="${index}">
+                        <div class="back-in-media-contact"><img onclick="closeMediaContact()" src="./assets/img/arrow-back.png" alt=""></div>
+                        <div class="contact-detail-head">
+                            <div style="background-color: ${contact['contactcolor']}" class="contact-detail-big-letter">${lettersFB}</div>
+                            <div class="contact-detail-name-task">
+                                <p class="contact-detail-big-name">${contact['contactName']}</p>
+                                <p class="contact-detail-add-task" onclick="OpenContactAddTask('0', ${index})"><img src="./assets/img/blue-plus.png" alt="">Add Task</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-info-main">
+                            <p class="contact-detail-info">Contact Information</p>
+                            <p class="contact-detail-edit" onclick="editContact('${index}', '${lettersFB}')"><img class="icon-edit-contact" src="./assets/img/icon_edit_contact.png" alt=""> Edit Contact</p>
+                        </div>
+                        <div>
+                            <div>
+                                <p class="contact-detail-email-number">Email</p>
+                                <a href="mailto:${contact['contactEmail']}"><span>${contact['contactEmail']}</span></a>
+                            </div>
+                            <div>
+                                <p class="contact-detail-email-number">Mobile</p>
+                                <p>${contact['contactNumber']}</p>
+                            </div>
+                        </div>
+                        <div class="show-button">
+                <div class="new-contact-button d-none" onclick="openAddContact()">New contact <img class="new-contact-button-img" src="./assets/img/contact-member.png" alt=""></div>
+            </div>
+                    </div>
+    `
+}
+
+
+function contactChildHtml(i, lettersFB, index) {
+    return /*html*/`
+    <div class="contact-child-div" onclick="openDetailContact('${index}', '${lettersFB}' )" id="${index}">
+        <div style="background-color: ${i['contactcolor']}" class="contact-child">
+            <p>${lettersFB}</p>
+        </div>
+        <div>
+            <p class="contact-child-name">${i['contactName']}</p>
+            <p class="contact-child-email">${i['contactEmail']}</p>
+        </div>
+    </div>
+    `
+}
+
+
+function contactBarHtml(letter) {
+    return /*html*/`
+    <div class="contact-letter-main" >
+        <h4  class="contact-letter">${letter}</h4>
+        <div id="${letter}"></div>
+    </div>
+    `
+}
+
+
+function addNewContactHtml() {
+    return /*html*/`
+    <div class="add-contact animationFadeIn">
+    <div class="add-contact-head">
+        <div class="add-contact-cross" >
+            <img class="img-cross" onclick="closeAddContact()" src="/src/assets/img/pngegg.png" alt="">
+        </div>
+        <div class="add-contact-header-info" >
+            <div onclick="closeAddContact()>
+                <img " src="/src/assets/img/Capa 1.png" alt="">
+            </div>
+            <div class="add-contact-h">
+                Add contact
+            </div>
+            <div class="add-contact-text">
+                Tasks are better with a team!
+            </div>
+        </div>
+    </div>
+    <div class="add-contact-main">
+        <div class="contact-member"><img src="/src/assets/img/contact-member.png" alt="">
+        </div>
+        <form onsubmit="createContact(); return false;">
+            <div class="input-add-contact-container">
+                <div class="input-contact"><input placeholder="Name" required  type="text" id="contactName" class="input-contact-name">
+                    <img src="/src/assets/img/signup-user.png" alt="">
+                </div>
+                <div class="input-contact"><input placeholder="Email" required type="email" id="contactEmail" class="input-contact-name">
+                    <img src="/src/assets/img/login-email.png" alt="">
+                </div>
+                <div  id="emailDone" class="d-none contact-email-done">This Email already exists</div>
+                <div class="input-contact"><input placeholder="Phone" required type="text" id="contactNumber" class="input-contact-name">
+                    <img src="/src/assets/img/phone.png" alt="">
+                </div>
+            </div>
+            <div class="button-container">
+              
+                <button class="button-cancel" type="reset" >Cancel <img src="./assets/img/cancel.png" alt=""></button>
+                <button class="button-create" type="submit">Create contact <img src="./assets/img/rithe.png" alt=""></button>
+                
+            </div>
+        </form>
+    </div>
+</div>
+    `
+}
+
+
+function editContactHtml(contact, lettersFB, index) {
+    return /*html*/`
+    <div class="add-contact animationFadeIn">
+    <div class="add-contact-head">
+        <div class="add-contact-cross" onclick="closeAddContact()">
+            <img class="img-cross" src="./assets/img/pngegg.png" alt="">
+        </div>
+        <div class="add-contact-header-info" >
+            <div onclick="closeAddContact()>
+                <img " src="./assets/img/Capa 1.png" alt="">
+            </div>
+            <div class="add-contact-h">
+                Edit contact
+            </div>
+            
+        </div>
+    </div>
+    <div class="add-contact-main">
+    <div style="background-color: ${contact['contactcolor']}" class="contact-detail-big-letter">
+        <p>${lettersFB}</p>
+        </div>
+        <form onsubmit="invEditContact('${contact['contactEmail']}', '${index}', '${lettersFB}'); return false">
+            <div>
+                <div class="input-contact"><input  required  type="text" id="contactEditName" class="input-contact-name">
+                
+                    <img src="./assets/img/signup-user.png" alt="">
+                </div>
+                <div class="input-contact"><input  required type="email" id="contactEditEmail" class="input-contact-name">
+                    <img src="./assets/img/login-email.png" alt="">
+                </div>
+                <div class="input-contact"><input required type="text" id="contactEditNumber" class="input-contact-name">
+                    <img src="./assets/img/phone.png" alt="">
+                </div>
+            </div>
+            <div class="button-container">
+              
+                <button class="button-cancel" type="button" onclick="deleteContacts(${index})">Delete <img src="./assets/img/cancel.png" alt=""></button>
+                <button class="button-create" type="submit">Save <img src="/src/assets/img/rithe.png" alt=""></button>
+                
+            </div>
+        </form>
+        
+    </div>
+</div>
+    `
+}
