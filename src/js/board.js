@@ -353,6 +353,13 @@ function changeTaskTemplate(currentTask) {
             </div>
             <div class="selector-user-dropdown" id="selector_user_dropdown">  
             </div>
+
+            <div class="detail-subTasks" id="detail_subTasks">
+              <p>Subtasks:</p>
+              <div> ${currentTask.subTask}</div>
+            </div>
+
+
             <div>
                 <button class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
             </div>
@@ -360,6 +367,8 @@ function changeTaskTemplate(currentTask) {
         <button onclick="deleteTask(${currentTask.id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
     `
 }
+
+
 
 function editShowSelectedPriority(currentTask) {
 
