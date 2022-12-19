@@ -1,3 +1,10 @@
+/**
+ * 
+ * @param {object} contact is the object of the contact for the detail view
+ * @param {string} lettersFB initials of the contact
+ * @param {number} index of the contact in the array of contact from the current user
+ * @returns html code to show the detail view of the contact
+ */
 function contactDetailHtml(contact, lettersFB, index) {
     return /*html*/`
     <div class="contact-detail-main-side animationFadeInRight" id="${index}">
@@ -31,6 +38,13 @@ function contactDetailHtml(contact, lettersFB, index) {
 }
 
 
+/**
+ * 
+ * @param {number} i index of contact
+ * @param {string} lettersFB are the initials of the contact
+ * @param {*} index 
+ * @returns 
+ */
 function contactChildHtml(i, lettersFB, index) {
     return /*html*/`
     <div class="contact-child-div" onclick="openDetailContact('${index}', '${lettersFB}' )" id="${index}">
