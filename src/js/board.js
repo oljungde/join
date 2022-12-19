@@ -304,6 +304,7 @@ function changeTask(id) {
         if (currentTask.id == id) {
             detailContent.innerHTML = changeTaskTemplate(currentTask);
             editShowSelectedPriority(currentTask);
+            editShowSubTasks(currentTask);
         }
     }
 }
@@ -354,9 +355,8 @@ function changeTaskTemplate(currentTask) {
             <div class="selector-user-dropdown" id="selector_user_dropdown">  
             </div>
 
-            <div class="detail-subTasks" id="detail_subTasks">
-              <p>Subtasks:</p>
-              <div> ${currentTask.subTask}</div>
+            <div class="detail-subTasks" id="edit_subTasks">
+              <p>Subtasks:</p> 
             </div>
 
 
@@ -366,6 +366,17 @@ function changeTaskTemplate(currentTask) {
         </form>
         <button onclick="deleteTask(${currentTask.id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
     `
+}
+
+function editShowSubTasks(currentTask){
+    let detailAssignedSubTasks = document.getElementById('edit_subTasks')
+    for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
+        let subTask = currentTask.subTask[assignedSubTaskIndex];
+        detailAssignedSubTasks.innerHTML += `
+        <div> ${subTask}</div>
+        `
+    }
+
 }
 
 
