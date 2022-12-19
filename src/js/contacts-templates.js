@@ -40,10 +40,10 @@ function contactDetailHtml(contact, lettersFB, index) {
 
 /**
  * 
- * @param {number} i index of contact
+ * @param {string} i the entire contact 
  * @param {string} lettersFB are the initials of the contact
- * @param {*} index 
- * @returns 
+ * @param {number} index index of contact
+ * @returns html code to show the contact Child 
  */
 function contactChildHtml(i, lettersFB, index) {
     return /*html*/`
@@ -59,7 +59,12 @@ function contactChildHtml(i, lettersFB, index) {
     `
 }
 
-
+/**
+ * 
+ * 
+ * @param {string} letter first letter of name
+ * @returns html code to show the contact Bar 
+ */
 function contactBarHtml(letter) {
     return /*html*/`
     <div class="contact-letter-main" >
@@ -69,7 +74,10 @@ function contactBarHtml(letter) {
     `
 }
 
-
+/**
+ * 
+ * @returns html code to show the new contact 
+ */
 function addNewContactHtml() {
     return /*html*/`
     <div class="add-contact animationFadeIn">
@@ -117,7 +125,13 @@ function addNewContactHtml() {
     `
 }
 
-
+/**
+ * 
+ * @param {string} contact the entire contact in array
+ * @param {string} lettersFB first letter of the name
+ * @param {number} index poition in array
+ * @returns html code to show the edit contact 
+ */
 function editContactHtml(contact, lettersFB, index) {
     return /*html*/`
     <div class="add-contact animationFadeIn">
