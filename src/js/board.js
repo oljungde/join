@@ -356,7 +356,7 @@ function changeTaskTemplate(currentTask) {
             </div>
 
             <div class="detail-subTasks" id="edit_subTasks">
-              <p>Subtasks:</p> 
+              <h4>Subtasks:</h4> 
             </div>
 
 
@@ -372,11 +372,13 @@ function editShowSubTasks(currentTask){
     let detailAssignedSubTasks = document.getElementById('edit_subTasks')
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
         let subTask = currentTask.subTask[assignedSubTaskIndex];
-        detailAssignedSubTasks.innerHTML += `
-        <div> ${subTask}</div>
+        detailAssignedSubTasks.innerHTML += /*html*/`
+        <div class="subtaskList" id="subtaskValue">  
+          <input id="subTask_checkBox" value="${subTask}" class="subtaskCheckbox pointer" type="checkbox">
+          <p>${subTask}</p>
+        </div>
         `
     }
-
 }
 
 
