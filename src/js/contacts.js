@@ -66,9 +66,9 @@ function createContact() {
 
 /**
  * Check e-mail or create a contact
- * @param {*} look 
- * @param {*} contactName 
- * @param {*} contactTask 
+ * @param {number} look Checks if e-mail is assigned in array
+ * @param {string} contactName name of the contact
+ * @param {string} contactTask the entire contact with email and number
  */
 function checkOrLoad(look, contactName, contactTask) {
     if (look == -1) {
@@ -83,7 +83,7 @@ function checkOrLoad(look, contactName, contactTask) {
 
 /**
  * Pusht ContactTask in CurrentUser and Save it in Backend
- * @param {*} contactTask 
+ * @param {string} contactTask the entire contact with email and number
  */
 async function addNewContact(contactTask) {
     currentUser.contacts.push(contactTask);
@@ -94,7 +94,7 @@ async function addNewContact(contactTask) {
 
 /**
  * Checks if e-mail is assigned in array
- * @param {*} contactTask 
+ * @param {string} contactTask the entire contact with email and number
  * @returns 
  */
 function checkEmailInArray(contactTask,) {
@@ -118,7 +118,7 @@ function checkEmail() {
 
 /**
  * pushes the json into an array
- * @param {*} contactTask 
+ * @param {string} contactName name of the contact
  */
 function fillAllTasks(contactName,) {
     let letter = contactName.charAt(0);
@@ -137,7 +137,11 @@ function fillAllTasks(contactName,) {
 }
 
 
-// push letter in currentUser
+/**
+ * push letter in currentuser
+ * 
+ * @param {string} letter first letter of the name
+ */
 function saveLetterContact(letter) {
     currentUser.lettertask.push(letter);
     currentUser.lettertask.sort();
@@ -190,8 +194,8 @@ function createContactBar() {
 
 /**
  * opens detail view of contact
- * @param {*} index 
- * @param {*} lettersFB 
+ * @param {number} index position in the array
+ * @param {string} lettersFB first letter of the name
  */
 function openDetailContact(index, lettersFB) {
     changeColorInContact(index);
@@ -212,7 +216,7 @@ function openDetailContact(index, lettersFB) {
 
 /**
  * change coler of background in letterTask
- * @param {*} index 
+ * @param {number} index position in the array
  */
 function changeColorInContact(index) {
     for (let i = 0; i < currentUser.contacts.length; i++) {
@@ -224,8 +228,8 @@ function changeColorInContact(index) {
 
 /**
  * opens Edit view of Contact
- * @param {*} index 
- * @param {*} lettersFB 
+ * @param {number} index position in the array
+ * @param {string} lettersFB first letter of the name
  */
 function editContact(index, lettersFB) {
     let contact = currentUser.contacts[index];
@@ -241,9 +245,9 @@ function editContact(index, lettersFB) {
 
 /**
  * Changes a contact
- * @param {*} oldEmail 
- * @param {*} index 
- * @param {*} lettersFB 
+ * @param {string} oldEmail old email from a contact
+ * @param {number} index position in the array
+ * @param {string} lettersFB first letter of a name
  */
 function invEditContact(oldEmail, index, lettersFB) {
     let smallName = document.getElementById('contactEditName').value;
@@ -264,9 +268,9 @@ function invEditContact(oldEmail, index, lettersFB) {
 
 /**
  * Changes a contact
- * @param {*} object 
- * @param {*} id 
- * @param {*} lettersFB 
+ * @param {string} object the entire contact with email and number
+ * @param {number} id position  in the array
+ * @param {string} lettersFB first letter of a name
  */
 function changeUser(object, id, lettersFB) {
     let oldEmail = object['oldEmail'];
@@ -282,8 +286,8 @@ function changeUser(object, id, lettersFB) {
 
 /**
  * change new name, email, Number, in old contact
- * @param {*} object 
- * @param {*} index 
+ * @param {string} object the entire contact with email and number
+ * @param {number} index position in the array
  */
 function changeContact(object, index) {
     currentUser.contacts[index]['contactName'] = object['contactName'];
@@ -295,7 +299,7 @@ function changeContact(object, index) {
 
 /**
  * Render a Contact
- * @param {*} letter 
+ * @param {string} letter first letter of a name
  */
 function renderContacts(letter) {
     if (currentUser.lettertask.includes(letter)) {
@@ -335,7 +339,7 @@ function closeMediaContact() {
 
 /**
  * Lokking for index in array
- * @param {*} email 
+ * @param {string} email email of a contact
  * @returns 
  */
 function getUserIndexForEmail(email) {
@@ -350,8 +354,10 @@ function getUserIndexForEmail(email) {
 
 
 /**
- * Open AddTask in contact
- * @param {*} i 
+ * open addtask in contact
+ * 
+ * @param {number} i position in the array
+ * @param {number} index position in the array
  */
 function OpenContactAddTask(i, index) {
     savecontactforaddtask = index;
@@ -365,7 +371,7 @@ function OpenContactAddTask(i, index) {
 
 /**
  * Delete a Contact
- * @param {*} index 
+ * @param {number} index position in the array
  */
 function deleteContacts(index) {
     closeAddContact();
@@ -392,7 +398,7 @@ function deleteContacts(index) {
 
 /**
  * Delete Contact Letter Bar
- * @param {*} letter 
+ * @param {string} letter first letter of the name
  * @returns 
  */
 function deleteContactletter(letter) {

@@ -89,7 +89,7 @@ a:hover {
 
 /* Style for the Header   */
 .Mainheader {
-    height: 100px;
+    height: 10vh;
     background-color: #4589ff;
     display: flex;
     align-items: center;
@@ -157,7 +157,7 @@ a:hover {
 /* Style for the Sidenav-link  */
 .sidebar {
     background-color: white;
-    min-height: calc(100vh - 100px);
+    height: 90vh;
     min-width: 230px;
     display: flex;
     flex-direction: column;

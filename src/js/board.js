@@ -177,7 +177,14 @@ function updateProgressBar() {
 // Drag and Drop
 // Defines the dragged task
 function startDragging(id) {
-    currentDraggedElement = id;
+    for (i = 0; i < currentUserTasks.length; i++) {
+        let index = currentUserTasks[i]['id'];
+        if (index == id) {
+            currentDraggedElement = i;
+            console.log(currentDraggedElement);
+        }
+    }
+    
 }
 
 
@@ -356,7 +363,7 @@ function changeTaskTemplate(currentTask) {
             </div>
 
             <div class="detail-subTasks" id="edit_subTasks">
-              <p>Subtasks:</p> 
+              <h4>Subtasks:</h4> 
             </div>
 
 
@@ -372,11 +379,13 @@ function editShowSubTasks(currentTask) {
     let detailAssignedSubTasks = document.getElementById('edit_subTasks')
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
         let subTask = currentTask.subTask[assignedSubTaskIndex];
-        detailAssignedSubTasks.innerHTML += `
-        <div> ${subTask}</div>
+        detailAssignedSubTasks.innerHTML += /*html*/`
+        <div class="subtaskList" id="subtaskValue">  
+          <input id="subTask_checkBox" value="${subTask}" class="subtaskCheckbox pointer" type="checkbox">
+          <p>${subTask}</p>
+        </div>
         `
     }
-
 }
 
 
@@ -451,7 +460,7 @@ function editSelectedPriority(i) {
 
 
 async function saveChangedTask(currentTaskId) {
-    selectorcontactIndex--;
+    selectorcontactIndex= 0;
     let changedTitle = document.getElementById('changed_title').value;
     let changedDescription = document.getElementById('changed_description').value;
     let changedDueDate = document.getElementById('changed_date').value;
@@ -463,6 +472,7 @@ async function saveChangedTask(currentTaskId) {
     taskToChange.dueDate = changedDueDate;
     taskToChange.priority = prioritySelect;
     userSelect = [];
+    prioritySelect = [];
     await backend.setItem('users', JSON.stringify(users));
     closeDetailTask();
 }
