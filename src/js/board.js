@@ -231,7 +231,7 @@ function showDetailWindow(id) {
 
 
 /**
- * @param {opject} currentTask is the selected task to show the details window
+ * @param {object} currentTask is the selected task to show the details window
  * @returns the html code for rendering the task details window
  */
 function detailContentTemplate(currentTask) {
@@ -368,7 +368,7 @@ function changeTaskTemplate(currentTask) {
     `
 }
 
-function editShowSubTasks(currentTask){
+function editShowSubTasks(currentTask) {
     let detailAssignedSubTasks = document.getElementById('edit_subTasks')
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
         let subTask = currentTask.subTask[assignedSubTaskIndex];
