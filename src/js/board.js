@@ -177,7 +177,14 @@ function updateProgressBar() {
 // Drag and Drop
 // Defines the dragged task
 function startDragging(id) {
-    currentDraggedElement = id;
+    for (i = 0; i < currentUserTasks.length; i++) {
+        let index = currentUserTasks[i]['id'];
+        if (index == id) {
+            currentDraggedElement = i;
+            console.log(currentDraggedElement);
+        }
+    }
+    
 }
 
 
