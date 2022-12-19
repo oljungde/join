@@ -434,7 +434,7 @@ function editSelectedPriority(i) {
 
 
 async function saveChangedTask(currentTaskId) {
-    selectorcontactIndex--;
+    selectorcontactIndex= 0;
     let changedTitle = document.getElementById('changed_title').value;
     let changedDescription = document.getElementById('changed_description').value;
     let changedDueDate = document.getElementById('changed_date').value;
@@ -446,6 +446,7 @@ async function saveChangedTask(currentTaskId) {
     taskToChange.dueDate = changedDueDate;
     taskToChange.priority = prioritySelect;
     userSelect = [];
+    prioritySelect = [];
     await backend.setItem('users', JSON.stringify(users));
     closeDetailTask();
 }
