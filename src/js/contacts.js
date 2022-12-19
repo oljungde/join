@@ -1,5 +1,6 @@
 let savecontactforaddtask;
 
+
 async function initContacts() {
     await init();
     setNavLinkActive();
@@ -9,14 +10,15 @@ async function initContacts() {
     imgheader();
 }
 
+
 function renderAllContact() {
     createContactBar();
     contactChild();
 }
 
+
 /**
  * opens a window to add contacts
- * 
  */
 function openAddContact() {
     let addcontact = document.getElementById('opencontact');
@@ -25,9 +27,9 @@ function openAddContact() {
     addcontact.innerHTML = addNewContactHtml();
 }
 
+
 /**
  * close a window to add contacts
- * 
  */
 function closeAddContact() {
     let addcontact = document.getElementById('opencontact');
@@ -36,9 +38,9 @@ function closeAddContact() {
 
 }
 
+
 /**
  * pulls them out of the input and puts them in a json
- * 
  */
 function createContact() {
     let smallName = document.getElementById('contactName').value;
@@ -61,9 +63,9 @@ function createContact() {
     checkOrLoad(look, contactName, contactTask)
 }
 
+
 /**
  * Check e-mail or create a contact
- * 
  * @param {*} look 
  * @param {*} contactName 
  * @param {*} contactTask 
@@ -78,9 +80,9 @@ function checkOrLoad(look, contactName, contactTask) {
     }
 }
 
+
 /**
  * Pusht ContactTask in CurrentUser and Save it in Backend
- * 
  * @param {*} contactTask 
  */
 async function addNewContact(contactTask) {
@@ -89,9 +91,9 @@ async function addNewContact(contactTask) {
     await backend.setItem('users', JSON.stringify(users));
 }
 
+
 /**
  * Checks if e-mail is assigned in array
- * 
  * @param {*} contactTask 
  * @returns 
  */
@@ -113,9 +115,9 @@ function checkEmail() {
     emaildone.classList.remove('d-none');
 }
 
+
 /**
  * pushes the json into an array
- * 
  * @param {*} contactTask 
  */
 function fillAllTasks(contactName,) {
@@ -134,20 +136,22 @@ function fillAllTasks(contactName,) {
     }
 }
 
+
 // push letter in currentUser
-function saveLetterContact(letter){
+function saveLetterContact(letter) {
     currentUser.lettertask.push(letter);
     currentUser.lettertask.sort();
     backend.setItem('users', JSON.stringify(users));
 }
 
 // save contact popup
-function popupContactSave(){
+function popupContactSave() {
     document.getElementById('popup-ContactBar').classList.remove('d-none');
     setTimeout(() => {
         document.getElementById('popup-ContactBar').classList.add('d-none');
-      }, 2000);
+    }, 2000);
 }
+
 
 // Clear Contact Letter Bar
 function clearContactBar() {
@@ -161,6 +165,7 @@ function clearContactBar() {
     contactChild();
 }
 
+
 // for loop for contact child
 function contactChild() {
     for (let index = 0; index < currentUser.contacts.length; index++) {
@@ -172,6 +177,7 @@ function contactChild() {
     }
 }
 
+
 // Create a Contact Letter Bar
 function createContactBar() {
     for (let i = 0; i < currentUser.lettertask.length; i++) {
@@ -181,9 +187,9 @@ function createContactBar() {
     }
 }
 
+
 /**
  * opens detail view of contact
- * 
  * @param {*} index 
  * @param {*} lettersFB 
  */
@@ -191,33 +197,33 @@ function openDetailContact(index, lettersFB) {
     changeColorInContact(index);
     let contact = currentUser.contacts[index];
     let contactMedia = window.matchMedia('(max-width: 1120px)')
-    if(contactMedia.matches){
+    if (contactMedia.matches) {
         document.getElementById('contactbar').classList.add('display-contact-none');
         document.getElementById('contact-detail-in-main').classList.remove('display-contact-none');
-    } 
+    }
     let contactdetailsinmedia = document.getElementById('contact-detail-in-main');
     contactdetailsinmedia.innerHTML = '';
     contactdetailsinmedia.innerHTML = contactDetailHtml(contact, lettersFB, index);
     let contactdetails = document.getElementById('contactdetails');
     contactdetails.innerHTML = '';
-    contactdetails.innerHTML = contactDetailHtml(contact, lettersFB, index);   
+    contactdetails.innerHTML = contactDetailHtml(contact, lettersFB, index);
 }
+
 
 /**
  * change coler of background in letterTask
- * 
  * @param {*} index 
  */
-function changeColorInContact(index){
+function changeColorInContact(index) {
     for (let i = 0; i < currentUser.contacts.length; i++) {
-        document.getElementById(i).classList.remove('contact-child-div-klick')    
+        document.getElementById(i).classList.remove('contact-child-div-klick')
     }
     document.getElementById(index).classList.add('contact-child-div-klick');
 }
 
+
 /**
  * opens Edit view of Contact
- * 
  * @param {*} index 
  * @param {*} lettersFB 
  */
@@ -232,9 +238,9 @@ function editContact(index, lettersFB) {
     document.getElementById('contactEditNumber').value = contact['contactNumber'];
 }
 
+
 /**
  * Changes a contact
- * 
  * @param {*} oldEmail 
  * @param {*} index 
  * @param {*} lettersFB 
@@ -255,9 +261,9 @@ function invEditContact(oldEmail, index, lettersFB) {
     changeUser(contactTask, index, lettersFB);
 }
 
+
 /**
  * Changes a contact
- * 
  * @param {*} object 
  * @param {*} id 
  * @param {*} lettersFB 
@@ -273,22 +279,22 @@ function changeUser(object, id, lettersFB) {
     openDetailContact(id, lettersFB);
 }
 
+
 /**
  * change new name, email, Number, in old contact
- * 
  * @param {*} object 
  * @param {*} index 
  */
-function changeContact(object, index){
+function changeContact(object, index) {
     currentUser.contacts[index]['contactName'] = object['contactName'];
     currentUser.contacts[index]['contactletter'] = object['contactletter'];
     currentUser.contacts[index]['contactEmail'] = object['contactEmail'];
-    currentUser.contacts[index]['contactNumber'] = object['contactNumber'];  
+    currentUser.contacts[index]['contactNumber'] = object['contactNumber'];
 }
+
 
 /**
  * Render a Contact
- * 
  * @param {*} letter 
  */
 function renderContacts(letter) {
@@ -305,10 +311,12 @@ function renderContacts(letter) {
     }
 }
 
+
 // Save in Backend
 async function savesInBackEnd() {
     await backend.setItem('users', JSON.stringify(users));
 }
+
 
 // close contact detail
 function clearContactDetails() {
@@ -317,15 +325,16 @@ function clearContactDetails() {
 
 }
 
+
 // close window under 1160px
-function closeMediaContact(){
+function closeMediaContact() {
     document.getElementById('contact-detail-in-main').classList.add('display-contact-none');
     document.getElementById('contactbar').classList.remove('display-contact-none');
 }
 
+
 /**
  * Lokking for index in array
- * 
  * @param {*} email 
  * @returns 
  */
@@ -339,24 +348,23 @@ function getUserIndexForEmail(email) {
     return userindex;
 }
 
+
 /**
  * Open AddTask in contact
- * 
  * @param {*} i 
  */
 function OpenContactAddTask(i, index) {
-    
     savecontactforaddtask = index;
     console.log(savecontactforaddtask);
     let openaddtask = document.getElementById('openContactAddtask');
     document.getElementById('openContactAddtaskBG').classList.remove('d-none');
     openaddtask.innerHTML = openAddTaskHtml(i);
-    
+
 }
+
 
 /**
  * Delete a Contact
- * 
  * @param {*} index 
  */
 function deleteContacts(index) {
@@ -378,12 +386,12 @@ function deleteContacts(index) {
     clearContactDetails();
     createContactBar();
     contactChild();
-    savesInBackEnd();    
+    savesInBackEnd();
 }
+
 
 /**
  * Delete Contact Letter Bar
- * 
  * @param {*} letter 
  * @returns 
  */
@@ -392,157 +400,8 @@ function deleteContactletter(letter) {
     for (i = 0; i < currentUser.contacts.length; i++) {
         let lettersFB = currentUser.contacts[i]['contactName'].charAt(0);
         if (lettersFB == letter) {
-            userindex = i; 
+            userindex = i;
         }
     }
     return userindex;
-}
-
-function contactDetailHtml(contact, lettersFB, index) {
-    return `
-    <div class="contact-detail-main-side animationFadeInRight" id="${index}">
-                        <div class="back-in-media-contact"><img onclick="closeMediaContact()" src="./assets/img/arrow-back.png" alt=""></div>
-                        <div class="contact-detail-head">
-                            <div style="background-color: ${contact['contactcolor']}" class="contact-detail-big-letter">${lettersFB}</div>
-                            <div class="contact-detail-name-task">
-                                <p class="contact-detail-big-name">${contact['contactName']}</p>
-                                <p class="contact-detail-add-task" onclick="OpenContactAddTask('0', ${index})"><img src="./assets/img/blue-plus.png" alt="">Add Task</p>
-                            </div>
-                        </div>
-                        <div class="contact-detail-info-main">
-                            <p class="contact-detail-info">Contact Information</p>
-                            <p class="contact-detail-edit" onclick="editContact('${index}', '${lettersFB}')"><img class="icon-edit-contact" src="./assets/img/icon_edit_contact.png" alt=""> Edit Contact</p>
-                        </div>
-                        <div>
-                            <div>
-                                <p class="contact-detail-email-number">Email</p>
-                                <a href="mailto:${contact['contactEmail']}"><span>${contact['contactEmail']}</span></a>
-                            </div>
-                            <div>
-                                <p class="contact-detail-email-number">Mobile</p>
-                                <p>${contact['contactNumber']}</p>
-                            </div>
-                        </div>
-                        <div class="show-button">
-                <div class="new-contact-button d-none" onclick="openAddContact()">New contact <img class="new-contact-button-img" src="./assets/img/contact-member.png" alt=""></div>
-            </div>
-                    </div>
-    `
-}
-
-function contactChildHtml(i, lettersFB, index) {
-    return `
-    <div class="contact-child-div" onclick="openDetailContact('${index}', '${lettersFB}' )" id="${index}">
-        <div style="background-color: ${i['contactcolor']}" class="contact-child">
-            <p>${lettersFB}</p>
-        </div>
-        <div>
-            <p class="contact-child-name">${i['contactName']}</p>
-            <p class="contact-child-email">${i['contactEmail']}</p>
-        </div>
-    </div>
-    `
-}
-
-function contactBarHtml(letter) {
-    return `
-    <div class="contact-letter-main" >
-        <h4  class="contact-letter">${letter}</h4>
-        <div id="${letter}"></div>
-    </div>
-    `
-}
-
-function addNewContactHtml() {
-    return `
-    <div class="add-contact animationFadeIn">
-    <div class="add-contact-head">
-        <div class="add-contact-cross" >
-            <img class="img-cross" onclick="closeAddContact()" src="/src/assets/img/pngegg.png" alt="">
-        </div>
-        <div class="add-contact-header-info" >
-            <div onclick="closeAddContact()>
-                <img " src="/src/assets/img/Capa 1.png" alt="">
-            </div>
-            <div class="add-contact-h">
-                Add contact
-            </div>
-            <div class="add-contact-text">
-                Tasks are better with a team!
-            </div>
-        </div>
-    </div>
-    <div class="add-contact-main">
-        <div class="contact-member"><img src="/src/assets/img/contact-member.png" alt="">
-        </div>
-        <form onsubmit="createContact(); return false;">
-            <div class="input-add-contact-container">
-                <div class="input-contact"><input placeholder="Name" required  type="text" id="contactName" class="input-contact-name">
-                    <img src="/src/assets/img/signup-user.png" alt="">
-                </div>
-                <div class="input-contact"><input placeholder="Email" required type="email" id="contactEmail" class="input-contact-name">
-                    <img src="/src/assets/img/login-email.png" alt="">
-                </div>
-                <div  id="emailDone" class="d-none contact-email-done">This Email already exists</div>
-                <div class="input-contact"><input placeholder="Phone" required type="text" id="contactNumber" class="input-contact-name">
-                    <img src="/src/assets/img/phone.png" alt="">
-                </div>
-            </div>
-            <div class="button-container">
-              
-                <button class="button-cancel" type="reset" >Cancel <img src="./assets/img/cancel.png" alt=""></button>
-                <button class="button-create" type="submit">Create contact <img src="./assets/img/rithe.png" alt=""></button>
-                
-            </div>
-        </form>
-    </div>
-</div>
-    `
-}
-
-function editContactHtml(contact, lettersFB, index) {
-    return `
-    <div class="add-contact animationFadeIn">
-    <div class="add-contact-head">
-        <div class="add-contact-cross" onclick="closeAddContact()">
-            <img class="img-cross" src="./assets/img/pngegg.png" alt="">
-        </div>
-        <div class="add-contact-header-info" >
-            <div onclick="closeAddContact()>
-                <img " src="./assets/img/Capa 1.png" alt="">
-            </div>
-            <div class="add-contact-h">
-                Edit contact
-            </div>
-            
-        </div>
-    </div>
-    <div class="add-contact-main">
-    <div style="background-color: ${contact['contactcolor']}" class="contact-detail-big-letter">
-        <p>${lettersFB}</p>
-        </div>
-        <form onsubmit="invEditContact('${contact['contactEmail']}', '${index}', '${lettersFB}'); return false">
-            <div>
-                <div class="input-contact"><input  required  type="text" id="contactEditName" class="input-contact-name">
-                
-                    <img src="./assets/img/signup-user.png" alt="">
-                </div>
-                <div class="input-contact"><input  required type="email" id="contactEditEmail" class="input-contact-name">
-                    <img src="./assets/img/login-email.png" alt="">
-                </div>
-                <div class="input-contact"><input required type="text" id="contactEditNumber" class="input-contact-name">
-                    <img src="./assets/img/phone.png" alt="">
-                </div>
-            </div>
-            <div class="button-container">
-              
-                <button class="button-cancel" type="button" onclick="deleteContacts(${index})">Delete <img src="./assets/img/cancel.png" alt=""></button>
-                <button class="button-create" type="submit">Save <img src="/src/assets/img/rithe.png" alt=""></button>
-                
-            </div>
-        </form>
-        
-    </div>
-</div>
-    `
 }

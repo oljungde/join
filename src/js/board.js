@@ -189,14 +189,11 @@ function allowDrop(ev) {
 
 // changes the status of the task according to the dropped area
 async function moveTo(e, status) {
-    const currentTask = filteredTasks.find((currentTask) => {
-        return currentTask.id == currentDraggedElement;
-    });
-    console.log(currentTask);
-    currentTask.status = status;
+    currentUserTasks[currentDraggedElement]['status'] = status;
     e.target.classList.remove('drag-over');
     filterTasksByStatus();
-    await backend.setItem('users', JSON.stringify(users));
+    console.log(currentUserTasks);
+    backend.setItem('users', JSON.stringify(users));
 }
 
 
@@ -307,6 +304,7 @@ function changeTask(id) {
         if (currentTask.id == id) {
             detailContent.innerHTML = changeTaskTemplate(currentTask);
             editShowSelectedPriority(currentTask);
+            editShowSubTasks(currentTask);
         }
     }
 }
@@ -356,6 +354,12 @@ function changeTaskTemplate(currentTask) {
             </div>
             <div class="selector-user-dropdown" id="selector_user_dropdown">  
             </div>
+
+            <div class="detail-subTasks" id="edit_subTasks">
+              <h4>Subtasks:</h4> 
+            </div>
+
+
             <div>
                 <button class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
             </div>
@@ -363,6 +367,21 @@ function changeTaskTemplate(currentTask) {
         <button onclick="deleteTask(${currentTask.id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
     `
 }
+
+function editShowSubTasks(currentTask){
+    let detailAssignedSubTasks = document.getElementById('edit_subTasks')
+    for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
+        let subTask = currentTask.subTask[assignedSubTaskIndex];
+        detailAssignedSubTasks.innerHTML += /*html*/`
+        <div class="subtaskList" id="subtaskValue">  
+          <input id="subTask_checkBox" value="${subTask}" class="subtaskCheckbox pointer" type="checkbox">
+          <p>${subTask}</p>
+        </div>
+        `
+    }
+}
+
+
 
 function editShowSelectedPriority(currentTask) {
 
@@ -457,6 +476,10 @@ async function deleteTask(currentTaskId) {
     filteredTasks.splice(taskToDelete, 1);
     await backend.setItem('users', JSON.stringify(users));
     closeDetailTask()
+}
+
+async function saveDeletetTask() {
+    await backend.setItem('users', JSON.stringify(users));
 }
 
 //Closes the Detail Window
