@@ -43,7 +43,15 @@
 
             <div class="topBar">
                 <div class="InputAndButton">
-                    <input class="search-input" id="search_input" type="text" placeholder="Find Task" onkeyup="handleFilterTasks()">
+                    <div class ="search-task-container">
+                        <div class="input-wrapper">
+                          <input class="search-input" id="search_input" type="text" placeholder="Find Task" onkeyup="handleFilterTasks()">
+                          <div class="search-icon-wrapper">
+                            <div class="vector"></div>
+                            <img src="assets/img/searchglas.png">
+                        </div>
+                        </div>
+                    </div>
                     <Button onclick="openAddTaskMask(1)" class="addTaskButton">
                         <p>Add Task</p> <img src="assets/img/white-plus.png" alt="">
                     </Button>
