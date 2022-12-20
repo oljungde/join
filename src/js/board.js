@@ -12,7 +12,6 @@ async function initBoard() {
     setNavLinkActive();
     checkUserIsLoggedIn();
     getTasksOfCurrentUser();
-    identifyId();
     handleFilterTasks();
     imgheader();
 }
@@ -109,15 +108,6 @@ function renderContactInTask(element) {
     }
 }
 
-// Update the board
-function identifyId() {
-    let length = currentUserTasks.length - 1;
-    if (j > 0 || length >= 0) {
-        j = length;
-        j++;
-    }
-}
-
 
 // renders the Task-Card on the Board
 function generateTodoHTML(element) {
@@ -184,7 +174,7 @@ function startDragging(id) {
             console.log(currentDraggedElement);
         }
     }
-    
+
 }
 
 
@@ -460,7 +450,7 @@ function editSelectedPriority(i) {
 
 
 async function saveChangedTask(currentTaskId) {
-    selectorcontactIndex= 0;
+    selectorcontactIndex = 0;
     let changedTitle = document.getElementById('changed_title').value;
     let changedDescription = document.getElementById('changed_description').value;
     let changedDueDate = document.getElementById('changed_date').value;

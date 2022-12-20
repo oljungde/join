@@ -1,4 +1,3 @@
-let j = 0;
 let selectorCategoryIndex = 0;
 let taskCategorySelector = [];
 let categorySelectedColor;
@@ -52,7 +51,6 @@ async function addToTask(i) {
     await backend.setItem('users', JSON.stringify(users));
     prioritySelect = [];
     taskCategoryFinaly = [];
-    setIdOneHigher();
     if (i == 0) {
       window.location.href = './board.html';
       filterTasksByStatus();
@@ -66,12 +64,6 @@ async function addToTask(i) {
   selectorcontactIndex = 0;
 }
 
-// adds 1 to the id for adding tasks
-function setIdOneHigher() {
-  if (j >= 0) {
-    j++;
-  }
-}
 
 function ShowTaskAddedPopUp() {
   document.getElementById('task_added_to_board_img').classList.remove('d-none');
