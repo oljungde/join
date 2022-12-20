@@ -4,7 +4,6 @@ let users = [];
 let currentUser;
 let currentUserTasks = [];
 let allTasks = [];
-let subTasks = [];
 let showMenuinheader = 0;
 
 /**

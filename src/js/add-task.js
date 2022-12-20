@@ -5,6 +5,7 @@ let selectorcontactIndex = 0;
 let userSelect = [];
 let taskCategoryFinaly = [];
 let prioritySelect = [];
+let subTasks = [];
 
 
 /**
@@ -51,6 +52,7 @@ async function addToTask(i) {
     await backend.setItem('users', JSON.stringify(users));
     prioritySelect = [];
     taskCategoryFinaly = [];
+    subTasks = [];
     if (i == 0) {
       window.location.href = './board.html';
       filterTasksByStatus();
