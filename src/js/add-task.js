@@ -1,11 +1,11 @@
-let j = 0;
 let selectorCategoryIndex = 0;
 let taskCategorySelector = [];
 let categorySelectedColor;
 let selectorcontactIndex = 0;
 let userSelect = [];
-let taskCategoryFinaly =[];
+let taskCategoryFinaly = [];
 let prioritySelect = [];
+
 
 /**
  * init function will execute wenn page add-task.html is loading
@@ -22,55 +22,48 @@ async function initAddTask() {
 
 //defines the current task and pushes it to the Array alltasks and saves it in the backend 
 async function addToTask(i) {
-  if ( taskCategoryFinaly.length == 0) {
+  if (taskCategoryFinaly.length == 0) {
     document.getElementById('chooseCategory').classList.remove('d-none');
   }
   if (prioritySelect.length == 0) {
     document.getElementById('chossePriority').classList.remove('d-none');
   }
-  else{
-  let title = document.getElementById('AddTitle');
-  let description = document.getElementById('AddDescription');
-  let dueDate = document.getElementById('add-date');
+  else {
+    let title = document.getElementById('AddTitle');
+    let description = document.getElementById('AddDescription');
+    let dueDate = document.getElementById('add-date');
 
-  let currentTask = {
-    "id": (new Date().getTime() * Math.random()).toFixed(0),
-    "category": {
-      Category: taskCategoryFinaly,
-      TaskColor: taskCategoryColorFinaly,
-    },
-    "title": title.value,
-    "description": description.value,
-    "dueDate": dueDate.value,
-    "priority": prioritySelect,
-    "user": userSelect,
-    "subTask": subTasks,
-    'status': 'toDo'
-  };
-  currentUserTasks.push(currentTask);
-  await backend.setItem('users', JSON.stringify(users));
-  prioritySelect = [];
-  taskCategoryFinaly =[];
-  setIdOneHigher();
-  if (i == 0) {
-    window.location.href = './board.html';
-    filterTasksByStatus();
+    let currentTask = {
+      "id": (new Date().getTime() * Math.random()).toFixed(0),
+      "category": {
+        Category: taskCategoryFinaly,
+        TaskColor: taskCategoryColorFinaly,
+      },
+      "title": title.value,
+      "description": description.value,
+      "dueDate": dueDate.value,
+      "priority": prioritySelect,
+      "user": userSelect,
+      "subTask": subTasks,
+      'status': 'toDo'
+    };
+    currentUserTasks.push(currentTask);
+    await backend.setItem('users', JSON.stringify(users));
+    prioritySelect = [];
+    taskCategoryFinaly = [];
+    if (i == 0) {
+      window.location.href = './board.html';
+      filterTasksByStatus();
+    }
+    else if (i == 1) {
+      document.getElementById('AddTaskMaskBg').classList.add('d-none');
+      ShowTaskAddedPopUp();
+      filterTasksByStatus();
+    }
   }
-  else if (i == 1) {
-    document.getElementById('AddTaskMaskBg').classList.add('d-none');
-    ShowTaskAddedPopUp();
-    filterTasksByStatus();
-  }
-}
-selectorcontactIndex = 0;
+  selectorcontactIndex = 0;
 }
 
-// adds 1 to the id for adding tasks
-function setIdOneHigher() {
-  if (j >= 0) {
-    j++;
-  }
-}
 
 function ShowTaskAddedPopUp() {
   document.getElementById('task_added_to_board_img').classList.remove('d-none');
@@ -190,12 +183,13 @@ function renderSubTask(newSubTask) {
 */
 
 function renderSubTask() {
- 
+
   document.getElementById("addSubtaskCheckbox").innerHTML = ``;
   for (let i = 0; i < subTasks.length; i++) {
     subTask = subTasks[i];
     document.getElementById("addSubtaskCheckbox").innerHTML += `
-        <div class="subtaskList" id="subtaskValue">  
+        <div class="subtaskList" id="subtaskValue"> 
+        <input type="checkbox"> 
         <p>${subTask}</p>
         </div>`;
   }
@@ -222,7 +216,7 @@ function pushSubtasks() {
   newSubTask = document.getElementById("subtaskText").value;
   if (newSubTask) {
     subTasks.push(newSubTask)
-   // subTasks.push(document.getElementById("subtaskText").value);
+    // subTasks.push(document.getElementById("subtaskText").value);
     document.getElementById("subtaskText").value = ``;
 
     //localStorage.setItem("subtasks", JSON.stringify(subTasks));
@@ -286,19 +280,19 @@ function showUsers(contact) {
           let contactInitials = user['contactInitials'];
           let contactcolor = user['concolor'];
           let id = user['id'];
-          
+
           selectedUser(contactInitials, contactcolor, id);
         }
       }
 
     }
-    
+
   }
   else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
     selectorcontactIndex--;
   }
-  
+
 }
 
 function LFContact() {
@@ -313,7 +307,7 @@ function LFContact() {
 
 // getting selected User
 function selectedUser(contactInitials, contactcolor, i) {
-  
+
   let index = findeContactIndex(contactcolor);
   if (document.getElementById('user_select' + contactInitials + contactcolor + i).classList.contains('checked')) {
     userSelect.splice(index, 1)

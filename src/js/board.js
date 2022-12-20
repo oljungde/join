@@ -12,7 +12,6 @@ async function initBoard() {
     setNavLinkActive();
     checkUserIsLoggedIn();
     getTasksOfCurrentUser();
-    identifyId();
     handleFilterTasks();
     imgheader();
 }
@@ -106,15 +105,6 @@ function renderContactInTask(element) {
         document.getElementById(id).innerHTML += `
             <div style="background-color: ${color}" class="user">${letter}</div>
         `;
-    }
-}
-
-// Update the board
-function identifyId() {
-    let length = currentUserTasks.length - 1;
-    if (j > 0 || length >= 0) {
-        j = length;
-        j++;
     }
 }
 
@@ -238,7 +228,7 @@ function showDetailWindow(id) {
 
 
 /**
- * @param {opject} currentTask is the selected task to show the details window
+ * @param {object} currentTask is the selected task to show the details window
  * @returns the html code for rendering the task details window
  */
 function detailContentTemplate(currentTask) {
