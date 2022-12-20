@@ -253,7 +253,6 @@ function selectedUser(contactInitials, contactcolor, i) {
 }
 
 
-
 function findeContactIndex(contactcolor) {
   let index;
   for (let i = 0; i < userSelect.length; i++) {
@@ -262,7 +261,6 @@ function findeContactIndex(contactcolor) {
   }
   return index;
 }
-
 
 
 // renders the Drop Down Menu for the categories
@@ -285,7 +283,6 @@ function showTaskCategories() {
       <div><img src="./assets/img/${staticCategorys['taskColor']}.png" </div>
         </div>
       `;
-
     }
     selectorCategoryIndex++;
   } else {
@@ -297,17 +294,9 @@ function showTaskCategories() {
 
 // getting selected Category
 function selectedCategory(category, color) {
-
   taskCategoryFinaly = category;
   taskCategoryColorFinaly = color;
-  document.getElementById("category_selector").innerHTML = /*html*/`
-    <div class="selector-header pointer" onclick="showTaskCategories()" id="selected_category">
-    <div class="selected">
-    ${category}
-    <img src="./assets/img/${color}.png" />
-    </div>
-    <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt=""></div>
-    `;
+  document.getElementById("category_selector").innerHTML = showSelectCategory(category, color);
   document.getElementById('selector_Category_Dropdown').innerHTML = '';
   selectorCategoryIndex--;
 }
@@ -316,28 +305,9 @@ function selectedCategory(category, color) {
 // renders the Input field for New tasks
 function changeInputCategory() {
   document.getElementById('selector_Category_Dropdown').innerHTML = '';
-  document.getElementById('category_selector').innerHTML = /*html*/`
-  <div class="inputCategory">
-    <div class="inputfield-new-category">
-       <input class="input border-bottom" id="input-new-category" type="text" placeholder="New category name" required>
-       <div class="checkAndCrossIconsCategory">
-          <img src="./assets/img/blue-cross.png" onclick="exitCategoryInput()" class="blue-cross pointer">
-          <img src="./assets/img/devider.png">
-          <img src="./assets/img/blue-check.png" onclick="addCategory()" id="input-new-category" class="blue-check pointer">
-       </div>
-    </div>
-  
-  <div id="categoryColorCells"style="margin-top: 10px; margin-left: 20px; ">
-  <img onclick="addCategoryColor('lightblueCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/lightblueCategory.png">
-  <img onclick="addCategoryColor('redCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/redCategory.png">
-  <img onclick="addCategoryColor('greenCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/greenCategory.png">
-  <img onclick="addCategoryColor('orangeCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/orangeCategory.png">
-  <img onclick="addCategoryColor('purpleCategory')" class="categoryColor pointer" style="margin-right: 20px;" src="./assets/img/purpleCategory.png">
-  <img onclick="addCategoryColor('blueCategory')" class="categoryColor pointer" src="./assets/img/blueCategory.png">
-  </div>
-  <div id="alert_message"></div>
-  </div>`;
+  document.getElementById('category_selector').innerHTML = showChangeInputCategory();
 }
+
 
 function exitCategoryInput() {
   document.getElementById('category_selector').innerHTML = `
