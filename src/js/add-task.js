@@ -213,8 +213,9 @@ function showUsers(contact) {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
     selectorcontactIndex--;
   }
-
 }
+
+
 
 function LFContact() {
   let f = savecontactforaddtask;
@@ -261,22 +262,11 @@ function findeContactIndex(contactcolor) {
 function showTaskCategories() {
   if (selectorCategoryIndex == 0) {
     document.getElementById('selector_Category_Dropdown').innerHTML = ``;
-    document.getElementById('selector_Category_Dropdown').innerHTML += `
-    <div onclick="changeInputCategory()" class="selectorCell pointer">
-            <div>New category</div>
-            <div class="selectorCellColor"><img src=""></div>
-            </div>
-          </div>
-    `;
+    document.getElementById('selector_Category_Dropdown').innerHTML += showNewCategory();
     for (let n = 0; n < currentUser.category.length; n++) {
       let staticCategorys = currentUser.category[n];
 
-      document.getElementById('selector_Category_Dropdown').innerHTML += `  
-      <div onclick="selectedCategory('${staticCategorys['taskCategory']}','${staticCategorys['taskColor']}')" class="selectorCell pointer">
-      <div>${staticCategorys['taskCategory']}</div>
-      <div><img src="./assets/img/${staticCategorys['taskColor']}.png" </div>
-        </div>
-      `;
+      document.getElementById('selector_Category_Dropdown').innerHTML += showExistingCategories(staticCategorys);
     }
     selectorCategoryIndex++;
   } else {
@@ -316,9 +306,7 @@ function addCategoryColor(value) {
   if (document.getElementById("input-new-category").value) {
     categorySelectedColor = value;
     document.getElementById("categoryColorCells").innerHTML = ``;
-    document.getElementById("categoryColorCells").innerHTML = /*html*/`
-    <img class="chosen-color" src="./assets/img/${categorySelectedColor}.png" alt="">
-    `;
+    document.getElementById("categoryColorCells").innerHTML = /*html*/` <img class="chosen-color" src="./assets/img/${categorySelectedColor}.png" alt="">`;
     document.getElementById('alert_message').innerHTML = '';
   } else {
     document.getElementById('alert_message').innerHTML = `Please enter category first!`;
@@ -357,32 +345,47 @@ function exitCategoryInput() {
 function selectedPriority(i) {
   if (i == 1) {
     prioritySelect = "urgent";
-    document.getElementById("priorityUrgent").classList.add('prio-urgent-selected');
-    document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
-    document.getElementById("priorityLow").classList.remove('prio-low-selected');
-
-    document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent-white.png';
-    document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
-    document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
+    urgentPrioritySelected();
   }
   if (i == 2) {
     prioritySelect = "medium";
-    document.getElementById("priorityMedium").classList.add('prio-medium-selected');
-    document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
-    document.getElementById("priorityLow").classList.remove('prio-low-selected');
-
-    document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
-    document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium-white.png';
-    document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
+    mediumPrioritySelected()
   }
   if (i == 3) {
     prioritySelect = "low";
-    document.getElementById("priorityLow").classList.add('prio-low-selected');
-    document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
-    document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
-
-    document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
-    document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
-    document.getElementById('priorityLowImg').src = 'assets/img/prio-low-white.png';
+    lowPrioritySelected()
   }
+}
+
+
+function urgentPrioritySelected(){
+  document.getElementById("priorityUrgent").classList.add('prio-urgent-selected');
+  document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
+  document.getElementById("priorityLow").classList.remove('prio-low-selected');
+
+  document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent-white.png';
+  document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
+  document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
+}
+
+
+function mediumPrioritySelected(){
+  document.getElementById("priorityMedium").classList.add('prio-medium-selected');
+  document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
+  document.getElementById("priorityLow").classList.remove('prio-low-selected');
+
+  document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
+  document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium-white.png';
+  document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
+}
+
+
+function lowPrioritySelected(){
+  document.getElementById("priorityLow").classList.add('prio-low-selected');
+  document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
+  document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
+
+  document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
+  document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
+  document.getElementById('priorityLowImg').src = 'assets/img/prio-low-white.png';
 }

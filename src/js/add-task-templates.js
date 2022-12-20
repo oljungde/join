@@ -73,7 +73,7 @@ function openAddTaskHtml(i) {
       `;
   }
 
-  
+
 function showSelectCategory(category, color){
     return /*html*/`
     <div class="selector-header pointer" onclick="showTaskCategories()" id="selected_category">
@@ -83,6 +83,27 @@ function showSelectCategory(category, color){
     </div>
     <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt=""></div>
     `;  
+  }
+
+
+  function showNewCategory(){
+    return `
+    <div onclick="changeInputCategory()" class="selectorCell pointer">
+       <div>New category</div>
+         <div class="selectorCellColor"><img src=""></div>
+       </div>
+    </div>
+    `;
+  }
+
+
+  function showExistingCategories(staticCategorys){
+    return `  
+    <div onclick="selectedCategory('${staticCategorys['taskCategory']}','${staticCategorys['taskColor']}')" class="selectorCell pointer">
+      <div>${staticCategorys['taskCategory']}</div>
+      <div><img src="./assets/img/${staticCategorys['taskColor']}.png" </div>
+    </div>
+    `;
   }
   
 
