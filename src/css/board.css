@@ -618,12 +618,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
     width: 422px;
     border: none;
+    outline: none;
     padding: 13px 21px;
 
 }
 
 .input-subtasks input {
     border: none;
+    outline: none;
     font-style: normal;
     font-weight: 400;
     font-size: 19px;
@@ -652,6 +654,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 422px;
     height: 103px;
     border: 1px solid #D1D1D1;
+    outline: none;
     border-radius: 0px 10px 10px 10px
 }
 

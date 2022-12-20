@@ -114,11 +114,7 @@ function renderSubTask() {
   document.getElementById("addSubtaskCheckbox").innerHTML = ``;
   for (let i = 0; i < subTasks.length; i++) {
     subTask = subTasks[i];
-    document.getElementById("addSubtaskCheckbox").innerHTML += `
-        <div class="subtaskList" id="subtaskValue"> 
-        <input type="checkbox"> 
-        <p>${subTask}</p>
-        </div>`;
+    document.getElementById("addSubtaskCheckbox").innerHTML += `<p>${subTask}</p>`;
   }
 }
 
@@ -211,9 +207,7 @@ function showUsers(contact) {
           selectedUser(contactInitials, contactcolor, id);
         }
       }
-
     }
-
   }
   else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
