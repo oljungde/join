@@ -267,68 +267,73 @@ function deleteCheckedSubTask() {
 
 
 function editShowSelectedPriority(currentTask) {
+
     if (currentTask.priority == "urgent") {
         prioritySelect = "urgent";
-        urgentPrioritySelected()
+        document.getElementById("editPriorityUrgent").classList.add('prio-urgent-selected');
+        document.getElementById("editPriorityMedium").classList.remove('prio-medium-selected');
+        document.getElementById("editPriorityLow").classList.remove('prio-low-selected');
+
+        document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent-white.png';
+        document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium.png';
+        document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low.png';
     }
     if (currentTask.priority == "medium") {
         prioritySelect = "medium";
-        mediumPrioritySelected()
+        document.getElementById("editPriorityMedium").classList.add('prio-medium-selected');
+        document.getElementById("editPriorityUrgent").classList.remove('prio-urgent-selected');
+        document.getElementById("editPriorityLow").classList.remove('prio-low-selected');
+
+        document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent.png';
+        document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium-white.png';
+        document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low.png';
     }
     if (currentTask.priority == "low") {
         prioritySelect = "low";
-        lowPrioritySelected()
+        document.getElementById("editPriorityLow").classList.add('prio-low-selected');
+        document.getElementById("editPriorityUrgent").classList.remove('prio-urgent-selected');
+        document.getElementById("editPriorityMedium").classList.remove('prio-medium-selected');
+
+        document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent.png';
+        document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium.png';
+        document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low-white.png';
     }
 }
 
-
 function editSelectedPriority(i) {
+
     if (i == 1) {
         prioritySelect = "urgent";
-        urgentPrioritySelected()
+        document.getElementById("editPriorityUrgent").classList.add('prio-urgent-selected');
+        document.getElementById("editPriorityMedium").classList.remove('prio-medium-selected');
+        document.getElementById("editPriorityLow").classList.remove('prio-low-selected');
+
+        document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent-white.png';
+        document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium.png';
+        document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low.png';
     }
     if (i == 2) {
         prioritySelect = "medium";
-        mediumPrioritySelected()
+        document.getElementById("editPriorityMedium").classList.add('prio-medium-selected');
+        document.getElementById("editPriorityUrgent").classList.remove('prio-urgent-selected');
+        document.getElementById("editPriorityLow").classList.remove('prio-low-selected');
+
+        document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent.png';
+        document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium-white.png';
+        document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low.png';
     }
     if (i == 3) {
         prioritySelect = "low";
-        lowPrioritySelected()
+        document.getElementById("editPriorityLow").classList.add('prio-low-selected');
+        document.getElementById("editPriorityUrgent").classList.remove('prio-urgent-selected');
+        document.getElementById("editPriorityMedium").classList.remove('prio-medium-selected');
+
+        document.getElementById('editPriorityUrgentImg').src = 'assets/img/prio-urgent.png';
+        document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium.png';
+        document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low-white.png';
     }
 }
 
-
-function urgentPrioritySelected(){
-    document.getElementById("priorityUrgent").classList.add('prio-urgent-selected');
-    document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
-    document.getElementById("priorityLow").classList.remove('prio-low-selected');
-  
-    document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent-white.png';
-    document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
-    document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
-  }
-  
-  
-  function mediumPrioritySelected(){
-    document.getElementById("priorityMedium").classList.add('prio-medium-selected');
-    document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
-    document.getElementById("priorityLow").classList.remove('prio-low-selected');
-  
-    document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
-    document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium-white.png';
-    document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
-  }
-  
-  
-  function lowPrioritySelected(){
-    document.getElementById("priorityLow").classList.add('prio-low-selected');
-    document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
-    document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
-  
-    document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
-    document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
-    document.getElementById('priorityLowImg').src = 'assets/img/prio-low-white.png';
-  }
 
 
 async function saveChangedTask(currentTaskId) {
