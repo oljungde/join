@@ -184,7 +184,7 @@ function startDragging(id) {
             console.log(currentDraggedElement);
         }
     }
-    
+
 }
 
 
@@ -375,7 +375,7 @@ function changeTaskTemplate(currentTask) {
     `
 }
 
-function editShowSubTasks(currentTask){
+function editShowSubTasks(currentTask) {
     let detailAssignedSubTasks = document.getElementById('edit_subTasks')
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
         let subTask = currentTask.subTask[assignedSubTaskIndex];
@@ -386,6 +386,19 @@ function editShowSubTasks(currentTask){
         </div>
         `
     }
+}
+
+function deleteCheckedSubTask() {
+    let subtaskCheckboxes = document.querySelectorAll("subTask_checkBox");
+    subtaskCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", (event) => {
+            if (event.target.checked) {
+                subTaskSelect = event.target.value;
+                currentTask.splice(subTaskSelect, 1);
+               // await backend.setItem('users', JSON.stringify(users));
+            }
+        });
+    });
 }
 
 
@@ -460,7 +473,7 @@ function editSelectedPriority(i) {
 
 
 async function saveChangedTask(currentTaskId) {
-    selectorcontactIndex= 0;
+    selectorcontactIndex = 0;
     let changedTitle = document.getElementById('changed_title').value;
     let changedDescription = document.getElementById('changed_description').value;
     let changedDueDate = document.getElementById('changed_date').value;
