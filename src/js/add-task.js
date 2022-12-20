@@ -5,7 +5,7 @@ let selectorcontactIndex = 0;
 let userSelect = [];
 let taskCategoryFinaly = [];
 let prioritySelect = [];
-let subTasks = [];
+
 
 /**
  * init function will execute wenn page add-task.html is loading
