@@ -250,7 +250,7 @@ function editShowSubTasks(currentTask) {
         detailAssignedSubTasks.innerHTML += /*html*/`
         <div class="subtaskList" id="subtaskValue">  
           <input id="subTask_checkBox" value="${subTask}" class="subtaskCheckbox pointer" type="checkbox">
-          <p>${subTask}</p>
+          <span>${subTask}</span>
         </div>
         `
     }

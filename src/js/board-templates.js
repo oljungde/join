@@ -39,22 +39,22 @@ function detailContentTemplate(currentTask) {
             ${currentTask.description}
         </div>
         <div class="detail-dueDate"> 
-            <span>Due date:</span>  
+            <h5>Due date:</h5>  
             <p>${currentTask.dueDate}</p>
         </div>
         <div class="detail-priority">
-            <p> Priority:</p> 
+            <h5> Priority:</h5> 
             <img src="assets/img/detail-prio-${currentTask.priority}.png" alt="">
         </div>
         <div class="detail-assignedTo"> 
-            <p>Assigned To:</p> 
+            <h5>Assigned To:</h5> 
             <div id="detail_assigned_contacts">
                 
             </div> 
         </div>
         <img id="edit_button" class="edit-button pointer" src="assets/img/edit-button.png" onclick="changeTask(${currentTask.id})">
         <div class="detail-subTasks" id="detail_subTasks">
-        <p>Subtasks:</p>
+        <h5>Subtasks:</h5>
         </div>
     `;
 }
