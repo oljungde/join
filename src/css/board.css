@@ -232,6 +232,10 @@ h3 {
 
 }
 
+.priority{
+    margin-right: 15px;
+}
+
 .orangeCategory {
     background-color: #FF8A00;
     display: flex;
@@ -478,7 +482,7 @@ h3 {
     box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
     width: 136px;
     height: 51px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .priority-urgent:hover {
@@ -501,7 +505,7 @@ h3 {
     box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
     width: 136px;
     height: 51px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .priority-medium:hover {
@@ -525,7 +529,7 @@ h3 {
     box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
     width: 136px;
     height: 51px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .priority-low:hover {
@@ -619,6 +623,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 19px;
     color: #D1D1D1;
 }
+
+/*
+#chooseCategory{
+    display: flex;
+    justify-content: center;
+    color: var(--color-blue-main);;
+    margin-top: 20px;
+}
+
+
+
+#chossePriority{
+    display: flex;
+    justify-content: center;
+    color: var(--color-blue-main);;
+    margin-top: 20px;
+}
+*/
 
 .inputfield-new-category {
     display: flex;

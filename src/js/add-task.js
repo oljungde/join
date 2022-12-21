@@ -294,13 +294,11 @@ function changeInputCategory() {
 
 
 function exitCategoryInput() {
-  document.getElementById('category_selector').innerHTML = `
-  <div id="selected_category" class="selector-header pointer" onclick="showTaskCategories()">Select task category <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png"></div>
-  <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">
-    <!-- Rendering selector content here -->
-  </div>`;
+  document.getElementById('category_selector').innerHTML = showExitCategoryInput(); 
   showTaskCategories();
 }
+
+
 
 function addCategoryColor(value) {
   if (document.getElementById("input-new-category").value) {
@@ -309,7 +307,7 @@ function addCategoryColor(value) {
     document.getElementById("categoryColorCells").innerHTML = /*html*/` <img class="chosen-color" src="./assets/img/${categorySelectedColor}.png" alt="">`;
     document.getElementById('alert_message').innerHTML = '';
   } else {
-    document.getElementById('alert_message').innerHTML = `Please enter category first!`;
+    document.getElementById('chooseCategory').innerHTML = `Please enter category first!`;
   }
 }
 
@@ -328,7 +326,7 @@ async function addCategory() {
     exitCategoryInput();
     showTaskCategories();
   } else {
-    document.getElementById("alert_message").innerHTML = `Please select color!`;
+    document.getElementById("chooseCategory").innerHTML = `Please select color!`;
   }
 };
 

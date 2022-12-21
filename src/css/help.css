@@ -1,13 +1,13 @@
-
-.mainside{
+.mainside {
     margin-left: 60px;
     margin-top: 70px;
     padding-right: 250px;
+    overflow: auto;
 }
 
-.arrow-left{
+.arrow-left {
     position: absolute;
-    right: 200px;  
+    right: 200px;
 }
 
 h1 {
@@ -28,18 +28,18 @@ h2 {
     font-style: normal;
     font-weight: 700;
     font-size: 33px;
-    line-height: 120%; 
+    line-height: 120%;
     color: #005DFF;
 }
 
-.first-container{
+.first-container {
     display: flex;
     align-items: center;
     gap: 40px;
 }
 
 
-.number{
+.number {
     width: 29px;
     height: 40px;
     font-family: 'Open Sans';
@@ -48,4 +48,13 @@ h2 {
     font-size: 33px;
     line-height: 120%;
     color: #005DFF;
+}
+
+
+
+@media (max-width: 900) {
+
+    .mainside {
+        padding-right: 20px;
+    }
 }

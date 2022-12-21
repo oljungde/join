@@ -27,7 +27,7 @@ function openAddTaskHtml(i) {
              </div>
           </div>
   
-          <h4>Category</h4>  <span class="d-none" id="chooseCategory">Please choose a Category</span>      
+          <h4>Category</h4>  <span class="d-none" class="category-alert" id="chooseCategory">Please choose a Category</span>      
           <div id="category_selector">
              <div id="selected_category" class="selector-header" onclick="showTaskCategories()">
                 Select task category
@@ -128,6 +128,14 @@ function showSelectCategory(category, color){
     <img onclick="addCategoryColor('blueCategory')" class="categoryColor pointer" src="./assets/img/blueCategory.png">
     </div>
     <div id="alert_message"></div>
+    </div>`;
+  }
+
+  function showExitCategoryInput(){
+    return /*html*/`
+    <div id="selected_category" class="selector-header pointer" onclick="showTaskCategories()">Select task category <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png"></div>
+    <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">
+      <!-- Rendering selector content here -->
     </div>`;
   }
   
