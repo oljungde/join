@@ -590,7 +590,7 @@ padding: 50px;
     }
 
     #contact-detail-in-main{
-        
+        overflow-y: scroll;
         top: 80px;
         left: 0;
         right: 0;
@@ -623,7 +623,43 @@ padding: 50px;
         
     }
 
-    
+    .contact-detail-edit{
+        margin: 0;
+    }
+
+    .contact-detail-info-main{
+        justify-content: space-around;
+    }
+  }
+
+  @media(max-width: 400px){
+    .button-container{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button-create{
+        margin: 0;
+    }
+
+    .button-cancel{
+       
+        margin-top: 10px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+  }
+
+  @media(max-height: 700px){
+    .contact-member{
+        display: none;
+    }
+
+    .contact-detail-big-letter{
+        display: none;
+    }
   }
 
   
