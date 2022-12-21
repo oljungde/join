@@ -9,10 +9,18 @@ h1 {
     font-size: 61px;
 }
 
+h3 {
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 120%;
+    color: #42526E;
+}
+
 .InputAndButton {
     display: flex;
     align-items: center;
     gap: 35px;
+    
 }
 
 .addTaskButton {
@@ -125,16 +133,16 @@ h1 {
 
 .drag-area-top-Section {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0px;
-    gap: 35px;
     font-style: normal;
     font-weight: 700;
     font-size: 23px;
     line-height: 120%;
     color: #42526E;
+    height: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
 
 }
 
@@ -430,7 +438,6 @@ h1 {
     font-size: var(--font-size-xxlarge);
     color: white;
     cursor: pointer;
-    display: flex;
     display: flex;
     gap: 10px;
     align-items: center;
@@ -897,4 +904,11 @@ margin: 0;
 .add-date:hover{
     cursor: pointer;
 }
+
+
+@media (max-width: 1200px) {
+
+
+
+    }
 
