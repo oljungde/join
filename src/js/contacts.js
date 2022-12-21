@@ -176,8 +176,8 @@ function contactChild() {
         let i = currentUser.contacts[index];
         let lettersFB = currentUser.contacts[index]['contactInitials'];
         let l = currentUser.contacts[index]['contactletter'];
-        let contactchilds = document.getElementById(l);
-        contactchilds.innerHTML += contactChildHtml(i, lettersFB, index);
+        let contactchildsid = document.getElementById(l);
+        contactchildsid.innerHTML += contactChildHtml(i, lettersFB, index);
     }
 }
 
@@ -331,7 +331,10 @@ function clearContactDetails() {
 
 
 // close window under 1160px
-function closeMediaContact() {
+function closeMediaContact(index) {
+    let contactdetails = document.getElementById('contactdetails');
+    contactdetails.innerHTML = '';
+    document.getElementById(index).classList.remove('contact-child-div-klick');
     document.getElementById('contact-detail-in-main').classList.add('display-contact-none');
     document.getElementById('contactbar').classList.remove('display-contact-none');
 }

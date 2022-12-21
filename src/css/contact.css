@@ -7,6 +7,10 @@
     display: none;
 }
 
+body{
+    overflow: hidden;
+}
+
 .navigation{
     height: 89.5vh;
     width: 232px;
@@ -28,12 +32,13 @@
 
 .display{
     display: flex;
+    overflow: hidden;
     
 }
 /* mainside */
 .contact-main{
     height: 90vh;
-    min-width: 453px;
+    
     box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
     
     display: flex;
@@ -81,7 +86,7 @@
     height: 14vh;
     display: flex;
     align-items:center;
-    justify-content:flex-end;
+    justify-content:center;
     
 }
 
@@ -194,10 +199,11 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: center; 
     overflow-y: scroll;
-    flex-direction: column;
+    flex-direction: column;   
 }
+
 
 .contact-letter-main{
     width: 70%;
@@ -218,7 +224,7 @@
     display: flex;
     align-items: center;
     padding-left: 20px;
-    width: 357px;
+    
     height: 77px;
 }
 
@@ -264,7 +270,7 @@
 }
 
 .contact-detail-head{
-    height: 130px;
+    
     display: flex;
     align-items: center;
     margin-bottom: 30px;
@@ -337,13 +343,17 @@ padding: 50px;
 }
 
 .input-contact{
-    
+    width: 100%;
     margin-top: 30px;
     border-bottom: 1px solid #D1D1D1;
 }
 
+.input-add-contact-container{
+    width: 100%;
+}
+
 .input-contact-name{
-    width: 370px;
+    width: 90%;
     height: 50px;
     border: 0;
     font-size: 19px;
@@ -543,20 +553,26 @@ padding: 50px;
     .back-in-media-contact{
         display: none;
     }
+    .contact-main{
+        min-width: 453px;
+    }
   }
 
   @media(max-width: 768px){
+    
+
     .sidebar{
         min-height: 0;
     }
 
     .display{
-        flex-direction: column;
+        flex-direction: column-reverse;
+        height: 90vh;
     }
 
     .contact-main{
         height: 84vh;
-        width: 100vw;
+        
     }
 
     .add-contact{
@@ -574,9 +590,40 @@ padding: 50px;
     }
 
     #contact-detail-in-main{
-        top: 153px;
+        
+        top: 80px;
         left: 0;
-        right: 20;
+        right: 0;
+        bottom: 0;
+    }
+
+    .contact-detail-head{
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .contact-detail-big-letter{
+        min-height: 120px;
+        margin: 0;
+    }
+
+    .contact-detail-name-task{
+        align-items: center;
+        margin: 0;
+    }
+
+    .contact-detail-big-name{
+        display: flex;
+        text-align: center;
+    }
+
+    .contact-letter-main{
+        width: 70%;
         
     }
+
+    
   }
+
+  

@@ -9,7 +9,7 @@ function contactDetailHtml(contact, lettersFB, index) {
     return /*html*/`
         <div class="contact-detail-main-side animationFadeInRight" id="${index}">
             <div class="back-in-media-contact">
-                <img onclick="closeMediaContact()" src="./assets/img/arrow-back.png" alt="">
+                <img onclick="closeMediaContact(${index})" src="./assets/img/arrow-back.png" alt="">
             </div>
             <div class="contact-detail-head">
                 <div style="background-color: ${contact['contactcolor']}" class="contact-detail-big-letter">${lettersFB}</div>
@@ -32,9 +32,7 @@ function contactDetailHtml(contact, lettersFB, index) {
                     <p>${contact['contactNumber']}</p>
                 </div>
             </div>
-            <div class="show-button">
-                <div class="new-contact-button d-none" onclick="openAddContact()">New contact <img class="new-contact-button-img" src="./assets/img/contact-member.png" alt=""></div>
-            </div>
+            
         </div>
     `
 }
@@ -106,16 +104,16 @@ function addNewContactHtml() {
         <form onsubmit="createContact(); return false;">
             <div class="input-add-contact-container">
                 <div class="input-contact">
-                    <input placeholder="Name" required  type="text" id="contactName" class="input-contact-name">
+                    <input placeholder="  Name" required  type="text" id="contactName" class="input-contact-name">
                     <img src="/src/assets/img/signup-user.png" alt="">
                 </div>
                 <div class="input-contact">
-                    <input placeholder="Email" required type="email" id="contactEmail" class="input-contact-name">
+                    <input placeholder="  Email" required type="email" id="contactEmail" class="input-contact-name">
                     <img src="/src/assets/img/login-email.png" alt="">
                 </div>
                 <div  id="emailDone" class="d-none contact-email-done">This Email already exists</div>
                 <div class="input-contact">
-                    <input placeholder="Phone" required type="text" id="contactNumber" class="input-contact-name">
+                    <input placeholder="  Phone" required type="text" id="contactNumber" class="input-contact-name">
                     <img src="/src/assets/img/phone.png" alt="">
                 </div>
             </div>
