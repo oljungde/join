@@ -20,7 +20,7 @@ h3 {
     display: flex;
     align-items: center;
     gap: 35px;
-    
+
 }
 
 .addTaskButton {
@@ -63,7 +63,7 @@ h3 {
     font-size: 16px;
 }
 
-.input-wrapper{
+.input-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -74,7 +74,7 @@ h3 {
     height: 31px;
 }
 
-.search-task-container{
+.search-task-container {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -86,7 +86,7 @@ h3 {
     gap: 10px;
 }
 
-.search-icon-wrapper{
+.search-icon-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -97,7 +97,7 @@ h3 {
 }
 
 
-.vector{
+.vector {
     border: 1px solid #D1D1D1;
     height: 31px;
 }
@@ -133,7 +133,7 @@ h3 {
 }
 
 
-.drag-area-Container{
+.drag-area-Container {
     width: 25%;
 }
 
@@ -200,11 +200,11 @@ h3 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     font-size: 12px;
     line-height: 120%;
     width: 100%;
     height: 16px;
+    gap: 10px;
 }
 
 .progress-bar {
@@ -658,7 +658,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .subtaskList {
     display: flex;
     gap: 10px;
-    
+
 
 }
 
@@ -715,7 +715,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
-.selected{
+.selected {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -829,12 +829,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
-.detail-subTasks p{
-margin: 0;
+.detail-subTasks p {
+    margin: 0;
 
 }
 
-.detail-subTasks{
+.detail-subTasks {
     display: flex;
     flex-direction: column;
     font-style: normal;
@@ -909,18 +909,56 @@ margin: 0;
     display: none;
 }
 
-.add-date{
+.add-date {
     outline: none;
 }
 
-.add-date:hover{
+.add-date:hover {
     cursor: pointer;
 }
 
 
 @media (max-width: 1200px) {
 
-
-
+    .kanbanBoard {
+        flex-direction: column;
+        align-items: center;
     }
 
+    .drag-area-Container {
+        width: 80%;
+    }
+}
+
+
+@media (max-width: 770px) {
+
+    .rightContainer h2 {
+        display: none;
+    }
+
+    .topBar{
+        justify-content: center;
+    }
+
+    .addTaskButton{
+        display: none;
+    }
+
+    .main-content {
+        width: 100%;
+        height: 100%;
+    }
+
+    .kanbanBoard {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+
+
+
+
+
+}
