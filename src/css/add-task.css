@@ -42,3 +42,16 @@
     align-items: flex-end;
 
 }
+
+.subtasks {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.subtasks-trash {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    cursor: pointer;
+}

@@ -1,6 +1,6 @@
 // new by Seb 30.11!!
 function openAddTaskHtml(i) {
-    return /*html*/`
+  return /*html*/`
     <form class="addTaskForm" onsubmit="addToTask(${i}); return false; ">
           <img class="CloseCross" onclick="closeAddTaskMask(${i})" src="assets/img/group 11.png" alt="">
           <div class="addTask-top">
@@ -55,8 +55,8 @@ function openAddTaskHtml(i) {
            <input class="add-description" id="AddDescription" type="text" placeholder="Enter a Description">
          </div>
          <h4>Subtasks</h4>
-         <div class="input-subtasks pointer" id="newSubtask_select">
-         <div class="inputUser">
+         <div class="input-subtasks" id="newSubtask_select">
+         <div class="inputUser pointer">
          <div class="inputfield-new-user">
            <input class="input border-bottom" id="subtaskText" type="text" placeholder="Add new subtask">
            <div class="checkAndCrossIconsCategory">
@@ -71,44 +71,44 @@ function openAddTaskHtml(i) {
          </div>
     </form>
       `;
-  }
+}
 
 
-function showSelectCategory(category, color){
-    return /*html*/`
+function showSelectCategory(category, color) {
+  return /*html*/`
     <div class="selector-header pointer" onclick="showTaskCategories()" id="selected_category">
     <div class="selected">
     ${category}
     <img src="./assets/img/${color}.png" />
     </div>
     <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt=""></div>
-    `;  
-  }
+    `;
+}
 
 
-  function showNewCategory(){
-    return `
+function showNewCategory() {
+  return `
     <div onclick="changeInputCategory()" class="selectorCell pointer">
        <div>New category</div>
          <div class="selectorCellColor"><img src=""></div>
        </div>
     </div>
     `;
-  }
+}
 
 
-  function showExistingCategories(staticCategorys){
-    return `  
+function showExistingCategories(staticCategorys) {
+  return `  
     <div onclick="selectedCategory('${staticCategorys['taskCategory']}','${staticCategorys['taskColor']}')" class="selectorCell pointer">
       <div>${staticCategorys['taskCategory']}</div>
       <div><img src="./assets/img/${staticCategorys['taskColor']}.png" </div>
     </div>
     `;
-  }
-  
+}
 
-  function showChangeInputCategory(){
-    return /*html*/`
+
+function showChangeInputCategory() {
+  return /*html*/`
     <div class="inputCategory">
       <div class="inputfield-new-category">
          <input class="input border-bottom" id="input-new-category" type="text" placeholder="New category name" required>
@@ -129,13 +129,12 @@ function showSelectCategory(category, color){
     </div>
     <div id="alert_message"></div>
     </div>`;
-  }
+}
 
-  function showExitCategoryInput(){
-    return /*html*/`
+function showExitCategoryInput() {
+  return /*html*/`
     <div id="selected_category" class="selector-header pointer" onclick="showTaskCategories()">Select task category <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png"></div>
     <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">
       <!-- Rendering selector content here -->
     </div>`;
-  }
-  
+}

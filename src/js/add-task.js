@@ -114,7 +114,13 @@ function renderSubTask() {
   document.getElementById("addSubtaskCheckbox").innerHTML = ``;
   for (let i = 0; i < subTasks.length; i++) {
     subTask = subTasks[i];
-    document.getElementById("addSubtaskCheckbox").innerHTML += `<p>${subTask}</p>`;
+    document.getElementById("addSubtaskCheckbox").innerHTML += `
+      <div class="subtasks">
+        <input type="checkbox" class="pointer">
+        <span>${subTask.title}</span> 
+        <img src="./assets/img/trash-blue.png" onclick="deleteSubTask(${i})" class="subtasks-trash" alt="trash"> 
+      </div>
+    `;
   }
 }
 
@@ -136,7 +142,10 @@ function getSelectedSubtask() {
 
 //pushing new subtask in the Localstorage
 function pushSubtasks() {
-  newSubTask = document.getElementById("subtaskText").value;
+  newSubTask = {
+    'title': document.getElementById("subtaskText").value,
+    'done': false
+  }
   if (newSubTask) {
     subTasks.push(newSubTask)
     // subTasks.push(document.getElementById("subtaskText").value);
@@ -294,7 +303,7 @@ function changeInputCategory() {
 
 
 function exitCategoryInput() {
-  document.getElementById('category_selector').innerHTML = showExitCategoryInput(); 
+  document.getElementById('category_selector').innerHTML = showExitCategoryInput();
   showTaskCategories();
 }
 
@@ -356,7 +365,7 @@ function selectedPriority(i) {
 }
 
 
-function urgentPrioritySelected(){
+function urgentPrioritySelected() {
   document.getElementById("priorityUrgent").classList.add('prio-urgent-selected');
   document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
   document.getElementById("priorityLow").classList.remove('prio-low-selected');
@@ -367,7 +376,7 @@ function urgentPrioritySelected(){
 }
 
 
-function mediumPrioritySelected(){
+function mediumPrioritySelected() {
   document.getElementById("priorityMedium").classList.add('prio-medium-selected');
   document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
   document.getElementById("priorityLow").classList.remove('prio-low-selected');
@@ -378,7 +387,7 @@ function mediumPrioritySelected(){
 }
 
 
-function lowPrioritySelected(){
+function lowPrioritySelected() {
   document.getElementById("priorityLow").classList.add('prio-low-selected');
   document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
   document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
