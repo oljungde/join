@@ -220,7 +220,11 @@ function renderAssignedSubTasks(currentTask) {
     let detailAssignedSubTasks = document.getElementById('detail_subTasks')
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
         let subTask = currentTask.subTask[assignedSubTaskIndex];
-        detailAssignedSubTasks.innerHTML += `<div> ${subTask}</div>`
+        detailAssignedSubTasks.innerHTML += `
+            <div>
+                <input type="checkbox">    
+                ${subTask}
+            </div>`
     }
 }
 
@@ -259,7 +263,7 @@ function deleteCheckedSubTask() {
             if (event.target.checked) {
                 subTaskSelect = event.target.value;
                 currentTask.splice(subTaskSelect, 1);
-               // await backend.setItem('users', JSON.stringify(users));
+                // await backend.setItem('users', JSON.stringify(users));
             }
         });
     });
