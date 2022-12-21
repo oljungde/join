@@ -2,6 +2,7 @@
 .main-content {
     height: calc(100vh - 100px);
     width: calc(100vw - 230px);
+    overflow: auto;
 }
 
 h1 {
@@ -464,6 +465,8 @@ h3 {
 .priorityContainer {
     display: flex;
     gap: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
 }
 
 .priority-urgent {
@@ -539,7 +542,7 @@ h3 {
 .input-title {
     display: flex;
     align-items: center;
-    width: 422px;
+    width: 100%;
     border: none;
     border-bottom: 1px solid #D1D1D1;
     padding: 13px 21px;
@@ -564,6 +567,7 @@ h3 {
     font-weight: 400;
     font-size: 40px;
     line-height: 120%;
+    width: 100%;
 }
 
 .input-title input:focus {
@@ -610,7 +614,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-style: normal;
     font-weight: 400;
     font-size: 19px;
-    width: 410px;
+    width: 100%;
     height: 23px;
     font-size: 19px;
     color: #D1D1D1;
@@ -669,7 +673,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 .add-description {
-    width: 422px;
+    width: 100%;
     height: 103px;
     border: 1px solid #D1D1D1;
     outline: none;
@@ -693,7 +697,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 422px;
+    width: 100%;
     border-bottom: 1px solid #D1D1D1;
     padding: 18px 21px;
     gap: 10px;
@@ -861,6 +865,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     line-height: 120%;
 }
 
+.Detail form {
+    width: 422px;
+}
+
+.Detail form h4 {
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 120%;
+    color: #42526E;
+
+}
+
+
 
 .edit-button {
     position: absolute;
@@ -868,9 +886,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     right: 41px;
 }
 
-.editTask h4 {
-    margin-bottom: 5px;
-}
+
 
 .trash-button {
     display: flex;
@@ -928,6 +944,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .drag-area-Container {
         width: 80%;
     }
+
+    .drag-area {
+        height: auto;
+    }
 }
 
 
@@ -937,11 +957,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         display: none;
     }
 
-    .topBar{
+    .topBar {
         justify-content: center;
     }
 
-    .addTaskButton{
+    .addTaskButton {
         display: none;
     }
 
@@ -955,10 +975,67 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         margin-right: 0;
     }
 
+    .drag-area {
+        height: auto;
+
+    }
+
+    .DetailContainer {
+        align-items: flex-start;
+    }
+
+    .Detail {
+        width: 90%;
+    }
 
 
 
+}
 
 
+@media (max-width: 550px) {
 
+    .sidebar {
+        max-height: 100px;
+    }
+
+    .nav-link {
+        flex-direction: column;
+        padding: 15px;
+        gap: 0;
+    }
+
+    .nav-link img {
+        margin-left: 0;
+    }
+
+    .nav-link p {
+        padding-right: 0;
+    }
+
+    .DetailContainer {
+        align-items: flex-start;
+
+    }
+
+    .Detail {
+        width: 100%;
+    }
+
+    .Detail form {
+        width: 90%;
+    }
+
+    .trash-button,
+    .ok {
+        width: 70px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 485px) {
+
+    .input-date {
+        width: 90%;
+    }
 }
