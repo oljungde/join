@@ -1031,12 +1031,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         width: 90%;
     }
 
+    .trash-button{
+        bottom: 120px;
+    }
+
 
 
 }
 
 
 @media (max-width: 550px) {
+
+    .input{
+        width: 100%;
+    }
 
     .sidebar {
         max-height: 100px;
@@ -1063,6 +1071,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .Detail {
         width: 100%;
+        padding: 30px;
     }
 
     .Detail form {
@@ -1078,6 +1087,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media (max-width: 485px) {
 
+    .input{
+        width: 145%;
+    }
+
     .input-date {
         width: 70% !important;
     }
@@ -1088,5 +1101,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .priorityContainer p{
         font-size: 13px;
+    }
+
+    .trash-button{
+        bottom: 100px;
     }
 }
