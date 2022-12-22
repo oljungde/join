@@ -183,7 +183,6 @@ function pushSubtasks() {
 /**
  * clear subtask input
  */
-
 function clearSubTasks() {
   document.getElementById("subtaskText").value = ``;
 }
@@ -317,7 +316,12 @@ function showTaskCategories() {
 };
 
 
-// getting selected Category
+
+/**
+ * getting selected Category
+ * @param {*} category - the newly generated category
+ * @param {*} color - the chosen color
+ */
 function selectedCategory(category, color) {
   taskCategoryFinaly = category;
   taskCategoryColorFinaly = color;
@@ -327,20 +331,27 @@ function selectedCategory(category, color) {
 }
 
 
-// renders the Input field for New tasks
+/**
+ * renders the Input field for categorys
+ */
 function changeInputCategory() {
   document.getElementById('selector_Category_Dropdown').innerHTML = '';
   document.getElementById('category_selector').innerHTML = showChangeInputCategory();
 }
 
-
+/**
+ * renders the drop down field when exiting the category generator
+ */
 function exitCategoryInput() {
   document.getElementById('category_selector').innerHTML = showExitCategoryInput();
   showTaskCategories();
 }
 
 
-
+/**
+ * adds a chosen color to the newly generated category
+ * @param {*} value - defines the clicked color
+ */
 function addCategoryColor(value) {
   if (document.getElementById("input-new-category").value) {
     categorySelectedColor = value;
@@ -353,8 +364,9 @@ function addCategoryColor(value) {
 }
 
 
-
-// adds a individual category to the task
+/**
+ * adds a individual category to the task
+ */
 async function addCategory() {
   newCategory = document.getElementById("input-new-category").value;
   if (categorySelectedColor && newCategory) {
@@ -380,7 +392,11 @@ function exitCategoryInput() {
 }
 */
 
-// defines the Priority and shows the matching img
+
+/**
+ * defines the Priority and shows the matching img
+ * @param {*} i - identifies which priority is clicked
+ */
 function selectedPriority(i) {
   if (i == 1) {
     prioritySelect = "urgent";
@@ -397,6 +413,9 @@ function selectedPriority(i) {
 }
 
 
+/**
+ * Highlights the button when urgent is selected
+ */
 function urgentPrioritySelected() {
   document.getElementById("priorityUrgent").classList.add('prio-urgent-selected');
   document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
@@ -407,6 +426,9 @@ function urgentPrioritySelected() {
 }
 
 
+/**
+ * Highlights the button when medium is selected
+ */
 function mediumPrioritySelected() {
   document.getElementById("priorityMedium").classList.add('prio-medium-selected');
   document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
@@ -416,7 +438,9 @@ function mediumPrioritySelected() {
   document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
 }
 
-
+/**
+ * Highlights the button when low is selected
+ */
 function lowPrioritySelected() {
   document.getElementById("priorityLow").classList.add('prio-low-selected');
   document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
