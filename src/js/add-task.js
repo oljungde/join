@@ -124,6 +124,10 @@ function renderSubTask() {
 }
 
 
+/**
+ * deletes the subtask
+ * @param {number} subTaskIndex is the index of the subtask in the array subtasks
+ */
 function deleteSubTaskAdd(subTaskIndex) {
   document.getElementById(`subTask_${subTaskIndex}`).innerHTML = ``;
   subTasks.splice(subTaskIndex, 1);
