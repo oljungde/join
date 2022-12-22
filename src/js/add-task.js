@@ -160,7 +160,10 @@ function getSelectedSubtask() {
 }
 */
 
-//pushing new subtask in the Localstorage
+
+/**
+ * pushing new subTask in to the task array
+ */
 function pushSubtasks() {
   newSubTask = {
     'title': document.getElementById("subtaskText").value,
@@ -177,13 +180,20 @@ function pushSubtasks() {
 }
 
 
-//clear subtask input
+/**
+ * clear subtask input
+ */
+
 function clearSubTasks() {
   document.getElementById("subtaskText").value = ``;
 }
 
 
 //closes the AddTaskMask new by Seb 30.11
+/**
+ * closes the AddTaskMask
+ * @param {*} i 
+ */
 function closeAddTaskMask(i) {
   if (i == 1) {
     document.getElementById('AddTaskMaskBg').classList.add('d-none');
@@ -287,7 +297,9 @@ function findeContactIndex(contactcolor) {
 }
 
 
-// renders the Drop Down Menu for the categories
+/**
+ * renders the Drop Down Menu for the categories
+ */
 function showTaskCategories() {
   if (selectorCategoryIndex == 0) {
     document.getElementById('selector_Category_Dropdown').innerHTML = ``;
