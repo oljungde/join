@@ -650,6 +650,11 @@ padding: 50px;
         margin-right: 0;
         margin-bottom: 0;
     }
+
+    .contact-child{
+        min-width: 41px;
+        margin: 0;
+    }
   }
 
   @media(max-height: 700px){
@@ -660,6 +665,8 @@ padding: 50px;
     .contact-detail-big-letter{
         display: none;
     }
+
+    
   }
 
   
