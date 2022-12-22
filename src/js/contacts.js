@@ -378,6 +378,8 @@ function OpenContactAddTask(i, index) {
  */
 function deleteContacts(index) {
     closeAddContact();
+    document.getElementById('contact-detail-in-main').classList.add('display-contact-none');
+    document.getElementById('contactbar').classList.remove('display-contact-none');
     let letter = currentUser.contacts[index]['contactletter'];
     currentUser.contacts.splice(index, 1);
     let indexofletter = deleteContactletter(letter);
