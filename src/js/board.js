@@ -217,14 +217,23 @@ function renderAssignedContactsDetails(currentTask) {
  * @param {object} currentTask is the task to show the details from
  */
 function renderAssignedSubTasks(currentTask) {
-    let detailAssignedSubTasks = document.getElementById('detail_subTasks')
+    let detailAssignedSubTasks = document.getElementById('detail_subTasks');
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
         let subTask = currentTask.subTask[assignedSubTaskIndex];
         detailAssignedSubTasks.innerHTML += `
             <div>
-                <input type="checkbox">    
-                ${subTask}
-            </div>`
+                <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${assignedSubTaskIndex})" type="checkbox">    
+                <span>${subTask.title}</span>
+            </div>`;
+    }
+}
+
+
+function setSubTaskDone(assignedSubTaskIndex) {
+    let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
+    if (subTaskCheckbox.checked) {
+        console.log('ja');
+        console.log(subTasks);
     }
 }
 
