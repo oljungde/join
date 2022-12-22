@@ -112,18 +112,22 @@ function renderSubTask(newSubTask) {
 function renderSubTask() {
 
   document.getElementById("addSubtaskCheckbox").innerHTML = ``;
-  for (let i = 0; i < subTasks.length; i++) {
-    subTask = subTasks[i];
+  for (let subTaskIndex = 0; subTaskIndex < subTasks.length; subTaskIndex++) {
+    subTask = subTasks[subTaskIndex];
     document.getElementById("addSubtaskCheckbox").innerHTML += `
-      <div class="subtasks">
-        <input type="checkbox" class="pointer">
+      <div id="subTask_${subTaskIndex}" class="subtasks">
         <span>${subTask.title}</span> 
-        <img src="./assets/img/trash-blue.png" onclick="deleteSubTask(${i})" class="subtasks-trash" alt="trash"> 
+        <img src="./assets/img/trash-blue.png" onclick="deleteSubTaskAdd(${subTaskIndex})" class="subtasks-trash" alt="trash"> 
       </div>
     `;
   }
 }
 
+
+function deleteSubTaskAdd(subTaskIndex) {
+  document.getElementById(`subTask_${subTaskIndex}`).innerHTML = ``;
+  subTasks.splice(subTaskIndex, 1);
+}
 
 
 /*
