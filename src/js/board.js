@@ -97,6 +97,11 @@ function renderTasks(status) {
     }
 }
 
+
+/**
+ * renders the contacts in the task
+ * @param {*} element 
+ */
 function renderContactInTask(element) {
     for (let i = 0; i < element.user.length; i++) {
         let letter = element.user[i]['contactInitials'];
@@ -136,8 +141,11 @@ function updateProgressBar() {
 }
 
 
-// Drag and Drop
-// Defines the dragged task
+
+/**
+ * defines the dragged task
+ * @param {*} id - id for idintifying the dragged task
+ */
 function startDragging(id) {
     for (i = 0; i < currentUserTasks.length; i++) {
         let index = currentUserTasks[i]['id'];
@@ -150,13 +158,20 @@ function startDragging(id) {
 }
 
 
-//Allows the task to be dropped
+/**
+ * Allows the task to be dropped
+ * @param {*} ev - This is the event
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
 
-// changes the status of the task according to the dropped area
+/**
+ * changes the status of the task according to the dropped area
+ * @param {*} e - Ths is the event
+ * @param {*} status - This is the status of the Task on the board
+ */
 async function moveTo(e, status) {
     currentUserTasks[currentDraggedElement]['status'] = status;
     e.target.classList.remove('drag-over');
@@ -166,7 +181,10 @@ async function moveTo(e, status) {
 }
 
 
-//Highlighting the Drag and Drop Area
+/**
+ * Highlighting the Drag and Drop Area
+ * @param {*} e  - This is the event
+ */
 function dragEnter(e) {
     e.target.classList.add('drag-over');
 }
@@ -238,7 +256,10 @@ function setSubTaskDone(assignedSubTaskIndex) {
 }
 
 
-// renders the mask for editing an existing task
+/**
+ * renders the mask for editing an existing task
+ * @param {*} id - The unique id of the task for identifiying the current task
+ */
 function changeTask(id) {
     let detailContent = document.getElementById('detail_content');
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
@@ -251,7 +272,10 @@ function changeTask(id) {
     }
 }
 
-
+/**
+ * renders the subTasks in the edit mask for checking the subtasks
+ * @param {*} currentTask - includes the current task
+ */
 function editShowSubTasks(currentTask) {
     let detailAssignedSubTasks = document.getElementById('edit_subTasks')
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
@@ -278,7 +302,10 @@ function deleteCheckedSubTask() {
     });
 }
 
-
+/**
+ * shows the selected priority for the current task in the edit mask
+ * @param {*} currentTask 
+ */
 function editShowSelectedPriority(currentTask) {
 
     if (currentTask.priority == "urgent") {
@@ -313,6 +340,10 @@ function editShowSelectedPriority(currentTask) {
     }
 }
 
+/**
+ * onclick function for the newly edited priority for the current edited task 
+ * @param {*} i - identifies which priority is clicked
+ */
 function editSelectedPriority(i) {
 
     if (i == 1) {
@@ -367,7 +398,10 @@ async function saveChangedTask(currentTaskId) {
     closeDetailTask();
 }
 
-
+/**
+ * deletes the current showing task
+ * @param {*} currentTaskId 
+ */
 async function deleteTask(currentTaskId) {
     let taskToDelete = filteredTasks.findIndex((taskId) => taskId.id == currentTaskId);
     filteredTasks.splice(taskToDelete, 1);
@@ -375,6 +409,9 @@ async function deleteTask(currentTaskId) {
     closeDetailTask()
 }
 
+/**
+ * saving to the backend
+ */
 async function saveDeletetTask() {
     await backend.setItem('users', JSON.stringify(users));
 }

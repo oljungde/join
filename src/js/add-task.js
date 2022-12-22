@@ -21,7 +21,11 @@ async function initAddTask() {
   getTasksOfCurrentUser();
 }
 
-//defines the current task and pushes it to the Array alltasks and saves it in the backend 
+
+/**
+ * defines the current task and pushes it to the Array alltasks and saves it in the backend
+ * @param {*} i - idintifies from where the task is created
+ */ 
 async function addToTask(i) {
   if (taskCategoryFinaly.length == 0) {
     document.getElementById('chooseCategory').classList.remove('d-none');
@@ -67,6 +71,9 @@ async function addToTask(i) {
 }
 
 
+/**
+ * generates the pop up ater a task is created
+ */
 function ShowTaskAddedPopUp() {
   document.getElementById('task_added_to_board_img').classList.remove('d-none');
 
@@ -77,7 +84,10 @@ function ShowTaskAddedPopUp() {
 }
 
 
-//renders the AddTask Mask new by Seb 30.11!!
+/**
+ * renders the AddTask Mask
+ * @param {*} i - idintifies from where the task is created
+ */
 function openAddTaskMask(i) {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
   document.getElementById('AddTaskMaskContainer').classList.remove('d-none');
@@ -109,8 +119,10 @@ function renderSubTask(newSubTask) {
 
 */
 
+/**
+ * renders the subTask in the add task mask
+ */
 function renderSubTask() {
-
   document.getElementById("addSubtaskCheckbox").innerHTML = ``;
   for (let subTaskIndex = 0; subTaskIndex < subTasks.length; subTaskIndex++) {
     subTask = subTasks[subTaskIndex];
