@@ -369,7 +369,6 @@ function urgentPrioritySelected() {
   document.getElementById("priorityUrgent").classList.add('prio-urgent-selected');
   document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
   document.getElementById("priorityLow").classList.remove('prio-low-selected');
-
   document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent-white.png';
   document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
   document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
@@ -380,7 +379,6 @@ function mediumPrioritySelected() {
   document.getElementById("priorityMedium").classList.add('prio-medium-selected');
   document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
   document.getElementById("priorityLow").classList.remove('prio-low-selected');
-
   document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
   document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium-white.png';
   document.getElementById('priorityLowImg').src = 'assets/img/prio-low.png';
@@ -391,7 +389,6 @@ function lowPrioritySelected() {
   document.getElementById("priorityLow").classList.add('prio-low-selected');
   document.getElementById("priorityUrgent").classList.remove('prio-urgent-selected');
   document.getElementById("priorityMedium").classList.remove('prio-medium-selected');
-
   document.getElementById('priorityUrgentImg').src = 'assets/img/prio-urgent.png';
   document.getElementById('priorityMediumImg').src = 'assets/img/prio-medium.png';
   document.getElementById('priorityLowImg').src = 'assets/img/prio-low-white.png';
