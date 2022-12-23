@@ -55,3 +55,37 @@
     object-fit: cover;
     cursor: pointer;
 }
+
+
+
+@media (max-width: 1200px) {
+
+    .right-container{
+        display: none;
+    }
+
+    .addTaskFormHTML{
+        display: flex;
+        justify-content: center;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+
+@media (max-width: 440px) {
+
+    .leftcontainer{
+        width: 330px;
+        padding-left: 5px;
+    }
+
+    .inputfield-new-user{
+        width: 90%;
+    }
+
+    .rightContainer{
+        display: none;
+    }
+
+}
