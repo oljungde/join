@@ -25,10 +25,9 @@ function generateTodoHTML(element) {
 
 
 /**
- * @param {object} currentTask is the selected task to show the details window
  * @returns the html code for rendering the task details window
  */
-function detailContentTemplate(currentTask) {
+function detailContentTemplate() {
     return /*html*/`
         <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
         <div class="detail-category ${currentTask.category.TaskColor}">
@@ -60,7 +59,7 @@ function detailContentTemplate(currentTask) {
 }
 
 
-function changeTaskTemplate(currentTask) {
+function changeTaskTemplate() {
     return /*html*/`
         <form onsubmit="saveChangedTask(${currentTask.id}); return false;" class="editTask">
             <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
@@ -117,7 +116,3 @@ function changeTaskTemplate(currentTask) {
         <button onclick="deleteTask(${currentTask.id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
     `
 }
-
-
-
-

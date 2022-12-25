@@ -1,6 +1,7 @@
 let currentDraggedElement;
 let alreadyEmpty = true;
 let filteredTasks = [];
+let currentTask = {};
 
 
 /**
@@ -206,12 +207,12 @@ function showDetailWindow(id) {
     let detailContainer = document.getElementById('detail_container');
     let detailContent = document.getElementById('detail_content');
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
-        let currentTask = filteredTasks[filteredTasksIndex];
+        currentTask = filteredTasks[filteredTasksIndex];
         if (currentTask.id == id) {
             detailContainer.classList.remove('d-none');
-            detailContent.innerHTML = detailContentTemplate(currentTask);
-            renderAssignedContactsDetails(currentTask);
-            renderAssignedSubTasks(currentTask);
+            detailContent.innerHTML = detailContentTemplate();
+            renderAssignedContactsDetails();
+            renderAssignedSubTasks();
         }
     }
 }
@@ -219,9 +220,8 @@ function showDetailWindow(id) {
 
 /**
  * renders the assigned contacts from the current task
- * @param {object} currentTask is the task to show the details from
  */
-function renderAssignedContactsDetails(currentTask) {
+function renderAssignedContactsDetails() {
     let detailAssignedContacts = document.getElementById('detail_assigned_contacts');
     for (let assignedContactsIndex = 0; assignedContactsIndex < currentTask.user.length; assignedContactsIndex++) {
         let letter = currentTask.user[assignedContactsIndex]['contactInitials'];
@@ -232,9 +232,8 @@ function renderAssignedContactsDetails(currentTask) {
 
 /**
  * renders the assigned subTasks from the current task
- * @param {object} currentTask is the task to show the details from
  */
-function renderAssignedSubTasks(currentTask) {
+function renderAssignedSubTasks() {
     let detailAssignedSubTasks = document.getElementById('detail_subTasks');
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
         let subTask = currentTask.subTask[assignedSubTaskIndex];
@@ -263,20 +262,19 @@ function setSubTaskDone(assignedSubTaskIndex) {
 function changeTask(id) {
     let detailContent = document.getElementById('detail_content');
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
-        const currentTask = filteredTasks[filteredTasksIndex];
+        // currentTask = filteredTasks[filteredTasksIndex];
         if (currentTask.id == id) {
-            detailContent.innerHTML = changeTaskTemplate(currentTask);
-            editShowSelectedPriority(currentTask);
-            editShowSubTasks(currentTask);
+            detailContent.innerHTML = changeTaskTemplate();
+            editShowSelectedPriority();
+            editShowSubTasks();
         }
     }
 }
 
 /**
  * renders the subTasks in the edit mask for checking the subtasks
- * @param {*} currentTask - includes the current task
  */
-function editShowSubTasks(currentTask) {
+function editShowSubTasks() {
     let detailAssignedSubTasks = document.getElementById('edit_subTasks')
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
         let subTask = currentTask.subTask[assignedSubTaskIndex];
@@ -304,9 +302,8 @@ function deleteCheckedSubTask() {
 
 /**
  * shows the selected priority for the current task in the edit mask
- * @param {*} currentTask 
  */
-function editShowSelectedPriority(currentTask) {
+function editShowSelectedPriority() {
 
     if (currentTask.priority == "urgent") {
         prioritySelect = "urgent";
