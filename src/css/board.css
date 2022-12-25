@@ -232,7 +232,7 @@ h3 {
 
 }
 
-.priority{
+.priority {
     margin-right: 15px;
 }
 
@@ -858,6 +858,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
+.crossed-out {
+    text-decoration: line-through;
+}
+
 .detail-subTasks p {
     margin: 0;
 
@@ -909,15 +913,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #42526E;
 }
 
-
-
 .edit-button {
     position: absolute;
     bottom: 24px;
     right: 41px;
 }
-
-
 
 .trash-button {
     display: flex;
@@ -979,20 +979,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .drag-area {
         height: auto;
     }
+
     .Detail {
         width: 75%;
     }
 }
 
-
 @media (max-width: 800px) {
 
-   .Detail {
+    .Detail {
         width: 75%;
     }
 
 }
-
 
 @media (max-width: 770px) {
 
@@ -1031,7 +1030,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         width: 90%;
     }
 
-    .trash-button{
+    .trash-button {
         bottom: 120px;
     }
 
@@ -1039,10 +1038,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
-
 @media (max-width: 550px) {
 
-    .input{
+    .input {
         width: 100%;
     }
 
@@ -1087,7 +1085,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media (max-width: 485px) {
 
-    .input{
+    .input {
         width: 145%;
     }
 
@@ -1095,15 +1093,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         width: 70% !important;
     }
 
-    .priorityContainer img{
+    .priorityContainer img {
         width: 15px;
     }
 
-    .priorityContainer p{
+    .priorityContainer p {
         font-size: 13px;
     }
 
-    .trash-button{
+    .trash-button {
         bottom: 100px;
     }
 }

@@ -2,6 +2,7 @@ let currentDraggedElement;
 let alreadyEmpty = true;
 let filteredTasks = [];
 let currentTask = {};
+let currentSubTask = {};
 
 
 /**
@@ -142,7 +143,6 @@ function updateProgressBar() {
 }
 
 
-
 /**
  * defines the dragged task
  * @param {*} id - id for idintifying the dragged task
@@ -230,39 +230,68 @@ function renderAssignedContactsDetails() {
     }
 }
 
+
 /**
  * renders the assigned subTasks from the current task
  */
 function renderAssignedSubTasks() {
     let detailAssignedSubTasks = document.getElementById('detail_subTasks');
-    for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
-        let subTask = currentTask.subTask[assignedSubTaskIndex];
+    for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
+        currentSubTask = currentTask.subTasks[assignedSubTaskIndex];
         detailAssignedSubTasks.innerHTML += `
             <div>
                 <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${assignedSubTaskIndex})" type="checkbox">    
-                <span>${subTask.title}</span>
+                <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
             </div>`;
+        console.log(currentSubTask);
+        isSubTaskDone(assignedSubTaskIndex);
     }
 }
 
 
+function isSubTaskDone(assignedSubTaskIndex) {
+    if (currentSubTask.done) {
+        let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
+        let subTaskTitle = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
+        subTaskCheckbox.checked = true;
+        subTaskTitle.classList.add('crossed-out');
+    }
+    if (!currentSubTask.done) {
+        let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
+        let subTaskTitle = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
+        subTaskCheckbox.checked = false;
+        subTaskTitle.classList.remove('crossed-out');
+    }
+}
+
+
+/**
+ * function to set a subtask done or undone
+ * @param {number} assignedSubTaskIndex is the index of the current subtask
+ */
 function setSubTaskDone(assignedSubTaskIndex) {
     let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
+    let subTaskTitel = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
     if (subTaskCheckbox.checked) {
-        console.log('ja');
-        console.log(subTasks);
+        currentTask.subTasks[assignedSubTaskIndex].done = true;
+        subTaskTitel.classList.add('crossed-out');
+        console.log(currentTask);
+    }
+    if (!subTaskCheckbox.checked) {
+        currentSubTask.done = false;
+        subTaskTitel.classList.remove('crossed-out');
+        console.log(currentTask);
     }
 }
 
 
 /**
  * renders the mask for editing an existing task
- * @param {*} id - The unique id of the task for identifiying the current task
+ * @param {number} id - The unique id of the task for identifiying the current task
  */
 function changeTask(id) {
     let detailContent = document.getElementById('detail_content');
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
-        // currentTask = filteredTasks[filteredTasksIndex];
         if (currentTask.id == id) {
             detailContent.innerHTML = changeTaskTemplate();
             editShowSelectedPriority();
@@ -271,34 +300,35 @@ function changeTask(id) {
     }
 }
 
+
 /**
  * renders the subTasks in the edit mask for checking the subtasks
  */
 function editShowSubTasks() {
     let detailAssignedSubTasks = document.getElementById('edit_subTasks')
-    for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTask.length; assignedSubTaskIndex++) {
-        let subTask = currentTask.subTask[assignedSubTaskIndex];
+    detailAssignedSubTasks.innerHTML = '';
+    for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
+        let subTask = currentTask.subTasks[assignedSubTaskIndex];
         detailAssignedSubTasks.innerHTML += /*html*/`
-        <div class="subtaskList" id="subtaskValue">  
-          <input id="subTask_checkBox" value="${subTask}" class="subtaskCheckbox pointer" type="checkbox">
-          <span>${subTask}</span>
+        <div class="subtaskList" >  
+          <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${assignedSubTaskIndex})" class="subtaskCheckbox pointer" type="checkbox">
+          <span id="subTask_title_${assignedSubTaskIndex}">${subTask.title}</span>
+          <img src="./assets/img/trash-blue.png" onclick="deleteSubTask(${assignedSubTaskIndex})" class="subtasks-trash" alt="trash"> 
         </div>
         `
     }
 }
 
-function deleteCheckedSubTask() {
-    let subtaskCheckboxes = document.querySelectorAll("subTask_checkBox");
-    subtaskCheckboxes.forEach((checkbox) => {
-        checkbox.addEventListener("change", (event) => {
-            if (event.target.checked) {
-                subTaskSelect = event.target.value;
-                currentTask.splice(subTaskSelect, 1);
-                // await backend.setItem('users', JSON.stringify(users));
-            }
-        });
-    });
+
+/**
+ * deketes the current subtask
+ * @param {number} assignedSubTaskIndex is the indox of current subtask
+ */
+function deleteSubTask(assignedSubTaskIndex) {
+    currentTask.subTasks.splice(assignedSubTaskIndex, 1);
+    editShowSubTasks();
 }
+
 
 /**
  * shows the selected priority for the current task in the edit mask
@@ -336,6 +366,7 @@ function editShowSelectedPriority() {
         document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low-white.png';
     }
 }
+
 
 /**
  * onclick function for the newly edited priority for the current edited task 
@@ -376,7 +407,6 @@ function editSelectedPriority(i) {
 }
 
 
-
 async function saveChangedTask(currentTaskId) {
     selectorcontactIndex = 0;
     let changedTitle = document.getElementById('changed_title').value;
@@ -395,6 +425,7 @@ async function saveChangedTask(currentTaskId) {
     closeDetailTask();
 }
 
+
 /**
  * deletes the current showing task
  * @param {*} currentTaskId 
@@ -406,12 +437,14 @@ async function deleteTask(currentTaskId) {
     closeDetailTask()
 }
 
+
 /**
  * saving to the backend
  */
 async function saveDeletetTask() {
     await backend.setItem('users', JSON.stringify(users));
 }
+
 
 //Closes the Detail Window
 function closeDetailTask() {

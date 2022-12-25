@@ -25,7 +25,7 @@ async function initAddTask() {
 /**
  * defines the current task and pushes it to the Array alltasks and saves it in the backend
  * @param {*} i - idintifies from where the task is created
- */ 
+ */
 async function addToTask(i) {
   if (taskCategoryFinaly.length == 0) {
     document.getElementById('chooseCategory').classList.remove('d-none');
@@ -49,7 +49,7 @@ async function addToTask(i) {
       "dueDate": dueDate.value,
       "priority": prioritySelect,
       "user": userSelect,
-      "subTask": subTasks,
+      "subTasks": subTasks,
       'status': 'toDo'
     };
     currentUserTasks.push(currentTask);
