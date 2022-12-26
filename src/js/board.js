@@ -371,11 +371,6 @@ function editShowSelectedPriority() {
 }
 
 
-function showUrgentPriority(){
-    
-}
-
-
 /**
  * onclick function for the newly edited priority for the current edited task 
  * @param {*} i - identifies which priority is clicked
