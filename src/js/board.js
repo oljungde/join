@@ -279,7 +279,7 @@ async function setSubTaskDone(assignedSubTaskIndex) {
         console.log(currentTask);
     }
     if (!subTaskCheckbox.checked) {
-        currentSubTask.done = false;
+        currentTask.subTasks[assignedSubTaskIndex].done = false;
         subTaskTitel.classList.remove('crossed-out');
         console.log(currentTask);
     }
