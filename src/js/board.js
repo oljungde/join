@@ -230,7 +230,7 @@ function renderAssignedContactsDetails() {
     for (let assignedContactsIndex = 0; assignedContactsIndex < currentTask.user.length; assignedContactsIndex++) {
         let letter = currentTask.user[assignedContactsIndex]['contactInitials'];
         let color = currentTask.user[assignedContactsIndex]['concolor'];
-      //  let fullName = currentTask.user[assignedContactsIndex]
+        //  let fullName = currentTask.user[assignedContactsIndex]
         detailAssignedContacts.innerHTML +=/*html*/ `
         <div style="background-color: ${color}" class="user">${letter}</div>
         <div></div>
@@ -303,6 +303,7 @@ function changeTask(id) {
     let detailContent = document.getElementById('detail_content');
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
         if (currentTask.id == id) {
+            console.log(currentTask);
             detailContent.innerHTML = changeTaskTemplate();
             editShowSelectedPriority();
             editShowSubTasks();
