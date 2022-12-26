@@ -294,7 +294,7 @@ async function setSubTaskDone(assignedSubTaskIndex) {
 function changeTask(id) {
     let detailContent = document.getElementById('detail_content');
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
-        if (currentTask.id == id) {
+        if (filteredTasks[filteredTasksIndex].id == id) {
             detailContent.innerHTML = changeTaskTemplate();
             editShowSelectedPriority();
             editShowSubTasks();
