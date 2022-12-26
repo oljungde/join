@@ -302,6 +302,7 @@ async function setSubTaskDone(assignedSubTaskIndex) {
 function changeTask(id) {
     let detailContent = document.getElementById('detail_content');
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
+        currentTask = filteredTasks[filteredTasksIndex];
         if (currentTask.id == id) {
             console.log(currentTask);
             detailContent.innerHTML = changeTaskTemplate();
