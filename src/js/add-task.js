@@ -98,27 +98,6 @@ function openAddTaskMask(i) {
 }
 
 
-//  subTasks in the AddTaskMask
-
-//Rendering the subtasks checkboxes when generating a new subtask
-
-/*
-
-function renderSubTask(newSubTask) {
-  let createdSubTasks = currentUserTasks.subTask
-  document.getElementById("addSubtaskCheckbox").innerHTML = ``;
-  for (let i = 0; i < createdSubTasks.length; i++) {
-    subTasks = createdSubTasks[i];
-    document.getElementById("addSubtaskCheckbox").innerHTML += `
-        <div class="subtaskList" id="subtaskValue">  
-        <input id="subTask_checkBox" value="${subTasks}" class="subtaskCheckbox pointer" type="checkbox">
-        <p>${subTasks}</p>
-        </div>`;
-  }
-}
-
-*/
-
 /**
  * renders the subTask in the add task mask
  */
@@ -144,21 +123,6 @@ function deleteSubTaskAdd(subTaskIndex) {
   document.getElementById(`subTask_${subTaskIndex}`).innerHTML = ``;
   subTasks.splice(subTaskIndex, 1);
 }
-
-
-/*
-//gettin the checked subtask
-function getSelectedSubtask() {
-  let subtaskCheckboxes = document.querySelectorAll("subTask_checkBox");
-  subtaskCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", (event) => {
-      if (event.target.checked) {
-        subTaskSelect = event.target.value;
-      }
-    });
-  });
-}
-*/
 
 
 /**
@@ -254,7 +218,6 @@ function showUsers(contact) {
 }
 
 
-
 function LFContact() {
   let f = savecontactforaddtask;
   let contactintask = currentUser.contacts[f];
@@ -264,6 +227,7 @@ function LFContact() {
   userSelect.splice(index, 1);
   document.getElementById('selector_user_dropdown').innerHTML = ``;
 }
+
 
 // getting selected User
 function selectedUser(contactInitials, contactcolor, i) {
@@ -316,7 +280,6 @@ function showTaskCategories() {
 };
 
 
-
 /**
  * getting selected Category
  * @param {*} category - the newly generated category
@@ -338,6 +301,7 @@ function changeInputCategory() {
   document.getElementById('selector_Category_Dropdown').innerHTML = '';
   document.getElementById('category_selector').innerHTML = showChangeInputCategory();
 }
+
 
 /**
  * renders the drop down field when exiting the category generator
@@ -382,15 +346,6 @@ async function addCategory() {
     document.getElementById("chooseCategory").innerHTML = `Please select color!`;
   }
 };
-
-/*
-// function for exting the categoryInput by clicking on the cross
-function exitCategoryInput() {
-  document.getElementById('category_selector').classList.add('d-none');
-  document.getElementById('selector_Category_Dropdown').classList.remove('d-none');
-
-}
-*/
 
 
 /**
