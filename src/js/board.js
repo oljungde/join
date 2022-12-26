@@ -145,7 +145,7 @@ function updateProgressBar() {
 
 /**
  * defines the dragged task
- * @param {*} id - id for idintifying the dragged task
+ * @param {number} id - id for idintifying the dragged task
  */
 function startDragging(id) {
     for (i = 0; i < currentUserTasks.length; i++) {
@@ -249,17 +249,18 @@ function renderAssignedSubTasks() {
 }
 
 
+/**
+ * checks if a subtask is done 
+ * @param {number} assignedSubTaskIndex is the index of the current subtask from the object subtasks oder the array currentUser
+ */
 function isSubTaskDone(assignedSubTaskIndex) {
+    let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
+    let subTaskTitle = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
     if (currentSubTask.done) {
-        let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
-        let subTaskTitle = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
-        subTaskCheckbox.checked = true;
+        subTaskCheckbox.setAttribute('checked', true);
         subTaskTitle.classList.add('crossed-out');
-    }
-    if (!currentSubTask.done) {
-        let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
-        let subTaskTitle = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
-        subTaskCheckbox.checked = false;
+    } else {
+        subTaskCheckbox.removeAttribute('checked');
         subTaskTitle.classList.remove('crossed-out');
     }
 }
@@ -269,7 +270,7 @@ function isSubTaskDone(assignedSubTaskIndex) {
  * function to set a subtask done or undone
  * @param {number} assignedSubTaskIndex is the index of the current subtask
  */
-function setSubTaskDone(assignedSubTaskIndex) {
+async function setSubTaskDone(assignedSubTaskIndex) {
     let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
     let subTaskTitel = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
     if (subTaskCheckbox.checked) {
@@ -282,6 +283,7 @@ function setSubTaskDone(assignedSubTaskIndex) {
         subTaskTitel.classList.remove('crossed-out');
         console.log(currentTask);
     }
+    await backend.setItem('users', JSON.stringify(users));
 }
 
 
@@ -308,14 +310,15 @@ function editShowSubTasks() {
     let detailAssignedSubTasks = document.getElementById('edit_subTasks')
     detailAssignedSubTasks.innerHTML = '';
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
-        let subTask = currentTask.subTasks[assignedSubTaskIndex];
+        currentSubTask = currentTask.subTasks[assignedSubTaskIndex];
         detailAssignedSubTasks.innerHTML += /*html*/`
         <div class="subtaskList" >  
           <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${assignedSubTaskIndex})" class="subtaskCheckbox pointer" type="checkbox">
-          <span id="subTask_title_${assignedSubTaskIndex}">${subTask.title}</span>
+          <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
           <img src="./assets/img/trash-blue.png" onclick="deleteSubTask(${assignedSubTaskIndex})" class="subtasks-trash" alt="trash"> 
         </div>
-        `
+        `;
+        isSubTaskDone(assignedSubTaskIndex);
     }
 }
 
