@@ -109,7 +109,11 @@ function renderContactInTask(element) {
         let letter = element.user[i]['contactInitials'];
         let color = element.user[i]['concolor'];
         let id = element.id;
-        document.getElementById(id).innerHTML += `<div style="background-color: ${color}" class="user">${letter}</div>`;
+        document.getElementById(id).innerHTML += /*html*/`
+        
+        <div style="background-color: ${color}" class="user">${letter}</div>
+        
+        `;
     }
 }
 
@@ -226,7 +230,11 @@ function renderAssignedContactsDetails() {
     for (let assignedContactsIndex = 0; assignedContactsIndex < currentTask.user.length; assignedContactsIndex++) {
         let letter = currentTask.user[assignedContactsIndex]['contactInitials'];
         let color = currentTask.user[assignedContactsIndex]['concolor'];
-        detailAssignedContacts.innerHTML += `<div style="background-color: ${color}" class="user">${letter}</div>`;
+      //  let fullName = currentTask.user[assignedContactsIndex]
+        detailAssignedContacts.innerHTML +=/*html*/ `
+        <div style="background-color: ${color}" class="user">${letter}</div>
+        <div></div>
+        `;
     }
 }
 
