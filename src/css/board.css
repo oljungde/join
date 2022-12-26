@@ -420,6 +420,8 @@ h3 {
     display: none;
 }
 
+
+
 .addTaskForm {
     display: flex;
     flex-direction: column;
@@ -470,8 +472,8 @@ h3 {
 .priorityContainer {
     display: flex;
     gap: 10px;
-    padding-top: 5px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .priority-urgent {
@@ -788,7 +790,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow: auto;
 }
+
+
+.Detail::-webkit-scrollbar {
+    display: none;
+}
+
 
 .detail-category {
     width: 200px;
@@ -873,6 +882,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
     font-style: normal;
     gap: 5px;
+    padding-top: 15px;
 }
 
 .CloseCross-DetailTask {

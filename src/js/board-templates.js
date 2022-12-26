@@ -15,7 +15,7 @@ function generateTodoHTML(element) {
         <span id="fill-text${element["id"]}"> Done</span>
       </div>
 
-      <div class=UserAndPriority>
+      <div class="UserAndPriority" id="user_and_priority">
         <div id="${element['id']}"></div>
         
         <div class="priority"><img src="assets/img/prio-${element['priority']}.png" alt=""></div>
