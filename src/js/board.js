@@ -448,6 +448,8 @@ async function deleteTask(currentTaskId) {
     let taskToDelete = filteredTasks.findIndex((taskId) => taskId.id == currentTaskId);
     filteredTasks.splice(taskToDelete, 1);
     await backend.setItem('users', JSON.stringify(users));
+    prioritySelect = [];
+    taskCategoryFinaly = [];
     closeDetailTask()
 }
 

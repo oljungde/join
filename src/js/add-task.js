@@ -30,7 +30,7 @@ async function addToTask(i) {
   if (taskCategoryFinaly.length == 0) {
     document.getElementById('chooseCategory').classList.remove('d-none');
   }
-  if (prioritySelect.length == 0) {
+  else if (prioritySelect.length == 0) {
     document.getElementById('chossePriority').classList.remove('d-none');
   }
   else {
