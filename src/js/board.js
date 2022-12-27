@@ -305,6 +305,7 @@ function changeTask(id) {
         currentTask = filteredTasks[filteredTasksIndex];
         if (currentTask.id == id) {
             console.log(currentTask);
+            userSelect = currentTask.user;
             detailContent.innerHTML = changeTaskTemplate();
             editShowSelectedPriority();
             editShowSubTasks();
