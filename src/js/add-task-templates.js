@@ -1,4 +1,3 @@
-// new by Seb 30.11!!
 function openAddTaskHtml(i) {
   return /*html*/`
     <form class="addTaskForm" onsubmit="addToTask(${i}); return false; ">

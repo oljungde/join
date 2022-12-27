@@ -1,4 +1,8 @@
-// renders the Task-Card on the Board
+/**
+ * renders the Task-Card on the Board
+ * @param {*} element - information about the current task
+ * @returns the html code for rendering the task-card on the board
+ */
 function generateTodoHTML(element) {
     return /*html*/`
     <div onclick="showDetailWindow(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo" id="${element['id']}">   
@@ -58,7 +62,10 @@ function detailContentTemplate() {
     `;
 }
 
-
+/**
+ * 
+ * @returns the html code for the change Task mask
+ */
 function changeTaskTemplate() {
     return /*html*/`
         <form onsubmit="saveChangedTask(${currentTask.id}); return false;" class="editTask">
@@ -107,7 +114,6 @@ function changeTaskTemplate() {
             <div class="detail-subTasks" id="edit_subTasks">
               <h4>Subtasks:</h4> 
             </div>
-
 
             <div>
                 <button class="btn ok">Ok <img src="assets/img/white-check.png" alt=""></button>
