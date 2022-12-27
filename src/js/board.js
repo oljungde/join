@@ -462,6 +462,7 @@ async function saveDeletetTask() {
 
 //Closes the Detail Window
 function closeDetailTask() {
+    userSelect = [];
     document.getElementById('detail_content').innerHTML = '';
     document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
