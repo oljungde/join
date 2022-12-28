@@ -226,6 +226,10 @@ h3 {
     width: 0%;
 }
 
+.progress-bar-text {
+    color: #42526E;
+}
+
 .UserAndPriority {
     width: 100%;
     display: flex;

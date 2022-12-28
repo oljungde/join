@@ -16,7 +16,7 @@ function generateTodoHTML(element) {
         <div class="progress-bar">
             <div class="progress-bar-fill" id="fill${element["id"]}"></div>
         </div>
-        <span id="fill-text${element["id"]}"> Done</span>
+        <span class="progress-bar-text" id="fill-text${element["id"]}"> Done</span>
       </div>
 
       <div class="UserAndPriority" id="user_and_priority">
