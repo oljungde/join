@@ -20,7 +20,7 @@ function generateTodoHTML(element) {
       </div>
 
       <div class="UserAndPriority" id="user_and_priority">
-        <div id="${element['id']}"></div>
+        <div id="contacts${element['id']}"></div>
         
         <div class="priority"><img src="assets/img/prio-${element['priority']}.png" alt=""></div>
       </div>
