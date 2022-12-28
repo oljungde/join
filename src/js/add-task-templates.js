@@ -49,8 +49,8 @@ function openAddTaskHtml(i) {
                 <img id="priorityLowImg" src="assets/img/prio-low.png" alt="">
             </div>
          </div>
+         <h4>Description</h4>
          <div>
-           <h4>Description</h4>
            <input class="add-description" id="AddDescription" type="text" placeholder="Enter a Description">
          </div>
          <h4>Subtasks</h4>
