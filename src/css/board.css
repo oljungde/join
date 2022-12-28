@@ -445,6 +445,7 @@ h3 {
     line-height: 120%;
     color: #42526E;
     margin-top: 5px;
+    margin-bottom: 0px;
 }
 
 .addTaskForm h2 {
@@ -481,8 +482,8 @@ h3 {
 .priorityContainer {
     display: flex;
     gap: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .priority-urgent {
@@ -638,10 +639,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /*
 #chooseCategory{
+background-color: #4589ff;
+    width: 200px;
+    border-radius: 13px;
+    color: white;
     display: flex;
-    justify-content: center;
-    color: var(--color-blue-main);;
-    margin-top: 20px;
+    padding: 9px;
 }
 
 
