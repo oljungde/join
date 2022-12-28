@@ -159,7 +159,6 @@ function startDragging(id) {
             console.log(currentDraggedElement);
         }
     }
-
 }
 
 
