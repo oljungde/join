@@ -243,7 +243,7 @@ function renderAssignedSubTasks(id) {
         const currentSubTask = currentTask.subTasks[assignedSubTaskIndex];
         detailAssignedSubTasks.innerHTML += /*html*/ `
             <div>
-                <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${id})" type="checkbox">    
+                <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${id}, ${assignedSubTaskIndex})" type="checkbox">    
                 <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
             </div>
         `;
@@ -266,26 +266,24 @@ function isSubTaskDone(currentSubTask, assignedSubTaskIndex) {
 
 
 async function setSubTaskDone(id) {
-    for (let index = 0; index < filteredTasks.length; index++) {
-        if (filteredTasks[index].id == id) {
-            let currentSubTasks = filteredTasks[index].subTasks;
-            for (let currentSubTasksIndex = 0; currentSubTasksIndex < currentSubTasks.length; currentSubTasksIndex++) {
-                const currentSubTask = currentSubTasks[currentSubTasksIndex];
-                let assignedSubTaskIndex = currentSubTasksIndex;
-                let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
-                let subTaskTitel = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
-                if (subTaskCheckbox.checked) {
-                    currentSubTask.done = true;
-                    subTaskTitel.classList.add('crossed-out');
-                }
-                if (!subTaskCheckbox.checked) {
-                    currentSubTask.done = false;
-                    subTaskTitel.classList.remove('crossed-out');
-                }
-                await backend.setItem('users', JSON.stringify(users));
-            }
+    currentTask = filteredTasks.filter((currentTask) => {
+        return currentTask.id == id;
+    });
+    let currentSubTasks = currentTask[0].subTasks;
+    for (let currentSubTaskIndex = 0; currentSubTaskIndex < currentSubTasks.length; currentSubTaskIndex++) {
+        const currentSubTask = currentSubTasks[currentSubTaskIndex];
+        let subTaskCheckbox = document.getElementById(`subTask_${currentSubTaskIndex}`);
+        let subTaskTitel = document.getElementById(`subTask_title_${currentSubTaskIndex}`);
+        if (subTaskCheckbox.checked) {
+            currentSubTask.done = true;
+            subTaskTitel.classList.add('crossed-out');
+        }
+        if (!subTaskCheckbox.checked) {
+            currentSubTask.done = false;
+            subTaskTitel.classList.remove('crossed-out');
         }
     }
+    await backend.setItem('users', JSON.stringify(users));
 }
 
 
@@ -391,10 +389,10 @@ function editShowSubTasks(id) {
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
         let currentSubTask = currentTask.subTasks[assignedSubTaskIndex];
         detailAssignedSubTasks.innerHTML += /*html*/`
-        <div class="subtaskList" >  
+        <div id="${assignedSubTaskIndex}" class="subtaskList" >  
           <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${id})" class="subtaskCheckbox pointer" type="checkbox">
           <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
-          <img src="./assets/img/trash-blue.png" onclick="deleteSubTask(${id})" class="subtasks-trash" alt="trash"> 
+          <img src="./assets/img/trash-blue.png" onclick="deleteSubTask(${id}, ${assignedSubTaskIndex})" class="subtasks-trash" alt="trash"> 
         </div>
         `;
         isSubTaskDone(currentSubTask, assignedSubTaskIndex);
@@ -402,9 +400,14 @@ function editShowSubTasks(id) {
 }
 
 
-function deleteSubTask(id) {
-
+async function deleteSubTask(id, assignedSubTaskIndex) {
+    currentTask = filteredTasks.filter((currentTask) => {
+        return currentTask.id == id;
+    });
+    let currentSubTasks = currentTask[0].subTasks;
+    currentSubTasks.splice(assignedSubTaskIndex, 1);
     editShowSubTasks(id);
+    await backend.setItem('users', JSON.stringify(users));
 }
 
 
