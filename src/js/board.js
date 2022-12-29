@@ -2,7 +2,6 @@ let currentDraggedElement;
 let alreadyEmpty = true;
 let filteredTasks = [];
 let currentTask = {};
-let currentSubTask = {};
 
 
 /**
@@ -215,6 +214,7 @@ function showDetailWindow(id) {
             detailContainer.classList.remove('d-none');
             detailContent.innerHTML = detailContentTemplate();
             renderAssignedContactsDetails();
+            renderAssignedSubTasks(id);
         }
     }
 }
@@ -237,6 +237,58 @@ function renderAssignedContactsDetails() {
 }
 
 
+function renderAssignedSubTasks(id) {
+    let detailAssignedSubTasks = document.getElementById('detail_subTasks');
+    for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
+        const currentSubTask = currentTask.subTasks[assignedSubTaskIndex];
+        detailAssignedSubTasks.innerHTML += /*html*/ `
+            <div>
+                <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${id})" type="checkbox">    
+                <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
+            </div>
+        `;
+        isSubTaskDone(currentSubTask, assignedSubTaskIndex);
+    }
+}
+
+
+function isSubTaskDone(currentSubTask, assignedSubTaskIndex) {
+    let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
+    let subTaskTitle = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
+    if (currentSubTask.done) {
+        subTaskCheckbox.setAttribute('checked', true);
+        subTaskTitle.classList.add('crossed-out');
+    } else {
+        subTaskCheckbox.removeAttribute('checked');
+        subTaskTitle.classList.remove('crossed-out');
+    }
+}
+
+
+async function setSubTaskDone(id) {
+    for (let index = 0; index < filteredTasks.length; index++) {
+        if (filteredTasks[index].id == id) {
+            let currentSubTasks = filteredTasks[index].subTasks;
+            for (let currentSubTasksIndex = 0; currentSubTasksIndex < currentSubTasks.length; currentSubTasksIndex++) {
+                const currentSubTask = currentSubTasks[currentSubTasksIndex];
+                let assignedSubTaskIndex = currentSubTasksIndex;
+                let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
+                let subTaskTitel = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
+                if (subTaskCheckbox.checked) {
+                    currentSubTask.done = true;
+                    subTaskTitel.classList.add('crossed-out');
+                }
+                if (!subTaskCheckbox.checked) {
+                    currentSubTask.done = false;
+                    subTaskTitel.classList.remove('crossed-out');
+                }
+                await backend.setItem('users', JSON.stringify(users));
+            }
+        }
+    }
+}
+
+
 /**
  * renders the mask for editing an existing task
  * @param {number} id - The unique id of the task for identifiying the current task
@@ -250,7 +302,7 @@ function changeTask(id) {
             userSelect = currentTask.user;
             detailContent.innerHTML = changeTaskTemplate();
             editShowSelectedPriority();
-            editShowSubTasks();
+            editShowSubTasks(id);
         }
     }
 }
@@ -330,6 +382,29 @@ function editSelectedPriority(i) {
         document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium.png';
         document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low-white.png';
     }
+}
+
+
+function editShowSubTasks(id) {
+    let detailAssignedSubTasks = document.getElementById('edit_subTasks')
+    detailAssignedSubTasks.innerHTML = '';
+    for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
+        let currentSubTask = currentTask.subTasks[assignedSubTaskIndex];
+        detailAssignedSubTasks.innerHTML += /*html*/`
+        <div class="subtaskList" >  
+          <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${id})" class="subtaskCheckbox pointer" type="checkbox">
+          <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
+          <img src="./assets/img/trash-blue.png" onclick="deleteSubTask(${id})" class="subtasks-trash" alt="trash"> 
+        </div>
+        `;
+        isSubTaskDone(currentSubTask, assignedSubTaskIndex);
+    }
+}
+
+
+function deleteSubTask(id) {
+
+    editShowSubTasks(id);
 }
 
 
