@@ -389,6 +389,7 @@ function editSelectedPriority(i) {
 function editShowSubTasks(id) {
     let detailAssignedSubTasks = document.getElementById('edit_subTasks')
     detailAssignedSubTasks.innerHTML = '';
+    console.log(currentTask);
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
         let currentSubTask = currentTask.subTasks[assignedSubTaskIndex];
         detailAssignedSubTasks.innerHTML += /*html*/`
@@ -407,7 +408,8 @@ async function deleteSubTask(id, assignedSubTaskIndex) {
     currentTask = filteredTasks.filter((currentTask) => {
         return currentTask.id == id;
     });
-    let currentSubTasks = currentTask[0].subTasks;
+    currentTask = currentTask[0];
+    let currentSubTasks = currentTask.subTasks;
     currentSubTasks.splice(assignedSubTaskIndex, 1);
     editShowSubTasks(id);
     await backend.setItem('users', JSON.stringify(users));
