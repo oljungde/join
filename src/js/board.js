@@ -109,7 +109,7 @@ function renderContactInTask(element) {
         let letter = element.user[i]['contactInitials'];
         let color = element.user[i]['concolor'];
         let id = element.id;
-        document.getElementById('contacts'+ id).innerHTML += /*html*/`
+        document.getElementById(id).innerHTML += /*html*/`
         
         <div style="background-color: ${color}" class="user">${letter}</div>
         
