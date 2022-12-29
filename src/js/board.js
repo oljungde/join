@@ -240,6 +240,10 @@ function renderAssignedContactsDetails() {
 }
 
 
+/**
+ * renders all subtasks of a task
+ * @param {number} id is the id of a task
+ */
 function renderAssignedSubTasks(id) {
     let detailAssignedSubTasks = document.getElementById('detail_subTasks');
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
@@ -255,6 +259,11 @@ function renderAssignedSubTasks(id) {
 }
 
 
+/**
+ * checks if a subtask is done
+ * @param {object} currentSubTask is the current subtask, to check if it is done
+ * @param {numer} assignedSubTaskIndex is the index of the current subtask in the array subtasks in a task
+ */
 function isSubTaskDone(currentSubTask, assignedSubTaskIndex) {
     let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
     let subTaskTitle = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
@@ -268,6 +277,10 @@ function isSubTaskDone(currentSubTask, assignedSubTaskIndex) {
 }
 
 
+/**
+ * function to mark a subtask as done
+ * @param {number} id is the id of a task
+ */
 async function setSubTaskDone(id) {
     currentTask = filteredTasks.filter((currentTask) => {
         return currentTask.id == id;
@@ -386,6 +399,10 @@ function editSelectedPriority(i) {
 }
 
 
+/**
+ * renders the subtasks in the edit task mask
+ * @param {number} id is the id of the current task 
+ */
 function editShowSubTasks(id) {
     let detailAssignedSubTasks = document.getElementById('edit_subTasks')
     detailAssignedSubTasks.innerHTML = '';
@@ -404,6 +421,11 @@ function editShowSubTasks(id) {
 }
 
 
+/**
+ * deletes a subtask
+ * @param {number} id is the id of the current task
+ * @param {number} assignedSubTaskIndex ist the index of the subtasks array from the current tas
+ */
 async function deleteSubTask(id, assignedSubTaskIndex) {
     currentTask = filteredTasks.filter((currentTask) => {
         return currentTask.id == id;
@@ -416,6 +438,10 @@ async function deleteSubTask(id, assignedSubTaskIndex) {
 }
 
 
+/**
+ * saves the current task if it was edit
+ * @param {number} currentTaskId is the id from the current task to save
+ */
 async function saveChangedTask(currentTaskId) {
     selectorcontactIndex = 0;
     let changedTitle = document.getElementById('changed_title').value;
@@ -437,7 +463,7 @@ async function saveChangedTask(currentTaskId) {
 
 /**
  * deletes the current showing task
- * @param {*} currentTaskId 
+ * @param {number} currentTaskId is the id of the current task
  */
 async function deleteTask(currentTaskId) {
     let taskToDelete = filteredTasks.findIndex((taskId) => taskId.id == currentTaskId);
