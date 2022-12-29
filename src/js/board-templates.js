@@ -66,7 +66,7 @@ function detailContentTemplate() {
  * 
  * @returns the html code for the change Task mask
  */
-function changeTaskTemplate() {
+function changeTaskTemplate(id) {
     return /*html*/`
         <form onsubmit="saveChangedTask(${currentTask.id}); return false;" class="editTask">
             <img class="CloseCross-DetailTask pointer" onclick="closeDetailTask()" src="assets/img/group 11.png" alt="">
@@ -111,8 +111,21 @@ function changeTaskTemplate() {
             <div class="selector-user-dropdown" id="selector_user_dropdown">  
             </div>
 
-            <div class="detail-subTasks" id="edit_subTasks">
-              <h4>Subtasks:</h4> 
+            <div class="detail-subTasks" id="edit_subTasks2">
+                <h4>Subtasks:</h4> 
+                <div class="inputUser pointer">
+                    <div class="inputfield-new-user">
+                        <input class="input border-bottom" id="new_subtask_text" type="text" placeholder="Add new subtask">
+                        <div class="checkAndCrossIconsCategory">
+                            <img src="./assets/img/blue-cross.png" onclick="clearSubTasks()" class="blue-cross pointer">
+                            <img src="./assets/img/devider.png">
+                            <img src="./assets/img/blue-check.png" onclick="newSubTask(${id})" class="blue-check pointer">
+                        </div>
+                    </div>
+                </div>
+                <div class="new-Subtasks" id="edit_subTasks">
+  
+                </div>
             </div>
 
             <div>
@@ -120,5 +133,5 @@ function changeTaskTemplate() {
             </div>
         </form>
         <button onclick="deleteTask(${currentTask.id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
-    `
+    `;
 }

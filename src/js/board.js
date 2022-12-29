@@ -314,7 +314,7 @@ function changeTask(id) {
         if (currentTask.id == id) {
             console.log(currentTask);
             userSelect = currentTask.user;
-            detailContent.innerHTML = changeTaskTemplate();
+            detailContent.innerHTML = changeTaskTemplate(id);
             editShowSelectedPriority();
             editShowSubTasks(id);
         }
@@ -418,6 +418,23 @@ function editShowSubTasks(id) {
         `;
         isSubTaskDone(currentSubTask, assignedSubTaskIndex);
     }
+}
+
+
+async function newSubTask(id) {
+    let newSubTaskText = document.getElementById('new_subtask_text').value;
+    currentTask = filteredTasks.filter((currentTask) => {
+        return currentTask.id == id;
+    });
+    currentTask = currentTask[0];
+    let newSubTask = {
+        'title': newSubTaskText,
+        'done': false
+    }
+    console.log(currentTask);
+    currentTask.subTasks.push(newSubTask);
+    newSubTaskText = '';
+    changeTask(id);
 }
 
 
