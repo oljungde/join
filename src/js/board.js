@@ -215,7 +215,6 @@ function showDetailWindow(id) {
             detailContainer.classList.remove('d-none');
             detailContent.innerHTML = detailContentTemplate();
             renderAssignedContactsDetails();
-            renderAssignedSubTasks();
         }
     }
 }
@@ -239,62 +238,6 @@ function renderAssignedContactsDetails() {
 
 
 /**
- * renders the assigned subTasks from the current task
- */
-function renderAssignedSubTasks() {
-    let detailAssignedSubTasks = document.getElementById('detail_subTasks');
-    for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
-        currentSubTask = currentTask.subTasks[assignedSubTaskIndex];
-        detailAssignedSubTasks.innerHTML += `
-            <div>
-                <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${assignedSubTaskIndex})" type="checkbox">    
-                <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
-            </div>`;
-        console.log(currentSubTask);
-        isSubTaskDone(assignedSubTaskIndex);
-    }
-}
-
-
-/**
- * checks if a subtask is done 
- * @param {number} assignedSubTaskIndex is the index of the current subtask from the object subtasks oder the array currentUser
- */
-function isSubTaskDone(assignedSubTaskIndex) {
-    let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
-    let subTaskTitle = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
-    if (currentSubTask.done) {
-        subTaskCheckbox.setAttribute('checked', true);
-        subTaskTitle.classList.add('crossed-out');
-    } else {
-        subTaskCheckbox.removeAttribute('checked');
-        subTaskTitle.classList.remove('crossed-out');
-    }
-}
-
-
-/**
- * function to set a subtask done or undone
- * @param {number} assignedSubTaskIndex is the index of the current subtask
- */
-async function setSubTaskDone(assignedSubTaskIndex) {
-    let subTaskCheckbox = document.getElementById(`subTask_${assignedSubTaskIndex}`);
-    let subTaskTitel = document.getElementById(`subTask_title_${assignedSubTaskIndex}`);
-    if (subTaskCheckbox.checked) {
-        currentTask.subTasks[assignedSubTaskIndex].done = true;
-        subTaskTitel.classList.add('crossed-out');
-        console.log(currentTask);
-    }
-    if (!subTaskCheckbox.checked) {
-        currentTask.subTasks[assignedSubTaskIndex].done = false;
-        subTaskTitel.classList.remove('crossed-out');
-        console.log(currentTask);
-    }
-    await backend.setItem('users', JSON.stringify(users));
-}
-
-
-/**
  * renders the mask for editing an existing task
  * @param {number} id - The unique id of the task for identifiying the current task
  */
@@ -310,36 +253,6 @@ function changeTask(id) {
             editShowSubTasks();
         }
     }
-}
-
-
-/**
- * renders the subTasks in the edit mask for checking the subtasks
- */
-function editShowSubTasks() {
-    let detailAssignedSubTasks = document.getElementById('edit_subTasks')
-    detailAssignedSubTasks.innerHTML = '';
-    for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
-        currentSubTask = currentTask.subTasks[assignedSubTaskIndex];
-        detailAssignedSubTasks.innerHTML += /*html*/`
-        <div class="subtaskList" >  
-          <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${assignedSubTaskIndex})" class="subtaskCheckbox pointer" type="checkbox">
-          <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
-          <img src="./assets/img/trash-blue.png" onclick="deleteSubTask(${assignedSubTaskIndex})" class="subtasks-trash" alt="trash"> 
-        </div>
-        `;
-        isSubTaskDone(assignedSubTaskIndex);
-    }
-}
-
-
-/**
- * deketes the current subtask
- * @param {number} assignedSubTaskIndex is the indox of current subtask
- */
-function deleteSubTask(assignedSubTaskIndex) {
-    currentTask.subTasks.splice(assignedSubTaskIndex, 1);
-    editShowSubTasks();
 }
 
 
