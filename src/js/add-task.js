@@ -173,40 +173,40 @@ function closeAddTaskMask(i) {
 //renders the Drop Down Menu for the User selection
 function showUsers(contact) {
   userSelect = [];
-
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   if (selectorcontactIndex == 0) {
+    selectorcontactIndex++;
     for (let i = 0; i < activUserContact.length; i++) {
       document.getElementById('selector_user_dropdown').innerHTML += /*html*/`
-      <div onclick="selectedUser('${currentUser.contacts[i]['contactInitials']}', '${currentUser.contacts[i]['contactcolor']}', '${i}')" class="selectorCell pointer">
+      <div onclick="selectedUser('${currentUser.contacts[i]['contactInitials']}', '${currentUser.contacts[i]['contactcolor']}', '${i}', '${currentUser.contacts[i]['contactName']}')" class="selectorCell pointer">
           <div>${activUserContact[i].contactName}</div>
-          <div><img id="user_select${currentUser.contacts[i]['contactInitials']}${currentUser.contacts[i]['contactcolor']}${i}" src="./assets/img/userSelect-img.png"></div>
+          <div><img id="user_select${currentUser.contacts[i]['contactInitials']}${currentUser.contacts[i]['contactcolor']}${i}${currentUser.contacts[i]['contactName']}" src="./assets/img/userSelect-img.png"></div>
       </div>
       `;
     }
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
       let currentTask = filteredTasks[filteredTasksIndex];
-      if (contact == 1) {
-        selectorcontactIndex++;
-      }
+      
       if (contact == 0) {
         let f = savecontactforaddtask;
         let contactintask = currentUser.contacts[f];
         let contactInitials = contactintask['contactInitials'];
         let contactcolor = contactintask['contactcolor'];
+        let contactname = contactintask['contactName'];
         selectorcontactIndex++;
-        selectedUser(contactInitials, contactcolor, f)
+        selectedUser(contactInitials, contactcolor, f, contactname)
       }
       if (currentTask.id == contact) {
-        selectorcontactIndex++;
+        
         for (let u = 0; u < currentTask.user.length; u++) {
           let user = currentTask.user[u];
           let contactInitials = user['contactInitials'];
           let contactcolor = user['concolor'];
+          let contactname = user['contactname'];
           let id = user['id'];
 
-          selectedUser(contactInitials, contactcolor, id);
+          selectedUser(contactInitials, contactcolor, id, contactname);
         }
       }
     }
@@ -230,22 +230,23 @@ function LFContact() {
 
 
 // getting selected User
-function selectedUser(contactInitials, contactcolor, i) {
-
+function selectedUser(contactInitials, contactcolor, i, contactname) {
+  
   let index = findeContactIndex(contactcolor);
-  if (document.getElementById('user_select' + contactInitials + contactcolor + i).classList.contains('checked')) {
+  if (document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).classList.contains('checked')) {
     userSelect.splice(index, 1)
-    document.getElementById('user_select' + contactInitials + contactcolor + i).classList.remove('checked');
-    document.getElementById('user_select' + contactInitials + contactcolor + i).src = 'assets/img/userSelect-img.png';
+    document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).classList.remove('checked');
+    document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).src = 'assets/img/userSelect-img.png';
   }
   else {
     userSelect.push({
       'id': i,
       'contactInitials': contactInitials,
-      'concolor': contactcolor
+      'concolor': contactcolor,
+      'contactname': contactname
     });
-    document.getElementById('user_select' + contactInitials + contactcolor + i).classList.add('checked');
-    document.getElementById('user_select' + contactInitials + contactcolor + i).src = 'assets/img/userSelect-selected.png';
+    document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).classList.add('checked');
+    document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).src = 'assets/img/userSelect-selected.png';
   }
 }
 
