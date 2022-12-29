@@ -351,6 +351,7 @@ h3 {
     font-weight: 400;
     font-size: 12px;
     line-height: 120%;
+    margin-right: 10px;
 }
 
 /* Style for the onclick Add Task Mask */
@@ -977,6 +978,12 @@ background-color: #4589ff;
     font-size: 23px;
     line-height: 120%;
 
+}
+
+.detailforcontactintask{
+    display: flex;
+    align-items: center;
+    margin: 5px;
 }
 
 .d-none {
