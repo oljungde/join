@@ -420,6 +420,10 @@ function editShowSubTasks(id) {
 }
 
 
+/**
+ * identifies the right task to change and add a new subtask
+ * @param {number} id ist the id (identification) of the task to change
+ */
 function newSubTask(id) {
     let newSubTaskText = document.getElementById('new_subtask_text').value;
     let emptySubTaskText = document.getElementById('empty_subtask_text');
@@ -428,6 +432,17 @@ function newSubTask(id) {
         return currentTask.id == id;
     });
     currentTask = currentTask[0];
+    isNewSubTaskEdit(newSubTaskText, emptySubTaskText, id);
+}
+
+
+/**
+ * get the new subtask an push it to the right task
+ * @param {string} newSubTaskText ist the content od the new subtask
+ * @param {string} emptySubTaskText is the text to show if the content of the new subtask is empty
+ * @param {number} id is the id of the task to add a new subtask
+ */
+function isNewSubTaskEdit(newSubTaskText, emptySubTaskText, id) {
     if (newSubTaskText.length > 0) {
         let newSubTask = {
             'title': newSubTaskText,

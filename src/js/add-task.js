@@ -137,6 +137,11 @@ function pushSubtasks() {
 }
 
 
+/**
+ * get the content from the new subtask an push it to the array of the task
+ * @param {string} newSubTaskText is the content of the new subtask
+ * @param {string } emptySubTaskText is the text to show if the con from the new subtask is empty
+ */
 function isNewSubTask(newSubTaskText, emptySubTaskText) {
   if (newSubTaskText.length > 0) {
     newSubTask = {
