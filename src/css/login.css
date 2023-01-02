@@ -1,6 +1,6 @@
 .login-site {
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 64px);
     position: absolute;
     top: 0;
     left: 0;
@@ -165,7 +165,9 @@ input[type="checkbox"]:checked:before {
 
     .login-site {
         justify-content: flex-start;
-        padding-top: 200px;
+        height: calc(100vh - 128px);
+        margin-top: 64px;
+        padding-top: 134px;
     }
 
     .login-header {

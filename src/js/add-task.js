@@ -133,7 +133,6 @@ function pushSubtasks() {
   let emptySubTaskText = document.getElementById('empty_subtask_text');
   emptySubTaskText.innerHTML = '';
   isNewSubTask(newSubTaskText, emptySubTaskText);
-  ;
 }
 
 
