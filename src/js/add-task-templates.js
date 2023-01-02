@@ -22,7 +22,7 @@ function openAddTaskHtml(i) {
           <div class="input border-bottom" style="display:flex; flex-direction: column; align-items:flex-start;">
              <h4>Due Date</h4>
              <div class= "input-date" id="input-date">
-               <input id="add-date" background: url(./assets/img/data.png) no-repeat scroll 7px 7px; class="add-date" placeholder="dd/mm/yy" type="date"   required>
+               <input id="add-date" background: url(./assets/img/data.png) no-repeat scroll 7px 7px; class="add-date" placeholder="dd/mm/yy" type="date" required>
              </div>
           </div>
   
@@ -54,10 +54,13 @@ function openAddTaskHtml(i) {
            <input class="add-description" id="AddDescription" type="text" placeholder="Enter a Description">
          </div>
          <h4>Subtasks</h4>
+          <div id="empty_subtask_text">
+          
+          </div>
          <div class="input-subtasks" id="newSubtask_select">
          <div class="inputUser pointer">
          <div class="inputfield-new-user">
-           <input class="input border-bottom" id="subtaskText" type="text" placeholder="Add new subtask">
+           <input class="input border-bottom" id="new_subtask_text" type="text" placeholder="Add new subtask">
            <div class="checkAndCrossIconsCategory">
             <img src="./assets/img/blue-cross.png" onclick="clearSubTasks()" class="blue-cross pointer">
             <img src="./assets/img/devider.png">

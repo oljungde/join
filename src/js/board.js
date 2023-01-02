@@ -420,20 +420,25 @@ function editShowSubTasks(id) {
 }
 
 
-async function newSubTask(id) {
+function newSubTask(id) {
     let newSubTaskText = document.getElementById('new_subtask_text').value;
+    let emptySubTaskText = document.getElementById('empty_subtask_text');
+    emptySubTaskText.innerHTML = '';
     currentTask = filteredTasks.filter((currentTask) => {
         return currentTask.id == id;
     });
     currentTask = currentTask[0];
-    let newSubTask = {
-        'title': newSubTaskText,
-        'done': false
+    if (newSubTaskText.length > 0) {
+        let newSubTask = {
+            'title': newSubTaskText,
+            'done': false
+        }
+        currentTask.subTasks.push(newSubTask);
+        newSubTaskText = '';
+        changeTask(id);
+    } else {
+        emptySubTaskText.innerHTML = 'Please enter a title for the subtask';
     }
-    console.log(currentTask);
-    currentTask.subTasks.push(newSubTask);
-    newSubTaskText = '';
-    changeTask(id);
 }
 
 

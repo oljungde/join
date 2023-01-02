@@ -112,7 +112,10 @@ function changeTaskTemplate(id) {
             </div>
 
             <div class="detail-subTasks" id="edit_subTasks2">
-                <h4>Subtasks:</h4> 
+                <h4>Subtasks:</h4>
+                <div id="empty_subtask_text">
+          
+                </div>
                 <div class="inputUser pointer">
                     <div class="inputfield-new-user">
                         <input class="input border-bottom" id="new_subtask_text" type="text" placeholder="Add new subtask">

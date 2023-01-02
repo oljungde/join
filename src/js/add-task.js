@@ -129,17 +129,25 @@ function deleteSubTaskAdd(subTaskIndex) {
  * pushing new subTask in to the task array
  */
 function pushSubtasks() {
-  newSubTask = {
-    'title': document.getElementById("subtaskText").value,
-    'done': false
-  }
-  if (newSubTask) {
-    subTasks.push(newSubTask)
-    // subTasks.push(document.getElementById("subtaskText").value);
-    document.getElementById("subtaskText").value = ``;
+  let newSubTaskText = document.getElementById('new_subtask_text').value;
+  let emptySubTaskText = document.getElementById('empty_subtask_text');
+  emptySubTaskText.innerHTML = '';
+  isNewSubTask(newSubTaskText, emptySubTaskText);
+  ;
+}
 
-    //localStorage.setItem("subtasks", JSON.stringify(subTasks));
+
+function isNewSubTask(newSubTaskText, emptySubTaskText) {
+  if (newSubTaskText.length > 0) {
+    newSubTask = {
+      'title': newSubTaskText,
+      'done': false
+    }
+    subTasks.push(newSubTask)
     renderSubTask(newSubTask);
+    document.getElementById('new_subtask_text').value = ``
+  } else {
+    emptySubTaskText.innerHTML = 'Please enter a title for the subtask';
   }
 }
 
@@ -148,7 +156,9 @@ function pushSubtasks() {
  * clear subtask input
  */
 function clearSubTasks() {
-  document.getElementById("subtaskText").value = ``;
+  if (document.getElementById('new_subtask_text').value != null) {
+    document.getElementById("new_subtask_text").value = '';
+  }
 }
 
 
@@ -187,7 +197,7 @@ function showUsers(contact) {
     }
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
       let currentTask = filteredTasks[filteredTasksIndex];
-      
+
       if (contact == 0) {
         let f = savecontactforaddtask;
         let contactintask = currentUser.contacts[f];
@@ -198,7 +208,7 @@ function showUsers(contact) {
         selectedUser(contactInitials, contactcolor, f, contactname)
       }
       if (currentTask.id == contact) {
-        
+
         for (let u = 0; u < currentTask.user.length; u++) {
           let user = currentTask.user[u];
           let contactInitials = user['contactInitials'];
@@ -231,7 +241,7 @@ function LFContact() {
 
 // getting selected User
 function selectedUser(contactInitials, contactcolor, i, contactname) {
-  
+
   let index = findeContactIndex(contactcolor);
   if (document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).classList.contains('checked')) {
     userSelect.splice(index, 1)
