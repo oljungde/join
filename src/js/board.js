@@ -240,19 +240,14 @@ function renderAssignedContactsDetails() {
 
 
 /**
- * renders all subtasks of a task
+ * renders all subtasks of a task in the detail view of a task
  * @param {number} id is the id of a task
  */
 function renderAssignedSubTasks(id) {
     let detailAssignedSubTasks = document.getElementById('detail_subTasks');
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
         const currentSubTask = currentTask.subTasks[assignedSubTaskIndex];
-        detailAssignedSubTasks.innerHTML += /*html*/ `
-            <div>
-                <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${id}, ${assignedSubTaskIndex})" type="checkbox">    
-                <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
-            </div>
-        `;
+        detailAssignedSubTasks.innerHTML += renderAssignedSubTasksTemplate(currentSubTask, assignedSubTaskIndex, id);
         isSubTaskDone(currentSubTask, assignedSubTaskIndex);
     }
 }
@@ -285,6 +280,16 @@ async function setSubTaskDone(id) {
         return currentTask.id == id;
     });
     let currentSubTasks = currentTask[0].subTasks;
+    subTaskDone(currentSubTasks);
+    await backend.setItem('users', JSON.stringify(users));
+}
+
+
+/**
+ * sets a subtask done or undone und style it
+ * @param {object} currentSubTasks are the current subtasks
+ */
+function subTaskDone(currentSubTasks) {
     for (let currentSubTaskIndex = 0; currentSubTaskIndex < currentSubTasks.length; currentSubTaskIndex++) {
         const currentSubTask = currentSubTasks[currentSubTaskIndex];
         let subTaskCheckbox = document.getElementById(`subTask_${currentSubTaskIndex}`);
@@ -298,7 +303,6 @@ async function setSubTaskDone(id) {
             subTaskTitel.classList.remove('crossed-out');
         }
     }
-    await backend.setItem('users', JSON.stringify(users));
 }
 
 
@@ -408,13 +412,7 @@ function editShowSubTasks(id) {
     console.log(currentTask);
     for (let assignedSubTaskIndex = 0; assignedSubTaskIndex < currentTask.subTasks.length; assignedSubTaskIndex++) {
         let currentSubTask = currentTask.subTasks[assignedSubTaskIndex];
-        detailAssignedSubTasks.innerHTML += /*html*/`
-        <div id="${assignedSubTaskIndex}" class="subtaskList" >  
-          <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${id})" class="subtaskCheckbox pointer" type="checkbox">
-          <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
-          <img src="./assets/img/trash-blue.png" onclick="deleteSubTask(${id}, ${assignedSubTaskIndex})" class="subtasks-trash" alt="trash"> 
-        </div>
-        `;
+        detailAssignedSubTasks.innerHTML += editShowSubTasksTemplate(currentSubTask, assignedSubTaskIndex, id);
         isSubTaskDone(currentSubTask, assignedSubTaskIndex);
     }
 }

@@ -138,3 +138,38 @@ function changeTaskTemplate(id) {
         <button onclick="deleteTask(${currentTask.id})" class="btn trash-button"><img class="trash" src="assets/img/trash.ico" alt=""></button>
     `;
 }
+
+
+/**
+ * code render a single subtask on the detail view of a task
+ * @param {object} currentSubTask ist the currentsubtask to show
+ * @param {number} assignedSubTaskIndex is the index of the current subtask from current subtasks
+ * @param {number} id is the id of the current task
+ * @returns the html code to show the current subtask on the detail view for the whole task
+ */
+function renderAssignedSubTasksTemplate(currentSubTask, assignedSubTaskIndex, id) {
+    return /*html*/ `
+        <div>
+            <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${id}, ${assignedSubTaskIndex})" type="checkbox">    
+            <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
+        </div>
+    `;
+}
+
+
+/**
+ * code render a single subtask on edit task mask
+ * @param {object} currentSubTask ist the currentsubtask to show
+ * @param {number} assignedSubTaskIndex is the index of the current subtask from current subtasks
+ * @param {number} id is the id of the current task
+ * @returns the html code to show the current subtask on edit mask for the whole task
+ */
+function editShowSubTasksTemplate(currentSubTask, assignedSubTaskIndex, id) {
+    return /*html*/ `
+        <div id="${assignedSubTaskIndex}" class="subtaskList" >  
+          <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${id})" class="subtaskCheckbox pointer" type="checkbox">
+          <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
+          <img src="./assets/img/trash-blue.png" onclick="deleteSubTask(${id}, ${assignedSubTaskIndex})" class="subtasks-trash" alt="trash"> 
+        </div>
+    `;
+}
