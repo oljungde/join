@@ -99,7 +99,7 @@ a:hover {
     padding-right: 39px;
 }
 
-.header-img-user{
+.header-img-user {
     width: 55px;
     height: 55px;
     border: white solid;
@@ -232,7 +232,7 @@ a:hover {
         position: sticky;
         bottom: 0;
         left: 0;
-
+        z-index: 99;
     }
 
     .sidebar-navigation {

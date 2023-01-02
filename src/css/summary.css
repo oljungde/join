@@ -18,11 +18,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
 /* MainCSS */
 .mainside {
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -151,7 +152,7 @@
 .todonumber {
     font: bold var(--font-size-h1) 'OpenSans', sans-serif;
     color: #000000;
-    margin-left: 20px;
+    /* margin-left: 20px; */
 }
 
 .todo:hover .todonumber {
@@ -172,7 +173,7 @@
     font-size: 48px;
     font-weight: 700;
     color: #000000;
-    margin-left: 20px;
+    /* margin-left: 20px; */
 }
 
 .taskbot:hover .tasknumber,
@@ -275,5 +276,43 @@
 
     .taskbot {
         width: 230px;
+    }
+}
+
+@media (max-width: 576px) {
+    .tasksurgent {
+        width: 424px;
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .bordermid {
+        width: 145px;
+        height: 3px;
+    }
+
+    .deadlinetext {
+        text-align: center;
+    }
+
+    .todo {
+        width: 424px
+    }
+
+    .task-line {
+        width: 424px;
+    }
+
+    .taskbot {
+        width: 424px;
+        height: 106px;
+        display: flex;
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    .taskettext {
+        font-size: 18px;
     }
 }
