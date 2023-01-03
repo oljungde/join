@@ -29,7 +29,7 @@
 <body onload="initBoard();">
 
     <div id="detail_container" class="DetailContainer d-none animationFadeInBottom " onclick="hideAddTaskMask()" >
-        <div id="detail_content" class="Detail"></div>
+        <div id="detail_content" class="Detail" onclick="doNotClose(event)"></div>
     </div>
 
     <img id="task_added_to_board_img" class="task-added-to-board-img animationFadeInBottom d-none" src="./assets/img/task-added-to-board.png" alt="">
