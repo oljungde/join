@@ -208,7 +208,7 @@ function showUsers(contact) {
       </div>
     `;
 
-    if(userSelect.length > 1){
+    if(userSelect.length > 0){
       for (let o = 0; o < userSelect.length; o++) {
         let contactInitials = userSelect[o]['contactInitials'];
         let contactcolor = userSelect[o]['concolor'];
