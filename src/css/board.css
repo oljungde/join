@@ -980,7 +980,7 @@ background-color: #4589ff;
 
 }
 
-.detailforcontactintask{
+.detailforcontactintask {
     display: flex;
     align-items: center;
     margin: 5px;
@@ -1078,7 +1078,7 @@ background-color: #4589ff;
         width: 100%;
     }
 
-    
+
 
     .nav-link {
         flex-direction: column;

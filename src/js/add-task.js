@@ -26,7 +26,7 @@ async function initAddTask() {
  * defines the current task and pushes it to the Array alltasks and saves it in the backend
  * @param {*} i - idintifies from where the task is created
  */
-async function addToTask(i) {
+async function addToTask(i, taskStatus) {
   if (taskCategoryFinaly.length == 0) {
     document.getElementById('chooseCategory').classList.remove('d-none');
   }
@@ -50,7 +50,7 @@ async function addToTask(i) {
       "priority": prioritySelect,
       "user": userSelect,
       "subTasks": subTasks,
-      'status': 'toDo'
+      'status': taskStatus
     };
     currentUserTasks.push(currentTask);
     await backend.setItem('users', JSON.stringify(users));
@@ -89,13 +89,13 @@ function ShowTaskAddedPopUp() {
  * renders the AddTask Mask
  * @param {*} i - idintifies from where the task is created
  */
-function openAddTaskMask(i) {
+function openAddTaskMask(i, status) {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
   document.getElementById('AddTaskMaskContainer').classList.remove('d-none');
   userSelect = [];
   selectedSubtasks = [];
   let openaddtask = document.getElementById('AddTaskMaskContainer');
-  openaddtask.innerHTML = openAddTaskHtml(i);
+  openaddtask.innerHTML = openAddTaskHtml(i, status);
 }
 
 
