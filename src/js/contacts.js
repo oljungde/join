@@ -153,7 +153,7 @@ function popupContactSave() {
     document.getElementById('popup-ContactBar').classList.remove('d-none');
     setTimeout(() => {
         document.getElementById('popup-ContactBar').classList.add('d-none');
-    }, 2000);
+    }, 1100);
 }
 
 

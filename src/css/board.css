@@ -1078,9 +1078,7 @@ background-color: #4589ff;
         width: 100%;
     }
 
-    .sidebar {
-        max-height: 100px;
-    }
+    
 
     .nav-link {
         flex-direction: column;

@@ -98,18 +98,12 @@
         height: 100vh;
     }
 
-    .sidebar {
-
-        min-height: 65px;
-    }
+    
 }
 
 @media (max-width: 770px) {
 
-    .sidebar {
-        max-height: 60px;
-        min-height: 95px;
-    }
+    
 
     .nav-link {
         gap: 10px;
@@ -123,9 +117,7 @@
         
     }
 
-    .sidebar{
-        min-height: 110px;
-    }
+    
 
     .input-date{
         width: 100%;
