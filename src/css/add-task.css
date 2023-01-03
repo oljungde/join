@@ -35,6 +35,11 @@
 
 }
 
+.leftcontainer{
+    overflow: auto;
+    width: 800px;
+}
+
 .right-container {
     width: 100%;
     display: flex;
