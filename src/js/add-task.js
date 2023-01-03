@@ -192,6 +192,7 @@ function showUsers(contact) {
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   if (selectorcontactIndex == 0) {
+    document.getElementById('selector_user_dropdown_contact').innerHTML = ``;
     selectorcontactIndex++;
     for (let i = 0; i < activUserContact.length; i++) {
       document.getElementById('selector_user_dropdown').innerHTML += /*html*/`
@@ -246,6 +247,12 @@ function showUsers(contact) {
   }
   else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
+    for (let i = 0; i < userSelect.length; i++) {
+      document.getElementById('selector_user_dropdown_contact').innerHTML += `
+        <div style="background-color:${userSelect[i]['concolor']}" class="user">${userSelect[i]['contactInitials']}</div>
+      `;
+      
+    }
     selectorcontactIndex--;
   }
 }

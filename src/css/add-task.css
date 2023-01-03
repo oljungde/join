@@ -62,7 +62,9 @@
     cursor: pointer;
 }
 
-
+.display-flex-in-addtask{
+    display: flex;
+}
 
 @media (max-width: 1200px) {
 
