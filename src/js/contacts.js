@@ -23,7 +23,7 @@ function renderAllContact() {
 function openAddContact(mo) {
     if(mo == 1){
     let addcontact = document.getElementById('AddTaskMaskContact');
-    // addcontact.classList.remove('d-none');
+    addcontact.classList.remove('d-none');
     addcontact.innerHTML = '';
     addcontact.innerHTML = addNewContactHtml(mo);
     }
