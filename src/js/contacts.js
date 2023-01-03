@@ -56,7 +56,7 @@ function closeAddContact(mo) {
 /**
  * pulls them out of the input and puts them in a json
  */
-function createContact() {
+function createContact(mo) {
     let smallName = document.getElementById('contactName').value;
     let contactEmail = document.getElementById('contactEmail').value;
     let contactNumber = document.getElementById('contactNumber').value;
@@ -74,7 +74,7 @@ function createContact() {
         'contactInitials': lettersFB
     };
     let look = checkEmailInArray(contactTask);
-    checkOrLoad(look, contactName, contactTask)
+    checkOrLoad(look, contactName, contactTask, mo);
 }
 
 
@@ -84,10 +84,25 @@ function createContact() {
  * @param {string} contactName name of the contact
  * @param {string} contactTask the entire contact with email and number
  */
-function checkOrLoad(look, contactName, contactTask) {
+function checkOrLoad(look, contactName, contactTask, mo) {
     if (look == -1) {
         addNewContact(contactTask);
-        fillAllTasks(contactName,);
+        if (mo == 0){
+        fillAllTasks(contactName, mo);
+        }
+        if (mo == 1){
+            let letter = contactName.charAt(0);
+            if (currentUser.lettertask.includes(letter)) {
+                // clearContactBar( mo);
+            }
+            else{
+            saveLetterContact(letter);
+            }
+            closeAddContact(mo);
+            selectorcontactIndex = 0;
+            showUsers(mo);
+            
+        }
     }
     else {
         checkEmail();
@@ -134,12 +149,12 @@ function checkEmail() {
  * pushes the json into an array
  * @param {string} contactName name of the contact
  */
-function fillAllTasks(contactName,) {
+function fillAllTasks(contactName, mo) {
     let letter = contactName.charAt(0);
-    closeAddContact();
+    closeAddContact(mo);
     popupContactSave();
     if (currentUser.lettertask.includes(letter)) {
-        clearContactBar();
+        clearContactBar(mo);
     }
     else {
         let contactBar = document.getElementById('contactbar');
@@ -172,15 +187,18 @@ function popupContactSave() {
 
 
 // Clear Contact Letter Bar
-function clearContactBar() {
+function clearContactBar( mo) {
+    if(mo == 0){
     for (let i = 0; i < currentUser.lettertask.length; i++) {
         let clear = currentUser.lettertask[i];
         let contactSmall = document.getElementById(clear)
         while (contactSmall.lastChild) {
             contactSmall.removeChild(contactSmall.lastChild);
+            }
         }
+        contactChild();
     }
-    contactChild();
+    
 }
 
 
@@ -391,7 +409,7 @@ function OpenContactAddTask(i, index) {
  * @param {number} index position in the array
  */
 function deleteContacts(index) {
-    closeAddContact();
+    closeAddContact(0);
     document.getElementById('contact-detail-in-main').classList.add('display-contact-none');
     document.getElementById('contactbar').classList.remove('display-contact-none');
     let letter = currentUser.contacts[index]['contactletter'];

@@ -101,7 +101,7 @@ function addNewContactHtml(mo) {
     <div class="add-contact-main">
         <div class="contact-member"><img src="/src/assets/img/contact-member.png" alt="">
         </div>
-        <form onsubmit="createContact(); return false;">
+        <form onsubmit="createContact(${mo}); return false;">
             <div class="input-add-contact-container">
                 <div class="input-contact">
                     <input placeholder="  Name" required  type="text" id="contactName" class="input-contact-name">
