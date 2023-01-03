@@ -6,7 +6,7 @@ let userSelect = [];
 let taskCategoryFinaly = [];
 let prioritySelect = [];
 let subTasks = [];
-
+let userSelected = [];
 
 /**
  * init function will execute wenn page add-task.html is loading
@@ -230,18 +230,18 @@ function showUsers(contact) {
         selectorcontactIndex++;
         selectedUser(contactInitials, contactcolor, f, contactname);
       }
-      if (currentTask.id == contact) {
+      // if (currentTask.id == contact) {
 
-        for (let u = 0; u < currentTask.user.length; u++) {
-          let user = currentTask.user[u];
-          let contactInitials = user['contactInitials'];
-          let contactcolor = user['concolor'];
-          let contactname = user['contactname'];
-          let id = user['id'];
+      //   for (let u = 0; u < currentTask.user.length; u++) {
+      //     let user = currentTask.user[u];
+      //     let contactInitials = user['contactInitials'];
+      //     let contactcolor = user['concolor'];
+      //     let contactname = user['contactname'];
+      //     let id = user['id'];
 
-          selectedUser(contactInitials, contactcolor, id, contactname);
-        }
-      }
+      //     selectedUser(contactInitials, contactcolor, id, contactname);
+      //   }
+      // }
     }
   }
   else {
