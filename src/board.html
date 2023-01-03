@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./css/board.css">
     <link rel="stylesheet" href="./css/add-task.css">
     <link rel="stylesheet" href="./css/animations.css">
+    <link rel="stylesheet" href="./css/contact.css">
 
 
     <script src="./smallest_backend_ever/mini_backend.js"></script>
@@ -21,6 +22,8 @@
     <script src="./js/add-task.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/board-templates.js"></script>
+    <script src="./js/contacts.js"></script>
+    <script src="./js/contacts-templates.js"></script>
 </head>
 
 <body onload="initBoard();">
@@ -32,6 +35,7 @@
     <img id="task_added_to_board_img" class="task-added-to-board-img animationFadeInBottom d-none" src="./assets/img/task-added-to-board.png" alt="">
     <div id="AddTaskMaskBg" class="AddTaskMaskBg d-none">
         <div id="AddTaskMaskContainer" class="AddTaskMaskContainer animationFadeInRight d-none "></div>
+        <div id="AddTaskMaskContact"></div>
     </div>
 
     <div class="Mainheader" w3-include-html="./assets/templates/header.html"></div>

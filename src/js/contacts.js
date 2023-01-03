@@ -20,22 +20,36 @@ function renderAllContact() {
 /**
  * opens a window to add contacts
  */
-function openAddContact() {
+function openAddContact(mo) {
+    if(mo == 1){
+    let addcontact = document.getElementById('AddTaskMaskContact');
+    // addcontact.classList.remove('d-none');
+    addcontact.innerHTML = '';
+    addcontact.innerHTML = addNewContactHtml(mo);
+    }
+    else if (mo == 0){
     let addcontact = document.getElementById('opencontact');
     addcontact.classList.remove('d-none');
     addcontact.innerHTML = '';
-    addcontact.innerHTML = addNewContactHtml();
+    addcontact.innerHTML = addNewContactHtml(mo);
+    }
 }
 
 
 /**
  * close a window to add contacts
  */
-function closeAddContact() {
+function closeAddContact(mo) {
+    if(mo == 0){
     let addcontact = document.getElementById('opencontact');
     addcontact.classList.add('d-none');
     addcontact.innerHTML = '';
-
+    }
+    else if (mo == 1){
+    let addtask = document.getElementById('AddTaskMaskContact');
+    addtask.classList.add('d-none');
+    addtask.innerHTML = '';
+    }
 }
 
 
