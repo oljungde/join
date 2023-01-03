@@ -207,6 +207,17 @@ function showUsers(contact) {
         <div><img src="./assets/img/newContact-img.png"></div>
       </div>
     `;
+
+    if(userSelect.length > 1){
+      for (let o = 0; o < userSelect.length; o++) {
+        let contactInitials = userSelect[o]['contactInitials'];
+        let contactcolor = userSelect[o]['concolor'];
+        let contactname = userSelect[o]['contactname'];
+        let id = userSelect[o]['id'];
+        selectedUserAdd(contactInitials, contactcolor, id, contactname);
+      }
+      
+    }
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
       let currentTask = filteredTasks[filteredTasksIndex];
 
@@ -217,7 +228,7 @@ function showUsers(contact) {
         let contactcolor = contactintask['contactcolor'];
         let contactname = contactintask['contactName'];
         selectorcontactIndex++;
-        selectedUser(contactInitials, contactcolor, f, contactname)
+        selectedUser(contactInitials, contactcolor, f, contactname);
       }
       if (currentTask.id == contact) {
 
@@ -240,6 +251,7 @@ function showUsers(contact) {
 }
 
 
+
 function LFContact() {
   let f = savecontactforaddtask;
   let contactintask = currentUser.contacts[f];
@@ -250,6 +262,10 @@ function LFContact() {
   document.getElementById('selector_user_dropdown').innerHTML = ``;
 }
 
+function selectedUserAdd(contactInitials, contactcolor, i, contactname){
+  document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).classList.add('checked');
+    document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).src = 'assets/img/userSelect-selected.png';
+}
 
 // getting selected User
 function selectedUser(contactInitials, contactcolor, i, contactname) {
