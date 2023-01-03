@@ -118,30 +118,38 @@ function renderContactInTask(element) {
 
 
 /**
- * update the progressbar in all rendered tasks
+ * update the progressbar when subTasks are checked
  */
 function updateProgressBar() {
     for (i = 0; i < filteredTasks.length; i++) {
-        let taskStatus = filteredTasks[i].status;
         let taskId = filteredTasks[i].id;
+        let subtasksInTask = filteredTasks[i].subTasks
+        let doneSubTasksLenght = 0;
         let fill = document.getElementById('fill' + taskId);
         let fillText = document.getElementById('fill-text' + taskId);
-        if (taskStatus == 'toDo') {
+
+        for (let d = 0; d < subtasksInTask.length; d++) {
+            let doneSubTasks = subtasksInTask[d].done 
+            if (doneSubTasks == true) {
+                doneSubTasksLenght++;  
+            }
+        }
+        if (doneSubTasksLenght == 0) {
             fill.style.width = "0";
-            fillText.innerHTML = `0/3 Done`;
+            fillText.innerHTML = `${doneSubTasksLenght}/${subtasksInTask.length} Done`;
         }
-        if (taskStatus == 'inProgress') {
+        if (doneSubTasksLenght == 1 && doneSubTasksLenght !== subtasksInTask.length  ) { 
             fill.style.width = "33%";
-            fillText.innerHTML = `1/3 Done`;
+            fillText.innerHTML = `${doneSubTasksLenght}/${subtasksInTask.length} Done`;
         }
-        if (taskStatus == 'awaitingFeedback') {
+        if (doneSubTasksLenght == 2 && doneSubTasksLenght !== subtasksInTask.length  ) { 
             fill.style.width = "66%";
-            fillText.innerHTML = `2/3 Done`;
+            fillText.innerHTML = `${doneSubTasksLenght}/${subtasksInTask.length} Done`;
         }
-        if (taskStatus == 'done') {
+        if (doneSubTasksLenght == subtasksInTask.length && subtasksInTask.length !== 0 ) { 
             fill.style.width = "100%";
-            fillText.innerHTML = `3/3 Done`;
-        }
+            fillText.innerHTML = `${doneSubTasksLenght}/${subtasksInTask.length} Done`;
+        }  
     }
 }
 
