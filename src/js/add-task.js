@@ -89,13 +89,13 @@ function ShowTaskAddedPopUp() {
  * renders the AddTask Mask
  * @param {*} i - idintifies from where the task is created
  */
-function openAddTaskMask(i, status) {
+function openAddTaskMask(i, taskStatus) {
   document.getElementById('AddTaskMaskBg').classList.remove('d-none');
   document.getElementById('AddTaskMaskContainer').classList.remove('d-none');
   userSelect = [];
   selectedSubtasks = [];
   let openaddtask = document.getElementById('AddTaskMaskContainer');
-  openaddtask.innerHTML = openAddTaskHtml(i, status);
+  openaddtask.innerHTML = openAddTaskHtml(i, taskStatus);
 }
 
 
@@ -188,7 +188,7 @@ function closeAddTaskMask(i) {
 
 //renders the Drop Down Menu for the User selection
 function showUsers(contact) {
-  
+
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   if (selectorcontactIndex == 0) {
