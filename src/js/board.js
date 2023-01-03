@@ -524,3 +524,15 @@ function closeDetailTask() {
     document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
 }
+
+/**
+ * Hiding the add Task
+ */
+function hideAddTaskMask() {
+    setTimeout(() => {
+  //    document.getElementById("AddTaskMaskBg").classList.add("d-none");
+  //    document.getElementById("detail_container").classList.add("d-none");
+
+    }, 250);
+  }
+  

@@ -79,12 +79,12 @@ function contactBarHtml(letter) {
  * html code to show the html form to add a new contact
  * @returns html code to show the new contact 
  */
-function addNewContactHtml() {
+function addNewContactHtml(mo) {
     return /*html*/`
     <div class="add-contact animationFadeIn">
     <div class="add-contact-head">
         <div class="add-contact-cross" >
-            <img class="img-cross" onclick="closeAddContact()" src="/src/assets/img/pngegg.png" alt="">
+            <img class="img-cross" onclick="closeAddContact(${mo})" src="/src/assets/img/pngegg.png" alt="">
         </div>
         <div class="add-contact-header-info" >
             <div onclick="closeAddContact()>

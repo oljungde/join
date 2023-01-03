@@ -57,6 +57,7 @@ async function addToTask(i, taskStatus) {
     prioritySelect = [];
     taskCategoryFinaly = [];
     subTasks = [];
+    userSelect = [];
     if (i == 0) {
       window.location.href = './board.html';
       filterTasksByStatus();
@@ -172,6 +173,7 @@ function clearSubTasks() {
  * @param {*} i 
  */
 function closeAddTaskMask(i) {
+  userSelect = [];
   if (i == 1) {
     document.getElementById('AddTaskMaskBg').classList.add('d-none');
     selectorcontactIndex = 0;
@@ -186,7 +188,7 @@ function closeAddTaskMask(i) {
 
 //renders the Drop Down Menu for the User selection
 function showUsers(contact) {
-  userSelect = [];
+  
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   if (selectorcontactIndex == 0) {
@@ -199,6 +201,12 @@ function showUsers(contact) {
       </div>
       `;
     }
+    document.getElementById('selector_user_dropdown').innerHTML += `
+      <div class="selectorCell pointer" onclick="openAddContact(1)">
+        <div>Invite new contact</div>
+        <div><img src="./assets/img/newContact-img.png"></div>
+      </div>
+    `;
     for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
       let currentTask = filteredTasks[filteredTasksIndex];
 
