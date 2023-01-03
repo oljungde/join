@@ -23,14 +23,14 @@ async function init() {
 function checkUserIsLoggedIn() {
     checkRememberMeStatus();
     let loginStatus = sessionStorage.getItem('loggedIn');
-    if (loginStatus == 'true' && (window.location.href == './index.html' || window.location.href == './')) {
+    if (loginStatus == 'true' && (window.location.pathname == '/src/index.html' || window.location.pathname == '/src/')) {
         window.location.href = './summary.html';
-    } else if (loginStatus == 'true' && window.location.href == './sign-up.html') {
+    } else if (loginStatus == 'true' && window.location.pathname == '/sign-up.html') {
         window.location.href = './summary.html';
-    } else if (loginStatus == null && (window.location.href == './sign-up.html' || window.location.href == './')) {
+    } else if (loginStatus == null && (window.location.pathname == '/src/sign-up.html' || window.location.pathname == '/src/')) {
 
     }
-    else if (loginStatus == null && window.location.href != './index.html') {
+    else if (loginStatus == null && window.location.pathname != '/src/index.html') {
         window.location.href = './index.html';
     }
 }
