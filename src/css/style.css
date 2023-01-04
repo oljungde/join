@@ -140,6 +140,7 @@ a:hover {
     color: var(--color-blue-main);
     transform: scale(0);
     transition: all 75ms ease-in-out;
+    z-index: 95;
 }
 
 .header-nav-popup:hover {
