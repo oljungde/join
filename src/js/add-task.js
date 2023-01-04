@@ -202,12 +202,23 @@ function showUsers(contact) {
       </div>
       `;
     }
+    if (!(contact == 0)) {
     document.getElementById('selector_user_dropdown').innerHTML += `
       <div class="selectorCell pointer" onclick="openAddContact(1)">
         <div>Invite new contact</div>
         <div><img src="./assets/img/newContact-img.png"></div>
       </div>
     `;
+    }
+    if (contact == 0) {
+      let f = savecontactforaddtask;
+      let contactintask = currentUser.contacts[f];
+      let contactInitials = contactintask['contactInitials'];
+      let contactcolor = contactintask['contactcolor'];
+      let contactname = contactintask['contactName'];
+      
+      selectedUser(contactInitials, contactcolor, f, contactname);
+  }
 
     if(userSelect.length > 0){
       for (let o = 0; o < userSelect.length; o++) {
@@ -219,31 +230,8 @@ function showUsers(contact) {
       }
       
     }
-    for (let filteredTasksIndex = 0; filteredTasksIndex < filteredTasks.length; filteredTasksIndex++) {
-      let currentTask = filteredTasks[filteredTasksIndex];
-
-      if (contact == 0) {
-        let f = savecontactforaddtask;
-        let contactintask = currentUser.contacts[f];
-        let contactInitials = contactintask['contactInitials'];
-        let contactcolor = contactintask['contactcolor'];
-        let contactname = contactintask['contactName'];
-        selectorcontactIndex++;
-        selectedUser(contactInitials, contactcolor, f, contactname);
-      }
-      // if (currentTask.id == contact) {
-
-      //   for (let u = 0; u < currentTask.user.length; u++) {
-      //     let user = currentTask.user[u];
-      //     let contactInitials = user['contactInitials'];
-      //     let contactcolor = user['concolor'];
-      //     let contactname = user['contactname'];
-      //     let id = user['id'];
-
-      //     selectedUser(contactInitials, contactcolor, id, contactname);
-      //   }
-      // }
-    }
+    
+    
   }
   else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
