@@ -26,6 +26,21 @@ function generateTodoHTML(element) {
 
 
 /**
+ * code to render the progress bar of the current task
+ * @param {number} taskId is the id of the current task
+ * @returns the html code to render the progress bar
+ */
+function progressBarTemplate(taskId) {
+    return /*html*/ `
+         <div class="progress-bar">
+            <div class="progress-bar-fill" id="fill${taskId}"></div>
+        </div>
+        <span class="progress-bar-text" id="fill-text${taskId}"> Done</span>
+    `;
+}
+
+
+/**
  * @returns the html code for rendering the task details window
  */
 function detailContentTemplate() {

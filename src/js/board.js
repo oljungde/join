@@ -118,6 +118,10 @@ function renderContactInTask(element) {
 }
 
 
+/**
+ * determines how many subtasks are present, how many of them are done, and renders the progressbar
+ * @param {object} element is the current task
+ */
 function renderProgressBar(element) {
     let subTasksInTask = element.subTasks;
     let subTasksInTasksDone = subTasksInTask.filter((subTasksInTasksDone) => {
@@ -132,16 +136,6 @@ function renderProgressBar(element) {
         fill.style.width = `${subTasksInTasksDone.length / subTasksInTask.length * 100}%`;
         fillText.innerHTML = `${subTasksInTasksDone.length}/${subTasksInTask.length} Done`;
     }
-}
-
-
-function progressBarTemplate(taskId) {
-    return /*html*/ `
-         <div class="progress-bar">
-            <div class="progress-bar-fill" id="fill${taskId}"></div>
-        </div>
-        <span class="progress-bar-text" id="fill-text${taskId}"> Done</span>
-    `;
 }
 
 
