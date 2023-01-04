@@ -120,8 +120,8 @@ function changeTaskTemplate(id) {
                     <img class="selectorArrow" src="assets/img/blue-dropdown-arrow.png" alt="">
                 </div>
             </div>
-            <div class="selector-user-dropdown" id="selector_user_dropdown">  
-            </div>
+            <div class="selector-user-dropdown" id="selector_user_dropdown"></div>
+            <div id="selector_user_dropdown_contact" class="display-flex-in-addtask"></div>
 
             <div class="detail-subTasks" id="edit_subTasks2">
                 <h4>Subtasks:</h4>

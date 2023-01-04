@@ -188,7 +188,7 @@ function closeAddTaskMask(i) {
 
 //renders the Drop Down Menu for the User selection
 function showUsers(contact) {
-
+  
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   if (selectorcontactIndex == 0) {
