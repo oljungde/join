@@ -617,7 +617,7 @@ h3 {
     padding: 18px 10px;
     gap: 10px;
     isolation: isolate;
-    width: 105%;
+    width: 100%;
     height: 51px;
     background: #FFFFFF;
     border-bottom: 1px solid #D1D1D1;
@@ -642,25 +642,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #D1D1D1;
 }
 
-/*
-#chooseCategory{
-background-color: #4589ff;
-    width: 200px;
-    border-radius: 13px;
-    color: white;
-    display: flex;
-    padding: 9px;
-}
-
-
-
-#chossePriority{
-    display: flex;
-    justify-content: center;
-    color: var(--color-blue-main);;
-    margin-top: 20px;
-}
-*/
 
 .inputfield-new-category {
     display: flex;
@@ -673,6 +654,10 @@ background-color: #4589ff;
     position: relative;
     bottom: 53px;
     left: -20px;
+}
+
+.inputUser {
+    width: 110%;
 }
 
 .input-subtasks {
