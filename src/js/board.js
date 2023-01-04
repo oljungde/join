@@ -81,7 +81,7 @@ function renderBoard(toDo, inProgress, awaitingFeedback, done) {
     renderTasks(inProgress);
     renderTasks(awaitingFeedback);
     renderTasks(done);
-    updateProgressBar();
+    // updateProgressBar();
 }
 
 
@@ -94,6 +94,7 @@ function renderTasks(status) {
         const element = status[index];
         let taskStatus = element.status;
         document.getElementById(taskStatus).innerHTML += generateTodoHTML(element);
+        renderProgressBar(element)
         renderContactInTask(element);
     }
 }
@@ -117,40 +118,30 @@ function renderContactInTask(element) {
 }
 
 
-/**
- * update the progressbar when subTasks are checked
- */
-function updateProgressBar() {
-    for (i = 0; i < filteredTasks.length; i++) {
-        let taskId = filteredTasks[i].id;
-        let subtasksInTask = filteredTasks[i].subTasks
-        let doneSubTasksLenght = 0;
+function renderProgressBar(element) {
+    let subTasksInTask = element.subTasks;
+    let subTasksInTasksDone = subTasksInTask.filter((subTasksInTasksDone) => {
+        return subTasksInTasksDone.done == true;
+    });
+    let taskId = element.id;
+    if (subTasksInTask.length > 0) {
+        let taskProgressContainer = document.getElementById('task_progress_' + taskId);
+        taskProgressContainer.innerHTML += progressBarTemplate(taskId);
         let fill = document.getElementById('fill' + taskId);
         let fillText = document.getElementById('fill-text' + taskId);
-
-        for (let d = 0; d < subtasksInTask.length; d++) {
-            let doneSubTasks = subtasksInTask[d].done 
-            if (doneSubTasks == true) {
-                doneSubTasksLenght++;  
-            }
-        }
-        if (doneSubTasksLenght == 0) {
-            fill.style.width = "0";
-            fillText.innerHTML = `${doneSubTasksLenght}/${subtasksInTask.length} Done`;
-        }
-        if (doneSubTasksLenght == 1 && doneSubTasksLenght !== subtasksInTask.length  ) { 
-            fill.style.width = "33%";
-            fillText.innerHTML = `${doneSubTasksLenght}/${subtasksInTask.length} Done`;
-        }
-        if (doneSubTasksLenght == 2 && doneSubTasksLenght !== subtasksInTask.length  ) { 
-            fill.style.width = "66%";
-            fillText.innerHTML = `${doneSubTasksLenght}/${subtasksInTask.length} Done`;
-        }
-        if (doneSubTasksLenght == subtasksInTask.length && subtasksInTask.length !== 0 ) { 
-            fill.style.width = "100%";
-            fillText.innerHTML = `${doneSubTasksLenght}/${subtasksInTask.length} Done`;
-        }  
+        fill.style.width = `${subTasksInTasksDone.length / subTasksInTask.length * 100}%`;
+        fillText.innerHTML = `${subTasksInTasksDone.length}/${subTasksInTask.length} Done`;
     }
+}
+
+
+function progressBarTemplate(taskId) {
+    return /*html*/ `
+         <div class="progress-bar">
+            <div class="progress-bar-fill" id="fill${taskId}"></div>
+        </div>
+        <span class="progress-bar-text" id="fill-text${taskId}"> Done</span>
+    `;
 }
 
 
@@ -539,12 +530,11 @@ function closeDetailTask() {
 function hideAddTaskMask() {
     setTimeout(() => {
         document.getElementById("AddTaskMaskBg").classList.add("d-none");
-       document.getElementById("detail_container").classList.add("d-none");
+        document.getElementById("detail_container").classList.add("d-none");
 
     }, 250);
-  }
+}
 
-  function doNotClose(event) {
+function doNotClose(event) {
     event.stopPropagation();
 }
-  
