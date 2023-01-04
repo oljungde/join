@@ -109,6 +109,10 @@ h3 {
     justify-content: space-between;
     align-items: center;
     padding: 50px;
+    position: fixed;
+    background-color: white;
+    z-index: 90;
+    width: 100%;
 }
 
 .kanbanBoard {
@@ -117,6 +121,7 @@ h3 {
     margin-left: 50px;
     margin-right: 50px;
     gap: 50px;
+    padding-top: 200px;
 }
 
 
