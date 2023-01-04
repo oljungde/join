@@ -13,6 +13,8 @@
     display: flex;
     gap: 20px;
     justify-content: flex-end;
+    padding-bottom: 50px;
+   padding-left: 100px;
 
 }
 
@@ -33,18 +35,24 @@
     font-size: 23px;
     line-height: 120%;
 
+
 }
 
 .leftcontainer{
-    overflow: auto;
-    width: 800px;
+    overflow: hidden;
+    width: 600px;
 }
 
 .right-container {
-    width: 100%;
+    width: 50%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    position: fixed;
+
+    right: 0;
+    bottom: 0;
 
 }
 
