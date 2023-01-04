@@ -164,7 +164,7 @@ a:hover {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    z-index: 100;
+    z-index: 95;
 }
 
 .sidebar a {
