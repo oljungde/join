@@ -81,7 +81,7 @@ function contactBarHtml(letter) {
  */
 function addNewContactHtml(mo) {
     return /*html*/`
-    <div class="add-contact animationFadeIn">
+    <div class="add-contact animationFadeIn" onclick="doNotClose(event)">
     <div class="add-contact-head">
         <div class="add-contact-cross" >
             <img class="img-cross" onclick="closeAddContact(${mo})" src="/src/assets/img/pngegg.png" alt="">
