@@ -135,7 +135,8 @@ h3 {
 
 
 .drag-over {
-    border: dashed 2px lightgray;
+    background-color: lightgray;
+    border: dashed 2px gray;
 }
 
 
@@ -367,7 +368,7 @@ h3 {
     right: 0;
     background-color: rgba(211, 211, 211, 0.5);
     display: flex;
-    
+
     align-items: center;
     z-index: 100;
 }
