@@ -52,6 +52,10 @@ function closeAddContact(mo) {
     }
 }
 
+function hideAddContacts(){
+    document.getElementById('opencontact').classList.add("d-none");
+}
+
 
 /**
  * pulls them out of the input and puts them in a json
