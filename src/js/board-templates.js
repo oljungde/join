@@ -162,7 +162,7 @@ function changeTaskTemplate(id) {
 function renderAssignedSubTasksTemplate(currentSubTask, assignedSubTaskIndex, id) {
     return /*html*/ `
         <div>
-            <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${id}, ${assignedSubTaskIndex})" type="checkbox">    
+            <input id="subTask_${assignedSubTaskIndex}" onchange="setSubTaskDone(${id}, ${assignedSubTaskIndex})" type="checkbox" class="pointer">    
             <span id="subTask_title_${assignedSubTaskIndex}">${currentSubTask.title}</span>
         </div>
     `;
