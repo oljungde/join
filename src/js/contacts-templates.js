@@ -137,9 +137,9 @@ function addNewContactHtml(mo) {
  */
 function editContactHtml(contact, lettersFB, index) {
     return /*html*/`
-    <div class="add-contact animationFadeIn">
+    <div class="add-contact animationFadeIn" onclick="doNotClose(event)">
     <div class="add-contact-head">
-        <div class="add-contact-cross" onclick="closeAddContact()">
+        <div class="add-contact-cross" onclick="hideAddContacts()">
             <img class="img-cross" src="./assets/img/pngegg.png" alt="">
         </div>
         <div class="add-contact-header-info" >
