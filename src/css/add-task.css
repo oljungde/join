@@ -76,9 +76,12 @@
 
 @media (max-width: 1200px) {
 
-    .right-container {
-        display: none;
-    }
+.addTask-bottom{
+    position: absolute;
+    top: 5px;
+    left: -360px;
+
+}
 
     .addTaskFormHTML {
         display: flex;
