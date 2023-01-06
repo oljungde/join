@@ -299,6 +299,7 @@ function invEditContact(oldEmail, index, lettersFB) {
         'oldEmail': oldEmail
     };
     changeUser(contactTask, index, lettersFB);
+    hideAddContacts();
 }
 
 
