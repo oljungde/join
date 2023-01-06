@@ -143,6 +143,7 @@ function pushSubtasks() {
  * @param {string } emptySubTaskText is the text to show if the con from the new subtask is empty
  */
 function isNewSubTask(newSubTaskText, emptySubTaskText) {
+  let subTaskInput = document.getElementById("new_subtask_text")
   if (newSubTaskText.length > 0) {
     newSubTask = {
       'title': newSubTaskText,
@@ -151,9 +152,13 @@ function isNewSubTask(newSubTaskText, emptySubTaskText) {
     subTasks.push(newSubTask)
     renderSubTask(newSubTask);
     document.getElementById('new_subtask_text').value = ``
-  } else {
-    emptySubTaskText.innerHTML = 'Please enter a title for the subtask';
-  }
+  } else if (newSubTaskText.length == 0) {
+    subTaskInput.placeholder = 'Please enter a subtask!';
+    setTimeout(() => {
+      subTaskInput.placeholder = 'Add a new subtask!';
+    }, 2000);
+    
+  } 
 }
 
 
