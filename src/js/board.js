@@ -2,6 +2,7 @@ let currentDraggedElement;
 let alreadyEmpty = true;
 let filteredTasks = [];
 let currentTask = {};
+let dragAreas;
 
 
 /**
@@ -147,6 +148,10 @@ function startDragging(id) {
     for (i = 0; i < currentUserTasks.length; i++) {
         let index = currentUserTasks[i]['id'];
         if (index == id) {
+            dragAreas = document.querySelectorAll('.drag-area');
+            dragAreas.forEach(ele => {
+                ele.classList.add('drag-over');
+            });
             currentDraggedElement = i;
             console.log(currentDraggedElement);
         }
@@ -170,7 +175,10 @@ function allowDrop(ev) {
  */
 async function moveTo(e, status) {
     currentUserTasks[currentDraggedElement]['status'] = status;
-    e.target.classList.remove('drag-over');
+    // e.target.classList.remove('drag-over');
+    dragAreas.forEach(ele => {
+        ele.classList.remove('drag-over');
+    });
     filterTasksByStatus();
     console.log(currentUserTasks);
     backend.setItem('users', JSON.stringify(users));
@@ -182,15 +190,15 @@ async function moveTo(e, status) {
  * @param {*} e  - This is the event
  */
 function dragEnter(e) {
-    e.target.classList.add('drag-over');
+    // e.target.classList.add('drag-over');
 }
 
 function dragOver(e) {
-    e.target.classList.add('drag-over');
+    // e.target.classList.add('drag-over');
 }
 
 function dragLeave(e) {
-    e.target.classList.remove('drag-over');
+    // e.target.classList.remove('drag-over');
 }
 
 
@@ -527,7 +535,7 @@ function hideAddTaskMask() {
         document.getElementById("detail_container").classList.add("d-none");
         document.getElementById('AddTaskMaskContact').classList.add("d-none");
         document.getElementById('AddTaskMaskContact').classList.add("d-none");
-        
+
 
     }, 250);
 }
