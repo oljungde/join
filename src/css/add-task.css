@@ -128,7 +128,9 @@
         
     }
 
-    
+    .addTaskFormHTML{
+        padding-bottom: 200px;
+    }
 
     .input-date{
         width: 100%;

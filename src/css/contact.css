@@ -605,6 +605,7 @@ body {
     .add-contact-main {
         width: 100vw;
         border-radius: 0;
+        padding-bottom: 115px;
     }
 
     #contact-detail-in-main {
