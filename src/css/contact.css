@@ -61,6 +61,7 @@ body {
     font-size: 23px;
     font-weight: 400;
     margin-top: 30px;
+    gap: 8px;
 }
 
 .contact-right-side {
@@ -315,6 +316,9 @@ body {
     font-size: 16px;
     margin: 0;
     cursor: pointer;
+        display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .contact-detail-info-main {
@@ -334,6 +338,9 @@ body {
     font-size: 16px;
     font-weight: 400;
     margin-left: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .contact-detail-email-number {
