@@ -445,7 +445,7 @@ h3 {
 .addTaskForm {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 2px;
     width: 442px;
 }
 
@@ -674,7 +674,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 100%;
     border: none;
     outline: none;
-    padding: 13px 21px;
 
 }
 
