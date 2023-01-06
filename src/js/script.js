@@ -14,6 +14,7 @@ async function init() {
     await downloadFromServer();
     users = await JSON.parse(backend.getItem('users')) || [];
     getCurrentUser();
+    imgheader();
 }
 
 

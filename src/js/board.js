@@ -15,7 +15,6 @@ async function initBoard() {
     checkUserIsLoggedIn();
     getTasksOfCurrentUser();
     handleFilterTasks();
-    imgheader();
 }
 
 

@@ -17,7 +17,6 @@ async function initAddTask() {
   await init();
   setNavLinkActive();
   checkUserIsLoggedIn();
-  imgheader();
   getTasksOfCurrentUser();
 }
 
@@ -157,8 +156,8 @@ function isNewSubTask(newSubTaskText, emptySubTaskText) {
     setTimeout(() => {
       subTaskInput.placeholder = 'Add a new subtask!';
     }, 2000);
-    
-  } 
+
+  }
 }
 
 
@@ -193,7 +192,7 @@ function closeAddTaskMask(i) {
 
 //renders the Drop Down Menu for the User selection
 function showUsers(contact) {
-  
+
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   if (selectorcontactIndex == 0) {
@@ -208,7 +207,7 @@ function showUsers(contact) {
       `;
     }
     if (!(contact == 0)) {
-    document.getElementById('selector_user_dropdown').innerHTML += `
+      document.getElementById('selector_user_dropdown').innerHTML += `
       <div class="selectorCell pointer" onclick="openAddContact(1)">
         <div>Invite new contact</div>
         <div><img src="./assets/img/newContact-img.png"></div>
@@ -221,11 +220,11 @@ function showUsers(contact) {
       let contactInitials = contactintask['contactInitials'];
       let contactcolor = contactintask['contactcolor'];
       let contactname = contactintask['contactName'];
-      
-      selectedUser(contactInitials, contactcolor, f, contactname);
-  }
 
-    if(userSelect.length > 0){
+      selectedUser(contactInitials, contactcolor, f, contactname);
+    }
+
+    if (userSelect.length > 0) {
       for (let o = 0; o < userSelect.length; o++) {
         let contactInitials = userSelect[o]['contactInitials'];
         let contactcolor = userSelect[o]['concolor'];
@@ -233,10 +232,10 @@ function showUsers(contact) {
         let id = userSelect[o]['id'];
         selectedUserAdd(contactInitials, contactcolor, id, contactname);
       }
-      
+
     }
-    
-    
+
+
   }
   else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
@@ -244,7 +243,7 @@ function showUsers(contact) {
       document.getElementById('selector_user_dropdown_contact').innerHTML += `
         <div style="background-color:${userSelect[i]['concolor']}" class="user">${userSelect[i]['contactInitials']}</div>
       `;
-      
+
     }
     selectorcontactIndex--;
   }
@@ -262,9 +261,9 @@ function LFContact() {
   document.getElementById('selector_user_dropdown').innerHTML = ``;
 }
 
-function selectedUserAdd(contactInitials, contactcolor, i, contactname){
+function selectedUserAdd(contactInitials, contactcolor, i, contactname) {
   document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).classList.add('checked');
-    document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).src = 'assets/img/userSelect-selected.png';
+  document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).src = 'assets/img/userSelect-selected.png';
 }
 
 // getting selected User

@@ -18,7 +18,6 @@ async function initSummary() {
     showNumberOfTasksInProgress();
     showNumberOfTasksAwaitingFeedback();
     showNumberOfTasksDone();
-    imgheader();
 }
 
 
