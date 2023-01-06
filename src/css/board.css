@@ -1069,21 +1069,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 
 
-
-    .nav-link {
-        flex-direction: column;
-        padding: 15px;
-        gap: 0;
-    }
-
-    .nav-link img {
-        margin-left: 0;
-    }
-
-    .nav-link p {
-        padding-right: 0;
-    }
-
     .DetailContainer {
         align-items: flex-start;
 

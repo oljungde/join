@@ -253,3 +253,18 @@ a:hover {
         font-size: var(--font-size-regular);
     }
 }
+
+@media (max-width: 576px) {
+
+    .nav-link {
+        flex-direction: column;
+        gap: 0px;
+        padding: 5px;
+        align-items: flex-start;
+    }
+
+    .nav-link img {
+        display: flex;
+    }
+
+}
