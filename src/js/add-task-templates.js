@@ -27,7 +27,7 @@ function openAddTaskHtml(i, taskStatus) {
              </div>
           </div>
   
-          <h4>Category</h4>  <span class="d-none" class="category-alert" id="chooseCategory">Please choose a Category</span>      
+          <h4>Category</h4>  <span class="d-none" class="category-alert" id="chooseCategory">This field is required</span>      
           <div id="category_selector">
              <div id="selected_category" class="selector-header" onclick="showTaskCategories()">
                 Select task category

@@ -648,6 +648,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #D1D1D1;
 }
 
+#chooseCategory{
+    color: red;
+    text-align: center;
+}
+
 
 .inputfield-new-category {
     display: flex;
