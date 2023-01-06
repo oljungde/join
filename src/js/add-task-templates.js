@@ -35,7 +35,7 @@ function openAddTaskHtml(i, taskStatus) {
              </div>
           </div>
           <div class="selector-Category-Dropdown" id="selector_Category_Dropdown">  </div>
-            <span id="chossePriority" class="d-none">Please choose a Priority</span>
+            <span id="chossePriority" class="d-none">This field is required</span>
            <div class="priorityContainer">
               <div class="priority-urgent" onclick="selectedPriority(1)" id="priorityUrgent">
                   <p>Urgent</p> 

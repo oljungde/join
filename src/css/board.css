@@ -653,6 +653,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-align: center;
 }
 
+#chossePriority{
+    color: red;
+    text-align: center;
+}
+
 
 .inputfield-new-category {
     display: flex;
