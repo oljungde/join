@@ -14,7 +14,7 @@
     gap: 20px;
     justify-content: flex-end;
     padding-bottom: 80px;
-   padding-left: 100px;
+    padding-left: 100px;
 
 }
 
@@ -38,7 +38,7 @@
 
 }
 
-.leftcontainer{
+.leftcontainer {
     overflow: hidden;
     width: 600px;
 }
@@ -70,18 +70,32 @@
     cursor: pointer;
 }
 
-.display-flex-in-addtask{
+.display-flex-in-addtask {
     display: flex;
 }
 
 @media (max-width: 1200px) {
 
-.addTask-bottom{
-    position: absolute;
-    top: 5px;
-    left: -360px;
+    .Mainheader{
+        background-color: white;
+    }
+    
+    .addTask-bottom {
+        position: absolute;
+        top: 10px;
+        right: 10px;
 
-}
+    }
+
+    .addTask-button{
+        height: 60px;
+        width: 183px;
+    }
+
+    .clear-button {
+        height: 60px;
+        width: 110px;
+    }
 
     .addTaskFormHTML {
         display: flex;
@@ -116,26 +130,23 @@
         height: 100vh;
     }
 
-    
-}
-
-@media (max-width: 770px) {
-
 
 }
+
+@media (max-width: 770px) {}
 
 @media (max-width: 500px) {
 
     .Main-Container {
         height: 100%;
-        
+
     }
 
-    .addTaskFormHTML{
+    .addTaskFormHTML {
         padding-bottom: 200px;
     }
 
-    .input-date{
+    .input-date {
         width: 100%;
     }
 
@@ -157,7 +168,7 @@
         display: none;
     }
 
-    .input-date{
+    .input-date {
         width: 100%;
     }
 
