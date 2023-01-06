@@ -578,7 +578,7 @@ h3 {
 .input {
     display: flex;
     align-items: center;
-    width: 422px;
+    width: 100%;
     border: none;
     font-size: 20px;
     margin-top: 15px;
@@ -609,8 +609,8 @@ h3 {
 .inputfield-new-user {
     display: flex;
     border-bottom: 1px solid #D1D1D1;
-    width: 422px;
-    padding: 10px 21px;
+    width: 100%;
+    padding: 10px 0px;
     padding-top: 0;
 }
 
@@ -662,7 +662,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .inputUser {
-    width: 110%;
+    width: 100%;
 }
 
 .input-subtasks {
