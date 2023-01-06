@@ -1091,13 +1091,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media (max-width: 485px) {
 
-    .input {
-        width: 145%;
-    }
-
-    .input-date {
-        width: 70% !important;
-    }
+  
+   
 
     .priorityContainer img {
         width: 15px;

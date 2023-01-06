@@ -40,7 +40,8 @@
 
 .leftcontainer {
     overflow: hidden;
-    width: 600px;
+    width: 422px;
+    padding-top: 20px;
 }
 
 .right-container {
@@ -160,9 +161,7 @@
         padding-left: 5px;
     }
 
-    .inputfield-new-user {
-        width: 90%;
-    }
+
 
     .rightContainer {
         display: none;
