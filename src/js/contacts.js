@@ -21,17 +21,17 @@ function renderAllContact() {
  * opens a window to add contacts
  */
 function openAddContact(mo) {
-    if(mo == 1){
-    let addcontact = document.getElementById('AddTaskMaskContact');
-    addcontact.classList.remove('d-none');
-    addcontact.innerHTML = '';
-    addcontact.innerHTML = addNewContactHtml(mo);
+    if (mo == 1) {
+        let addcontact = document.getElementById('AddTaskMaskContact');
+        addcontact.classList.remove('d-none');
+        addcontact.innerHTML = '';
+        addcontact.innerHTML = addNewContactHtml(mo);
     }
-    else if (mo == 0){
-    let addcontact = document.getElementById('opencontact');
-    addcontact.classList.remove('d-none');
-    addcontact.innerHTML = '';
-    addcontact.innerHTML = addNewContactHtml(mo);
+    else if (mo == 0) {
+        let addcontact = document.getElementById('opencontact');
+        addcontact.classList.remove('d-none');
+        addcontact.innerHTML = '';
+        addcontact.innerHTML = addNewContactHtml(mo);
     }
 }
 
@@ -40,19 +40,19 @@ function openAddContact(mo) {
  * close a window to add contacts
  */
 function closeAddContact(mo) {
-    if(mo == 0){
-    let addcontact = document.getElementById('opencontact');
-    addcontact.classList.add('d-none');
-    addcontact.innerHTML = '';
+    if (mo == 0) {
+        let addcontact = document.getElementById('opencontact');
+        addcontact.classList.add('d-none');
+        addcontact.innerHTML = '';
     }
-    else if (mo == 1){
-    let addtask = document.getElementById('AddTaskMaskContact');
-    addtask.classList.add('d-none');
-    addtask.innerHTML = '';
+    else if (mo == 1) {
+        let addtask = document.getElementById('AddTaskMaskContact');
+        addtask.classList.add('d-none');
+        addtask.innerHTML = '';
     }
 }
 
-function hideAddContacts(){
+function hideAddContacts() {
     document.getElementById('opencontact').classList.add("d-none");
 }
 
@@ -91,21 +91,21 @@ function createContact(mo) {
 function checkOrLoad(look, contactName, contactTask, mo) {
     if (look == -1) {
         addNewContact(contactTask);
-        if (mo == 0){
-        fillAllTasks(contactName, mo);
+        if (mo == 0) {
+            fillAllTasks(contactName, mo);
         }
-        if (mo == 1){
+        if (mo == 1) {
             let letter = contactName.charAt(0);
             if (currentUser.lettertask.includes(letter)) {
                 // clearContactBar( mo);
             }
-            else{
-            saveLetterContact(letter);
+            else {
+                saveLetterContact(letter);
             }
             closeAddContact(mo);
             selectorcontactIndex = 0;
             showUsers(mo);
-            
+
         }
     }
     else {
@@ -191,18 +191,18 @@ function popupContactSave() {
 
 
 // Clear Contact Letter Bar
-function clearContactBar( mo) {
-    if(mo == 0){
-    for (let i = 0; i < currentUser.lettertask.length; i++) {
-        let clear = currentUser.lettertask[i];
-        let contactSmall = document.getElementById(clear)
-        while (contactSmall.lastChild) {
-            contactSmall.removeChild(contactSmall.lastChild);
+function clearContactBar(mo) {
+    if (mo == 0) {
+        for (let i = 0; i < currentUser.lettertask.length; i++) {
+            let clear = currentUser.lettertask[i];
+            let contactSmall = document.getElementById(clear)
+            while (contactSmall.lastChild) {
+                contactSmall.removeChild(contactSmall.lastChild);
             }
         }
         contactChild();
     }
-    
+
 }
 
 
@@ -403,7 +403,8 @@ function OpenContactAddTask(i, index) {
     console.log(savecontactforaddtask);
     let openaddtask = document.getElementById('openContactAddtask');
     document.getElementById('openContactAddtaskBG').classList.remove('d-none');
-    openaddtask.innerHTML = openAddTaskHtml(i);
+    let taskStatus = 'toDo';
+    openaddtask.innerHTML = openAddTaskHtml(i, taskStatus);
 
 }
 

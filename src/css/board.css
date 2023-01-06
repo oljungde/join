@@ -131,10 +131,10 @@ h3 {
     align-items: center;
     height: 100vh;
     border-radius: 30px;
+    padding: 2px;
 }
 
-
-.drag-over {
+.drag-area.drag-over {
     background-color: lightgray;
     border: dashed 2px gray;
 }
