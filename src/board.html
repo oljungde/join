@@ -69,7 +69,7 @@
                     <div class="drag-area-top-Section">
                         <h3>To do</h3> <img onclick="openAddTaskMask(1, 'toDo');" class="plusButton" src="assets/img/plus button v1.png" alt="">
                     </div>
-                    <div class="drag-area" id="toDo" ondrop="moveTo(event,'toDo')" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)">
+                    <div class="drag-area" id="toDo" ondrop="moveTo('toDo')" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)">
 
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                     <div class="drag-area-top-Section">
                         <h3>In progress</h3><img onclick="openAddTaskMask(1, 'inProgress')" class="plusButton" src="assets/img/plus button v1.png" alt="">
                     </div>
-                    <div class="drag-area" id="inProgress" ondrop="moveTo(event,'inProgress')" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)">
+                    <div class="drag-area" id="inProgress" ondrop="moveTo('inProgress')" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)">
                     </div>
                 </div>
 
@@ -86,14 +86,14 @@
                     <div class="drag-area-top-Section">
                         <h3>Awaiting Feedback</h3><img onclick="openAddTaskMask(1, 'awaitingFeedback')" class="plusButton" src="assets/img/plus button v1.png" alt="">
                     </div>
-                    <div class="drag-area" id="awaitingFeedback" ondrop="moveTo(event,'awaitingFeedback')" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)"></div>
+                    <div class="drag-area" id="awaitingFeedback" ondrop="moveTo('awaitingFeedback')" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)"></div>
                 </div>
 
                 <div class="drag-area-Container" id="done-Container">
                     <div class="drag-area-top-Section">
                         <h3>Done</h3><img onclick="openAddTaskMask(1, 'done')" class="plusButton" src="assets/img/plus button v1.png" alt="">
                     </div>
-                    <div class="drag-area" id="done" ondrop="moveTo(event,'done')" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)"></div>
+                    <div class="drag-area" id="done" ondrop="moveTo('done')" ondragenter="dragEnter(event)" ondragover="allowDrop(event)" ondrop="drop(event)" ondragleave="dragLeave(event)"></div>
                 </div>
 
             </div>

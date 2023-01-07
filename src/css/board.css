@@ -135,16 +135,21 @@ h3 {
     padding: 2px;
 }
 
-.drag-area.drag-over {
-    background-color: lightgray;
-    border: dashed 2px gray;
-}
-
-
 .drag-area-Container {
     width: 20%;
 }
 
+.drag-template {
+    min-height: 200px;
+    width: 90%;
+    margin-top: 20px;
+    border-radius: 30px;
+    order: 1;
+}
+
+.drag-template-start {
+    border: 2px dashed rgba(0, 0, 0, 0.5);
+}
 
 .drag-area-top-Section {
     display: flex;
@@ -649,12 +654,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #D1D1D1;
 }
 
-#chooseCategory{
+#chooseCategory {
     color: red;
     text-align: center;
 }
 
-#chossePriority{
+#chossePriority {
     color: red;
     text-align: center;
 }
@@ -1105,8 +1110,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media (max-width: 485px) {
 
-  
-   
+
+
 
     .priorityContainer img {
         width: 15px;

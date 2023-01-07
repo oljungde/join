@@ -2,7 +2,6 @@ let currentDraggedElement;
 let alreadyEmpty = true;
 let filteredTasks = [];
 let currentTask = {};
-let dragAreas;
 
 
 /**
@@ -82,7 +81,10 @@ function renderBoard(toDo, inProgress, awaitingFeedback, done) {
     renderTasks(inProgress);
     renderTasks(awaitingFeedback);
     renderTasks(done);
-    // updateProgressBar();
+    renderDropTemplate('toDo');
+    renderDropTemplate('inProgress');
+    renderDropTemplate('awaitingFeedback');
+    renderDropTemplate('done');
 }
 
 
@@ -98,6 +100,15 @@ function renderTasks(status) {
         renderProgressBar(element)
         renderContactInTask(element);
     }
+}
+
+
+/**
+ * renders the area to drob a tragged task
+ * @param {string} status is the value for the status of drag area
+ */
+function renderDropTemplate(status) {
+    document.getElementById(status).innerHTML += dropTemplateHTML(status);
 }
 
 
@@ -147,13 +158,13 @@ function renderProgressBar(element) {
 function startDragging(id) {
     for (i = 0; i < currentUserTasks.length; i++) {
         let index = currentUserTasks[i]['id'];
+        let currentDraggedTaskStatus = currentUserTasks[i].status;
         if (index == id) {
-            dragAreas = document.querySelectorAll('.drag-area');
-            dragAreas.forEach(ele => {
-                ele.classList.add('drag-over');
-            });
+            let dragTemplates = document.querySelectorAll('.drag-template');
+            dragTemplates.forEach(dragTemplate => dragTemplate.classList.add('drag-template-start'));
+            let currentDragTemplate = document.getElementById(`drop_template_${currentDraggedTaskStatus}`);
+            currentDragTemplate.classList.remove('drag-template-start');
             currentDraggedElement = i;
-            console.log(currentDraggedElement);
         }
     }
 }
@@ -173,12 +184,8 @@ function allowDrop(ev) {
  * @param {*} e - Ths is the event
  * @param {*} status - This is the status of the Task on the board
  */
-async function moveTo(e, status) {
+async function moveTo(status) {
     currentUserTasks[currentDraggedElement]['status'] = status;
-    // e.target.classList.remove('drag-over');
-    dragAreas.forEach(ele => {
-        ele.classList.remove('drag-over');
-    });
     filterTasksByStatus();
     console.log(currentUserTasks);
     backend.setItem('users', JSON.stringify(users));

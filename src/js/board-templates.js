@@ -40,6 +40,15 @@ function progressBarTemplate(taskId) {
 }
 
 
+function dropTemplateHTML(status) {
+    return /*html*/ `
+        <div id="drop_template_${status}" class="drag-template">
+            
+        </div>
+    `;
+}
+
+
 /**
  * @returns the html code for rendering the task details window
  */
