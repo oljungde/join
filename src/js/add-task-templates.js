@@ -141,3 +141,18 @@ function showExitCategoryInput() {
       <!-- Rendering selector content here -->
     </div>`;
 }
+
+/**
+ * 
+ * @param {*} subTask 
+ * @param {*} subTaskIndex 
+ * @returns the html for the rendered subtasks in the addtask Mask
+ */
+function showSubtaskCheckbox(subTask, subTaskIndex){
+  return /*html*/ `
+  <div id="subTask_${subTaskIndex}" class="subtasks">
+    <span>${subTask.title}</span> 
+    <img src="./assets/img/trash-blue.png" onclick="deleteSubTaskAdd(${subTaskIndex})" class="subtasks-trash" alt="trash"> 
+  </div>
+`;
+}
