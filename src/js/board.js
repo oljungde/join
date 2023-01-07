@@ -122,9 +122,7 @@ function renderContactInTask(element) {
         let color = element.user[i]['concolor'];
         let id = element.id;
         document.getElementById("contacts" + id).innerHTML += /*html*/`
-        
         <div style="background-color: ${color}" class="user">${letter}</div>
-        
         `;
     }
 }
@@ -189,23 +187,6 @@ async function moveTo(status) {
     filterTasksByStatus();
     console.log(currentUserTasks);
     backend.setItem('users', JSON.stringify(users));
-}
-
-
-/**
- * Highlighting the Drag and Drop Area
- * @param {*} e  - This is the event
- */
-function dragEnter(e) {
-    // e.target.classList.add('drag-over');
-}
-
-function dragOver(e) {
-    // e.target.classList.add('drag-over');
-}
-
-function dragLeave(e) {
-    // e.target.classList.remove('drag-over');
 }
 
 
@@ -341,19 +322,17 @@ function editShowSelectedPriority() {
     if (currentTask.priority == "urgent") {
         prioritySelect = "urgent";
         showSelectedPriorityUrgent();
-
     }
     if (currentTask.priority == "medium") {
         prioritySelect = "medium";
         showSelectedPriorityMedium();
-
     }
     if (currentTask.priority == "low") {
         prioritySelect = "low";
         showSelectedPriorityLow()
-
     }
 }
+
 
 /**
  * shows the urgent category button
@@ -368,6 +347,7 @@ function showSelectedPriorityUrgent(){
     document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low.png';
 }
 
+
 /**
  * shows the medium category button
  */
@@ -380,6 +360,7 @@ function showSelectedPriorityMedium(){
     document.getElementById('editPriorityMediumImg').src = 'assets/img/prio-medium-white.png';
     document.getElementById('editPriorityLowImg').src = 'assets/img/prio-low.png';
 }
+
 
 /**
  * shows the low category button
@@ -400,7 +381,6 @@ function showSelectedPriorityLow(){
  * @param {*} i - identifies which priority is clicked
  */
 function editSelectedPriority(i) {
-
     if (i == 1) {
         prioritySelect = "urgent";
         showSelectedPriorityUrgent();
@@ -548,8 +528,6 @@ function hideAddTaskMask() {
         document.getElementById("detail_container").classList.add("d-none");
         document.getElementById('AddTaskMaskContact').classList.add("d-none");
         document.getElementById('AddTaskMaskContact').classList.add("d-none");
-
-
     }, 250);
 }
 
