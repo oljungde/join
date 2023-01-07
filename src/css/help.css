@@ -53,13 +53,22 @@ h1 {
 
 
 
-@media (max-width: 900) {
+@media (max-width: 900px) {
 
     .mainside {
         padding-right: 20px;
     }
 
-  
+}
 
-  
+@media (max-width: 768px) {
+
+    .displayflex {
+        flex-direction: column-reverse;
+    }
+
+    .arrow-left{
+        right: 45px;
+    }
+
 }
