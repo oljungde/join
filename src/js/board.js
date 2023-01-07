@@ -337,7 +337,7 @@ function editShowSelectedPriority() {
 /**
  * shows the urgent category button
  */
-function showSelectedPriorityUrgent(){
+function showSelectedPriorityUrgent() {
     document.getElementById("editPriorityUrgent").classList.add('prio-urgent-selected');
     document.getElementById("editPriorityMedium").classList.remove('prio-medium-selected');
     document.getElementById("editPriorityLow").classList.remove('prio-low-selected');
@@ -351,7 +351,7 @@ function showSelectedPriorityUrgent(){
 /**
  * shows the medium category button
  */
-function showSelectedPriorityMedium(){
+function showSelectedPriorityMedium() {
     document.getElementById("editPriorityMedium").classList.add('prio-medium-selected');
     document.getElementById("editPriorityUrgent").classList.remove('prio-urgent-selected');
     document.getElementById("editPriorityLow").classList.remove('prio-low-selected');
@@ -365,7 +365,7 @@ function showSelectedPriorityMedium(){
 /**
  * shows the low category button
  */
-function showSelectedPriorityLow(){
+function showSelectedPriorityLow() {
     document.getElementById("editPriorityLow").classList.add('prio-low-selected');
     document.getElementById("editPriorityUrgent").classList.remove('prio-urgent-selected');
     document.getElementById("editPriorityMedium").classList.remove('prio-medium-selected');
