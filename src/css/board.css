@@ -1014,6 +1014,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 
     .drag-area {
+        min-height: 200px;
         height: auto;
     }
 
@@ -1054,7 +1055,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 
     .drag-area {
-        height: auto;
+        min-height: 400px;
 
     }
 
