@@ -152,7 +152,6 @@ function isNewSubTask(newSubTaskText, emptySubTaskText) {
     setTimeout(() => {
       subTaskInput.placeholder = 'Add a new subtask!';
     }, 2000);
-
   }
 }
 
@@ -183,7 +182,6 @@ function closeAddTaskMask(i) {
     LFContact();
   }
 }
-
 
 
 /**
@@ -271,21 +269,21 @@ function showContactsDropDown(i, activUserContact, currentUser) {
 }
 
 
-
 function LFContact() {
   let f = savecontactforaddtask;
   let contactintask = currentUser.contacts[f];
-
   let contactcolor = contactintask['contactcolor'];
   let index = findeContactIndex(contactcolor);
   userSelect.splice(index, 1);
   document.getElementById('selector_user_dropdown').innerHTML = ``;
 }
 
+
 function selectedUserAdd(contactInitials, contactcolor, i, contactname) {
   document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).classList.add('checked');
   document.getElementById('user_select' + contactInitials + contactcolor + i + contactname).src = 'assets/img/userSelect-selected.png';
 }
+
 
 // getting selected User
 function selectedUser(contactInitials, contactcolor, i, contactname) {
