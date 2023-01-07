@@ -167,7 +167,6 @@ function clearSubTasks() {
 }
 
 
-//closes the AddTaskMask new by Seb 30.11
 /**
  * closes the AddTaskMask
  * @param {*} i 
@@ -186,29 +185,22 @@ function closeAddTaskMask(i) {
 }
 
 
-//renders the Drop Down Menu for the User selection
-function showUsers(contact) {
 
+/**
+ * renders the Drop Down Menu for the User selection
+ * @param {*} contact 
+ */
+function showUsers(contact) {
   let activUserContact = currentUser.contacts;
   document.getElementById('selector_user_dropdown').innerHTML = ``;
   if (selectorcontactIndex == 0) {
     document.getElementById('selector_user_dropdown_contact').innerHTML = ``;
     selectorcontactIndex++;
     for (let i = 0; i < activUserContact.length; i++) {
-      document.getElementById('selector_user_dropdown').innerHTML += /*html*/`
-      <div onclick="selectedUser('${currentUser.contacts[i]['contactInitials']}', '${currentUser.contacts[i]['contactcolor']}', '${i}', '${currentUser.contacts[i]['contactName']}')" class="selectorCell pointer">
-          <div>${activUserContact[i].contactName}</div>
-          <div><img id="user_select${currentUser.contacts[i]['contactInitials']}${currentUser.contacts[i]['contactcolor']}${i}${currentUser.contacts[i]['contactName']}" src="./assets/img/userSelect-img.png"></div>
-      </div>
-      `;
+      document.getElementById('selector_user_dropdown').innerHTML += showContactsDropDown(i, activUserContact, currentUser);
     }
     if (!(contact == 0)) {
-      document.getElementById('selector_user_dropdown').innerHTML += `
-      <div class="selectorCell pointer" onclick="openAddContact(1)">
-        <div>Invite new contact</div>
-        <div><img src="./assets/img/newContact-img.png"></div>
-      </div>
-    `;
+      document.getElementById('selector_user_dropdown').innerHTML += showInviteNewContact();
     }
     if (contact == 0) {
       let f = savecontactforaddtask;
@@ -230,8 +222,6 @@ function showUsers(contact) {
       }
 
     }
-
-
   }
   else {
     document.getElementById('selector_user_dropdown').innerHTML = ``;
@@ -239,10 +229,37 @@ function showUsers(contact) {
       document.getElementById('selector_user_dropdown_contact').innerHTML += `
         <div style="background-color:${userSelect[i]['concolor']}" class="user">${userSelect[i]['contactInitials']}</div>
       `;
-
     }
     selectorcontactIndex--;
   }
+}
+
+
+function showInviteNewContact(){
+  return /*html*/ `
+  <div class="selectorCell pointer" onclick="openAddContact(1)">
+    <div>Invite new contact</div>
+    <div><img src="./assets/img/newContact-img.png"></div>
+  </div>
+`;
+}
+
+
+
+/**
+ * 
+ * @param {*} i 
+ * @param {*} activUserContact 
+ * @param {*} currentUser 
+ * @returns the html for the contacts dropdown menu in the add task html
+ */
+function showContactsDropDown(i, activUserContact, currentUser){
+  return /*html*/`
+  <div onclick="selectedUser('${currentUser.contacts[i]['contactInitials']}', '${currentUser.contacts[i]['contactcolor']}', '${i}', '${currentUser.contacts[i]['contactName']}')" class="selectorCell pointer">
+      <div>${activUserContact[i].contactName}</div>
+      <div><img id="user_select${currentUser.contacts[i]['contactInitials']}${currentUser.contacts[i]['contactcolor']}${i}${currentUser.contacts[i]['contactName']}" src="./assets/img/userSelect-img.png"></div>
+  </div>
+  `;
 }
 
 
