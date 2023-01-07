@@ -14,7 +14,6 @@ async function init() {
     await downloadFromServer();
     users = await JSON.parse(backend.getItem('users')) || [];
     getCurrentUser();
-    imgheader();
 }
 
 
@@ -120,4 +119,13 @@ function imgheader() {
     let letterFB = currentUser['name'].match(/\b(\w)/g).join('');
     let lettersFB = letterFB.toUpperCase();
     document.getElementById('menu_show').innerHTML = lettersFB;
+}
+
+
+/**
+ * init function for help.html, privacy-policy.html and impress.html
+ */
+async function initHelpLegalNotice() {
+    await init();
+    imgheader();
 }

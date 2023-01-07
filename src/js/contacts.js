@@ -7,6 +7,7 @@ async function initContacts() {
     checkUserIsLoggedIn();
     renderAllContact()
     getTasksOfCurrentUser();
+    imgheader();
 }
 
 

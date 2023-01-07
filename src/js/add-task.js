@@ -18,6 +18,7 @@ async function initAddTask() {
   setNavLinkActive();
   checkUserIsLoggedIn();
   getTasksOfCurrentUser();
+  imgheader();
 }
 
 
