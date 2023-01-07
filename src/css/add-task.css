@@ -1,3 +1,21 @@
+.overlay-header {
+    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10vh;
+    display: flex;
+    background-color: white;
+
+}
+
+.overlay-header img{
+    padding-left: 25px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
 .addTaskFormHTML {
     padding-left: 100px;
     display: flex;
@@ -77,24 +95,24 @@
 
 @media (max-width: 1200px) {
 
-    .Mainheader{
-        background-color: white;
+    .overlay-header {
+        display: block !important;
     }
     
     .addTask-bottom {
         position: absolute;
-        top: 10px;
+        top: 15px;
         right: 10px;
 
     }
 
     .addTask-button{
-        height: 60px;
+        height: 45px;
         width: 183px;
     }
 
     .clear-button {
-        height: 60px;
+        height: 45px;
         width: 110px;
     }
 
