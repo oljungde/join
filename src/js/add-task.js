@@ -208,10 +208,8 @@ function showUsers(contact) {
       let contactInitials = contactintask['contactInitials'];
       let contactcolor = contactintask['contactcolor'];
       let contactname = contactintask['contactName'];
-
       selectedUser(contactInitials, contactcolor, f, contactname);
     }
-
     if (userSelect.length > 0) {
       for (let o = 0; o < userSelect.length; o++) {
         let contactInitials = userSelect[o]['contactInitials'];
@@ -220,22 +218,33 @@ function showUsers(contact) {
         let id = userSelect[o]['id'];
         selectedUserAdd(contactInitials, contactcolor, id, contactname);
       }
-
     }
   }
   else {
-    document.getElementById('selector_user_dropdown').innerHTML = ``;
-    for (let i = 0; i < userSelect.length; i++) {
-      document.getElementById('selector_user_dropdown_contact').innerHTML += `
-        <div style="background-color:${userSelect[i]['concolor']}" class="user">${userSelect[i]['contactInitials']}</div>
-      `;
-    }
-    selectorcontactIndex--;
+    showSelectedContactBubbles()
   }
 }
 
 
-function showInviteNewContact(){
+/**
+ * shows the contact bubbles for the selected contacts after closing the drop down menu
+ */
+function showSelectedContactBubbles() {
+  document.getElementById('selector_user_dropdown').innerHTML = ``;
+  for (let i = 0; i < userSelect.length; i++) {
+    document.getElementById('selector_user_dropdown_contact').innerHTML += `
+        <div style="background-color:${userSelect[i]['concolor']}" class="user">${userSelect[i]['contactInitials']}</div>
+      `;
+  }
+  selectorcontactIndex--;
+}
+
+
+/**
+ * 
+ * @returns the html for the invite new Contact Link
+ */
+function showInviteNewContact() {
   return /*html*/ `
   <div class="selectorCell pointer" onclick="openAddContact(1)">
     <div>Invite new contact</div>
@@ -245,7 +254,6 @@ function showInviteNewContact(){
 }
 
 
-
 /**
  * 
  * @param {*} i 
@@ -253,7 +261,7 @@ function showInviteNewContact(){
  * @param {*} currentUser 
  * @returns the html for the contacts dropdown menu in the add task html
  */
-function showContactsDropDown(i, activUserContact, currentUser){
+function showContactsDropDown(i, activUserContact, currentUser) {
   return /*html*/`
   <div onclick="selectedUser('${currentUser.contacts[i]['contactInitials']}', '${currentUser.contacts[i]['contactcolor']}', '${i}', '${currentUser.contacts[i]['contactName']}')" class="selectorCell pointer">
       <div>${activUserContact[i].contactName}</div>
