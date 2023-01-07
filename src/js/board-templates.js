@@ -6,7 +6,7 @@
 function generateTodoHTML(element) {
     return /*html*/`
     <div onclick="showDetailWindow(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo" id="${element['id']}">   
-      <div class="${element['category']['TaskColor']}">${element['category']['Category']}</div>
+      <span class="${element['category']['TaskColor']}">${element['category']['Category']}</span>
       <div class=titleAndText>
           <h4 class="title">${element['title']}</h4>
           <div class="text">${element['description']}</div>

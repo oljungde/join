@@ -7,7 +7,7 @@
     display: none;
 }
 
-body {
+.overflow-hidden {
     overflow: hidden;
 }
 
@@ -316,7 +316,7 @@ body {
     font-size: 16px;
     margin: 0;
     cursor: pointer;
-        display: flex;
+    display: flex;
     align-items: center;
     gap: 8px;
 }
