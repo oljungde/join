@@ -64,44 +64,39 @@
             </div>
 
             <div class="kanbanBoard">
-                <div class="kanbanBoard-header">
+                <div class="drag-area-Container" id="toDo-Container">
                     <div class="drag-area-top-Section">
                         <h3>To do</h3> <img onclick="openAddTaskMask(1, 'toDo');" class="plusButton" src="assets/img/plus button v1.png" alt="">
                     </div>
 
+                    <div class="drag-area" id="toDo" ondrop="moveTo('toDo')" ondragover="allowDrop(event)" ondrop="drop(event)">
+                    </div>
+                </div>
+
+                <div class="drag-area-Container" id="inProgress-Container">
                     <div class="drag-area-top-Section">
                         <h3>In progress</h3><img onclick="openAddTaskMask(1, 'inProgress')" class="plusButton" src="assets/img/plus button v1.png" alt="">
                     </div>
 
+                    <div class="drag-area" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)" ondrop="drop(event)">
+                    </div>
+                </div>
+
+                <div class="drag-area-Container" id="awaitingFeedback-Container">
                     <div class="drag-area-top-Section">
                         <h3>Awaiting Feedback</h3><img onclick="openAddTaskMask(1, 'awaitingFeedback')" class="plusButton" src="assets/img/plus button v1.png" alt="">
                     </div>
 
+                    <div class="drag-area" id="awaitingFeedback" ondrop="moveTo('awaitingFeedback')" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+                </div>
+
+                <div class="drag-area-Container" id="done-Container">
                     <div class="drag-area-top-Section">
                         <h3>Done</h3><img onclick="openAddTaskMask(1, 'done')" class="plusButton" src="assets/img/plus button v1.png" alt="">
                     </div>
+
+                    <div class="drag-area" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
                 </div>
-
-                <div class="kanbanBoard-content">
-                    <div class="drag-area-Container" id="toDo-Container">
-                        <div class="drag-area drag-area-scrollbar" id="toDo" ondrop="moveTo('toDo')" ondragover="allowDrop(event)" ondrop="drop(event)">
-                        </div>
-                    </div>
-
-                    <div class="drag-area-Container" id="inProgress-Container">
-                        <div class="drag-area" id="inProgress" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)" ondrop="drop(event)">
-                        </div>
-                    </div>
-
-                    <div class="drag-area-Container" id="awaitingFeedback-Container">
-                        <div class="drag-area" id="awaitingFeedback" ondrop="moveTo('awaitingFeedback')" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-                    </div>
-
-                    <div class="drag-area-Container" id="done-Container">
-                        <div class="drag-area" id="done" ondrop="moveTo('done')" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

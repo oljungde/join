@@ -158,8 +158,6 @@ function startDragging(id) {
         let index = currentUserTasks[i]['id'];
         let currentDraggedTaskStatus = currentUserTasks[i].status;
         if (index == id) {
-            let dragTemplates = document.querySelectorAll('.drag-template');
-            dragTemplates.forEach(dragTemplate => dragTemplate.classList.add('drag-template-start'));
             let currentDragTemplate = document.getElementById(`drop_template_${currentDraggedTaskStatus}`);
             currentDragTemplate.classList.remove('drag-template-start');
             currentDraggedElement = i;
@@ -174,6 +172,11 @@ function startDragging(id) {
  */
 function allowDrop(ev) {
     ev.preventDefault();
+    let dragTemplates = document.querySelectorAll('.drag-template');
+    dragTemplates.forEach(dragTemplate => {
+        dragTemplate.classList.add('drag-template-start');
+        dragTemplate.classList.remove('d-none');
+    });
 }
 
 
@@ -186,7 +189,7 @@ async function moveTo(status) {
     currentUserTasks[currentDraggedElement]['status'] = status;
     filterTasksByStatus();
     console.log(currentUserTasks);
-    backend.setItem('users', JSON.stringify(users));
+    await backend.setItem('users', JSON.stringify(users));
 }
 
 

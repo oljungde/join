@@ -42,7 +42,7 @@ function progressBarTemplate(taskId) {
 
 function dropTemplateHTML(status) {
     return /*html*/ `
-        <div id="drop_template_${status}" class="drag-template">
+        <div id="drop_template_${status}" class="drag-template d-none">
             
         </div>
     `;
