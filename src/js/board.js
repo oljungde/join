@@ -156,10 +156,10 @@ function renderProgressBar(element) {
 function startDragging(id) {
     for (i = 0; i < currentUserTasks.length; i++) {
         let index = currentUserTasks[i]['id'];
-        let currentDraggedTaskStatus = currentUserTasks[i].status;
+        // let currentDraggedTaskStatus = currentUserTasks[i].status;
         if (index == id) {
-            let currentDragTemplate = document.getElementById(`drop_template_${currentDraggedTaskStatus}`);
-            currentDragTemplate.classList.remove('drag-template-start');
+            // let currentDragTemplate = document.getElementById(`drop_template_${currentDraggedTaskStatus}`);
+            // currentDragTemplate.classList.remove('drag-template-start');
             currentDraggedElement = i;
         }
     }
