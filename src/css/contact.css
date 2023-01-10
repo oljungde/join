@@ -524,7 +524,7 @@
     }
 }
 
-@media(max-width: 1120px) {
+@media(max-width: 1200px) {
     .contact-right-side {
         display: none;
     }
@@ -548,7 +548,7 @@
 
 }
 
-@media(min-width: 1121px) {
+@media(min-width: 1201px) {
     .display-contact-none {
         display: block;
     }
