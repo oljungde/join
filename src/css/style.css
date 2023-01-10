@@ -229,16 +229,17 @@ a:hover {
         flex-direction: column-reverse;
     }
 
-    .rightContainer h2{
+    .rightContainer h2 {
         display: none;
     }
 
     .sidebar {
         min-width: 100%;
-        max-height: 80px;
+        max-height: 70px;
         position: sticky;
         bottom: 0;
         left: 0;
+        justify-content: center;
         z-index: 99;
     }
 
