@@ -2,7 +2,8 @@ let currentDraggedElement;
 let alreadyEmpty = true;
 let filteredTasks = [];
 let currentTask = {};
-let isTouchDevice = false;
+let taskStates = ['toDo', 'inProgress', 'awaitingFeedback', 'done'];
+let taskStatesNames = ['To do', 'In Progress', 'Awaiting Feedback', 'Done'];
 
 
 /**
@@ -16,7 +17,7 @@ async function initBoard() {
     getTasksOfCurrentUser();
     handleFilterTasks();
     imgheader();
-    checkForTouchDevice();
+    test1();
 }
 
 
@@ -101,6 +102,20 @@ function renderTasks(status) {
         document.getElementById(taskStatus).innerHTML += generateTodoHTML(element);
         renderProgressBar(element)
         renderContactInTask(element);
+        renderTouchMove(element);
+    }
+}
+
+
+function renderTouchMove(element) {
+    let taskMenu = document.getElementById(`task-menu-${element.id}`);
+    for (let i = 0; i < taskStates.length; i++) {
+        const currentTaskState = taskStates[i];
+        if (element.status != currentTaskState) {
+            taskMenu.innerHTML += /*html*/ `
+                <div ontouchstart="touchMoveTask(${element.id}, '${element.status}', '${currentTaskState}')">${taskStatesNames[i]}</div>
+            `;
+        }
     }
 }
 
@@ -184,7 +199,6 @@ function allowDrop(ev) {
 
 /**
  * changes the status of the task according to the dropped area
- * @param {*} e - Ths is the event
  * @param {*} status - This is the status of the Task on the board
  */
 async function moveTo(status) {
@@ -195,35 +209,51 @@ async function moveTo(status) {
 }
 
 
-function checkForTouchDevice() {
-    if ('ontouchstart' in document.documentElement) {
-        isTouchDevice = true;
-        console.log(isTouchDevice);
-    }
-    else {
-        console.log(isTouchDevice);
-    }
+function test1() {
+    let allTaskContainer = document.querySelectorAll('.todo');
+    allTaskContainer.forEach(taskContainer => {
+        taskContainer.addEventListener('touchstart', function () {
+            onlyTouch(event, taskContainer);
+        }, false);
+        taskContainer.addEventListener('click', function () {
+            onlyClick(event, taskContainer);
+        }, false);
+    });
 }
 
 
-function checkDeviceForEdit(id) {
-    if (isTouchDevice) {
-        let taskMenu = document.getElementById(`task-menu-${id}`);
-        taskMenu.classList.remove('d-none');
-    }
-    if (!isTouchDevice) {
-        showDetailWindow(id)
-    }
+function onlyTouch(eve, taskContainer) {
+    showTaskTouchMenu(taskContainer.id);
+    eve.preventDefault();
 }
 
 
-function taskMenuClose(id) {
-    if (isTouchDevice) {
-        let taskMenus = document.querySelectorAll(`.task-menu`);
-        taskMenus.forEach(taskMenu => {
-            taskMenu.classList.add('d-none');
-        });
-    }
+
+function onlyClick(eve, taskContainer) {
+    showDetailWindow(taskContainer.id);
+    eve.preventDefault();
+}
+
+
+function showTaskTouchMenu(id) {
+    let taskMenu = document.getElementById(`task-menu-${id}`);
+    taskMenu.classList.remove('d-none');
+    setTimeout(() => {
+        taskMenu.classList.add('d-none');
+    }, 2000);
+}
+
+
+async function touchMoveTask(id, moveFrom, moveTo) {
+    currentTask = currentUserTasks.filter((currentTask) => {
+        return currentTask.id == id;
+    });
+    currentTask = currentTask[0];
+    console.log(currentTask);
+    currentTask.status = moveTo;
+    await backend.setItem('users', JSON.stringify(users));
+    handleFilterTasks();
+    test1();
 }
 
 
@@ -554,6 +584,7 @@ function closeDetailTask() {
     document.getElementById('detail_content').innerHTML = '';
     document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
+    test1();
 }
 
 /**

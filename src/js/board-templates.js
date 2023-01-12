@@ -5,14 +5,11 @@
  */
 function generateTodoHTML(element) {
     return /*html*/`
-    <div onclick="checkDeviceForEdit(${element.id})" draggable="true" ondragstart="startDragging(${element['id']})" class="todo" id="${element['id']}">
+    <div onclick="test1()" draggable="true" ondragstart="startDragging(${element['id']})" class="todo" id="${element['id']}">
         <div id="task-menu-${element.id}" class="task-menu d-none">
-            <div ontouchstart="taskMenuClose(${element.id})" class="task-menu-close"><img src="./assets/img/group 11-light.png" alt="close"></div>
-            <div onclick="showDetailWindow(${element.id})" class="task-menu-edit">Edit</div>
-            <div class="task-menu-move">Move to:</div>
-            <div>In Progress</div>
-            <div>Awaiting Feedback</div>
-            <div>Done</div>
+            <div ontouchstart="showDetailWindow(${element.id})" class="task-menu-edit">Edit</div>
+            <div id="touch-move-${element.id}" class="task-menu-move">Move to:</div>
+            
         </div>   
       <span class="${element['category']['TaskColor']}">${element['category']['Category']}</span>
       <div class=titleAndText>
@@ -29,7 +26,7 @@ function generateTodoHTML(element) {
         
         <div class="priority"><img src="assets/img/prio-${element['priority']}.png" alt=""></div>
       </div>
-    </div>`
+    </div>`;
 }
 
 
