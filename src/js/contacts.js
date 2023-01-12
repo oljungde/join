@@ -105,7 +105,6 @@ function checkOrLoad(look, contactName, contactTask, mo) {
             closeAddContact(mo);
             selectorcontactIndex = 0;
             showUsers(mo);
-
         }
     }
     else {
@@ -202,7 +201,6 @@ function clearContactBar(mo) {
         }
         contactChild();
     }
-
 }
 
 
@@ -363,7 +361,6 @@ async function savesInBackEnd() {
 function clearContactDetails() {
     let addcontact = document.getElementById('contactdetails');
     addcontact.innerHTML = '';
-
 }
 
 
@@ -406,7 +403,6 @@ function OpenContactAddTask(i, index) {
     document.getElementById('openContactAddtaskBG').classList.remove('d-none');
     let taskStatus = 'toDo';
     openaddtask.innerHTML = openAddTaskHtml(i, taskStatus);
-
 }
 
 
