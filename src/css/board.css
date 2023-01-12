@@ -197,6 +197,7 @@ h3 {
 }
 
 .task-menu {
+    min-width: 200px;
     background-color: var(--color-blue-main);
     position: absolute;
     top: 16px;
@@ -219,15 +220,21 @@ h3 {
 }
 
 .task-menu-edit {
-    padding: 0 0 8px 0;
+    padding: 0 0 16px 0;
     border-bottom: 1px solid white;
 }
 
 .task-menu-move {
-    padding: 8px 0 0 0;
+    margin: 8px 0 0 0;
+    font-weight: bold;
 }
 
-.titleAndText {
+.task-menu-move-entry {
+    margin: 8px 0;
+    padding: 8px 0;
+}
+
+.task .titleAndText {
     margin-bottom: 20px;
 }
 

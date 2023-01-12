@@ -68,7 +68,7 @@ function dropTemplateHTML(status) {
  */
 function touchMenuEntryHTML(element, currentTaskState, i) {
     return /*html*/ `
-        <div ontouchstart="touchMoveTask(${element.id}, '${currentTaskState}')">${taskStatesNames[i]}</div>
+        <div ontouchstart="touchMoveTask(${element.id}, '${currentTaskState}')" class="task-menu-move-entry">${taskStatesNames[i]}</div>
     `;
 }
 

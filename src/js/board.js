@@ -256,7 +256,7 @@ function showTaskTouchMenu(id) {
     taskMenu.classList.remove('d-none');
     setTimeout(() => {
         taskMenu.classList.add('d-none');
-    }, 2000);
+    }, 3000);
 }
 
 
