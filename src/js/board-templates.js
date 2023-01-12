@@ -5,7 +5,7 @@
  */
 function generateTodoHTML(element) {
     return /*html*/`
-    <div onclick="test1()" draggable="true" ondragstart="startDragging(${element['id']})" class="todo" id="${element['id']}">
+    <div onclick="checkDevice()" draggable="true" ondragstart="startDragging(${element['id']})" class="todo" id="${element['id']}">
         <div id="task-menu-${element.id}" class="task-menu d-none">
             <div ontouchstart="showDetailWindow(${element.id})" class="task-menu-edit">Edit</div>
             <div id="touch-move-${element.id}" class="task-menu-move">Move to:</div>
@@ -45,11 +45,30 @@ function progressBarTemplate(taskId) {
 }
 
 
+/**
+ * HTML code for render ads of drop areas
+ * @param {string} status is a value from a status of a drag area
+ * @returns the HTML code to render the ad of drop containers
+ */
 function dropTemplateHTML(status) {
     return /*html*/ `
         <div id="drop_template_${status}" class="drag-template d-none">
             
         </div>
+    `;
+}
+
+
+/**
+ * code to display to entries of the touch overlay context menu
+ * @param {object} element is the current Task
+ * @param {string} currentTaskState is the new status of task to move 
+ * @param {number} i is the position of array taskStatesName to display the full name of the new status in the touch overlay
+ * @returns the HTML code to render an entry ov touch overlay to wird with current task
+ */
+function touchMenuEntryHTML(element, currentTaskState, i) {
+    return /*html*/ `
+        <div ontouchstart="touchMoveTask(${element.id}, '${currentTaskState}')">${taskStatesNames[i]}</div>
     `;
 }
 

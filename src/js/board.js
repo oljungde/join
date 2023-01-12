@@ -2,6 +2,7 @@ let currentDraggedElement;
 let alreadyEmpty = true;
 let filteredTasks = [];
 let currentTask = {};
+let isTouchDevice = false;
 let taskStates = ['toDo', 'inProgress', 'awaitingFeedback', 'done'];
 let taskStatesNames = ['To do', 'In Progress', 'Awaiting Feedback', 'Done'];
 
@@ -17,7 +18,7 @@ async function initBoard() {
     getTasksOfCurrentUser();
     handleFilterTasks();
     imgheader();
-    test1();
+    checkDevice();
 }
 
 
@@ -107,14 +108,16 @@ function renderTasks(status) {
 }
 
 
+/**
+ * renders the menu entries on context menu if using touch device
+ * @param {object} element is the current Task
+ */
 function renderTouchMove(element) {
     let taskMenu = document.getElementById(`task-menu-${element.id}`);
     for (let i = 0; i < taskStates.length; i++) {
         const currentTaskState = taskStates[i];
         if (element.status != currentTaskState) {
-            taskMenu.innerHTML += /*html*/ `
-                <div ontouchstart="touchMoveTask(${element.id}, '${element.status}', '${currentTaskState}')">${taskStatesNames[i]}</div>
-            `;
+            taskMenu.innerHTML += touchMenuEntryHTML(element, currentTaskState, i);
         }
     }
 }
@@ -173,10 +176,7 @@ function renderProgressBar(element) {
 function startDragging(id) {
     for (i = 0; i < currentUserTasks.length; i++) {
         let index = currentUserTasks[i]['id'];
-        // let currentDraggedTaskStatus = currentUserTasks[i].status;
         if (index == id) {
-            // let currentDragTemplate = document.getElementById(`drop_template_${currentDraggedTaskStatus}`);
-            // currentDragTemplate.classList.remove('drag-template-start');
             currentDraggedElement = i;
         }
     }
@@ -209,32 +209,48 @@ async function moveTo(status) {
 }
 
 
-function test1() {
+/**
+ * check if user use a touch device, for work with a single task
+ */
+function checkDevice() {
     let allTaskContainer = document.querySelectorAll('.todo');
     allTaskContainer.forEach(taskContainer => {
-        taskContainer.addEventListener('touchstart', function () {
+        taskContainer.addEventListener('touchstart', function (event) {
             onlyTouch(event, taskContainer);
         }, false);
-        taskContainer.addEventListener('click', function () {
+        taskContainer.addEventListener('click', function (event) {
             onlyClick(event, taskContainer);
         }, false);
     });
 }
 
 
+/**
+ * show the context for touch devices 
+ * @param {object} eve is the event from an event Listener when user use a touch device 
+ * @param {object} taskContainer html object wich contains the context menu for working with tasks on a touch device
+ */
 function onlyTouch(eve, taskContainer) {
     showTaskTouchMenu(taskContainer.id);
     eve.preventDefault();
 }
 
 
-
+/**
+ * shows the detail window of a task when user don#t use a touch device
+ * @param {object} eve is the event from an event Listener when user use not a touch device 
+ * @param {object} taskContainer html object wich contains the context menu for working with tasks on desktop   
+ */
 function onlyClick(eve, taskContainer) {
     showDetailWindow(taskContainer.id);
     eve.preventDefault();
 }
 
 
+/**
+ * shows the context menu for several seconds 
+ * @param {number} id is the if of the current task
+ */
 function showTaskTouchMenu(id) {
     let taskMenu = document.getElementById(`task-menu-${id}`);
     taskMenu.classList.remove('d-none');
@@ -244,16 +260,20 @@ function showTaskTouchMenu(id) {
 }
 
 
-async function touchMoveTask(id, moveFrom, moveTo) {
+/**
+ * change the status of the current task by using a touch device
+ * @param {number} id is the id if current task
+ * @param {*} moveTo is the new status of current task to move 
+ */
+async function touchMoveTask(id, moveTo) {
     currentTask = currentUserTasks.filter((currentTask) => {
         return currentTask.id == id;
     });
     currentTask = currentTask[0];
-    console.log(currentTask);
     currentTask.status = moveTo;
     await backend.setItem('users', JSON.stringify(users));
     handleFilterTasks();
-    test1();
+    checkDevice();
 }
 
 
@@ -584,7 +604,7 @@ function closeDetailTask() {
     document.getElementById('detail_content').innerHTML = '';
     document.getElementById('detail_container').classList.add('d-none');
     filterTasksByStatus();
-    test1();
+    checkDevice();
 }
 
 /**
