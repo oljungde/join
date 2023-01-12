@@ -2,6 +2,7 @@ let currentDraggedElement;
 let alreadyEmpty = true;
 let filteredTasks = [];
 let currentTask = {};
+let isTouchDevice = false;
 
 
 /**
@@ -15,6 +16,7 @@ async function initBoard() {
     getTasksOfCurrentUser();
     handleFilterTasks();
     imgheader();
+    checkForTouchDevice();
 }
 
 
@@ -190,6 +192,38 @@ async function moveTo(status) {
     filterTasksByStatus();
     console.log(currentUserTasks);
     await backend.setItem('users', JSON.stringify(users));
+}
+
+
+function checkForTouchDevice() {
+    if ('ontouchstart' in document.documentElement) {
+        isTouchDevice = true;
+        console.log(isTouchDevice);
+    }
+    else {
+        console.log(isTouchDevice);
+    }
+}
+
+
+function checkDeviceForEdit(id) {
+    if (isTouchDevice) {
+        let taskMenu = document.getElementById(`task-menu-${id}`);
+        taskMenu.classList.remove('d-none');
+    }
+    if (!isTouchDevice) {
+        showDetailWindow(id)
+    }
+}
+
+
+function taskMenuClose(id) {
+    if (isTouchDevice) {
+        let taskMenus = document.querySelectorAll(`.task-menu`);
+        taskMenus.forEach(taskMenu => {
+            taskMenu.classList.add('d-none');
+        });
+    }
 }
 
 

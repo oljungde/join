@@ -6,6 +6,7 @@ let currentUserTasks = [];
 let allTasks = [];
 let showMenuinheader = 0;
 
+
 /**
  * init function will be executed when loading the page, includes heder an sidebar navigation, and get several arrays from the backend
  */
